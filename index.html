@@ -1,0 +1,277 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest to City Slider</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.0/css/all.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0E0E0 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .skyline-container {
+            width: 100%;
+            height: clamp(120px, 25vw, 200px);
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            margin-bottom: clamp(20px, 5vw, 40px);
+        }
+
+        .skyline {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon-wrapper i {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease;
+        }
+
+        /* City buildings */
+        .city-icon {
+            color: #2c2c2c;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+        }
+
+        .icon-wrapper:nth-child(1) .city-icon {
+            font-size: clamp(40px, 10vw, 80px);
+        }
+
+        .icon-wrapper:nth-child(2) .city-icon {
+            font-size: clamp(45px, 11vw, 90px);
+        }
+
+        .icon-wrapper:nth-child(3) .city-icon {
+            font-size: clamp(35px, 8.5vw, 70px);
+        }
+
+        .icon-wrapper:nth-child(4) .city-icon {
+            font-size: clamp(40px, 10vw, 80px);
+        }
+
+        .icon-wrapper:nth-child(5) .city-icon {
+            font-size: clamp(38px, 9vw, 75px);
+        }
+
+        .icon-wrapper:nth-child(6) .city-icon {
+            font-size: clamp(33px, 8vw, 65px);
+        }
+
+        .icon-wrapper:nth-child(7) .city-icon {
+            font-size: clamp(35px, 8.5vw, 70px);
+        }
+
+        .icon-wrapper:nth-child(8) .city-icon {
+            font-size: clamp(40px, 10vw, 80px);
+        }
+
+        /* Forest trees */
+        .tree-icon {
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+            opacity: 0;
+        }
+
+        .icon-wrapper:nth-child(1) .tree-icon {
+            color: #4CAF50;
+            font-size: clamp(43px, 10.5vw, 85px);
+        }
+
+        .icon-wrapper:nth-child(2) .tree-icon {
+            color: #66BB6A;
+            font-size: clamp(48px, 11.5vw, 95px);
+        }
+
+        .icon-wrapper:nth-child(3) .tree-icon {
+            color: #388E3C;
+            font-size: clamp(38px, 9vw, 75px);
+        }
+
+        .icon-wrapper:nth-child(4) .tree-icon {
+            color: #2E7D32;
+            font-size: clamp(45px, 11vw, 90px);
+        }
+
+        .icon-wrapper:nth-child(5) .tree-icon {
+            color: #43A047;
+            font-size: clamp(44px, 10.5vw, 88px);
+        }
+
+        .icon-wrapper:nth-child(6) .tree-icon {
+            color: #4CAF50;
+            font-size: clamp(39px, 9.5vw, 78px);
+        }
+
+        .icon-wrapper:nth-child(7) .tree-icon {
+            color: #388E3C;
+            font-size: clamp(46px, 11vw, 92px);
+        }
+
+        .icon-wrapper:nth-child(8) .tree-icon {
+            color: #66BB6A;
+            font-size: clamp(41px, 10vw, 82px);
+        }
+
+        /* Slider */
+        .slider-control {
+            width: 100%;
+            text-align: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            max-width: 700px;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            border-radius: 5px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: clamp(20px, 5vw, 24px);
+            height: clamp(20px, 5vw, 24px);
+            background: #4CAF50;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: clamp(20px, 5vw, 24px);
+            height: clamp(20px, 5vw, 24px);
+            background: #4CAF50;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 700px;
+            margin: 15px auto 0;
+            font-size: clamp(12px, 3vw, 14px);
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="skyline-container">
+            <div class="skyline" id="skyline">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-tower-observation city-icon"></i>
+                    <i class="fa-solid fa-tree-decorated tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-lighthouse city-icon"></i>
+                    <i class="fa-solid fa-island-tropical tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-torii-gate city-icon"></i>
+                    <i class="fa-solid fa-tree tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-building city-icon"></i>
+                    <i class="fa-solid fa-tree-large tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-landmark city-icon"></i>
+                    <i class="fa-solid fa-tree-deciduous tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-store city-icon"></i>
+                    <i class="fa-solid fa-cactus tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-warehouse city-icon"></i>
+                    <i class="fa-solid fa-tree-palm tree-icon"></i>
+                </div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-building city-icon"></i>
+                    <i class="fa-solid fa-plant-wilt tree-icon"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-control">
+            <input type="range" id="slider" min="0" max="100" value="0">
+            <div class="labels">
+                <span></br><i class="fa-solid fa-tower-cell fa-2xl"></i></span>
+                <text>Healing Civilization</text>
+                <span></br><i class="fa-solid fa-trees fa-2xl" style="color: #20b689;"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const iconWrappers = document.querySelectorAll('.icon-wrapper');
+
+        slider.addEventListener('input', function () {
+            const value = this.value;
+
+            // 8 icons, so each icon is 12.5% of the slider (100/8)
+            iconWrappers.forEach((wrapper, index) => {
+                const cityIcon = wrapper.querySelector('.city-icon');
+                const treeIcon = wrapper.querySelector('.tree-icon');
+
+                // Calculate the threshold
+                const threshold = (index + 1) * 12.5;
+
+                if (value >= threshold) {
+                    // Show tree, hide city
+                    cityIcon.style.opacity = '0';
+                    treeIcon.style.opacity = '1';
+                } else {
+                    // Show city, hide tree
+                    cityIcon.style.opacity = '1';
+                    treeIcon.style.opacity = '0';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

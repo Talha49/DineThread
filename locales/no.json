@@ -1,0 +1,289 @@
+{
+  "nav": {
+    "features": "Funksjoner",
+    "themes": "Temaer",
+    "pricing": "Priser",
+    "contact": "Kontakt",
+    "login": "Logg inn",
+    "signup": "Kom i gang",
+    "dashboard": "Dashbord"
+  },
+  "common": {
+    "save": "Lagre",
+    "cancel": "Avbryt",
+    "loading": "Laster..."
+  },
+  "footer": {
+    "description": "Det intelligente designsystemet for den moderne serveringsbransjen.",
+    "platform": "Plattform",
+    "company": "Selskap",
+    "contact": "Kontakt",
+    "rights": "© 2024 Davoriq. Bygget for visjonære.",
+    "privacy": "Personvern",
+    "security": "Sikkerhet",
+    "links": {
+      "visual_dna": "Visuelt DNA",
+      "seasonal_engine": "Sesongmotor",
+      "ai_intelligence": "AI-intelligens",
+      "pricing": "Priser",
+      "api_docs": "API-dokumentasjon",
+      "about_us": "Om oss",
+      "case_studies": "Casestudier",
+      "partners": "Partnere",
+      "terms": "Vilkår"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "v2.0 Intelligensplattform Live",
+      "title_1": "Den smartere måten",
+      "title_2": "å drive menyen på",
+      "subtitle": "Lag fantastiske digitale menyer som øker salget og sparer tid.",
+      "cta_primary": "Bygg din opplevelse",
+      "cta_secondary": "Se video"
+    },
+    "workflow": {
+      "tag": "Enkel arbeidsflyt",
+      "title_1": "Hvordan Davoriq",
+      "title_2": "fungerer for deg",
+      "steps": [
+        {
+          "title": "Opprett kategorier",
+          "desc": "Organiser menyen i logiske seksjoner som Forretter, Hovedretter og Drikke."
+        },
+        {
+          "title": "Legg til elementer",
+          "desc": "Last opp bilder, sett priser og legg til beskrivelser."
+        },
+        {
+          "title": "Design merkevaren din",
+          "desc": "Bruk Design Studio for å velge farger, skrifttyper og oppsett."
+        },
+        {
+          "title": "Optimaliser med AI",
+          "desc": "Aktiver AI-varmekart for å fremheve populære elementer."
+        }
+      ],
+      "why_optimize": "Hvorfor optimalisere menyen din?",
+      "why_desc": "En godt organisert digital meny selger mer. Ved å bruke **AI-varmekart** og **Kategorioptimalisering**, kan du guide kundene automatisk.",
+      "benefits": [
+        "Sanntids dashbord-kontroll",
+        "Umiddelbar QR-kodegenerering"
+      ],
+      "table": {
+        "feature": "Funksjon",
+        "status": "Status",
+        "live": "Live",
+        "rows": [
+          "Kategoristyring",
+          "AI-elementfremheving",
+          "Dynamiske prisregler"
+        ]
+      }
+    },
+    "automation": {
+      "tag": "Intelligent Automasjon",
+      "title_1": "Automatisk sesongbasert",
+      "title_2": "Temaer og priser",
+      "desc": "Davoriq endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
+      "features": [
+        "12 forhåndskonfigurerte månedlige overlegg",
+        "Automatiske fargeoverganger",
+        "Dynamiske bakgrunnspartikler",
+        "Manuelle forhåndsvisningsbrytere"
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Designstudioet er fantastisk. Vi har sett en 22% økning i gjennomsnittlig ordreverdi.\"",
+      "author": "Marcus Sterling",
+      "role": "Direktør, Gastronomy Group"
+    },
+    "cta": {
+      "title_1": "Klar til å heve",
+      "title_2": "opplevelsen din?",
+      "subtitle": "Bli med tusenvis av restauranter som forbedrer sin digitale tilstedeværelse.",
+      "btn": "Kom i gang nå",
+      "trial": "14-dagers gratis prøveperiode",
+      "no_card": "Ingen kredittkort kreves"
+    },
+    "features": {
+      "tag": "Kraftige funksjoner",
+      "title_1": "Alt du trenger for å",
+      "title_2": "øke salget ditt",
+      "desc": "Vi har bygget et komplett sett med verktøy for å hjelpe deg med å administrere restaurantens digitale tilstedeværelse.",
+      "items": [
+        {
+          "title": "Visuelt Designstudio",
+          "desc": "Tilpassbar high-end estetikk med premium skrifttyper og farger."
+        },
+        {
+          "title": "AI 'Hot'-merker",
+          "desc": "Fremhev automatisk de mest solgte elementene."
+        },
+        {
+          "title": "Auto-Magiske Temaer",
+          "desc": "Menyen endres med kalenderen. Vinter, Vår, Sommer og Høst."
+        },
+        {
+          "title": "Happy Hour-motor",
+          "desc": "Planlegg rabatter og dynamiske prisregler."
+        },
+        {
+          "title": "Atmosfæreeffekter",
+          "desc": "Legg til snøfall, blomsterblader eller stjerner."
+        },
+        {
+          "title": "Live Prissynkronisering",
+          "desc": "Endre en pris i dashbordet og se den oppdateres umiddelbart."
+        }
+      ]
+    },
+    "pricing": {
+      "tag": "Enkle Priser",
+      "title_1": "La bedriften vokse",
+      "title_2": "i ditt eget tempo",
+      "plans": [
+        {
+          "name": "Basis",
+          "price": "Gratis",
+          "desc": "Den perfekte starten for små kafeer.",
+          "features": [
+            "Opptil 15 elementer",
+            "Grunnleggende farger",
+            "Live QR-skanning",
+            "Mobilvennlig",
+            "Fellesskapsstøtte"
+          ],
+          "cta": "Start gratis"
+        },
+        {
+          "name": "Smart Pro",
+          "price": "TBD",
+          "period": "/mnd",
+          "desc": "Alt du trenger for vekst.",
+          "popular": "Mest populær",
+          "features": [
+            "Ubegrensede elementer",
+            "Sesongtemaer",
+            "AI-merker",
+            "Planlagte Happy Hours",
+            "Egendefinert merkevare",
+            "E-poststøtte"
+          ],
+          "cta": "Prøv 7 dager gratis"
+        },
+        {
+          "name": "Bedrift",
+          "price": "TBD",
+          "period": "/mnd",
+          "desc": "For restaurantgrupper med flere lokasjoner.",
+          "features": [
+            "Flerlokasjons-dashbord",
+            "White-label",
+            "Avansert API",
+            "Dedikert manager",
+            "Egendefinert design",
+            "24/7 telefonstøtte"
+          ],
+          "cta": "Kontakt Salg"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Logg inn",
+      "subtitle": "Skriv inn e-post og passord for å få tilgang til dashbordet",
+      "email": "E-post",
+      "password": "Passord",
+      "forgot": "Glemt passord?",
+      "submit": "Logg inn",
+      "no_account": "Har du ikke en konto?",
+      "signup": "Registrer deg"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Oversikt",
+      "menu_management": "Menyadministrasjon",
+      "qr_code": "QR-kode",
+      "tables": "Bord",
+      "orders": "Bestillinger",
+      "shop_settings": "Butikkinnstillinger",
+      "view_live": "Se Live Meny",
+      "launch_tv": "Start TV-modus",
+      "sign_out": "Logg ut"
+    },
+    "overview": {
+      "loading": "Laster intelligens...",
+      "title": "Dashbord",
+      "subtitle": "Oversikt",
+      "syncing": "Synkroniserer live",
+      "metrics": {
+        "menu_items": "Menyelementer",
+        "active_items": "Aktive elementer",
+        "categories": "Kategorier",
+        "sections": "Seksjoner",
+        "visual_dna": "Visuelt DNA",
+        "active": "Aktiv",
+        "default": "Standard",
+        "custom_theme": "Egendefinert tema",
+        "standard": "Standard",
+        "scans": "RealFlow-skanninger",
+        "pending": "Avventer analyse"
+      },
+      "health": {
+        "title": "Menyhelse",
+        "completeness": "Fullstendighet",
+        "cat_created": "Kategorier opprettet",
+        "min_items": "Minimum 5 elementer",
+        "visuals_set": "Merkets visuelle uttrykk",
+        "logo_set": "Restaurantlogo"
+      },
+      "pro": {
+        "title": "Gå profesjonell",
+        "desc": "Lås opp ubegrensede menyelementer, AI-varmekart og premium-temaer.",
+        "btn": "Se priser"
+      }
+    },
+    "menu": {
+      "title": "Menyadministrasjon",
+      "subtitle": "Organiser menyen, kategorier og tilgjengelighet.",
+      "view_preview": "Se Live Forhåndsvisning",
+      "add_item": "Legg til nytt element",
+      "tabs": {
+        "items": "Menyelementer",
+        "categories": "Kategorier"
+      },
+      "preview_title": "Live Meny Forhåndsvisning",
+      "preview_desc": "Se hvordan menyen din ser ut for kundene. Klikk på et element for å finne det i listen."
+    },
+    "settings": {
+      "studio": "Designstudio",
+      "profile": "Forretningsprofil",
+      "live": "Live"
+    }
+  },
+  "live_menu": {
+    "visual_gastronomy": "Visuell Gastronomi",
+    "search_placeholder": "Tilpass din opplevelse...",
+    "share": "Del",
+    "smart_menu": "SMART MENU",
+    "future_dining": "FREMTIDENS SERVERING",
+    "establishment_info": "ETABLISSEMENTSINFO",
+    "location": "BELIGGENHET",
+    "contact_address": "Kontakt for adresse",
+    "contact": "KONTAKT",
+    "no_phone": "Ingen telefon oppført",
+    "service_hours": "ÅPNINGSTIDER",
+    "closed": "Stengt",
+    "return_menu": "Tilbake til meny",
+    "choose_size": "Velg størrelse",
+    "total_price": "Totalpris",
+    "got_it": "Forstått",
+    "our_signature": "VÅR SIGNATUR",
+    "in_stock": "På lager og klar",
+    "price_value": "Prisverdi",
+    "dismiss": "Lukk"
+  }
+}

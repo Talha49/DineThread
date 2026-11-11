@@ -1,0 +1,289 @@
+{
+  "nav": {
+    "features": "Features",
+    "themes": "Themes",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "login": "Log In",
+    "signup": "Get Started",
+    "dashboard": "Dashboard"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading..."
+  },
+  "footer": {
+    "description": "The intelligent design system for the modern hospitality industry. From boutique cafes to enterprise restaurant groups.",
+    "platform": "Platform",
+    "company": "Company",
+    "contact": "Contact",
+    "rights": "© 2024 Davoriq Intelligence. Built for Visionaries.",
+    "privacy": "Privacy Policy",
+    "security": "Security",
+    "links": {
+      "visual_dna": "Visual DNA",
+      "seasonal_engine": "Seasonal Engine",
+      "ai_intelligence": "AI Intelligence",
+      "pricing": "Pricing",
+      "api_docs": "API Docs",
+      "about_us": "About Us",
+      "case_studies": "Case Studies",
+      "partners": "Partners",
+      "terms": "Terms of Service"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "Enterprise Digital Menu Platform Live",
+      "title_1": "The Best Digital",
+      "title_2": "QR Menu Maker",
+      "subtitle": "Davoriq is the ultimate digital QR menu software for restaurants. Create stunning contactless menus that increase sales, streamline dine-in ordering, and elevate your customer experience.",
+      "cta_primary": "Start Free Trial",
+      "cta_secondary": "See How It Works"
+    },
+    "workflow": {
+      "tag": "Simple Workflow",
+      "title_1": "How Davoriq",
+      "title_2": "works for you",
+      "steps": [
+        {
+          "title": "Create Categories",
+          "desc": "Organize your menu into logical sections like Starters, Mains, and Drinks. Simply name them and set their order."
+        },
+        {
+          "title": "Add Menu Items",
+          "desc": "Upload photos, set prices, and add descriptions. You can update these instantly whenever your kitchen makes a change."
+        },
+        {
+          "title": "Design Your Brand",
+          "desc": "Use our Design Studio to pick colors, fonts, and layouts that match your restaurant's unique personality."
+        },
+        {
+          "title": "Optimize with AI",
+          "desc": "Activate AI heatmaps to highlight popular items and set 'Happy Hour' rules to automatically adjust prices."
+        }
+      ],
+      "why_optimize": "Why Optimize Your Menu?",
+      "why_desc": "A well-organized digital menu doesn't just look good—it sells more. By using our **AI Heatmap** and **Category Optimization**, you can guide your customers toward your highest-margin items automatically.",
+      "benefits": [
+        "Real-time Dashboard Control",
+        "Instant QR Code Generation"
+      ],
+      "table": {
+        "feature": "Feature",
+        "status": "Status",
+        "live": "Live",
+        "rows": [
+          "Category Management",
+          "AI Item Highlighting",
+          "Dynamic Price Rules"
+        ]
+      }
+    },
+    "automation": {
+      "tag": "Intelligent Automation",
+      "title_1": "Automatic Seasonal",
+      "title_2": "Themes & Pricing",
+      "desc": "Stop worrying about updating your menu for every holiday. Davoriq automatically changes your themes and atmosphere effects to match the season, and optimizes your prices for Happy Hour.",
+      "features": [
+        "12 Pre-configured Monthly Overlays",
+        "Automated Lighting & Color Transitions",
+        "Dynamic Background Particle Engines",
+        "Manual Preview Dashboard Toggles"
+      ]
+    },
+    "testimonial": {
+      "quote": "\"The design studio is a game-changer. We've seen a 22% increase in average order value through AI heatmaps.\"",
+      "author": "Marcus Sterling",
+      "role": "Director, Gastronomy Group"
+    },
+    "cta": {
+      "title_1": "Ready to elevate",
+      "title_2": "your experience?",
+      "subtitle": "Join thousands of world-class restaurants transforming their digital presence today.",
+      "btn": "Get Started Now",
+      "trial": "14-Day Free Trial",
+      "no_card": "No Credit Card Required"
+    },
+    "features": {
+      "tag": "Powerful Features",
+      "title_1": "Everything you need to",
+      "title_2": "grow your sales",
+      "desc": "We've built a complete set of tools to help you manage your restaurant's digital presence effortlessly.",
+      "items": [
+        {
+          "title": "Visual Design Studio",
+          "desc": "Customizable high-end aesthetics with premium fonts, colors, and layouts that match your brand perfectly."
+        },
+        {
+          "title": "AI 'Hot' Badges",
+          "desc": "Automatically highlight your top-selling and trending items to help customers make faster, better choices."
+        },
+        {
+          "title": "Auto-Magic Themes",
+          "desc": "Your menu changes with the calendar. Automatic atmosphere effects for Winter, Spring, Summer, and Autumn."
+        },
+        {
+          "title": "Happy Hour Engine",
+          "desc": "Schedule discounts and dynamic pricing rules that update instantly on your customers' phones."
+        },
+        {
+          "title": "Atmosphere Effects",
+          "desc": "Add immersive snowfall, flower petals, or stars to your background to create a unique dining mood."
+        },
+        {
+          "title": "Live Price Sync",
+          "desc": "Change a price in your dashboard and see it update across all customer devices in less than a second."
+        }
+      ]
+    },
+    "pricing": {
+      "tag": "Simple Pricing",
+      "title_1": "Grow your business",
+      "title_2": "at your own pace",
+      "plans": [
+        {
+          "name": "Basic",
+          "price": "Free",
+          "desc": "The perfect start for small cafes.",
+          "features": [
+            "Up to 15 Menu Items",
+            "Basic Brand Colors",
+            "Live QR Scanning",
+            "Mobile Friendly Layout",
+            "Community Support"
+          ],
+          "cta": "Start for Free"
+        },
+        {
+          "name": "Smart Pro",
+          "price": "TBD",
+          "period": "/mo",
+          "desc": "Everything you need for growth.",
+          "popular": "Most Popular",
+          "features": [
+            "Unlimited Menu Items",
+            "Automated Seasonal Themes",
+            "AI-Driven 'Hot' Badges",
+            "Scheduled Happy Hours",
+            "Custom Branding & Fonts",
+            "Email Support"
+          ],
+          "cta": "Try 7 Days Free"
+        },
+        {
+          "name": "Enterprise",
+          "price": "TBD",
+          "period": "/mo",
+          "desc": "For multi-location restaurant groups.",
+          "features": [
+            "Multi-location Dashboard",
+            "Full White-label Options",
+            "Advanced API Access",
+            "Dedicated Account Manager",
+            "Custom Theme Design",
+            "24/7 Phone Support"
+          ],
+          "cta": "Contact Sales"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Enter your email and password to access your dashboard",
+      "email": "Email",
+      "password": "Password",
+      "forgot": "Forgot password?",
+      "submit": "Sign In",
+      "no_account": "Don't have an account?",
+      "signup": "Sign up"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Overview",
+      "menu_management": "Menu Management",
+      "qr_code": "QR Code",
+      "tables": "Tables",
+      "orders": "Orders",
+      "shop_settings": "Shop Settings",
+      "view_live": "View Live Menu",
+      "launch_tv": "Launch TV Mode",
+      "sign_out": "Sign Out"
+    },
+    "overview": {
+      "loading": "Loading Intelligence...",
+      "title": "Dashboard",
+      "subtitle": "Overview",
+      "syncing": "Syncing Live",
+      "metrics": {
+        "menu_items": "Menu Items",
+        "active_items": "Active Items",
+        "categories": "Categories",
+        "sections": "Sections",
+        "visual_dna": "Visual DNA",
+        "active": "Active",
+        "default": "Default",
+        "custom_theme": "Custom Theme",
+        "standard": "Standard",
+        "scans": "RealFlow Scans",
+        "pending": "Analytics Pending"
+      },
+      "health": {
+        "title": "Menu Health",
+        "completeness": "Completeness",
+        "cat_created": "Categories Created",
+        "min_items": "Minimum 5 Items",
+        "visuals_set": "Brand Visuals Set",
+        "logo_set": "Restaurant Logo"
+      },
+      "pro": {
+        "title": "Go Professional",
+        "desc": "Unlock unlimited menu items, AI-driven heatmaps, and premium themes.",
+        "btn": "View Pricing"
+      }
+    },
+    "menu": {
+      "title": "Menu Management",
+      "subtitle": "Organize your menu, categories, and availability.",
+      "view_preview": "View Live Preview",
+      "add_item": "Add New Item",
+      "tabs": {
+        "items": "Menu Items",
+        "categories": "Categories"
+      },
+      "preview_title": "Live Menu Preview",
+      "preview_desc": "See how your menu looks to your customers. Click any item to find it in your list."
+    },
+    "settings": {
+      "studio": "Design Studio",
+      "profile": "Business Profile",
+      "live": "Live"
+    }
+  },
+  "live_menu": {
+    "visual_gastronomy": "Visual Gastronomy",
+    "search_placeholder": "Curate your experience...",
+    "share": "Share",
+    "smart_menu": "SMART MENU",
+    "future_dining": "THE FUTURE OF DINING",
+    "establishment_info": "ESTABLISHMENT INFO",
+    "location": "LOCATION",
+    "contact_address": "Contact for address",
+    "contact": "CONTACT",
+    "no_phone": "No phone listed",
+    "service_hours": "SERVICE HOURS",
+    "closed": "Closed",
+    "return_menu": "Return to Menu",
+    "choose_size": "Choose Size",
+    "total_price": "Total Price",
+    "got_it": "Got it",
+    "our_signature": "OUR SIGNATURE",
+    "in_stock": "In Stock & Ready",
+    "price_value": "Price Value",
+    "dismiss": "Dismiss"
+  }
+}

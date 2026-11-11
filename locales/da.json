@@ -1,0 +1,289 @@
+{
+  "nav": {
+    "features": "Funktioner",
+    "themes": "Temaer",
+    "pricing": "Priser",
+    "contact": "Kontakt",
+    "login": "Log ind",
+    "signup": "Kom i gang",
+    "dashboard": "Betjeningspanel"
+  },
+  "common": {
+    "save": "Gem",
+    "cancel": "Annuller",
+    "loading": "Indlæser..."
+  },
+  "footer": {
+    "description": "Det intelligente designsystem til den moderne restaurationsbranche.",
+    "platform": "Platform",
+    "company": "Virksomhed",
+    "contact": "Kontakt",
+    "rights": "© 2024 Davoriq. Bygget til visionære.",
+    "privacy": "Privatlivspolitik",
+    "security": "Sikkerhed",
+    "links": {
+      "visual_dna": "Visuelt DNA",
+      "seasonal_engine": "Sæsonmotor",
+      "ai_intelligence": "AI-intelligens",
+      "pricing": "Priser",
+      "api_docs": "API-dokumentation",
+      "about_us": "Om os",
+      "case_studies": "Casestudier",
+      "partners": "Partnere",
+      "terms": "Vilkår"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "v2.0 Intelligensplatform Live",
+      "title_1": "Den smartere måde",
+      "title_2": "at drive din menu på",
+      "subtitle": "Skab fantastiske digitale menuer, der øger salget og sparer dig tid.",
+      "cta_primary": "Byg din oplevelse",
+      "cta_secondary": "Se video"
+    },
+    "workflow": {
+      "tag": "Simpel arbejdsgang",
+      "title_1": "Hvordan Davoriq",
+      "title_2": "fungerer for dig",
+      "steps": [
+        {
+          "title": "Opret Kategorier",
+          "desc": "Organiser din menu i logiske sektioner som Forretter, Hovedretter og Drikkevarer."
+        },
+        {
+          "title": "Tilføj Elementer",
+          "desc": "Upload billeder, angiv priser og tilføj beskrivelser."
+        },
+        {
+          "title": "Design Dit Brand",
+          "desc": "Brug Design Studio til at vælge farver, skrifttyper og layout."
+        },
+        {
+          "title": "Optimer med AI",
+          "desc": "Aktiver AI-varmekort for at fremhæve populære elementer."
+        }
+      ],
+      "why_optimize": "Hvorfor optimere din menu?",
+      "why_desc": "En velorganiseret digital menu sælger mere. Ved at bruge **AI-varmekort** kan du guide kunderne.",
+      "benefits": [
+        "Realtids kontrol",
+        "Øjeblikkelig QR-kodegenerering"
+      ],
+      "table": {
+        "feature": "Funktion",
+        "status": "Status",
+        "live": "Live",
+        "rows": [
+          "Kategoristyring",
+          "AI-elementfremhævning",
+          "Dynamiske prisregler"
+        ]
+      }
+    },
+    "automation": {
+      "tag": "Intelligent Automation",
+      "title_1": "Automatisk Sæsonbaseret",
+      "title_2": "Temaer & Priser",
+      "desc": "Davoriq ændrer automatisk dine temaer for at matche sæsonen.",
+      "features": [
+        "12 forudkonfigurerede månedlige overlays",
+        "Automatiske farveovergange",
+        "Dynamiske baggrundspartikler",
+        "Manuelle forhåndsvisninger"
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Designstudiet er fantastisk. Vi har set en stigning på 22% i den gennemsnitlige ordreværdi.\"",
+      "author": "Marcus Sterling",
+      "role": "Direktør, Gastronomy Group"
+    },
+    "cta": {
+      "title_1": "Klar til at hæve",
+      "title_2": "din oplevelse?",
+      "subtitle": "Slut dig til tusindvis af restauranter.",
+      "btn": "Kom i gang nu",
+      "trial": "14-dages gratis prøveperiode",
+      "no_card": "Intet kreditkort kræves"
+    },
+    "features": {
+      "tag": "Kraftfulde funktioner",
+      "title_1": "Alt hvad du behøver for at",
+      "title_2": "øge dit salg",
+      "desc": "Vi har bygget et komplet sæt værktøjer.",
+      "items": [
+        {
+          "title": "Visuelt Design Studio",
+          "desc": "Tilpas high-end æstetik med premium skrifttyper og farver."
+        },
+        {
+          "title": "AI 'Hot'-badges",
+          "desc": "Fremhæv automatisk dine bedst sælgende varer."
+        },
+        {
+          "title": "Auto-Magiske Temaer",
+          "desc": "Din menu ændrer sig med kalenderen. Vinter, Forår, Sommer, Efterår."
+        },
+        {
+          "title": "Happy Hour-motor",
+          "desc": "Planlæg rabatter og dynamiske prisregler."
+        },
+        {
+          "title": "Atmosfæreeffekter",
+          "desc": "Tilføj snefald, blomsterblade eller stjerner."
+        },
+        {
+          "title": "Live Prissynkronisering",
+          "desc": "Ændre en pris og se den opdatere med det samme."
+        }
+      ]
+    },
+    "pricing": {
+      "tag": "Simpel Prissætning",
+      "title_1": "Udvid din forretning",
+      "title_2": "i dit eget tempo",
+      "plans": [
+        {
+          "name": "Basis",
+          "price": "Gratis",
+          "desc": "Den perfekte start.",
+          "features": [
+            "Op til 15 elementer",
+            "Grundlæggende farver",
+            "Live QR-scanning",
+            "Mobilvenlig",
+            "Community Support"
+          ],
+          "cta": "Start gratis"
+        },
+        {
+          "name": "Smart Pro",
+          "price": "TBD",
+          "period": "/md",
+          "desc": "Alt til vækst.",
+          "popular": "Mest populær",
+          "features": [
+            "Ubegrænsede elementer",
+            "Sæsontemaer",
+            "AI-badges",
+            "Planlagte Happy Hours",
+            "Brugerdefineret brand",
+            "E-mail support"
+          ],
+          "cta": "Prøv 7 dage gratis"
+        },
+        {
+          "name": "Virksomhed",
+          "price": "TBD",
+          "period": "/md",
+          "desc": "For restaurantgrupper.",
+          "features": [
+            "Multilokation",
+            "White-label",
+            "Avanceret API",
+            "Dedikeret manager",
+            "Brugerdefineret design",
+            "24/7 support"
+          ],
+          "cta": "Kontakt Salg"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Log ind",
+      "subtitle": "Indtast din e-mail og adgangskode for at få adgang til dit panel",
+      "email": "E-mail",
+      "password": "Adgangskode",
+      "forgot": "Glemt adgangskode?",
+      "submit": "Log ind",
+      "no_account": "Har du ikke en konto?",
+      "signup": "Tilmeld dig"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Oversigt",
+      "menu_management": "Menustyring",
+      "qr_code": "QR-kode",
+      "tables": "Borde",
+      "orders": "Bestillinger",
+      "shop_settings": "Butiksindstillinger",
+      "view_live": "Se Live Menu",
+      "launch_tv": "Start TV-tilstand",
+      "sign_out": "Log ud"
+    },
+    "overview": {
+      "loading": "Indlæser intelligens...",
+      "title": "Betjeningspanel",
+      "subtitle": "Oversigt",
+      "syncing": "Synkroniserer live",
+      "metrics": {
+        "menu_items": "Menupunkter",
+        "active_items": "Aktive punkter",
+        "categories": "Kategorier",
+        "sections": "Sektioner",
+        "visual_dna": "Visuelt DNA",
+        "active": "Aktiv",
+        "default": "Standard",
+        "custom_theme": "Brugerdefineret tema",
+        "standard": "Standard",
+        "scans": "RealFlow-scanninger",
+        "pending": "Afventer analyse"
+      },
+      "health": {
+        "title": "Menuhelbred",
+        "completeness": "Fuldstændighed",
+        "cat_created": "Kategorier oprettet",
+        "min_items": "Minimum 5 elementer",
+        "visuals_set": "Visuel identitet angivet",
+        "logo_set": "Restaurantlogo"
+      },
+      "pro": {
+        "title": "Bliv Professionel",
+        "desc": "Lås op for ubegrænsede menupunkter, AI-varmekort og premiumtemaer.",
+        "btn": "Se priser"
+      }
+    },
+    "menu": {
+      "title": "Menustyring",
+      "subtitle": "Organiser din menu, kategorier og tilgængelighed.",
+      "view_preview": "Se forhåndsvisning",
+      "add_item": "Tilføj nyt element",
+      "tabs": {
+        "items": "Menupunkter",
+        "categories": "Kategorier"
+      },
+      "preview_title": "Forhåndsvisning af Live Menu",
+      "preview_desc": "Se hvordan din menu ser ud for dine kunder. Klik på et element for at finde det i listen."
+    },
+    "settings": {
+      "studio": "Designstudie",
+      "profile": "Virksomhedsprofil",
+      "live": "Live"
+    }
+  },
+  "live_menu": {
+    "visual_gastronomy": "Visuel Gastronomi",
+    "search_placeholder": "Tilpas din oplevelse...",
+    "share": "Del",
+    "smart_menu": "SMART MENU",
+    "future_dining": "FREMTIDENS SPISEOPLEVELSE",
+    "establishment_info": "VIRKSOMHEDSINFO",
+    "location": "PLACERING",
+    "contact_address": "Kontakt for adresse",
+    "contact": "KONTAKT",
+    "no_phone": "Intet telefonnummer angivet",
+    "service_hours": "ÅBNINGSTIDER",
+    "closed": "Lukket",
+    "return_menu": "Tilbage til menu",
+    "choose_size": "Vælg størrelse",
+    "total_price": "Totalpris",
+    "got_it": "Forstået",
+    "our_signature": "VORES SIGNATUR",
+    "in_stock": "På lager og klar",
+    "price_value": "Prisværdi",
+    "dismiss": "Luk"
+  }
+}

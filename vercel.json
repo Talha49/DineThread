@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/remove-background.py": {
+      "maxDuration": 60
+    }
+  }
+}
