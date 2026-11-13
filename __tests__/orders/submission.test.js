@@ -44,13 +44,14 @@ beforeAll(async () => {
 }, 600000); // First Windows binary download can take several minutes.
 
 beforeEach(async () => {
+    process.env.CATALOGUE_MODE = "automatic"; // Hold catalogue policy constant in Aby's comparison.
     delete process.env.ORDER_SUBMISSION_MODE;
     await Order.deleteMany({});
     await MenuItem.updateOne({ _id: item._id }, { $set: { isAvailable: true, price: 8 } });
     await Table.updateOne({ _id: table._id }, { $set: { isActive: true } });
 });
 afterEach(() => jest.restoreAllMocks());
-afterAll(async () => { await mongoose.disconnect(); if (server) await server.stop(); });
+afterAll(async () => { delete process.env.CATALOGUE_MODE; await mongoose.disconnect(); if (server) await server.stop(); });
 
 test("sequential retries return one accepted ID and total, without private fields", async () => {
     const id = randomUUID();

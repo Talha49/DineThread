@@ -7,12 +7,31 @@ const input = { restaurantId: "test-cafe", tableId: "000000000000000000000002", 
 const response = (value, ok = true) => ({ ok, json: async () => value });
 beforeEach(() => {
     localStorage.clear();
-    useCartStore.setState({ restaurantId: input.restaurantId, tableId: input.tableId, items, orderId: null, pendingPurchases: {}, confirmedOrders: {} });
+    useCartStore.setState({ restaurantId: input.restaurantId, tableId: input.tableId, items, orderId: null, pendingPurchases: {}, confirmedOrders: {}, needsPriceConfirmation: false });
     global.fetch = jest.fn();
     Object.defineProperty(navigator, "locks", { configurable: true, value: { request: jest.fn(async (_key, _options, action) => action({})) } });
     if (!AbortSignal.timeout) AbortSignal.timeout = () => new AbortController().signal;
 });
 afterEach(() => jest.restoreAllMocks());
+
+test('an invalid new cart is rejected before a pending request is saved or posted', async () => {
+    fetch.mockResolvedValueOnce(response({ active: true, mode: 'recovery' }));
+    await expect(sendCustomerOrder({ ...input, items: [{ ...items[0], qty: 21 }] })).rejects.toThrow('between 1 and 20');
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(readPurchaseJournal(input.restaurantId).pending).toBeNull();
+});
+
+test('a changed-price receipt releases the attempt and only explicit resubmission creates a new request', async () => {
+    fetch.mockResolvedValueOnce(response({ active: true, mode: 'recovery' })).mockImplementationOnce(async (_url, options) => response({ outcome: 'rejected', requestId: JSON.parse(options.body).requestId, code: 'MENU_CHANGED', details: { quotes: [{ key: items[0].menuItemId + '||', unitPrice: 9, displayed: { selectionPricePence: 900, modifiers: [] } }] } }));
+    await sendCustomerOrder(input);
+    expect(useCartStore.getState().items[0].unitPrice).toBe(9);
+    expect(useCartStore.getState().needsPriceConfirmation).toBe(true);
+    expect(fetch).toHaveBeenCalledTimes(2);
+    fetch.mockResolvedValueOnce(response({ active: true, mode: 'recovery' })).mockResolvedValueOnce(response({ order: { _id: 'confirmed', total: 9 } }));
+    await sendCustomerOrder({ ...input, items: useCartStore.getState().items });
+    expect(JSON.parse(fetch.mock.calls[3][1].body).requestId).not.toBe(JSON.parse(fetch.mock.calls[1][1].body).requestId);
+    expect(JSON.parse(fetch.mock.calls[3][1].body).items[0].displayed.selectionPricePence).toBe(900);
+});
 
 test("lost confirmation persists the original purchase and reload retries the same payload", async () => {
     fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockRejectedValueOnce(new TypeError("network"));

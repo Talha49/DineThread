@@ -29,10 +29,11 @@ async function recordSource(output) {
         commit=execFileSync(git,['rev-parse','HEAD'],{cwd:root,encoding:'utf8',windowsHide:true}).trim();
         dirty=execFileSync(git,['status','--porcelain'],{cwd:root,encoding:'utf8',windowsHide:true}).trim();
     } catch {}
-    await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify({commit,dirty,buildId:(await fs.readFile(path.join(root,'.next/BUILD_ID'),'utf8')).trim(),hashes},null,2));
+    hashes['next.config.mjs'] = createHash('sha256').update(await fs.readFile(path.join(root,'next.config.mjs'))).digest('hex');
+    await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify({commit,dirty,buildId:(await fs.readFile(path.join(root,process.env.RESEARCH_DIST_DIR || '.next','BUILD_ID'),'utf8')).trim(),hashes},null,2));
 }
 
-async function createEnvironment(output) {
+async function createEnvironment(output, options = {}) {
     await fs.mkdir(output, { recursive: true });
     const mongo = await MongoMemoryServer.create({ binary: { version: '8.0.17' } });
     const client = await MongoClient.connect(mongo.getUri());
@@ -58,7 +59,7 @@ async function createEnvironment(output) {
         await stop(mode);
         const app = spawn(process.execPath, [path.join(root, 'node_modules/next/dist/bin/next'), 'start', '-p', new URL(bases[mode]).port, '-H', '127.0.0.1'], {
             cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
-            env: { ...process.env, MONGODB_URI: mongo.getUri(`dinethread_${mode}_research`), AUTH_SECRET: randomBytes(32).toString('hex'), ORDER_SUBMISSION_MODE: mode, ORDER_RESEARCH_ENABLED: '1', ORDER_RESEARCH_LOG: logPath(mode) },
+            env: { ...process.env, ORDER_SUBMISSION_MODE: mode, CATALOGUE_MODE: 'automatic', ...options.env?.[mode], MONGODB_URI: mongo.getUri(`dinethread_${mode}_research`), AUTH_SECRET: randomBytes(32).toString('hex'), ORDER_RESEARCH_ENABLED: '1', ORDER_RESEARCH_LOG: logPath(mode) },
         });
         apps[mode] = app;
         let startup = '';

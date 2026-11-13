@@ -24,6 +24,7 @@ const OrderSchema = new mongoose.Schema(
     submissionOutcome: { type: String, enum: ["accepted", "rejected", "cancelled"], default: "accepted" },
     rejectionCode: { type: String },
     rejectionMessage: { type: String },
+    rejectionDetails: { type: mongoose.Schema.Types.Mixed },
     restaurant: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",

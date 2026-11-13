@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { X, Plus, Minus, DollarSign, Check, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/store/useTranslation";
+import { displayedSelection } from "@/lib/catalogue-policy";
 
 export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled = false, onAddToCart }) {
     const { t } = useTranslation();
@@ -257,6 +258,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                         modifierIds: selectedModifiers,
                                         modifierNames: selectedModifiers.map((id) => item.modifiers.find((m) => m._id === id)?.name).filter(Boolean),
                                         unitPrice: calculateTotal(),
+                                        displayed: displayedSelection(item, selectedVariant, selectedModifiers),
                                         qty,
                                     });
                                     onClose();

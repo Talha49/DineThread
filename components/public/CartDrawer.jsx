@@ -153,6 +153,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     const tableId = useCartStore((s) => s.tableId);
     const updateQty = useCartStore((s) => s.updateQty);
     const setTable = useCartStore((s) => s.setTable);
+    const needsPriceConfirmation = useCartStore((s) => s.needsPriceConfirmation);
     const pending = useCartStore((s) => pendingPurchaseFor(s, restaurantId));
     const submitting = useRef(false);
     const [isPlacing, setIsPlacing] = useState(false);
@@ -223,6 +224,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-black italic tracking-tighter">Your Order</h2>
+            {needsPriceConfirmation && <p role="status" className="text-sm text-zinc-700">Your selected prices have changed. Review the amounts below, then confirm if you want to continue.</p>}
 
             <div className="space-y-3">
                 {items.map((line) => (
@@ -277,7 +279,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                 className="w-full h-16 rounded-2xl font-black uppercase tracking-wider text-base"
                 style={{ backgroundColor: brandColor || undefined }}
             >
-                {isPlacing ? <Loader2 className="w-5 h-5 animate-spin" /> : `Place Order - $${total.toFixed(2)}`}
+                {isPlacing ? <Loader2 className="w-5 h-5 animate-spin" /> : `${needsPriceConfirmation ? "Confirm updated prices" : "Place Order"} - $${total.toFixed(2)}`}
             </Button>
         </div>
     );

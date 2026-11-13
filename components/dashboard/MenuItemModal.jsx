@@ -220,11 +220,13 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                     ? parseFloat(formData.variants.find(v => v.isDefault)?.price || 0)
                     : parseFloat(formData.price || 0),
                 variants: hasVariants ? formData.variants.map(v => ({
+                    ...(v._id ? { _id: v._id } : {}),
                     name: v.name.trim(),
                     price: parseFloat(v.price),
                     isDefault: v.isDefault
                 })) : [],
                 modifiers: formData.modifiers.map(m => ({
+                    ...(m._id ? { _id: m._id } : {}),
                     name: m.name.trim(),
                     price: parseFloat(m.price),
                     category: m.category?.trim() || ""
