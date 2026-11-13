@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
+import { orderSessionHash } from "@/lib/order-session";
+import { publicOrder } from "@/lib/order-submission";
 
 export const dynamic = "force-dynamic";
 
-// The order's own id is the customer's tracking ticket - it's an unguessable
-// 24-char Mongo id, the same trust model already used for analytics events
-// in this app. No login/session needed for something as low-sensitivity as
-// "what did this table order."
+// An order ID locates the record; the original browser session authorises it.
 export async function GET(req, { params }) {
     try {
         const { id } = await params;
@@ -15,11 +14,13 @@ export async function GET(req, { params }) {
             return NextResponse.json({ message: "Order not found" }, { status: 404 });
         }
 
+        const ownerHash = orderSessionHash(req);
+        if (!ownerHash) return NextResponse.json({ message: "Order not found in this browser session" }, { status: 404 });
         await dbConnect();
-        const order = await Order.findById(id).populate("table", "label").lean();
+        const order = await Order.findOne({ _id: id, ownerHash }).populate("table", "label").lean();
         if (!order) return NextResponse.json({ message: "Order not found" }, { status: 404 });
 
-        return NextResponse.json({ order });
+        return NextResponse.json({ order: publicOrder(order) }, { headers: { "Cache-Control": "no-store" } });
     } catch (error) {
         return NextResponse.json({ message: "Server error" }, { status: 500 });
     }

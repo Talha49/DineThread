@@ -1,84 +1,35 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
-import Restaurant from "@/models/Restaurant";
-import Table from "@/models/Table";
-import MenuItem from "@/models/MenuItem";
-import Order from "@/models/Order";
 import { PlaceOrderSchema } from "@/lib/validations";
+import { isSameOrigin, orderSessionHash, submissionMode } from "@/lib/order-session";
+import { OrderSubmissionError, submitOrder } from "@/lib/order-submission";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req) {
     try {
+        if (!isSameOrigin(req)) return NextResponse.json({ message: "Invalid origin" }, { status: 403 });
         const body = await req.json();
         const validation = PlaceOrderSchema.safeParse(body);
         if (!validation.success) {
-            return NextResponse.json({ message: "Invalid order", errors: validation.error.flatten() }, { status: 400 });
+            return NextResponse.json({ message: "Invalid order", code: "INVALID_ORDER", errors: validation.error.flatten() }, { status: 400 });
         }
-        const { restaurantId, tableId, items } = validation.data;
-
+        const mode = submissionMode();
+        const requestId = body.requestId;
+        if (mode === "recovery" && (typeof requestId !== "string" || !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(requestId))) {
+            return NextResponse.json({ message: "A valid purchase identifier is required", code: "INVALID_REQUEST_ID" }, { status: 400 });
+        }
+        const ownerHash = orderSessionHash(req);
+        if (!ownerHash) throw new OrderSubmissionError("Your browser session is missing. Contact staff before retrying an uncertain order.", 401, "SESSION_REQUIRED");
         await dbConnect();
-
-        const restaurant = await Restaurant.findOne({
-            restaurantId: { $regex: new RegExp(`^${restaurantId}$`, "i") },
-        });
-        if (!restaurant) return NextResponse.json({ message: "Restaurant not found" }, { status: 404 });
-
-        const table = await Table.findOne({ _id: tableId, restaurant: restaurant._id, isActive: true });
-        if (!table) return NextResponse.json({ message: "Table not found" }, { status: 404 });
-
-        // Re-price every line from the live MenuItem - never trust client-submitted prices.
-        const menuItemIds = [...new Set(items.map((i) => i.menuItemId))];
-        const menuItems = await MenuItem.find({ _id: { $in: menuItemIds }, restaurant: restaurant._id, isAvailable: true });
-        const menuItemById = new Map(menuItems.map((mi) => [mi._id.toString(), mi]));
-
-        const orderItems = [];
-        for (const line of items) {
-            const menuItem = menuItemById.get(line.menuItemId);
-            if (!menuItem) {
-                return NextResponse.json({ message: "One or more items are no longer available" }, { status: 400 });
-            }
-
-            let unitPrice = menuItem.price;
-            let variantName;
-            if (line.variantId) {
-                const variant = menuItem.variants.id(line.variantId);
-                if (!variant) return NextResponse.json({ message: "Selected size is no longer available" }, { status: 400 });
-                unitPrice = variant.price;
-                variantName = variant.name;
-            }
-
-            const modifierNames = [];
-            for (const modId of line.modifierIds || []) {
-                const modifier = menuItem.modifiers.id(modId);
-                if (!modifier) return NextResponse.json({ message: "Selected add-on is no longer available" }, { status: 400 });
-                unitPrice += modifier.price;
-                modifierNames.push(modifier.name);
-            }
-
-            orderItems.push({
-                menuItem: menuItem._id,
-                name: menuItem.name,
-                variantName,
-                modifierNames,
-                unitPrice,
-                qty: line.qty,
-                lineTotal: Math.round(unitPrice * line.qty * 100) / 100,
-            });
-        }
-
-        const total = Math.round(orderItems.reduce((sum, i) => sum + i.lineTotal, 0) * 100) / 100;
-
-        const order = await Order.create({
-            restaurant: restaurant._id,
-            table: table._id,
-            items: orderItems,
-            total,
-        });
-
-        return NextResponse.json({ order }, { status: 201 });
+        const result = await submitOrder({ data: validation.data, requestId: mode === "recovery" ? requestId.toLowerCase() : undefined, ownerHash, mode });
+        return NextResponse.json(result, { status: result.replayed ? 200 : 201, headers: { "Cache-Control": "no-store" } });
     } catch (error) {
-        console.error("Place Order Error:", error);
-        return NextResponse.json({ message: "Server error" }, { status: 500 });
+        if (error instanceof SyntaxError) return NextResponse.json({ message: "Invalid JSON" }, { status: 400 });
+        if (error instanceof OrderSubmissionError) {
+            return NextResponse.json({ message: error.message, code: error.code }, { status: error.status });
+        }
+        console.error("Order submission failed:", error.name, error.code);
+        return NextResponse.json({ message: "The order could not be confirmed. Keep this purchase and try again.", code: "UNCONFIRMED" }, { status: 500 });
     }
 }

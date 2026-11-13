@@ -16,6 +16,9 @@ const OrderItemSchema = new mongoose.Schema(
 
 const OrderSchema = new mongoose.Schema(
   {
+    ownerHash: { type: String, select: false },
+    requestId: { type: String },
+    requestFingerprint: { type: String, select: false },
     restaurant: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",
@@ -45,6 +48,12 @@ const OrderSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+OrderSchema.index({ restaurant: 1, requestId: 1 }, {
+  unique: true,
+  name: "restaurant_request_unique",
+  partialFilterExpression: { requestId: { $type: "string" } },
+});
 
 if (process.env.NODE_ENV === "development") {
   if (mongoose.models.Order) {
