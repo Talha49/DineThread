@@ -2,6 +2,8 @@
 
 This folder records the implementation and controlled experiments for Aby's signed specification. It is research evidence, not a dissertation draft. The signed specification has not been edited.
 
+[Results and limitations](RESULTS.md) contain the completed measurements. `summary.json` and `api-summary.csv` hold the numerical summaries. `evidence/manifest.json` lists the raw records and screenshots, with SHA-256 hashes of their uncompressed contents. Text records use gzip; screenshots remain PNG files. Pilot, failed-pilot and measured files have different prefixes.
+
 ## Comparison
 
 A is a deliberately non-idempotent comparison mode: the button blocks repeated clicks while sending, but a later valid retry creates a new order. It has no persistent unconfirmed-purchase snapshot. B retains a purchase identifier and original payload, enforces a unique restaurant/identifier index, and replays the accepted ID and total. These modes share menu validation/pricing, anonymous browser ownership, read access, instrumentation, dependencies and test fixtures. A is the group-code starting behaviour with those shared controls; it is not an untouched checkout of the original commit.
@@ -26,6 +28,7 @@ API latency runs from sending the request to reading the complete response. Crea
 4. Run `node scripts/order-api-experiment.js --pilot` and `node scripts/order-browser-experiment.js --pilot`.
 5. Review the pilot and freeze the protocol before measured runs. Record any later changes and retain failures.
 6. Run `node scripts/order-api-experiment.js`, then `node scripts/order-browser-experiment.js`. Do not overlap measured runs with other test/build jobs.
+7. Run `node scripts/analyse-order-results.js <api-evidence-directory> <browser-evidence-directory>` using the measured directories printed by the scripts. The analysis checks matching clean source/build manifests and complete paired workloads before writing a completion record. Run it on a separate branch if retaining the original results alongside a replication.
 
 Each harness creates isolated MongoDB databases and local apps on ports 3041-3044. It does not take a deployment database URI. It writes timestamped evidence directories under `qa-results`, closes its own processes and removes its temporary databases on exit. Raw JSONL files record attempts, server events, fault injection and database observations. Failed runs are retained alongside successful ones.
 

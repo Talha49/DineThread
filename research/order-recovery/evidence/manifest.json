@@ -1,0 +1,422 @@
+[
+  {
+    "file": "api-measured--api-attempts.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 7218767,
+    "sha256": "b0fe8e880771c4ffa52d20061f1cdefb4437780545500ea88316673da155e0e8"
+  },
+  {
+    "file": "api-measured--api-batches.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 107101,
+    "sha256": "12423cfab89c4ad32b4650778b6ce7c964035752e72bca142405ef94ccd78a3b"
+  },
+  {
+    "file": "api-measured--database-observations.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 5731340,
+    "sha256": "9bba06ef19953c733f68ad7a81e8f07d24dc2e3ef2795146a564419e335a2f74"
+  },
+  {
+    "file": "api-measured--environment.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1132,
+    "sha256": "08b435360449cecd867943d294d390bfa8447ad00646be2a0d1f07efbf65c5b6"
+  },
+  {
+    "file": "api-measured--expected-workload.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1432532,
+    "sha256": "44c2ec27a830844e1c1d588f4991d3406b793a087f7be08afcc81e3eeb26f34f"
+  },
+  {
+    "file": "api-measured--faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 134120,
+    "sha256": "9ce60a0f8bdc67685f723934a8a571fdd236d028caf3bd2fe06b772634183cdf"
+  },
+  {
+    "file": "api-measured--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1824,
+    "sha256": "57b02fc4a342494c792fe97e7ba80a64ec9b8f349a4d8bd25e98879c01bf20ff"
+  },
+  {
+    "file": "api-measured--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 150260,
+    "sha256": "0674aa5a1e724a1ef9459e79f23bcd98303c6af002fbfa5338eea26fe4c8e470"
+  },
+  {
+    "file": "api-measured--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1841620,
+    "sha256": "f81ca2d38ad3edea31bee208d2381fd3e062ffef43dda53a7d535593010ef7cc"
+  },
+  {
+    "file": "api-measured--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1812420,
+    "sha256": "1b3ecf17f2cd43239c405191903ae8382713c5d8fd28d9843497ef84c753d7ec"
+  },
+  {
+    "file": "api-measured--source-manifest.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 17639,
+    "sha256": "54990f46b157b393a1ef5e763672b128c4bf62eaa16d3eb21591f293610499b9"
+  },
+  {
+    "file": "browser-measured--baseline-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40114,
+    "sha256": "10808982470274657636aede503d8306952beeb81d2fa7272f4cfcedb350b1c0"
+  },
+  {
+    "file": "browser-measured--baseline-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40233,
+    "sha256": "5813994b183dfcbf46f76ea4b340eb7bd8217c3e9ecd01b901c3146cde8a60e5"
+  },
+  {
+    "file": "browser-measured--baseline-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40137,
+    "sha256": "8da9df6779dc7eee1eb2dd8e06e5ce8fba4154c4fbbdf2ba0c27383b822fec5c"
+  },
+  {
+    "file": "browser-measured--browser-expected.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 4020,
+    "sha256": "86144e6e00507a112e1b1e503531bd9387e6fe45c6db3255222ed8ff5de8611a"
+  },
+  {
+    "file": "browser-measured--browser-faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 4110,
+    "sha256": "4c80b5289b34e95cb7040904dc9ab468186cb9d31edf50443243d965faa112fc"
+  },
+  {
+    "file": "browser-measured--browser-results.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 11285,
+    "sha256": "f4d804e514c23882aeb010b0867ad7273f182c657e9a4536100cfd2715c0e426"
+  },
+  {
+    "file": "browser-measured--browser-version.txt.gz",
+    "encoding": "gzip",
+    "originalBytes": 13,
+    "sha256": "eab84acdf8ef68b33daf4a7267696b3b9507e9e5368332056bff7d0bc5e5250b"
+  },
+  {
+    "file": "browser-measured--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1824,
+    "sha256": "57b02fc4a342494c792fe97e7ba80a64ec9b8f349a4d8bd25e98879c01bf20ff"
+  },
+  {
+    "file": "browser-measured--recovery-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40106,
+    "sha256": "875794c47b043dab689a6738e0138962cffbfb059b5e50dcd73e97c0a82b128f"
+  },
+  {
+    "file": "browser-measured--recovery-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40202,
+    "sha256": "0f3747bcf87eb8c74477604eeacbd5f5c5a742d0f6eaf32924f61256bab3dd32"
+  },
+  {
+    "file": "browser-measured--recovery-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40107,
+    "sha256": "3bb5311e375f9b2f1264686949e3088ac86fa8b04cec9b5ff53b4a744d28968f"
+  },
+  {
+    "file": "browser-measured--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 15224,
+    "sha256": "d7ee5bef7729e7f56da6483df094dedc5a7af4d235a42fbabb5f908d651d1f35"
+  },
+  {
+    "file": "browser-measured--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 8910,
+    "sha256": "59e3d8ff5945fd81ad139b0f9a83f2816b1f371ca1f34240f89fb6d4eb52161a"
+  },
+  {
+    "file": "browser-measured--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 8895,
+    "sha256": "398035fe8cc19d17f3d52da4f0b763294a95def659df9655adf0d4dd36835a49"
+  },
+  {
+    "file": "browser-measured--source-manifest.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 17639,
+    "sha256": "54990f46b157b393a1ef5e763672b128c4bf62eaa16d3eb21591f293610499b9"
+  },
+  {
+    "file": "api-pilot-1794585056463--api-attempts.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 179952,
+    "sha256": "e62e21b3878af13824c192ac8d60d318933f25edf4d2bdb4ae528f25fb1d197b"
+  },
+  {
+    "file": "api-pilot-1794585056463--api-batches.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 10625,
+    "sha256": "0728534579b43df5874b4384c0c7c9244071d1cbbf2925da3021b5775093dfad"
+  },
+  {
+    "file": "api-pilot-1794585056463--database-observations.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 144818,
+    "sha256": "b26e675e66e5813f8189e94cb4b3306358f3571fa94a47865e0874a9b3ac2598"
+  },
+  {
+    "file": "api-pilot-1794585056463--environment.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1131,
+    "sha256": "e63f26c0f86ec721a657a9d4189afcea272f0abb43c31631f203287a762a86da"
+  },
+  {
+    "file": "api-pilot-1794585056463--expected-workload.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 36600,
+    "sha256": "d695c5deb4214c8e5863be35e3546f4e4fb41f87a31fa6a3b97d3de18a2e55b4"
+  },
+  {
+    "file": "api-pilot-1794585056463--faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 3332,
+    "sha256": "5c958259c9e845a62f8361ea94a6a163f465cf42a8c4788dccb34cc249a84c21"
+  },
+  {
+    "file": "api-pilot-1794585056463--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1256,
+    "sha256": "a7fdb21b6c5fba6fddecc9b7090e03617de877953cfcfba69fc54b787a2f3f1c"
+  },
+  {
+    "file": "api-pilot-1794585056463--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 14975,
+    "sha256": "85689578f6e8eb59ceea8d1d8b4b085b836b89788c9e2db0587e90c6bbf83965"
+  },
+  {
+    "file": "api-pilot-1794585056463--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 48454,
+    "sha256": "aaa404db2ef61dd324b1bf5a879c101f5b63dfecba948682fc6d86545caa32a7"
+  },
+  {
+    "file": "api-pilot-1794585056463--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 47724,
+    "sha256": "377d11355ac8cf7c23c6fe0dd87d505b87fab94c64de293a73215ae911ab8be2"
+  },
+  {
+    "file": "browser-pilot-1794585390512--additional-ui-checks.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 156,
+    "sha256": "dc4346cd8c62292e3c973c77a4d9f2f72060f0e1a28623c547c07a595bf00df5"
+  },
+  {
+    "file": "browser-pilot-1794585390512--baseline-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40117,
+    "sha256": "408633c13495f5a5d9b9b8a732cfc3fc4eb5da50aceb5c524471690102e05a4f"
+  },
+  {
+    "file": "browser-pilot-1794585390512--baseline-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40144,
+    "sha256": "d6bcb5556bdb59f462b43422604adf8da49c5024a7587ecfbb6a8f5196acb6ff"
+  },
+  {
+    "file": "browser-pilot-1794585390512--baseline-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40144,
+    "sha256": "eb055306009cff8295684d94eac0737c326235c82c02261b7d46ea54cd9d08c8"
+  },
+  {
+    "file": "browser-pilot-1794585390512--browser-expected.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 804,
+    "sha256": "caf1a1177449a3b3f1a5dd6b80200897c686d4e18949f72fb7998bd145ee9c00"
+  },
+  {
+    "file": "browser-pilot-1794585390512--browser-faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 822,
+    "sha256": "93c5b3a0d82108f75def54a246fba2d2236bac94efbfae5d8292ae607144cb8e"
+  },
+  {
+    "file": "browser-pilot-1794585390512--browser-results.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 2257,
+    "sha256": "25634b0404e4671ffb943bc51e56000a40bf961c1f596d092ecc619e725c2a38"
+  },
+  {
+    "file": "browser-pilot-1794585390512--browser-version.txt.gz",
+    "encoding": "gzip",
+    "originalBytes": 13,
+    "sha256": "eab84acdf8ef68b33daf4a7267696b3b9507e9e5368332056bff7d0bc5e5250b"
+  },
+  {
+    "file": "browser-pilot-1794585390512--desktop-shared-tabs.png",
+    "encoding": "identity",
+    "originalBytes": 55272,
+    "sha256": "6c7efad8f3144514a41204b6597de148c5ccb78c61314c0273b00289a2f68de7"
+  },
+  {
+    "file": "browser-pilot-1794585390512--mobile-cancelled.png",
+    "encoding": "identity",
+    "originalBytes": 44768,
+    "sha256": "a30eab27e50d94dae5ade2e6a2fba65cc5828d5a9761e862658a4ea0df4291d4"
+  },
+  {
+    "file": "browser-pilot-1794585390512--mobile-rejected.png",
+    "encoding": "identity",
+    "originalBytes": 46808,
+    "sha256": "959d5771018eb00241d2b5be6859e36cc939e65571652b94ac4ee103a5c74376"
+  },
+  {
+    "file": "browser-pilot-1794585390512--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1256,
+    "sha256": "a7fdb21b6c5fba6fddecc9b7090e03617de877953cfcfba69fc54b787a2f3f1c"
+  },
+  {
+    "file": "browser-pilot-1794585390512--recovery-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40137,
+    "sha256": "8da9df6779dc7eee1eb2dd8e06e5ce8fba4154c4fbbdf2ba0c27383b822fec5c"
+  },
+  {
+    "file": "browser-pilot-1794585390512--recovery-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40131,
+    "sha256": "d345d52802b846ebd5d40195e3f7ecbbbbd5b84476497e7e182f22b8911f22d5"
+  },
+  {
+    "file": "browser-pilot-1794585390512--recovery-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40144,
+    "sha256": "eb055306009cff8295684d94eac0737c326235c82c02261b7d46ea54cd9d08c8"
+  },
+  {
+    "file": "browser-pilot-1794585390512--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 3075,
+    "sha256": "740d58bc58858182d0525bfe2b1526c29e64eb26e5ac3993b2d58488f013587d"
+  },
+  {
+    "file": "browser-pilot-1794585390512--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1782,
+    "sha256": "30d1033c96ba8bb9b28e1dcede5394b486460b2354c8aaeeef0c3d3a9ac127d5"
+  },
+  {
+    "file": "browser-pilot-1794585390512--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 2747,
+    "sha256": "51923b0827e08d89bcea20ffcf4e37c2cbe7b9ddedf47cdb1d7a52dfab585bf8"
+  },
+  {
+    "file": "browser-pilot-1794585229868--baseline-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40098,
+    "sha256": "5e5f8b27de31d7976c267d5609b32e8943cdedd48de531f553065a4ba07345f5"
+  },
+  {
+    "file": "browser-pilot-1794585229868--baseline-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40136,
+    "sha256": "efe12d310b21254f7045a264a7af1b34e1cad257e5c717eaed9575e7ab134d0c"
+  },
+  {
+    "file": "browser-pilot-1794585229868--baseline-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40137,
+    "sha256": "8da9df6779dc7eee1eb2dd8e06e5ce8fba4154c4fbbdf2ba0c27383b822fec5c"
+  },
+  {
+    "file": "browser-pilot-1794585229868--browser-expected.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 804,
+    "sha256": "caf1a1177449a3b3f1a5dd6b80200897c686d4e18949f72fb7998bd145ee9c00"
+  },
+  {
+    "file": "browser-pilot-1794585229868--browser-faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 822,
+    "sha256": "f522bdb4b30d01f29f981cceca3290681d2e42b3fa0b5156b832b55cf48b1549"
+  },
+  {
+    "file": "browser-pilot-1794585229868--browser-results.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 2246,
+    "sha256": "c56f31df60d07e0c5894830b0e246e6cc9c0825c858ea2f09c295bcc0d58cb1d"
+  },
+  {
+    "file": "browser-pilot-1794585229868--browser-version.txt.gz",
+    "encoding": "gzip",
+    "originalBytes": 13,
+    "sha256": "eab84acdf8ef68b33daf4a7267696b3b9507e9e5368332056bff7d0bc5e5250b"
+  },
+  {
+    "file": "browser-pilot-1794585229868--failure.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 773,
+    "sha256": "422b75aa886b6681f0f06e19ed53276cd6a98b27ab82385279f29d06eee9481f"
+  },
+  {
+    "file": "browser-pilot-1794585229868--mobile-cancelled.png",
+    "encoding": "identity",
+    "originalBytes": 44775,
+    "sha256": "e898471ee1d52a8fd9363d4b5412029c76a1784ae5921c4397a6a1af55b3c3eb"
+  },
+  {
+    "file": "browser-pilot-1794585229868--mobile-rejected.png",
+    "encoding": "identity",
+    "originalBytes": 46862,
+    "sha256": "c05359ad7207233e5cba1def016d082014c15b49f1cc2c6ca885bc948b92fcbc"
+  },
+  {
+    "file": "browser-pilot-1794585229868--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1256,
+    "sha256": "a7fdb21b6c5fba6fddecc9b7090e03617de877953cfcfba69fc54b787a2f3f1c"
+  },
+  {
+    "file": "browser-pilot-1794585229868--recovery-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 40106,
+    "sha256": "365cd31c90eb7bfe9eec3df04b941538d862093700a7201b751cdf45274eb92b"
+  },
+  {
+    "file": "browser-pilot-1794585229868--recovery-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 40148,
+    "sha256": "cf9824faddfd496991db8a1e35d754e283522a2c1e24b1de1ed756a3b7b18e35"
+  },
+  {
+    "file": "browser-pilot-1794585229868--recovery-reload.png",
+    "encoding": "identity",
+    "originalBytes": 40114,
+    "sha256": "d3ee84c83bcb1c1fb46e346c9a6ba1db9391da2e7559cbf65538e51312d21ef0"
+  },
+  {
+    "file": "browser-pilot-1794585229868--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1782,
+    "sha256": "51f4ce83f07c636d636d932426b81bc836b1417472fed01e63c665ac4d098a91"
+  },
+  {
+    "file": "browser-pilot-1794585229868--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 2492,
+    "sha256": "4280382e97e4934cc3886ac759895d6d3e8be28876cc48646cc3374ba19f8b9c"
+  }
+]
