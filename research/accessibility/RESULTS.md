@@ -84,3 +84,16 @@ with zero errors and nine existing image/hook warnings. The first lint invocatio
 used an incorrect file path and was rerun with the actual paths; both records
 remain local. Earlier pilots, intermediate B scans and the final scans are
 retained separately. No failed trial is substituted by a fabricated success.
+
+
+## Combined-build and native zoom follow-up
+
+After the theme work, Chromium repeated all 16 journeys (75 states) and Firefox
+repeated three journeys (17 states): zero axe violations and all functional
+assertions passed. A separate native 200% zoom inspection found a floating-cart
+layer above the item dialog. That visual defect was fixed in final build
+`1KRlhsS6Ud78s2Gls_-ZQ`, then retested with native focus/zoom captures and two
+focused axe journeys, again with zero violations. See `zoom-and-contrast.md` for
+the matched measurements, the corrected colour parser, superseded outputs and
+remaining scope limits. The earlier screen-reader results remain tied to their
+recorded builds; no new NVDA session is claimed for this visual-only follow-up.

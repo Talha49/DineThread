@@ -58,7 +58,15 @@ async function main() {
                     await page.getByText('Test soup', { exact: true }).click();
                 } else if (command.action === 'measure') {
                     command.measurement = await page.evaluate(() => {
-                        const rgba = value => (value.match(/[\d.]+/g) || []).map(Number);
+                        // Tailwind 4 returns OKLCH as well as rgb(). Resolve CSS
+                        // colours through the browser before computing luminance.
+                        const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
+                        const colourContext = canvas.getContext('2d', { willReadFrequently: true });
+                        const rgba = value => {
+                            if (!CSS.supports('color', value)) throw new Error('Unsupported CSS colour: ' + value);
+                            colourContext.clearRect(0, 0, 1, 1); colourContext.fillStyle = value; colourContext.fillRect(0, 0, 1, 1);
+                            const bytes = [...colourContext.getImageData(0, 0, 1, 1).data]; return [...bytes.slice(0, 3), bytes[3] / 255];
+                        };
                         const blend = (fg,bg) => fg.slice(0,3).map((c,i)=>c*(fg[3]??1)+bg[i]*(1-(fg[3]??1)));
                         const luminance = rgb => rgb.map(c=>c/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
                         const dialog = document.querySelector('[role="dialog"]');

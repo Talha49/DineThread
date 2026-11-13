@@ -1,7 +1,8 @@
 # Ali: kitchen workflow and billing evidence
 
 Implementation/protocol commit: `5d4422f`. Production build: `m83pPGcb6p2ZgPs9s0OoB`.
-Signed specification: Ali Raza, B01845771; signed document unchanged.
+Source requirements: the approved individual specification (Raza, 2026),
+Ali Raza, B01845771; signed document unchanged.
 Implementation, test automation and analysis are AI-assisted; fixtures are synthetic.
 
 The ten-history pilot ran on both versions before the protocol was frozen.
@@ -40,3 +41,11 @@ Reproduce with `scripts/research-build.js`, `scripts/workflow-experiment.js
 --pilot`, the frozen main run and `scripts/workflow-browser.js`. The independent
 checker is `scripts/workflow-oracle.js`. Production and real customer data were
 not used. These schedules do not prove correctness under every possible history.
+
+
+## References
+
+Raza, A. (2026) *DineThread: MSc Masters Project Specification*.
+University of the West of Scotland. Signed individual specification, 20 October.
+Unpublished group project requirements supplied by the student. The repeated
+method descriptions in this result record deliberately map to those requirements.

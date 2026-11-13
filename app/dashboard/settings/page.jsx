@@ -202,11 +202,12 @@ export default function SettingsPage() {
                         className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
                         onClick={() => setIsPreviewOverlayOpen(false)}
                     />
-                    <div className="relative w-full max-w-md h-full bg-zinc-50 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+                    <div className="relative w-full min-w-0 max-w-md h-full bg-zinc-50 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
                         <div className="flex items-center justify-between px-5 py-4 border-b bg-white shrink-0">
                             <h2 className="text-sm font-bold text-zinc-900">Live Preview</h2>
                             <button
                                 onClick={() => setIsPreviewOverlayOpen(false)}
+                                aria-label="Close live preview"
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors"
                             >
                                 <X className="w-4 h-4" />

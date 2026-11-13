@@ -164,6 +164,12 @@ async function dashboard() {
     await page.getByTitle('Save Design',{exact:true}).click(); assert.equal((await response).status(),200);
     if(!await page.locator('iframe').count()) await page.getByRole('button',{name:'Preview',exact:true}).click();
     await ready(); const confirmation=await ack(); assert.equal(confirmation.styles.primary,'#13579b');
+    const bounds=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+    assert.ok(bounds.scrollWidth<=bounds.width,'Dashboard preview must not widen the page');
+    if(width===390) {
+      const close=page.getByRole('button',{name:'Close live preview',exact:true});
+      const box=await close.boundingBox(); assert.ok(box&&box.x>=0&&box.x+box.width<=width,'Preview close control must remain on screen');
+    }
     const frame=page.frames().find(f=>f.url().includes('/menu/'));
     const fonts=await frame.evaluate(async()=>{
       await document.fonts.ready;
@@ -176,7 +182,7 @@ async function dashboard() {
     const stored=await env.database('recovery').collection('restaurants').findOne({_id:env.ids.restaurant});
     assert.deepEqual(stored.experienceConfig.themeConfig,expected);
     await page.screenshot({path:path.join(output,`dashboard-${width}.png`)});
-    results.push({type:'dashboard',width,pass:true,savedConfigMatches:true,acknowledgement:confirmation,fonts});await flushEvidence();
+    results.push({type:'dashboard',width,pass:true,savedConfigMatches:true,acknowledgement:confirmation,fonts,bounds});await flushEvidence();
     console.log(`Dashboard controls ${width} passed`);
   }
 }

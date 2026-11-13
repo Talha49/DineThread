@@ -28,4 +28,16 @@ for(const folder of process.argv.slice(2)) {
     correctness:records.filter(r=>r.type==='correctness').length,warmups:records.filter(r=>r.warmup).length});
 }
 fs.mkdirSync('research/theme',{recursive:true}); fs.writeFileSync('research/theme/summary.json',JSON.stringify(summaries,null,2)+'\n');
-for(const s of summaries) {console.log(s.folder);for(const c of s.conditions)console.log(c.condition,JSON.stringify({pairs:c.pairs.length,A:c.immediate.delayMs.median,B:c.coalesced.delayMs.median,pairedDifference:c.pairedDelayDifferenceMs.median,A_messages:c.immediate.messages.median,B_messages:c.coalesced.messages.median,durationA:c.immediate.achievedDurationMs.median,durationB:c.coalesced.achievedDurationMs.median,commitsA:c.immediate.reactCommits?.median??'not measured',commitsB:c.coalesced.reactCommits?.median??'not measured'})));}
+for (const summary of summaries) {
+  console.log(summary.folder);
+  for (const condition of summary.conditions) console.log(condition.condition, JSON.stringify({
+    pairs: condition.pairs.length,
+    immediateMedianMs: condition.immediate.delayMs.median,
+    coalescedMedianMs: condition.coalesced.delayMs.median,
+    pairedDifferenceMs: condition.pairedDelayDifferenceMs.median,
+    immediateMessages: condition.immediate.messages.median,
+    coalescedMessages: condition.coalesced.messages.median,
+    immediateCommits: condition.immediate.reactCommits?.median ?? 'not measured',
+    coalescedCommits: condition.coalesced.reactCommits?.median ?? 'not measured',
+  }));
+}

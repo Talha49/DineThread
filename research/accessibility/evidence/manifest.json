@@ -5248,5 +5248,264 @@
     "originalBytes": 188,
     "originalSha256": "a0695f51248d716ff2d94ed4ac26af277f2b1528ac394b5f92f74c539ca91355",
     "storedSha256": "bd9fa81ebfc6edbcac10c63b0382be8f07b13d55c6c8200b40185784e5fbbd61"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/actions.jsonl",
+    "file": "screenreader-1794598647715--actions.jsonl.gz",
+    "originalBytes": 15806,
+    "originalSha256": "0c625ff95bc99cab8057c5e81e2a962c8bb9a6c13bd19ddd1eb6f7507c15c776",
+    "storedSha256": "0749cd330e563a9b828bea8119437e83fe9d4df09018bc074b18895423db2b1a"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/app-baseline.log",
+    "file": "screenreader-1794598647715--app-baseline.log.gz",
+    "originalBytes": 143,
+    "originalSha256": "e6c2d6f681caf1006dd90715c8b00ffe104baa55211acc03d686a8ab8b9d86f3",
+    "storedSha256": "d29162b2b3fc510c8643284205b503ca21d76ab0f5217dd6ce8087aa8fdc31b9"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/app-recovery.log",
+    "file": "screenreader-1794598647715--app-recovery.log.gz",
+    "originalBytes": 143,
+    "originalSha256": "08182523b88e84cc9c46cf70e03b570f9763434fd2369055ae5ba334d961231a",
+    "storedSha256": "5f464ebfc33640bdd1d420ee70fc035f835391ad52c35dc4ecad788f66e02907"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-cart-200.png",
+    "file": "screenreader-1794598647715--baseline-cart-200.png",
+    "originalBytes": 19179,
+    "originalSha256": "841f46256db138a00d4da4f06d239f024df19beea851e95eae72f319bf0ba769",
+    "storedSha256": "841f46256db138a00d4da4f06d239f024df19beea851e95eae72f319bf0ba769"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-dialog-200.png",
+    "file": "screenreader-1794598647715--baseline-dialog-200.png",
+    "originalBytes": 16011,
+    "originalSha256": "63aea1ad46ea9bec57f448052c47ff4949cca023f4152882a28fd489eb47093b",
+    "storedSha256": "63aea1ad46ea9bec57f448052c47ff4949cca023f4152882a28fd489eb47093b"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-menu-100.png",
+    "file": "screenreader-1794598647715--baseline-menu-100.png",
+    "originalBytes": 45898,
+    "originalSha256": "dec93f8d25e8d77e3ef9b35997d841dfd2874b8ad64473e702b8cc9c0b1664ef",
+    "storedSha256": "dec93f8d25e8d77e3ef9b35997d841dfd2874b8ad64473e702b8cc9c0b1664ef"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-menu-200.png",
+    "file": "screenreader-1794598647715--baseline-menu-200.png",
+    "originalBytes": 23507,
+    "originalSha256": "e746b9d95dea8ccd31aa9e57a250917e10053d107228ac77f2f28441caa12d27",
+    "storedSha256": "e746b9d95dea8ccd31aa9e57a250917e10053d107228ac77f2f28441caa12d27"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-native-status-200.png",
+    "file": "screenreader-1794598647715--baseline-native-status-200.png",
+    "originalBytes": 62547,
+    "originalSha256": "00602be7772b095e7e832344157aa78035555da120cc7b58659dd9650b6512ea",
+    "storedSha256": "00602be7772b095e7e832344157aa78035555da120cc7b58659dd9650b6512ea"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/baseline-status-200.png",
+    "file": "screenreader-1794598647715--baseline-status-200.png",
+    "originalBytes": 23674,
+    "originalSha256": "6fd6e3b7d1dff7d497efec73dd7c8013012d154e9b7489023e8928066aa8f0d3",
+    "storedSha256": "6fd6e3b7d1dff7d497efec73dd7c8013012d154e9b7489023e8928066aa8f0d3"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/ready.json",
+    "file": "screenreader-1794598647715--ready.json.gz",
+    "originalBytes": 2117,
+    "originalSha256": "1f348b3cbf65ac9a03a8ad8cce1fbf8c71a90f31d668a3a882e320e154013932",
+    "storedSha256": "5620003e0cf3f97ad74d64299f9b2520072d56d1b923d4b74bf181129fe23688"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/recovery-dialog-200.png",
+    "file": "screenreader-1794598647715--recovery-dialog-200.png",
+    "originalBytes": 16026,
+    "originalSha256": "600a41b0ed49db4ef69df848bf1af44f8adea82b6b9caca30df56a39e684aba8",
+    "storedSha256": "600a41b0ed49db4ef69df848bf1af44f8adea82b6b9caca30df56a39e684aba8"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/recovery-menu-100.png",
+    "file": "screenreader-1794598647715--recovery-menu-100.png",
+    "originalBytes": 47524,
+    "originalSha256": "82c5a8962a6e1b8097c1eb1c0602057db8f944baaa12e588e2cd4292b4f7ba0d",
+    "storedSha256": "82c5a8962a6e1b8097c1eb1c0602057db8f944baaa12e588e2cd4292b4f7ba0d"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/recovery-menu-200.png",
+    "file": "screenreader-1794598647715--recovery-menu-200.png",
+    "originalBytes": 23486,
+    "originalSha256": "421482e01ecbcd66bb4b9a06c746753dd0c8149e35a2459b0f3cb2d65b6d75be",
+    "storedSha256": "421482e01ecbcd66bb4b9a06c746753dd0c8149e35a2459b0f3cb2d65b6d75be"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/recovery-native-dialog-200.png",
+    "file": "screenreader-1794598647715--recovery-native-dialog-200.png",
+    "originalBytes": 67824,
+    "originalSha256": "ed12ce14992fb8b2084ed3839742f61d6aa1af89c0e7db55c97a3b3c03fb8132",
+    "storedSha256": "ed12ce14992fb8b2084ed3839742f61d6aa1af89c0e7db55c97a3b3c03fb8132"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/recovery-native-menu-200.png",
+    "file": "screenreader-1794598647715--recovery-native-menu-200.png",
+    "originalBytes": 60938,
+    "originalSha256": "30e63ff8b056ba54dc4f7ed05716867030690388e0bbf5436fcfa6b00b2de68d",
+    "storedSha256": "30e63ff8b056ba54dc4f7ed05716867030690388e0bbf5436fcfa6b00b2de68d"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/server-baseline.jsonl",
+    "file": "screenreader-1794598647715--server-baseline.jsonl.gz",
+    "originalBytes": 291,
+    "originalSha256": "8199ddf454024bdeee5fa19cc6b13d11cba7c0a9148e018f2534b4e93a4a76e2",
+    "storedSha256": "99bc15bc4a8d966138dc030d0aca99a12210b961264062b9250706c3b5cd5823"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/server-recovery.jsonl",
+    "file": "screenreader-1794598647715--server-recovery.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/screenreader-1794598647715/source-manifest.json",
+    "file": "screenreader-1794598647715--source-manifest.json.gz",
+    "originalBytes": 20577,
+    "originalSha256": "82ff5ff00ba3023c270e17bfcbeefbb75a40434a01a6da125e4a67b4849d1b2e",
+    "storedSha256": "06c164fad97eab1d56af52b2a553177cfa1dec9cb34cf8f5cf59fab810d2dc98"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/actions.jsonl",
+    "file": "screenreader-1794599076914--actions.jsonl.gz",
+    "originalBytes": 14438,
+    "originalSha256": "9e47d8b2f48f05703e8ca6b6c0da3e0ee944027cb4fd25d3548922bbaf2c5bd7",
+    "storedSha256": "d290c41123302434d42b46886086e840e09e05f10592bffcd1551a1ae1539f2a"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/app-baseline.log",
+    "file": "screenreader-1794599076914--app-baseline.log.gz",
+    "originalBytes": 143,
+    "originalSha256": "be419b34bbf84f1fae769e5dd23fa1c30cd9467319b0d073085d58bf7632ec01",
+    "storedSha256": "8897c2896662c172a7f8feec26b08ea57568c3d366bfc4b2ccc997614d34dde6"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/app-recovery.log",
+    "file": "screenreader-1794599076914--app-recovery.log.gz",
+    "originalBytes": 143,
+    "originalSha256": "a15249e62ae89296404882ef0f2aaf8b50c6e8268568763272fc86fdd1b8785a",
+    "storedSha256": "f7499e3d48940fa2f82faedc00f16c9f32fdcb964222677f86a3e3f70f3e5c13"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/baseline-cart-200.png",
+    "file": "screenreader-1794599076914--baseline-cart-200.png",
+    "originalBytes": 20766,
+    "originalSha256": "29b98a6b7002ec15c56a628c8474e9eac12467b1b1415f109f22103a1165926f",
+    "storedSha256": "29b98a6b7002ec15c56a628c8474e9eac12467b1b1415f109f22103a1165926f"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/baseline-dialog-200.png",
+    "file": "screenreader-1794599076914--baseline-dialog-200.png",
+    "originalBytes": 16011,
+    "originalSha256": "63aea1ad46ea9bec57f448052c47ff4949cca023f4152882a28fd489eb47093b",
+    "storedSha256": "63aea1ad46ea9bec57f448052c47ff4949cca023f4152882a28fd489eb47093b"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/baseline-menu-200.png",
+    "file": "screenreader-1794599076914--baseline-menu-200.png",
+    "originalBytes": 23605,
+    "originalSha256": "2799fa3ee1dd4eb8a0f6e9f31b7b3cb4dc810b01e66b2ec7b43ebc0d971ddfc7",
+    "storedSha256": "2799fa3ee1dd4eb8a0f6e9f31b7b3cb4dc810b01e66b2ec7b43ebc0d971ddfc7"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/baseline-status-200.png",
+    "file": "screenreader-1794599076914--baseline-status-200.png",
+    "originalBytes": 21982,
+    "originalSha256": "204ff1e02098fa5ebd12db4ff1a8a4e7b221c2e1bed4aeb886da86f67bb697c8",
+    "storedSha256": "204ff1e02098fa5ebd12db4ff1a8a4e7b221c2e1bed4aeb886da86f67bb697c8"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/ready.json",
+    "file": "screenreader-1794599076914--ready.json.gz",
+    "originalBytes": 1042,
+    "originalSha256": "bdc67cd619e154dea4ce7f95a696c4952c0810f507a59f7c421bcf6943e762ea",
+    "storedSha256": "8d3fae3908a3986e00485fb528b5e385f2397a980865c9f0c8d43d5cd73412a7"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-cart-200.png",
+    "file": "screenreader-1794599076914--recovery-cart-200.png",
+    "originalBytes": 21219,
+    "originalSha256": "97ba94211f80b554bd22cb09ef25c80e22a65a24c0d79aa9eb6791d9dbca6ad7",
+    "storedSha256": "97ba94211f80b554bd22cb09ef25c80e22a65a24c0d79aa9eb6791d9dbca6ad7"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-dialog-200.png",
+    "file": "screenreader-1794599076914--recovery-dialog-200.png",
+    "originalBytes": 16020,
+    "originalSha256": "44ea6e299fc6ed98740c0bdacda0ace435506166d1001d51ac3f4cce75df9f4e",
+    "storedSha256": "44ea6e299fc6ed98740c0bdacda0ace435506166d1001d51ac3f4cce75df9f4e"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-menu-200.png",
+    "file": "screenreader-1794599076914--recovery-menu-200.png",
+    "originalBytes": 23562,
+    "originalSha256": "88f47f9d4f24ce8363db67b5bdc697e5e76680c26dbc9fd12754a65a67eeb27c",
+    "storedSha256": "88f47f9d4f24ce8363db67b5bdc697e5e76680c26dbc9fd12754a65a67eeb27c"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-native-add-focus-200.png",
+    "file": "screenreader-1794599076914--recovery-native-add-focus-200.png",
+    "originalBytes": 69718,
+    "originalSha256": "41167cd77d1e0204837ffa4821a1b6fba76e2e16b7c0cfc270558ae81f8d54ed",
+    "storedSha256": "41167cd77d1e0204837ffa4821a1b6fba76e2e16b7c0cfc270558ae81f8d54ed"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-native-cart-200.png",
+    "file": "screenreader-1794599076914--recovery-native-cart-200.png",
+    "originalBytes": 54055,
+    "originalSha256": "603e16d38fc99e7f59b345531807d38c21822105448dcdeaedd57beab2db962a",
+    "storedSha256": "603e16d38fc99e7f59b345531807d38c21822105448dcdeaedd57beab2db962a"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-native-dialog-200.png",
+    "file": "screenreader-1794599076914--recovery-native-dialog-200.png",
+    "originalBytes": 66008,
+    "originalSha256": "d3644538d705661ea0db68d75e095dbc9eda7652a72a3309283ba9842f0b4bf9",
+    "storedSha256": "d3644538d705661ea0db68d75e095dbc9eda7652a72a3309283ba9842f0b4bf9"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-native-status-200.png",
+    "file": "screenreader-1794599076914--recovery-native-status-200.png",
+    "originalBytes": 64114,
+    "originalSha256": "3425518372dee3115437944839f156f4765769ed8aca113057e116cc520789e0",
+    "storedSha256": "3425518372dee3115437944839f156f4765769ed8aca113057e116cc520789e0"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/recovery-status-200.png",
+    "file": "screenreader-1794599076914--recovery-status-200.png",
+    "originalBytes": 25275,
+    "originalSha256": "599d01abc74af261d3998b47e1788cc04eb265f2e793d9415c5e1253aa9c733b",
+    "storedSha256": "599d01abc74af261d3998b47e1788cc04eb265f2e793d9415c5e1253aa9c733b"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/server-baseline.jsonl",
+    "file": "screenreader-1794599076914--server-baseline.jsonl.gz",
+    "originalBytes": 292,
+    "originalSha256": "4b6f60d2466862120b9e3fbc45e30087faba3ac36d4cac3b00aa48ec330967c0",
+    "storedSha256": "72b268a86c95b9e96b91e604e948a6134ba8906e0dac98deacc98b097ffeb9e0"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/server-recovery.jsonl",
+    "file": "screenreader-1794599076914--server-recovery.jsonl.gz",
+    "originalBytes": 291,
+    "originalSha256": "f498a812a3eeb0f4f30145b35b348d686294594ee7ab6d4407fabc988fb0101d",
+    "storedSha256": "6cabaa43ab37a0cfdcd916e9f572714ee49f32fea127fdf7e222b5012d423f0f"
+  },
+  {
+    "source": "qa-results/screenreader-1794599076914/source-manifest.json",
+    "file": "screenreader-1794599076914--source-manifest.json.gz",
+    "originalBytes": 20781,
+    "originalSha256": "b076557f66f3cbd706603fb6cf07ec958f67fd3fc63215b2b0861b8baefbc76a",
+    "storedSha256": "5ac8c21999f3a6bbf207884a1d0745577bc7f3e74aa08aad1d799d8d857a251f"
   }
 ]
