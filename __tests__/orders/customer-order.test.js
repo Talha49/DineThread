@@ -1,5 +1,6 @@
 import { useCartStore } from "@/hooks/use-cart-store";
-import { sendCustomerOrder } from "@/lib/customer-order";
+import { sendCustomerOrder, startNewCustomerOrder, cancelPendingPurchase } from "@/lib/customer-order";
+import { purchaseKey, readPurchaseJournal } from "@/lib/purchase-journal";
 
 const items = [{ key: "soup", menuItemId: "000000000000000000000001", name: "Soup", modifierIds: [], unitPrice: 8, qty: 1 }];
 const input = { restaurantId: "test-cafe", tableId: "000000000000000000000002", items, store: useCartStore };
@@ -8,6 +9,7 @@ beforeEach(() => {
     localStorage.clear();
     useCartStore.setState({ restaurantId: input.restaurantId, tableId: input.tableId, items, orderId: null, pendingPurchases: {}, confirmedOrders: {} });
     global.fetch = jest.fn();
+    Object.defineProperty(navigator, "locks", { configurable: true, value: { request: jest.fn(async (_key, _options, action) => action({})) } });
     if (!AbortSignal.timeout) AbortSignal.timeout = () => new AbortController().signal;
 });
 afterEach(() => jest.restoreAllMocks());
@@ -48,7 +50,45 @@ test("a separate purchase gets a new identifier after confirmation", async () =>
     for (const id of ["first", "second"]) {
         fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockResolvedValueOnce(response({ order: { _id: id, total: 8 } }));
         await sendCustomerOrder(input);
-        useCartStore.getState().leaveOrder();
+        await startNewCustomerOrder(input);
     }
     expect(JSON.parse(fetch.mock.calls[1][1].body).requestId).not.toBe(JSON.parse(fetch.mock.calls[3][1].body).requestId);
+});
+
+test("durable rejection releases the saved purchase without clearing the editable cart", async () => {
+    fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockImplementationOnce(async (_url, options) => response({ outcome: "rejected", requestId: JSON.parse(options.body).requestId, message: "Unavailable" }));
+    expect((await sendCustomerOrder(input)).outcome).toBe("rejected");
+    expect(readPurchaseJournal(input.restaurantId).pending).toBeNull();
+    expect(useCartStore.getState().items).toEqual(items);
+});
+
+test("an uncertain cancellation retains the original purchase until a durable answer arrives", async () => {
+    fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockRejectedValueOnce(new TypeError("offline"));
+    await expect(sendCustomerOrder(input)).rejects.toThrow("offline");
+    const original = readPurchaseJournal(input.restaurantId).pending;
+    fetch.mockResolvedValueOnce(response({ active: true })).mockRejectedValueOnce(new TypeError("offline"));
+    await expect(cancelPendingPurchase(input)).rejects.toThrow("offline");
+    expect(readPurchaseJournal(input.restaurantId).pending).toEqual(original);
+    fetch.mockResolvedValueOnce(response({ active: true })).mockResolvedValueOnce(response({ outcome: "cancelled", requestId: original.requestId }));
+    await cancelPendingPurchase(input);
+    expect(readPurchaseJournal(input.restaurantId).pending).toBeNull();
+});
+
+test("editing or overwriting the cart cannot overwrite the separate pending receipt", async () => {
+    fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockRejectedValueOnce(new TypeError("offline"));
+    await expect(sendCustomerOrder(input)).rejects.toThrow("offline");
+    const journal = localStorage.getItem(purchaseKey(input.restaurantId));
+    useCartStore.setState({ pendingPurchases: {}, items: [] }); // stale tab/cart write
+    expect(localStorage.getItem(purchaseKey(input.restaurantId))).toBe(journal);
+    fetch.mockResolvedValueOnce(response({ active: true, mode: "recovery" })).mockResolvedValueOnce(response({ order: { _id: "restored", total: 8 } }));
+    await sendCustomerOrder(input);
+    expect(JSON.parse(fetch.mock.calls[3][1].body).requestId).toBe(JSON.parse(journal).pending.requestId);
+});
+
+test("missing lock support and an occupied lock fail before sending", async () => {
+    navigator.locks.request.mockImplementationOnce(async (_key, _options, action) => action(null));
+    await expect(sendCustomerOrder(input)).rejects.toThrow("Another tab");
+    Object.defineProperty(navigator, "locks", { configurable: true, value: undefined });
+    await expect(sendCustomerOrder(input)).rejects.toThrow("secure connection");
+    expect(fetch).not.toHaveBeenCalled();
 });

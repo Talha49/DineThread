@@ -77,6 +77,17 @@ export const useCartStore = create(
                 };
             }),
 
+            syncPurchase: (restaurantId, journal) => set((state) => {
+                const pendingPurchases = { ...state.pendingPurchases };
+                if (journal.pending) pendingPurchases[restaurantId] = journal.pending;
+                else delete pendingPurchases[restaurantId];
+                return {
+                    pendingPurchases,
+                    confirmedOrders: { ...state.confirmedOrders, [restaurantId]: journal.orderId || null },
+                    ...(state.restaurantId === restaurantId ? { orderId: journal.orderId || null } : {}),
+                };
+            }),
+
             setOrderId: (orderId) => set((state) => ({ orderId, items: [], confirmedOrders: { ...state.confirmedOrders, [state.restaurantId]: orderId } })),
 
             leaveOrder: () => set((state) => ({ orderId: null, confirmedOrders: { ...state.confirmedOrders, [state.restaurantId]: null } })),

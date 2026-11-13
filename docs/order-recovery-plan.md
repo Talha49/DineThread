@@ -6,7 +6,7 @@ Starting point: Talha49/DineThread, commit d366111. This work implements Aby's s
 
 - Fahad owns menu consistency and quotation rules. The order service will call a shared menu-validation/pricing function; this change preserves the current pricing policy.
 - Ali owns later kitchen transitions and billing. Customer reads and bill requests will gain session ownership checks, without changing the kitchen state machine.
-- This branch adds software and diagnostic tests. The paired experiments, measurements and report analysis described in the specification are separate work.
+- This branch includes software, diagnostic checks and the controlled experiment harness. Measured results are kept separately from pilots, and final-report interpretation remains a later step.
 
 ## Cart motion and browser checks
 
@@ -21,9 +21,15 @@ Check normal submission, repeated requests, a dropped confirmation after databas
 3. Keep an unresolved purchase separately from the editable cart. The phone must establish its session before sending an order.
 4. Run unit, database and browser checks against synthetic local data. Keep the default production path in recovery mode; use the baseline only for isolated comparison runs.
 
-## Research still to perform
+## Experiment protocol and evidence
 
-Pilot the workload and freeze time limits before measured runs. Then run the signed specification's matched baseline/recovery batches and browser trials. Record independent expected purchases, accepted IDs/totals, duplicate/lost/merged outcomes, creation/replay latency, and recovery time. Do not treat passing development tests as completed dissertation experiments.
+The signed specification is mapped to the implementation and repeatable experiment harness in `research/order-recovery/README.md`. Pilot runs precede the frozen protocol; measured evidence is recorded separately. Development-test counts are not substitutes for the paired experiments.
+
+## Pending-purchase resolution
+
+A rejected or cancelled purchase leaves a terminal receipt under the same database uniqueness constraint as an accepted order. A delayed copy cannot execute after that receipt wins. If acceptance wins first, cancellation returns the original confirmation; it never claims to cancel an accepted kitchen order. A changed-payload conflict preserves the unresolved original snapshot.
+
+A separate local purchase journal survives edits to the cart. A Web Lock coordinates submissions and session creation across tabs. Other tabs observe the journal's result. Unsupported browsers fail before submission and direct the customer to staff. Storage/session loss is not evidence that the purchase failed.
 
 ## Running the development checks
 
@@ -35,11 +41,11 @@ For browser checks, build the app with a disposable `AUTH_SECRET` and a local-on
 
 ## Before a live rollout
 
-- Orders created before this change have no browser owner. Customer routes now deny access to those old records; agree a transition with staff before deploying to a database containing active orders.
-- The interface retains uncertain or rejected submissions and directs the customer to staff. A safe cancellation/rejection-resolution workflow still needs design; simply deleting a pending identifier could create another order when an earlier request is still in flight.
-- Coordinate simultaneous tabs before treating them as one shared purchase. The server handles repeated identifiers, but independent tabs can still create independent purchase identifiers.
-- Check the deployment proxy preserves the public `Host` header and uses HTTPS. A missing or expired browser cookie prevents customer recovery; it must not grant a new session access to an old order.
-- Complete the signed specification's app-restart trials and paired measurements. Development checks establish behaviour in the tested cases, not commercial performance or completion of the research.
+- Drain active orders made before browser ownership was introduced. Staff can still see and finish these records; customer routes intentionally deny new sessions access. Do not assign ownership from possession of an old order ID. Tests cover this boundary. Deploy only after staff confirm the old active queue is settled; no production database was changed during this work.
+- Existing pending snapshots from the first recovery patch are imported into the new journal under the browser lock. Keep the same cookie and origin during the upgrade. Missing/expired cookies require staff resolution, not a new session claiming an old order.
+- Preserve public `Host` and HTTPS at the deployment proxy. The Web Locks API needs a secure context (localhost is used for tests).
+- Keep acceptance/rejection/cancellation receipts for the study and beyond the supported retry horizon. Expiry and multi-service payment/inventory guarantees are outside this specification.
+- The local experiments cannot certify the deployed environment. Repeat a staging smoke test after integrating the other members' changes, including the shared pricing interface and initial kitchen record.
 
 ## Implementation references and provenance
 

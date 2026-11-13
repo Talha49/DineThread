@@ -8,7 +8,8 @@ import { ShoppingCart, X, Plus, Minus, Trash2, Loader2, CheckCircle2, ChefHat, B
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { useCartStore, pendingPurchaseFor } from "@/hooks/use-cart-store";
-import { sendCustomerOrder } from "@/lib/customer-order";
+import { sendCustomerOrder, cancelPendingPurchase, startNewCustomerOrder } from "@/lib/customer-order";
+import { purchaseKey, syncPurchaseJournal } from "@/lib/purchase-journal";
 
 const fetcher = async (url) => {
     const res = await fetch(url);
@@ -29,6 +30,17 @@ export function CartFAB({ restaurantId, tables, brandColor }) {
     const reduceMotion = useReducedMotion();
     const cartCount = useCartStore((s) => s.cartCount());
     const orderId = useCartStore((s) => s.orderId);
+
+    useEffect(() => {
+        const sync = (event) => {
+            if (event?.key && event.key !== purchaseKey(restaurantId)) return;
+            try { syncPurchaseJournal(restaurantId, useCartStore); } catch { /* Submission will show a storage error without sending. */ }
+        };
+        sync();
+        window.addEventListener("storage", sync);
+        window.addEventListener("focus", sync);
+        return () => { window.removeEventListener("storage", sync); window.removeEventListener("focus", sync); };
+    }, [restaurantId]);
 
     const showBadge = orderId ? true : cartCount > 0;
 
@@ -124,7 +136,7 @@ function CartDrawer({ restaurantId, tables, isOpen, onClose, brandColor }) {
 
                         <div className="overflow-y-auto p-6 md:p-8">
                             {orderId ? (
-                                <OrderStatusPanel orderId={orderId} brandColor={brandColor} onClose={onClose} />
+                                <OrderStatusPanel restaurantId={restaurantId} orderId={orderId} brandColor={brandColor} onClose={onClose} />
                             ) : (
                                 <CartPanel restaurantId={restaurantId} tables={tables} brandColor={brandColor} onClose={onClose} />
                             )}
@@ -158,7 +170,8 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
         setIsPlacing(true);
         setError("");
         try {
-            await sendCustomerOrder({ restaurantId, tableId, items, store: useCartStore });
+            const result = await sendCustomerOrder({ restaurantId, tableId, items, store: useCartStore });
+            if (result.outcome) setError(`${result.message} No order was placed. Check your cart before trying again.`);
         } catch (failure) {
             setError(failure.name === "TimeoutError" || failure instanceof TypeError
                 ? "Confirmation has not arrived. Check the connection, then retry this same purchase."
@@ -167,6 +180,19 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
             submitting.current = false;
             setIsPlacing(false);
         }
+    };
+
+    const handleCancel = async () => {
+        if (submitting.current) return;
+        submitting.current = true;
+        setIsPlacing(true);
+        setError("");
+        try {
+            const result = await cancelPendingPurchase({ restaurantId, store: useCartStore });
+            if (result.outcome) setError(result.message);
+            else toast("The restaurant already accepted this purchase. Its confirmation is shown here.");
+        } catch (failure) { setError(failure.message); }
+        finally { submitting.current = false; setIsPlacing(false); }
     };
 
     if (pending) {
@@ -178,7 +204,8 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                 <Button onClick={handlePlaceOrder} disabled={isPlacing} className="w-full h-14 rounded-2xl">
                     {isPlacing ? "Checking purchase…" : "Retry same purchase"}
                 </Button>
-                <p className="text-sm text-zinc-600">If the original items or table are unavailable, or this browser session has been lost, ask staff to check the order. Your saved purchase will stay here.</p>
+                <button onClick={handleCancel} disabled={isPlacing} className="w-full rounded-2xl border border-zinc-300 p-3 text-sm font-semibold text-zinc-800 disabled:opacity-50">Cancel pending purchase</button>
+                <p className="text-sm text-zinc-600">Cancellation only stops a purchase that has not been accepted. If it is already placed, we will show its confirmation. If your browser session is lost, ask staff to check the order.</p>
             </div>
         );
     }
@@ -256,9 +283,8 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     );
 }
 
-function OrderStatusPanel({ orderId, brandColor, onClose }) {
+function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     const { data, error, mutate } = useSWR(`/p/orders/${orderId}`, fetcher, { refreshInterval: 4000 });
-    const leaveOrder = useCartStore((s) => s.leaveOrder);
     const [requestingBill, setRequestingBill] = useState(false);
     const prevStatus = useRef(null);
 
@@ -300,9 +326,11 @@ function OrderStatusPanel({ orderId, brandColor, onClose }) {
         }
     };
 
-    const handleStartNewOrder = () => {
-        leaveOrder();
-        onClose();
+    const handleStartNewOrder = async () => {
+        try {
+            await startNewCustomerOrder({ restaurantId, store: useCartStore });
+            onClose();
+        } catch (error) { toast.error(error.message); }
     };
 
     return (

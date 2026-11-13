@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import { orderSessionHash } from "@/lib/order-session";
-import { publicOrder } from "@/lib/order-submission";
+import { publicOrder, acceptedOrderFilter } from "@/lib/order-submission";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +17,7 @@ export async function GET(req, { params }) {
         const ownerHash = orderSessionHash(req);
         if (!ownerHash) return NextResponse.json({ message: "Order not found in this browser session" }, { status: 404 });
         await dbConnect();
-        const order = await Order.findOne({ _id: id, ownerHash }).populate("table", "label").lean();
+        const order = await Order.findOne({ _id: id, ownerHash, ...acceptedOrderFilter }).populate("table", "label").lean();
         if (!order) return NextResponse.json({ message: "Order not found" }, { status: 404 });
 
         return NextResponse.json({ order: publicOrder(order) }, { headers: { "Cache-Control": "no-store" } });

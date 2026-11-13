@@ -3,18 +3,23 @@ import mongoose from "mongoose";
 import { randomUUID } from "node:crypto";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { NextRequest } from "next/server";
+import { verifyJWT } from "@/lib/jwt";
 import Restaurant from "@/models/Restaurant";
 import Table from "@/models/Table";
 import MenuItem from "@/models/MenuItem";
 import Order from "@/models/Order";
-import { orderFingerprint, submitOrder } from "@/lib/order-submission";
+import { orderFingerprint, submitOrder, acceptedOrderFilter } from "@/lib/order-submission";
 import { POST } from "@/app/p/orders/route";
 import { GET } from "@/app/p/orders/[id]/route";
 import { POST as requestBill } from "@/app/p/orders/[id]/request-bill/route";
 import { POST as startSession } from "@/app/p/session/route";
+import { GET as kitchenOrders } from "@/app/api/orders/route";
+import { PATCH as updateKitchenOrder } from "@/app/api/orders/[id]/route";
 import { isSameOrigin, ORDER_SESSION_COOKIE, orderSessionHash } from "@/lib/order-session";
 
 jest.mock("@/lib/mongodb", () => ({ __esModule: true, default: jest.fn(async () => mongoose.connection) }));
+jest.mock("@/lib/jwt", () => ({ verifyJWT: jest.fn() }));
+jest.mock("next/headers", () => ({ cookies: jest.fn(async () => ({ get: () => ({ value: "synthetic-staff-token" }) })) }));
 
 let server, restaurant, table, item, payload;
 const session = "a".repeat(64);
@@ -112,7 +117,7 @@ test("lost-confirmation replay ignores subsequent menu and table changes", async
     const recovered = await send(id);
     expect(String(recovered.order._id)).toBe(String(accepted.order._id));
     expect(recovered.order.total).toBe(23);
-    await expect(send()).rejects.toMatchObject({ code: "INVALID_TABLE" });
+    expect(await send()).toMatchObject({ outcome: "rejected", code: "INVALID_TABLE" });
 });
 
 test("session ownership applies to replay, reads and bill requests", async () => {
@@ -155,4 +160,83 @@ test("same-origin check uses the public host, and rejects foreign or null origin
     expect(isSameOrigin(request("http://127.0.0.1:3038"))).toBe(true);
     expect(isSameOrigin(request("https://other.example"))).toBe(false);
     expect(isSameOrigin(request("null"))).toBe(false);
+});
+
+test("rejection is durable, even if the menu later permits the delayed retry", async () => {
+    const id = randomUUID();
+    await MenuItem.updateOne({ _id: item._id }, { $set: { isAvailable: false } });
+    expect(await send(id)).toMatchObject({ outcome: "rejected", code: "INVALID_MENU", requestId: id });
+    await MenuItem.updateOne({ _id: item._id }, { $set: { isAvailable: true } });
+    expect(await send(id)).toMatchObject({ outcome: "rejected", replayed: true });
+    expect(await Order.countDocuments(acceptedOrderFilter)).toBe(0);
+    expect((await send()).order.total).toBe(23);
+});
+
+test("cancellation before acceptance prevents delayed execution, but never cancels an accepted order", async () => {
+    const id = randomUUID();
+    const cancel = (requestId) => submitOrder({ data: payload, requestId, ownerHash, cancel: true });
+    expect(await cancel(id)).toMatchObject({ outcome: "cancelled" });
+    expect(await send(id)).toMatchObject({ outcome: "cancelled", replayed: true });
+    const secondId = randomUUID();
+    const accepted = await send(secondId);
+    expect(String((await cancel(secondId)).order._id)).toBe(String(accepted.order._id));
+    expect(await Order.countDocuments(acceptedOrderFilter)).toBe(1);
+});
+
+test("acceptance racing cancellation has exactly one durable outcome", async () => {
+    const originalCreate = Order.create.bind(Order);
+    let release, arrived = 0;
+    const gate = new Promise((resolve) => { release = resolve; });
+    jest.spyOn(Order, "create").mockImplementation(async (...args) => {
+        if (++arrived === 2) release();
+        await gate;
+        return originalCreate(...args);
+    });
+    const id = randomUUID();
+    const results = await Promise.all([send(id), submitOrder({ data: payload, requestId: id, ownerHash, cancel: true })]);
+    expect(results[0].outcome).toBe(results[1].outcome);
+    expect(String(results[0].order?._id)).toBe(String(results[1].order?._id));
+    expect(await Order.countDocuments()).toBe(1);
+    expect(await send(id)).toMatchObject({ replayed: true });
+});
+
+test("terminal receipts cannot be read or billed as kitchen orders", async () => {
+    await submitOrder({ data: payload, requestId: randomUUID(), ownerHash, cancel: true });
+    const receipt = await Order.findOne();
+    const params = { params: Promise.resolve({ id: String(receipt._id) }) };
+    expect((await GET(req(`/p/orders/${receipt._id}`), params)).status).toBe(404);
+    expect((await requestBill(req(`/p/orders/${receipt._id}/request-bill`, {}), params)).status).toBe(404);
+    expect(await Order.countDocuments(acceptedOrderFilter)).toBe(0);
+});
+
+test("legacy orders remain staff-visible without granting new customer ownership", async () => {
+    const original = await send();
+    await Order.collection.updateOne({ _id: original.order._id }, { $unset: { ownerHash: "", requestId: "", requestFingerprint: "", submissionOutcome: "" } });
+    expect(await Order.countDocuments(acceptedOrderFilter)).toBe(1);
+    const params = { params: Promise.resolve({ id: String(original.order._id) }) };
+    expect((await GET(req(`/p/orders/${original.order._id}`), params)).status).toBe(404);
+});
+
+test("HTTP pricing ignores altered client totals and records invalid-table rejection separately", async () => {
+    const response = await POST(req("/p/orders", { ...payload, total: 0, items: payload.items.map(line => ({ ...line, unitPrice: 0 })), requestId: randomUUID() }));
+    expect(response.status).toBe(201);
+    expect((await response.json()).order.total).toBe(23);
+    const rejected = await POST(req("/p/orders", { ...payload, tableId: String(new mongoose.Types.ObjectId()), requestId: randomUUID() }));
+    expect(await rejected.json()).toMatchObject({ outcome: "rejected", code: "INVALID_TABLE" });
+    expect(await Order.countDocuments(acceptedOrderFilter)).toBe(1);
+});
+
+test("staff's real queue endpoint receives the initial order but never terminal receipts", async () => {
+    verifyJWT.mockResolvedValue({ id: String(restaurant.owner) });
+    const accepted = await send();
+    await submitOrder({ data: payload, requestId: randomUUID(), ownerHash, cancel: true });
+    const receipt = await Order.findOne({ submissionOutcome: "cancelled" });
+    const response = await kitchenOrders(req("/api/orders"));
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.orders).toHaveLength(1);
+    expect(body.orders[0]).toMatchObject({ _id: String(accepted.order._id), status: "placed", total: 23 });
+    expect(body.orders[0].requestId).toBeUndefined();
+    const denied = await updateKitchenOrder(req(`/api/orders/${receipt._id}`, { status: "preparing" }), { params: Promise.resolve({ id: String(receipt._id) }) });
+    expect(denied.status).toBe(404);
 });
