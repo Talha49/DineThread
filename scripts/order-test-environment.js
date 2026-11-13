@@ -29,21 +29,25 @@ async function recordSource(output) {
         commit=execFileSync(git,['rev-parse','HEAD'],{cwd:root,encoding:'utf8',windowsHide:true}).trim();
         dirty=execFileSync(git,['status','--porcelain'],{cwd:root,encoding:'utf8',windowsHide:true}).trim();
     } catch {}
-    await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify({commit,dirty,buildId:(await fs.readFile(path.join(root,'.next/BUILD_ID'),'utf8')).trim(),hashes},null,2));
+    hashes['next.config.mjs'] = createHash('sha256').update(await fs.readFile(path.join(root,'next.config.mjs'))).digest('hex');
+    await fs.writeFile(path.join(output,'source-manifest.json'),JSON.stringify({commit,dirty,buildId:(await fs.readFile(path.join(root,process.env.RESEARCH_DIST_DIR || '.next','BUILD_ID'),'utf8')).trim(),hashes},null,2));
 }
 
-async function createEnvironment(output) {
+async function createEnvironment(output, options = {}) {
     await fs.mkdir(output, { recursive: true });
     const mongo = await MongoMemoryServer.create({ binary: { version: '8.0.17' } });
     const client = await MongoClient.connect(mongo.getUri());
     const apps = {}, proxies = {}, drops = [];
-    const bases = { baseline: 'http://127.0.0.1:3041', recovery: 'http://127.0.0.1:3042' };
-    const proxyBases = { baseline: 'http://127.0.0.1:3043', recovery: 'http://127.0.0.1:3044' };
+    const secrets = { baseline: randomBytes(32).toString('hex'), recovery: randomBytes(32).toString('hex') };
+    const offset = options.portOffset || 0;
+    const bases = { baseline: `http://127.0.0.1:${3041 + offset}`, recovery: `http://127.0.0.1:${3042 + offset}` };
+    const proxyBases = { baseline: `http://127.0.0.1:${3043 + offset}`, recovery: `http://127.0.0.1:${3044 + offset}` };
     const database = mode => client.db(`dinethread_${mode}_research`);
     const logPath = mode => path.join(output, `server-${mode}.jsonl`);
     const reset = async mode => {
         const db = database(mode);
-        for (const collection of ['orders', 'restaurants', 'tables', 'categories', 'menuitems']) await db.collection(collection).deleteMany({});
+        for (const collection of ['orders', 'restaurants', 'tables', 'categories', 'menuitems', 'users']) await db.collection(collection).deleteMany({});
+        await db.collection('users').insertOne({ _id: ids.owner, name: 'Synthetic Staff', email: 'staff@example.invalid' });
         await db.collection('restaurants').insertOne({ _id: ids.restaurant, name: 'Order Research Cafe', restaurantId: 'order-research', owner: ids.owner, brandColor: '#18181b', plan: 'free', experienceConfig: {}, businessProfile: {} });
         await db.collection('tables').insertOne({ _id: ids.table, restaurant: ids.restaurant, label: 'Table 1', isActive: true });
         await db.collection('categories').insertOne({ restaurant: ids.restaurant, name: 'Lunch', sortOrder: 0 });
@@ -58,7 +62,7 @@ async function createEnvironment(output) {
         await stop(mode);
         const app = spawn(process.execPath, [path.join(root, 'node_modules/next/dist/bin/next'), 'start', '-p', new URL(bases[mode]).port, '-H', '127.0.0.1'], {
             cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'],
-            env: { ...process.env, MONGODB_URI: mongo.getUri(`dinethread_${mode}_research`), AUTH_SECRET: randomBytes(32).toString('hex'), ORDER_SUBMISSION_MODE: mode, ORDER_RESEARCH_ENABLED: '1', ORDER_RESEARCH_LOG: logPath(mode) },
+            env: { ...process.env, ORDER_SUBMISSION_MODE: mode, CATALOGUE_MODE: 'automatic', ...options.env?.[mode], MONGODB_URI: mongo.getUri(`dinethread_${mode}_research`), AUTH_SECRET: secrets[mode], ORDER_RESEARCH_ENABLED: '1', ORDER_RESEARCH_LOG: logPath(mode), WORKFLOW_RESEARCH_LOG: path.join(output, `workflow-${mode}.jsonl`) },
         });
         apps[mode] = app;
         let startup = '';
@@ -103,7 +107,12 @@ async function createEnvironment(output) {
             proxies[mode] = server;
             await new Promise((resolve, reject) => { server.once('error', reject); server.listen(Number(new URL(proxyBases[mode]).port), '127.0.0.1', resolve); });
         }
-        return { database, reset, start, stop, close, bases, proxyBases, drops, ids, logPath };
+        const staffCookie = async mode => {
+            const { SignJWT } = await import('jose');
+            const token = await new SignJWT({ id: String(ids.owner) }).setProtectedHeader({ alg: 'HS256' }).setExpirationTime('1h').sign(new TextEncoder().encode(secrets[mode]));
+            return `auth-token=${token}`;
+        };
+        return { database, reset, start, stop, close, bases, proxyBases, drops, ids, logPath, staffCookie };
     } catch (error) { await close(); throw error; }
 }
 module.exports = { createEnvironment, ids, sleep, root, recordSource };

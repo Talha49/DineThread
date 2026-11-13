@@ -8,12 +8,13 @@
 
 import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 
 import { MenuItem } from "../MenuItem";
 
 export function ListLayout({ groupedItems, setSelectedItem, isTVMode }) {
+    const reducedMotion = useReducedMotion();
     const theme = useTheme();
     const config = theme.config;
 
@@ -23,7 +24,7 @@ export function ListLayout({ groupedItems, setSelectedItem, isTVMode }) {
                 <section key={category.name} className="category-section">
                     {/* Category Header */}
                     <motion.h2
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={reducedMotion ? false : { opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: catIndex * 0.1 }}
                         className={cn(
@@ -49,7 +50,7 @@ export function ListLayout({ groupedItems, setSelectedItem, isTVMode }) {
                         {category.items.map((item, index) => (
                             <motion.div
                                 key={item._id}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={reducedMotion ? false : { opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: catIndex * 0.1 + index * 0.05 }}
                                 className="menu-item"

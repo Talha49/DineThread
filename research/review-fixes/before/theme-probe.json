@@ -1,0 +1,67 @@
+{
+  "rows": [
+    {
+      "value": "#123",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    },
+    {
+      "value": "#1234",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    },
+    {
+      "value": "#12345",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": false
+    },
+    {
+      "value": "#123456",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    },
+    {
+      "value": "#1234567",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": false
+    },
+    {
+      "value": "#12345678",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    },
+    {
+      "value": "rgb(1)",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": false
+    },
+    {
+      "value": "rgb(1,2,3)",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    },
+    {
+      "value": "hsl(1,2,3)",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": false
+    },
+    {
+      "value": "hsl(1,2%,3%)",
+      "schemaAccepts": true,
+      "brandingAccepts": true,
+      "browserAccepts": true
+    }
+  ],
+  "invalidReturn": 2,
+  "finalPrimary": "#12345",
+  "deliveredUpdates": 2
+}

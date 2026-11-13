@@ -1,0 +1,16 @@
+{
+  "status": 200,
+  "success": true,
+  "cookiesSent": false,
+  "before": {
+    "users": 1,
+    "restaurants": 1,
+    "menuitems": 1
+  },
+  "after": {
+    "users": 2,
+    "restaurants": 2,
+    "menuitems": 2
+  },
+  "scope": "Temporary local synthetic database only"
+}

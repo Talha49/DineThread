@@ -1,0 +1,11 @@
+{
+  "initial": "#4f46e5",
+  "requestedSave": "#234567",
+  "resetEnabled": true,
+  "afterResetDraft": "#4f46e5",
+  "firstSaveSucceeded": true,
+  "brandingRequests": 1,
+  "storedPrimary": "#234567",
+  "mismatch": true,
+  "build": "qa-results/build-group-final-v5"
+}

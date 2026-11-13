@@ -49,7 +49,7 @@ export default function SettingsPage() {
     const showLiveIndicator = shellWidth >= 448;
     const showLabels = shellWidth >= 320;
 
-    const activeData = previewData ? deepMerge(restaurant, previewData) : restaurant;
+    const activeData = previewData ? { ...restaurant, ...previewData, experienceConfig: { ...restaurant?.experienceConfig, ...previewData.experienceConfig } } : restaurant;
     const isPro = restaurant?.plan === "pro";
 
     const previewNode = (
@@ -76,7 +76,7 @@ export default function SettingsPage() {
     return (
         <div ref={shellRef} className="h-full flex flex-col overflow-hidden">
             {/* Top Bar */}
-            <div className={cn("flex items-center justify-between gap-3 py-3 border-b bg-white shrink-0", shellWidth >= 448 ? "px-6" : "px-4")}>
+            <div className={cn("flex flex-wrap items-center justify-between gap-3 py-3 border-b bg-white shrink-0", shellWidth >= 448 ? "px-6" : "px-4")}>
                 {/* Left: View toggle */}
                 <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-xl shrink-0">
                     <button
@@ -202,11 +202,12 @@ export default function SettingsPage() {
                         className="absolute inset-0 bg-black/40 backdrop-blur-sm animate-fade-in"
                         onClick={() => setIsPreviewOverlayOpen(false)}
                     />
-                    <div className="relative w-full max-w-md h-full bg-zinc-50 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+                    <div className="relative w-full min-w-0 max-w-md h-full bg-zinc-50 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
                         <div className="flex items-center justify-between px-5 py-4 border-b bg-white shrink-0">
                             <h2 className="text-sm font-bold text-zinc-900">Live Preview</h2>
                             <button
                                 onClick={() => setIsPreviewOverlayOpen(false)}
+                                aria-label="Close live preview"
                                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 transition-colors"
                             >
                                 <X className="w-4 h-4" />

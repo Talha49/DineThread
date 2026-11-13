@@ -24,7 +24,7 @@
     "links": {
       "visual_dna": "Visual DNA",
       "seasonal_engine": "Seasonal Engine",
-      "ai_intelligence": "AI Intelligence",
+      "ai_intelligence": "Sample badges",
       "pricing": "Pricing",
       "api_docs": "API Docs",
       "about_us": "About Us",
@@ -60,12 +60,12 @@
           "desc": "Use our Design Studio to pick colors, fonts, and layouts that match your restaurant's unique personality."
         },
         {
-          "title": "Optimize with AI",
-          "desc": "Activate AI heatmaps to highlight popular items and set 'Happy Hour' rules to automatically adjust prices."
+          "title": "Sample badges",
+          "desc": "Preview sample item badges. They do not use customer behaviour or sales data."
         }
       ],
       "why_optimize": "Why Optimize Your Menu?",
-      "why_desc": "A well-organized digital menu doesn't just look good—it sells more. By using our **AI Heatmap** and **Category Optimization**, you can guide your customers toward your highest-margin items automatically.",
+      "why_desc": "Organize categories and preview sample badges before choosing your menu design.",
       "benefits": [
         "Real-time Dashboard Control",
         "Instant QR Code Generation"
@@ -76,7 +76,7 @@
         "live": "Live",
         "rows": [
           "Category Management",
-          "AI Item Highlighting",
+          "Sample badges",
           "Dynamic Price Rules"
         ]
       }
@@ -92,11 +92,6 @@
         "Dynamic Background Particle Engines",
         "Manual Preview Dashboard Toggles"
       ]
-    },
-    "testimonial": {
-      "quote": "\"The design studio is a game-changer. We've seen a 22% increase in average order value through AI heatmaps.\"",
-      "author": "Marcus Sterling",
-      "role": "Director, Gastronomy Group"
     },
     "cta": {
       "title_1": "Ready to elevate",
@@ -117,8 +112,8 @@
           "desc": "Customizable high-end aesthetics with premium fonts, colors, and layouts that match your brand perfectly."
         },
         {
-          "title": "AI 'Hot' Badges",
-          "desc": "Automatically highlight your top-selling and trending items to help customers make faster, better choices."
+          "title": "Sample badges",
+          "desc": "Preview sample item badges. They do not use customer behaviour or sales data."
         },
         {
           "title": "Auto-Magic Themes",
@@ -165,7 +160,7 @@
           "features": [
             "Unlimited Menu Items",
             "Automated Seasonal Themes",
-            "AI-Driven 'Hot' Badges",
+            "Sample badges",
             "Scheduled Happy Hours",
             "Custom Branding & Fonts",
             "Email Support"
@@ -242,7 +237,7 @@
       },
       "pro": {
         "title": "Go Professional",
-        "desc": "Unlock unlimited menu items, AI-driven heatmaps, and premium themes.",
+        "desc": "Unlock unlimited menu items, sample badge previews and premium themes.",
         "btn": "View Pricing"
       }
     },

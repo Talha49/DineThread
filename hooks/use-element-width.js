@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Tracks an element's own rendered width via ResizeObserver.
@@ -13,15 +13,14 @@ import { useEffect, useRef, useState } from "react";
  *
  * @param {number} fallback - width to report before the first real
  *   measurement lands (avoids a flash of the "narrow" layout on mount).
- * @returns {[React.RefObject, number]} [ref to attach, current width in px]
+ * @returns {[Function, number]} [callback ref to attach, current width in px]
  */
 export function useElementWidth(fallback = 0) {
-  const ref = useRef(null);
+  const [element, setElement] = useState(null);
   const [width, setWidth] = useState(fallback);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (!element) return;
 
     const observer = new ResizeObserver((entries) => {
       const entry = entries[0];
@@ -30,9 +29,9 @@ export function useElementWidth(fallback = 0) {
       }
     });
 
-    observer.observe(el);
+    observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [element]);
 
-  return [ref, width];
+  return [setElement, width];
 }

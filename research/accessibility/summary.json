@@ -1,0 +1,75 @@
+{
+  "baselineKeyboard": {
+    "folder": "accessibility-baseline-keyboard-1794590305450",
+    "runs": 10,
+    "functionalPass": 10,
+    "states": 46,
+    "overflow": 0,
+    "blockedKeyboardSteps": 9,
+    "statesWithViolations": 0,
+    "ruleOccurrences": 0,
+    "uniqueRules": []
+  },
+  "revisedKeyboard": {
+    "folder": "accessibility-recovery-keyboard-1794595000192",
+    "runs": 10,
+    "functionalPass": 10,
+    "states": 46,
+    "overflow": 0,
+    "blockedKeyboardSteps": 0,
+    "statesWithViolations": 0,
+    "ruleOccurrences": 0,
+    "uniqueRules": []
+  },
+  "baselineChromium": {
+    "folder": "accessibility-baseline-axe-1794594733235",
+    "runs": 16,
+    "functionalPass": 16,
+    "states": 75,
+    "overflow": 0,
+    "blockedKeyboardSteps": 0,
+    "statesWithViolations": 75,
+    "ruleOccurrences": 225,
+    "uniqueRules": [
+      "aria-required-children",
+      "button-name",
+      "color-contrast"
+    ]
+  },
+  "revisedChromium": {
+    "folder": "accessibility-recovery-axe-1794595704683",
+    "runs": 16,
+    "functionalPass": 16,
+    "states": 75,
+    "overflow": 0,
+    "blockedKeyboardSteps": 0,
+    "statesWithViolations": 0,
+    "ruleOccurrences": 0,
+    "uniqueRules": []
+  },
+  "baselineFirefox": {
+    "folder": "accessibility-baseline-axe-1794595353743",
+    "runs": 3,
+    "functionalPass": 3,
+    "states": 17,
+    "overflow": 0,
+    "blockedKeyboardSteps": 0,
+    "statesWithViolations": 17,
+    "ruleOccurrences": 34,
+    "uniqueRules": [
+      "aria-required-children",
+      "button-name"
+    ]
+  },
+  "revisedFirefox": {
+    "folder": "accessibility-recovery-axe-1794595920330",
+    "runs": 3,
+    "functionalPass": 3,
+    "states": 17,
+    "overflow": 0,
+    "blockedKeyboardSteps": 0,
+    "statesWithViolations": 0,
+    "ruleOccurrences": 0,
+    "uniqueRules": []
+  }
+}

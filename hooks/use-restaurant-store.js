@@ -11,7 +11,8 @@ export const useRestaurantStore = create((set, get) => ({
   setRestaurant: (data) => set({ restaurant: data, previewData: data }),
   
   setPreviewData: (data) => set((state) => ({
-    previewData: state.previewData ? deepMerge(state.previewData, data) : data
+    previewData: { ...state.previewData, ...data,
+      experienceConfig: { ...state.previewData?.experienceConfig, ...data.experienceConfig } }
   })),
 
   resetPreview: () => set((state) => ({ previewData: state.restaurant })),

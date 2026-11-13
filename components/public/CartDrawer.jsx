@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { useCartStore, pendingPurchaseFor } from "@/hooks/use-cart-store";
 import { sendCustomerOrder, cancelPendingPurchase, startNewCustomerOrder } from "@/lib/customer-order";
+import { useModalFocus } from "@/hooks/use-modal-focus";
 import { purchaseKey, syncPurchaseJournal } from "@/lib/purchase-journal";
 
 const fetcher = async (url) => {
@@ -22,6 +23,7 @@ const STATUS_STEPS = [
     { key: "preparing", label: "Preparing", icon: ChefHat },
     { key: "ready", label: "Ready", icon: Bell },
     { key: "served", label: "Served", icon: Receipt },
+    { key: "paid", label: "Paid", icon: CheckCircle2 },
 ];
 
 export function CartFAB({ restaurantId, tables, brandColor }) {
@@ -74,28 +76,7 @@ function CartDrawer({ restaurantId, tables, isOpen, onClose, brandColor }) {
     const pending = useCartStore((s) => !!pendingPurchaseFor(s, restaurantId));
     const dialog = useRef(null);
 
-    useEffect(() => {
-        if (!isOpen) return;
-        const previous = document.activeElement;
-        const handleKey = (event) => {
-            if (event.key === "Escape") onClose();
-            if (event.key !== "Tab") return;
-            const controls = [...(dialog.current?.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled), [tabindex="0"]') || [])];
-            const first = controls[0], last = controls[controls.length - 1];
-            if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog.current)) {
-                event.preventDefault();
-                last?.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first?.focus();
-            }
-        };
-        document.addEventListener("keydown", handleKey);
-        return () => {
-            document.removeEventListener("keydown", handleKey);
-            if (previous?.isConnected) previous.focus();
-        };
-    }, [isOpen, onClose]);
+    useModalFocus(dialog, isOpen, onClose);
 
     useEffect(() => {
         if (isOpen) dialog.current?.focus();
@@ -153,6 +134,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     const tableId = useCartStore((s) => s.tableId);
     const updateQty = useCartStore((s) => s.updateQty);
     const setTable = useCartStore((s) => s.setTable);
+    const needsPriceConfirmation = useCartStore((s) => s.needsPriceConfirmation);
     const pending = useCartStore((s) => pendingPurchaseFor(s, restaurantId));
     const submitting = useRef(false);
     const [isPlacing, setIsPlacing] = useState(false);
@@ -213,9 +195,9 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     if (items.length === 0) {
         return (
             <div className="text-center py-16">
-                <ShoppingCart className="w-10 h-10 text-zinc-300 mx-auto mb-4" />
+                <ShoppingCart className="w-10 h-10 text-zinc-600 mx-auto mb-4" />
                 <p className="font-bold text-lg">Your cart is empty</p>
-                <p className="text-zinc-400 text-sm mt-1">Add a dish to start your order.</p>
+                <p className="text-zinc-600 text-sm mt-1">Add a dish to start your order.</p>
             </div>
         );
     }
@@ -223,6 +205,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-black italic tracking-tighter">Your Order</h2>
+            {needsPriceConfirmation && <p role="status" className="text-sm text-zinc-700">Your selected prices have changed. Review the amounts below, then confirm if you want to continue.</p>}
 
             <div className="space-y-3">
                 {items.map((line) => (
@@ -230,7 +213,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                         <div className="flex-1 min-w-0">
                             <p className="font-bold text-sm truncate">{line.name}</p>
                             {(line.variantName || line.modifierNames?.length > 0) && (
-                                <p className="text-xs text-zinc-400 truncate">
+                                <p className="text-xs text-zinc-600 truncate">
                                     {[line.variantName, ...(line.modifierNames || [])].filter(Boolean).join(", ")}
                                 </p>
                             )}
@@ -249,8 +232,8 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                 ))}
             </div>
 
-            <div>
-                <label className="block text-xs font-black uppercase tracking-wider text-zinc-500 mb-2">Which table are you at?</label>
+            <fieldset>
+                <legend className="block text-xs font-black uppercase tracking-wider text-zinc-500 mb-2">Which table are you at?</legend>
                 <div className="flex flex-wrap gap-2">
                     {tables.map((tbl) => (
                         <button
@@ -258,7 +241,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                             aria-pressed={tableId === tbl._id}
                             onClick={() => setTable(tbl._id)}
                             className={cn(
-                                "px-4 py-2.5 rounded-xl text-sm font-bold border-2 transition-all",
+                                "px-4 py-2.5 rounded-xl text-sm font-bold border-2 transition-colors",
                                 tableId === tbl._id ? "text-white border-transparent" : "border-zinc-100 bg-zinc-50 text-zinc-600"
                             )}
                             style={tableId === tbl._id ? { backgroundColor: brandColor || "#18181b" } : undefined}
@@ -267,7 +250,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                         </button>
                     ))}
                 </div>
-            </div>
+            </fieldset>
 
             {error && <p role="alert" className="text-sm text-red-700 font-medium">{error}</p>}
 
@@ -277,7 +260,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                 className="w-full h-16 rounded-2xl font-black uppercase tracking-wider text-base"
                 style={{ backgroundColor: brandColor || undefined }}
             >
-                {isPlacing ? <Loader2 className="w-5 h-5 animate-spin" /> : `Place Order - $${total.toFixed(2)}`}
+                {isPlacing ? <span role="status">Placing order…</span> : `${needsPriceConfirmation ? "Confirm updated prices" : "Place Order"} - $${total.toFixed(2)}`}
             </Button>
         </div>
     );
@@ -287,6 +270,8 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     const { data, error, mutate } = useSWR(`/p/orders/${orderId}`, fetcher, { refreshInterval: 4000 });
     const [requestingBill, setRequestingBill] = useState(false);
     const prevStatus = useRef(null);
+    const reduceMotion = useReducedMotion();
+    const billCommand = useRef(null);
 
     const order = data?.order;
     const status = order?.status;
@@ -295,10 +280,10 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
         if (!status) return;
         if (prevStatus.current && prevStatus.current !== "ready" && status === "ready") {
             toast.success("Your order is ready!", { icon: "🔔", duration: 6000 });
-            if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+            if (!reduceMotion && navigator.vibrate) navigator.vibrate([200, 100, 200]);
         }
         prevStatus.current = status;
-    }, [status]);
+    }, [status, reduceMotion]);
 
     if (!order && error) {
         return <div className="space-y-4"><p role="alert">This order cannot be shown in this browser right now. Check your connection or ask staff to find the order.</p><Button onClick={() => mutate()}>Try again</Button></div>;
@@ -306,7 +291,7 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     if (!order) {
         return (
             <div className="flex justify-center py-16">
-                <Loader2 className="w-8 h-8 animate-spin text-zinc-300" />
+                <span role="status">Loading order status…</span>
             </div>
         );
     }
@@ -314,14 +299,18 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     const currentStepIndex = STATUS_STEPS.findIndex((s) => s.key === order.status);
 
     const handleRequestBill = async () => {
+        if (requestingBill) return;
         setRequestingBill(true);
         try {
-            const response = await fetch(`/p/orders/${orderId}/request-bill`, { method: "POST" });
-            if (!response.ok) throw new Error("Bill request was not confirmed. Please try again or ask staff.");
-            mutate();
+            billCommand.current ||= { actionId: crypto.randomUUID(), expectedVersion: order.workflowVersion || 0 };
+            const response = await fetch(`/p/orders/${orderId}/request-bill`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(billCommand.current), signal: AbortSignal.timeout(15000) });
+            const result = await response.json();
+            if (response.ok || (response.status >= 400 && response.status < 500)) billCommand.current = null;
+            if (!response.ok) throw new Error(result.message || "Bill request was not confirmed. Please try again or ask staff.");
         } catch (error) {
             toast.error(error.message);
         } finally {
+            try { await mutate(); } catch { /* Keep the normal polling recovery available. */ }
             setRequestingBill(false);
         }
     };
@@ -334,12 +323,13 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8" data-order-id={orderId} data-version={order.workflowVersion}>
             <div>
-                <p className="text-xs font-black uppercase tracking-widest text-zinc-400">{order.table?.label}</p>
+                <p className="text-xs font-black uppercase tracking-widest text-zinc-600">{order.table?.label}</p>
                 <h2 className="text-2xl font-black italic tracking-tighter">Order Status</h2>
             </div>
 
+            <p role="status" aria-live="polite" aria-atomic="true">Order status: {STATUS_STEPS[currentStepIndex]?.label || order.status}.{order.billRequested && order.status !== "paid" ? " Bill requested - your server is on the way." : ""}</p>
             <div className="flex items-center justify-between">
                 {STATUS_STEPS.map((step, i) => {
                     const Icon = step.icon;
@@ -353,12 +343,12 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
                                 />
                             )}
                             <div
-                                className={cn("w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all", isDone ? "text-white border-transparent" : "bg-zinc-50 border-zinc-100 text-zinc-300")}
+                                className={cn("w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors", isDone ? "text-white border-transparent" : "bg-zinc-50 border-zinc-100 text-zinc-600")}
                                 style={isDone ? { backgroundColor: brandColor || "#18181b" } : undefined}
                             >
                                 <Icon className="w-4 h-4" />
                             </div>
-                            <span className={cn("text-[10px] font-bold uppercase tracking-wider", isDone ? "text-zinc-900" : "text-zinc-300")}>{step.label}</span>
+                            <span className={cn("text-[10px] font-bold uppercase tracking-wider", isDone ? "text-zinc-900" : "text-zinc-600")}>{step.label}</span>
                         </div>
                     );
                 })}
@@ -377,13 +367,10 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
                 </div>
             </div>
 
-            {order.status === "served" && !order.billRequested && (
+            {order.status !== "paid" && !order.billRequested && (
                 <Button onClick={handleRequestBill} disabled={requestingBill} className="w-full h-14 rounded-2xl font-bold uppercase tracking-wider">
-                    {requestingBill ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Bill"}
+                    {requestingBill ? <span role="status">Requesting bill…</span> : "Request Bill"}
                 </Button>
-            )}
-            {order.billRequested && order.status !== "paid" && (
-                <p className="text-center text-sm font-bold text-zinc-500">Bill requested - your server is on the way.</p>
             )}
             {order.status === "paid" && (
                 <Button onClick={handleStartNewOrder} className="w-full h-14 rounded-2xl font-bold uppercase tracking-wider">

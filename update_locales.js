@@ -14,12 +14,12 @@ const translations = {
         { title: "Create Categories", desc: "Organize your menu into logical sections like Starters, Mains, and Drinks. Simply name them and set their order." },
         { title: "Add Menu Items", desc: "Upload photos, set prices, and add descriptions. You can update these instantly whenever your kitchen makes a change." },
         { title: "Design Your Brand", desc: "Use our Design Studio to pick colors, fonts, and layouts that match your restaurant's unique personality." },
-        { title: "Optimize with AI", desc: "Activate AI heatmaps to highlight popular items and set 'Happy Hour' rules to automatically adjust prices." }
+        { title: "Sample badges", desc: "Preview sample item badges. They do not use customer behaviour or sales data." }
       ],
       why_optimize: "Why Optimize Your Menu?",
-      why_desc: "A well-organized digital menu doesn't just look good—it sells more. By using our **AI Heatmap** and **Category Optimization**, you can guide your customers toward your highest-margin items automatically.",
+      why_desc: "Organize categories and preview sample badges before choosing your menu design.",
       benefits: ["Real-time Dashboard Control", "Instant QR Code Generation"],
-      table: { feature: "Feature", status: "Status", live: "Live", rows: ["Category Management", "AI Item Highlighting", "Dynamic Price Rules"] }
+      table: { feature: "Feature", status: "Status", live: "Live", rows: ["Category Management", "Sample badges", "Dynamic Price Rules"] }
     },
     automation: {
       tag: "Intelligent Automation",
@@ -27,11 +27,6 @@ const translations = {
       title_2: "Themes & Pricing",
       desc: "Stop worrying about updating your menu for every holiday. SmartMenu automatically changes your themes and atmosphere effects to match the season, and optimizes your prices for Happy Hour.",
       features: ["12 Pre-configured Monthly Overlays", "Automated Lighting & Color Transitions", "Dynamic Background Particle Engines", "Manual Preview Dashboard Toggles"]
-    },
-    testimonial: {
-      quote: "\"The design studio is a game-changer. We've seen a 22% increase in average order value through AI heatmaps.\"",
-      author: "Marcus Sterling",
-      role: "Director, Gastronomy Group"
     },
     cta: {
       title_1: "Ready to elevate",
@@ -48,7 +43,7 @@ const translations = {
       desc: "We've built a complete set of tools to help you manage your restaurant's digital presence effortlessly.",
       items: [
         { title: "Visual Design Studio", desc: "Customizable high-end aesthetics with premium fonts, colors, and layouts that match your brand perfectly." },
-        { title: "AI 'Hot' Badges", desc: "Automatically highlight your top-selling and trending items to help customers make faster, better choices." },
+        { title: "Sample badges", desc: "Preview sample item badges. They do not use customer behaviour or sales data." },
         { title: "Auto-Magic Themes", desc: "Your menu changes with the calendar. Automatic atmosphere effects for Winter, Spring, Summer, and Autumn." },
         { title: "Happy Hour Engine", desc: "Schedule discounts and dynamic pricing rules that update instantly on your customers' phones." },
         { title: "Atmosphere Effects", desc: "Add immersive snowfall, flower petals, or stars to your background to create a unique dining mood." },
@@ -61,7 +56,7 @@ const translations = {
       title_2: "at your own pace",
       plans: [
         { name: "Basic", price: "Free", desc: "The perfect start for small cafes.", features: ["Up to 15 Menu Items", "Basic Brand Colors", "Live QR Scanning", "Mobile Friendly Layout", "Community Support"], cta: "Start for Free" },
-        { name: "Smart Pro", price: "TBD", period: "/mo", desc: "Everything you need for growth.", popular: "Most Popular", features: ["Unlimited Menu Items", "Automated Seasonal Themes", "AI-Driven 'Hot' Badges", "Scheduled Happy Hours", "Custom Branding & Fonts", "Email Support"], cta: "Try 7 Days Free" },
+        { name: "Smart Pro", price: "TBD", period: "/mo", desc: "Everything you need for growth.", popular: "Most Popular", features: ["Unlimited Menu Items", "Automated Seasonal Themes", "Sample badges", "Scheduled Happy Hours", "Custom Branding & Fonts", "Email Support"], cta: "Try 7 Days Free" },
         { name: "Enterprise", price: "TBD", period: "/mo", desc: "For multi-location restaurant groups.", features: ["Multi-location Dashboard", "Full White-label Options", "Advanced API Access", "Dedicated Account Manager", "Custom Theme Design", "24/7 Phone Support"], cta: "Contact Sales" }
       ]
     }
@@ -75,12 +70,12 @@ const translations = {
         { title: "إنشاء الفئات", desc: "نظم قائمتك في أقسام منطقية مثل المقبلات، والأطباق الرئيسية، والمشروبات. ببساطة قم بتسميتها وتحديد ترتيبها." },
         { title: "إضافة العناصر", desc: "قم بتحميل الصور، وحدد الأسعار، وأضف الأوصاف. يمكنك تحديثها فورًا متى ما حدث تغيير في مطبخك." },
         { title: "صمم علامتك", desc: "استخدم استوديو التصميم لاختيار الألوان والخطوط والتخطيطات التي تناسب شخصية مطعمك الفريدة." },
-        { title: "التحسين بالذكاء الاصطناعي", desc: "قم بتفعيل الخرائط الحرارية لإبراز العناصر الشائعة وإعداد قواعد 'ساعة التخفيضات' لضبط الأسعار تلقائيًا." }
+        { title: "شارات تجريبية", desc: "عاين شارات تجريبية لا تستخدم سلوك العملاء أو بيانات المبيعات." }
       ],
       why_optimize: "لماذا تحسن قائمتك؟",
-      why_desc: "القائمة الرقمية المنظمة جيدًا لا تبدو رائعة فحسب - بل تبيع أكثر. باستخدام **الخريطة الحرارية الذكية** و**تحسين الفئات**، يمكنك توجيه عملائك نحو العناصر الأكثر ربحية تلقائيًا.",
+      why_desc: "رتب الفئات وعاين الشارات التجريبية قبل اختيار تصميم القائمة.",
       benefits: ["تحكم فوري عبر لوحة القيادة", "إنشاء رمز QR فورًا"],
-      table: { feature: "الميزة", status: "الحالة", live: "مباشر", rows: ["إدارة الفئات", "إبراز العناصر الذكي", "قواعد الأسعار الديناميكية"] }
+      table: { feature: "الميزة", status: "الحالة", live: "مباشر", rows: ["إدارة الفئات", "شارات تجريبية", "قواعد الأسعار الديناميكية"] }
     },
     automation: {
       tag: "أتمتة ذكية",
@@ -88,11 +83,6 @@ const translations = {
       title_2: "موسمية تلقائية",
       desc: "توقف عن القلق بشأن تحديث قائمتك لكل عطلة. تقوم القائمة الذكية بتغيير السمات وتأثيرات الأجواء تلقائيًا لتتناسب مع الموسم، وتحسن أسعارك لساعات التخفيضات.",
       features: ["12 مظهر شهري مسبق التكوين", "انتقالات تلقائية للإضاءة والألوان", "محركات جزيئات خلفية ديناميكية", "مفاتيح معاينة يدوية في لوحة القيادة"]
-    },
-    testimonial: {
-      quote: "\"استوديو التصميم هو نقطة تحول. لقد رأينا زيادة بنسبة 22٪ في متوسط قيمة الطلب من خلال الخرائط الحرارية للذكاء الاصطناعي.\"",
-      author: "ماركوس ستيرلينج",
-      role: "مدير مجموعة الطهي"
     },
     cta: {
       title_1: "مستعد للارتقاء",
@@ -109,7 +99,7 @@ const translations = {
       desc: "لقد قمنا ببناء مجموعة كاملة من الأدوات لمساعدتك في إدارة التواجد الرقمي لمطعمك بسهولة.",
       items: [
         { title: "استوديو التصميم المرئي", desc: "جماليات متطورة قابلة للتخصيص مع خطوط وألوان وتخطيطات متميزة تناسب علامتك التجارية." },
-        { title: "شارات 'ساخنة' ذكية", desc: "إبراز العناصر الأكثر مبيعًا والتريند تلقائيًا لمساعدة العملاء على اتخاذ خيارات أسرع." },
+        { title: "شارات تجريبية", desc: "عاين شارات تجريبية لا تستخدم سلوك العملاء أو بيانات المبيعات." },
         { title: "سمات سحرية تلقائية", desc: "قائمتك تتغير مع التقويم. تأثيرات أجواء تلقائية للشتاء والربيع والصيف والخريف." },
         { title: "محرك ساعات التخفيضات", desc: "جدولة الخصومات وقواعد التسعير الديناميكية التي تتحدث فورًا على هواتف عملائك." },
         { title: "تأثيرات الأجواء", desc: "أضف تساقط الثلوج، بتلات الزهور، أو النجوم إلى خلفيتك لخلق مزاج طعام فريد." },
@@ -122,7 +112,7 @@ const translations = {
       title_2: "بالوتيرة التي تناسبك",
       plans: [
         { name: "أساسي", price: "مجاني", desc: "البداية المثالية للمقاهي الصغيرة.", features: ["حتى 15 عنصر قائمة", "ألوان العلامة الأساسية", "مسح QR مباشر", "تخطيط مناسب للجوال", "دعم مجتمعي"], cta: "ابدأ مجانًا" },
-        { name: "برو الذكي", price: "يحدد لاحقاً", period: "/شهر", desc: "كل ما تحتاجه للنمو.", popular: "الأكثر شيوعًا", features: ["عناصر قائمة غير محدودة", "سمات موسمية تلقائية", "شارات ذكية مبنية على الذكاء الاصطناعي", "ساعات تخفيضات مجدولة", "هوية وخطوط مخصصة", "دعم عبر البريد"], cta: "جرب 7 أيام مجانًا" },
+        { name: "برو الذكي", price: "يحدد لاحقاً", period: "/شهر", desc: "كل ما تحتاجه للنمو.", popular: "الأكثر شيوعًا", features: ["عناصر قائمة غير محدودة", "سمات موسمية تلقائية", "شارات تجريبية", "ساعات تخفيضات مجدولة", "هوية وخطوط مخصصة", "دعم عبر البريد"], cta: "جرب 7 أيام مجانًا" },
         { name: "الشركات", price: "يحدد لاحقاً", period: "/شهر", desc: "لمجموعات المطاعم متعددة الفروع.", features: ["لوحة تحكم متعددة الفروع", "خيارات العلامة البيضاء الكاملة", "وصول API متقدم", "مدير حساب مخصص", "تصميم سمة مخصصة", "دعم هاتفي 24/7"], cta: "تواصل مع المبيعات" }
       ]
     }
@@ -136,12 +126,12 @@ const translations = {
         { title: "Opprett kategorier", desc: "Organiser menyen i logiske seksjoner som Forretter, Hovedretter og Drikke." },
         { title: "Legg til elementer", desc: "Last opp bilder, sett priser og legg til beskrivelser." },
         { title: "Design merkevaren din", desc: "Bruk Design Studio for å velge farger, skrifttyper og oppsett." },
-        { title: "Optimaliser med AI", desc: "Aktiver AI-varmekart for å fremheve populære elementer." }
+        { title: "Eksempelmerker", desc: "Forhåndsvis eksempelmerker. De bruker ikke kundeatferd eller salgsdata." }
       ],
       why_optimize: "Hvorfor optimalisere menyen din?",
-      why_desc: "En godt organisert digital meny selger mer. Ved å bruke **AI-varmekart** og **Kategorioptimalisering**, kan du guide kundene automatisk.",
+      why_desc: "Organiser kategorier og forhåndsvis eksempelmerker før du velger menydesign.",
       benefits: ["Sanntids dashbord-kontroll", "Umiddelbar QR-kodegenerering"],
-      table: { feature: "Funksjon", status: "Status", live: "Live", rows: ["Kategoristyring", "AI-elementfremheving", "Dynamiske prisregler"] }
+      table: { feature: "Funksjon", status: "Status", live: "Live", rows: ["Kategoristyring", "Eksempelmerker", "Dynamiske prisregler"] }
     },
     automation: {
       tag: "Intelligent Automasjon",
@@ -149,11 +139,6 @@ const translations = {
       title_2: "Temaer og priser",
       desc: "SmartMenu endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
       features: ["12 forhåndskonfigurerte månedlige overlegg", "Automatiske fargeoverganger", "Dynamiske bakgrunnspartikler", "Manuelle forhåndsvisningsbrytere"]
-    },
-    testimonial: {
-      quote: "\"Designstudioet er fantastisk. Vi har sett en 22% økning i gjennomsnittlig ordreverdi.\"",
-      author: "Marcus Sterling",
-      role: "Direktør, Gastronomy Group"
     },
     cta: {
       title_1: "Klar til å heve",
@@ -170,7 +155,7 @@ const translations = {
       desc: "Vi har bygget et komplett sett med verktøy for å hjelpe deg med å administrere restaurantens digitale tilstedeværelse.",
       items: [
         { title: "Visuelt Designstudio", desc: "Tilpassbar high-end estetikk med premium skrifttyper og farger." },
-        { title: "AI 'Hot'-merker", desc: "Fremhev automatisk de mest solgte elementene." },
+        { title: "Eksempelmerker", desc: "Forhåndsvis eksempelmerker. De bruker ikke kundeatferd eller salgsdata." },
         { title: "Auto-Magiske Temaer", desc: "Menyen endres med kalenderen. Vinter, Vår, Sommer og Høst." },
         { title: "Happy Hour-motor", desc: "Planlegg rabatter og dynamiske prisregler." },
         { title: "Atmosfæreeffekter", desc: "Legg til snøfall, blomsterblader eller stjerner." },
@@ -183,7 +168,7 @@ const translations = {
       title_2: "i ditt eget tempo",
       plans: [
         { name: "Basis", price: "Gratis", desc: "Den perfekte starten for små kafeer.", features: ["Opptil 15 elementer", "Grunnleggende farger", "Live QR-skanning", "Mobilvennlig", "Fellesskapsstøtte"], cta: "Start gratis" },
-        { name: "Smart Pro", price: "TBD", period: "/mnd", desc: "Alt du trenger for vekst.", popular: "Mest populær", features: ["Ubegrensede elementer", "Sesongtemaer", "AI-merker", "Planlagte Happy Hours", "Egendefinert merkevare", "E-poststøtte"], cta: "Prøv 7 dager gratis" },
+        { name: "Smart Pro", price: "TBD", period: "/mnd", desc: "Alt du trenger for vekst.", popular: "Mest populær", features: ["Ubegrensede elementer", "Sesongtemaer", "Eksempelmerker", "Planlagte Happy Hours", "Egendefinert merkevare", "E-poststøtte"], cta: "Prøv 7 dager gratis" },
         { name: "Bedrift", price: "TBD", period: "/mnd", desc: "For restaurantgrupper med flere lokasjoner.", features: ["Flerlokasjons-dashbord", "White-label", "Avansert API", "Dedikert manager", "Egendefinert design", "24/7 telefonstøtte"], cta: "Kontakt Salg" }
       ]
     }
@@ -197,12 +182,12 @@ const translations = {
         { title: "Skapa kategorier", desc: "Organisera menyn i logiska avsnitt som Förrätter, Varmrätter och Drycker." },
         { title: "Lägg till objekt", desc: "Ladda upp foton, ställ in priser och lägg till beskrivningar." },
         { title: "Designa ditt varumärke", desc: "Använd Design Studio för att välja färger, teckensnitt och layouter." },
-        { title: "Optimera med AI", desc: "Aktivera AI-värmekartor för att lyfta fram populära rätter." }
+        { title: "Exempelmärken", desc: "Förhandsvisa exempelmärken. De använder inte kundbeteende eller försäljningsdata." }
       ],
       why_optimize: "Varför optimera din meny?",
-      why_desc: "En välorganiserad digital meny säljer mer. Genom att använda **AI-värmekartor** och **Kategorioptimering** kan du vägleda kunderna.",
+      why_desc: "Ordna kategorier och förhandsvisa exempelmärken innan du väljer menydesign.",
       benefits: ["Realtidskontroll", "Omedelbar QR-kodgenerering"],
-      table: { feature: "Funktion", status: "Status", live: "Live", rows: ["Kategorihantering", "AI-objektsmarkering", "Dynamiska prisregler"] }
+      table: { feature: "Funktion", status: "Status", live: "Live", rows: ["Kategorihantering", "Exempelmärken", "Dynamiska prisregler"] }
     },
     automation: {
       tag: "Intelligent Automation",
@@ -210,11 +195,6 @@ const translations = {
       title_2: "Teman & Priser",
       desc: "SmartMenu ändrar automatiskt dina teman och atmosfäreffekter för att matcha säsongen.",
       features: ["12 förkonfigurerade månatliga överlägg", "Automatiska färgövergångar", "Dynamiska bakgrundspartiklar", "Manuella förhandsgranskningar"]
-    },
-    testimonial: {
-      quote: "\"Designstudion är banbrytande. Vi har sett en 22% ökning i genomsnittligt ordervärde.\"",
-      author: "Marcus Sterling",
-      role: "Direktör, Gastronomy Group"
     },
     cta: {
       title_1: "Redo att lyfta",
@@ -231,7 +211,7 @@ const translations = {
       desc: "Vi har byggt en komplett uppsättning verktyg för att hjälpa dig hantera din restaurang digitalt.",
       items: [
         { title: "Visuell Designstudio", desc: "Anpassningsbar high-end estetik med premiumtypsnitt och färger." },
-        { title: "AI 'Heta' märken", desc: "Markera automatiskt dina mest sålda rätter." },
+        { title: "Exempelmärken", desc: "Förhandsvisa exempelmärken. De använder inte kundbeteende eller försäljningsdata." },
         { title: "Auto-Magiska Teman", desc: "Din meny ändras med kalendern. Vinter, Vår, Sommar, Höst." },
         { title: "Happy Hour-motor", desc: "Schemalägg rabatter och dynamiska prisregler." },
         { title: "Atmosfäreffekter", desc: "Lägg till snöfall, blomblad eller stjärnor i din bakgrund." },
@@ -244,7 +224,7 @@ const translations = {
       title_2: "i din egen takt",
       plans: [
         { name: "Bas", price: "Gratis", desc: "Den perfekta starten för små kaféer.", features: ["Upp till 15 rätter", "Grundläggande färger", "Live QR-skanning", "Mobilvänlig", "Gemenskapssupport"], cta: "Starta gratis" },
-        { name: "Smart Pro", price: "TBD", period: "/mån", desc: "Allt du behöver för tillväxt.", popular: "Mest populär", features: ["Obegränsat antal rätter", "Säsongsteman", "AI-märken", "Schemalagda Happy Hours", "Anpassat varumärke", "E-postsupport"], cta: "Prova 7 dagar gratis" },
+        { name: "Smart Pro", price: "TBD", period: "/mån", desc: "Allt du behöver för tillväxt.", popular: "Mest populär", features: ["Obegränsat antal rätter", "Säsongsteman", "Exempelmärken", "Schemalagda Happy Hours", "Anpassat varumärke", "E-postsupport"], cta: "Prova 7 dagar gratis" },
         { name: "Företag", price: "TBD", period: "/mån", desc: "För restauranggrupper på flera platser.", features: ["Multilokation", "White-label", "Avancerat API", "Dedikerad chef", "Anpassad design", "24/7 telefonsupport"], cta: "Kontakta Försäljning" }
       ]
     }
@@ -258,12 +238,12 @@ const translations = {
         { title: "Opret Kategorier", desc: "Organiser din menu i logiske sektioner som Forretter, Hovedretter og Drikkevarer." },
         { title: "Tilføj Elementer", desc: "Upload billeder, angiv priser og tilføj beskrivelser." },
         { title: "Design Dit Brand", desc: "Brug Design Studio til at vælge farver, skrifttyper og layout." },
-        { title: "Optimer med AI", desc: "Aktiver AI-varmekort for at fremhæve populære elementer." }
+        { title: "Eksempelbadges", desc: "Se eksempelbadges. De bruger ikke kundeadfærd eller salgsdata." }
       ],
       why_optimize: "Hvorfor optimere din menu?",
-      why_desc: "En velorganiseret digital menu sælger mere. Ved at bruge **AI-varmekort** kan du guide kunderne.",
+      why_desc: "Organiser kategorier og se eksempelbadges, før du vælger menudesign.",
       benefits: ["Realtids kontrol", "Øjeblikkelig QR-kodegenerering"],
-      table: { feature: "Funktion", status: "Status", live: "Live", rows: ["Kategoristyring", "AI-elementfremhævning", "Dynamiske prisregler"] }
+      table: { feature: "Funktion", status: "Status", live: "Live", rows: ["Kategoristyring", "Eksempelbadges", "Dynamiske prisregler"] }
     },
     automation: {
       tag: "Intelligent Automation",
@@ -271,11 +251,6 @@ const translations = {
       title_2: "Temaer & Priser",
       desc: "SmartMenu ændrer automatisk dine temaer for at matche sæsonen.",
       features: ["12 forudkonfigurerede månedlige overlays", "Automatiske farveovergange", "Dynamiske baggrundspartikler", "Manuelle forhåndsvisninger"]
-    },
-    testimonial: {
-      quote: "\"Designstudiet er fantastisk. Vi har set en stigning på 22% i den gennemsnitlige ordreværdi.\"",
-      author: "Marcus Sterling",
-      role: "Direktør, Gastronomy Group"
     },
     cta: {
       title_1: "Klar til at hæve",
@@ -292,7 +267,7 @@ const translations = {
       desc: "Vi har bygget et komplet sæt værktøjer.",
       items: [
         { title: "Visuelt Design Studio", desc: "Tilpas high-end æstetik med premium skrifttyper og farver." },
-        { title: "AI 'Hot'-badges", desc: "Fremhæv automatisk dine bedst sælgende varer." },
+        { title: "Eksempelbadges", desc: "Se eksempelbadges. De bruger ikke kundeadfærd eller salgsdata." },
         { title: "Auto-Magiske Temaer", desc: "Din menu ændrer sig med kalenderen. Vinter, Forår, Sommer, Efterår." },
         { title: "Happy Hour-motor", desc: "Planlæg rabatter og dynamiske prisregler." },
         { title: "Atmosfæreeffekter", desc: "Tilføj snefald, blomsterblade eller stjerner." },
@@ -305,7 +280,7 @@ const translations = {
       title_2: "i dit eget tempo",
       plans: [
         { name: "Basis", price: "Gratis", desc: "Den perfekte start.", features: ["Op til 15 elementer", "Grundlæggende farver", "Live QR-scanning", "Mobilvenlig", "Community Support"], cta: "Start gratis" },
-        { name: "Smart Pro", price: "TBD", period: "/md", desc: "Alt til vækst.", popular: "Mest populær", features: ["Ubegrænsede elementer", "Sæsontemaer", "AI-badges", "Planlagte Happy Hours", "Brugerdefineret brand", "E-mail support"], cta: "Prøv 7 dage gratis" },
+        { name: "Smart Pro", price: "TBD", period: "/md", desc: "Alt til vækst.", popular: "Mest populær", features: ["Ubegrænsede elementer", "Sæsontemaer", "Eksempelbadges", "Planlagte Happy Hours", "Brugerdefineret brand", "E-mail support"], cta: "Prøv 7 dage gratis" },
         { name: "Virksomhed", price: "TBD", period: "/md", desc: "For restaurantgrupper.", features: ["Multilokation", "White-label", "Avanceret API", "Dedikeret manager", "Brugerdefineret design", "24/7 support"], cta: "Kontakt Salg" }
       ]
     }
@@ -319,12 +294,12 @@ const translations = {
         { title: "Kategoriler Oluşturun", desc: "Menünüzü mantıksal bölümlere ayırın. Sadece isim verin ve sıralarını belirleyin." },
         { title: "Öğeler Ekleyin", desc: "Fotoğraf yükleyin, fiyat belirleyin ve açıklama ekleyin." },
         { title: "Markanızı Tasarlayın", desc: "Restoranınıza uygun renk, yazı tipi ve düzeni seçin." },
-        { title: "Yapay Zeka ile Optimize Edin", desc: "Popüler öğeleri vurgulamak için ısı haritalarını etkinleştirin." }
+        { title: "Örnek rozetler", desc: "Örnek rozetleri önizleyin. Müşteri davranışını veya satış verilerini kullanmazlar." }
       ],
       why_optimize: "Menünüzü Neden Optimize Etmelisiniz?",
-      why_desc: "İyi düzenlenmiş bir dijital menü daha çok satar. **Yapay Zeka Isı Haritası** kullanarak müşterilerinizi yönlendirin.",
+      why_desc: "Menü tasarımını seçmeden önce kategorileri düzenleyin ve örnek rozetleri önizleyin.",
       benefits: ["Gerçek zamanlı kontrol", "Anında QR Kod"],
-      table: { feature: "Özellik", status: "Durum", live: "Aktif", rows: ["Kategori Yönetimi", "Yapay Zeka Vurgulama", "Dinamik Fiyatlandırma"] }
+      table: { feature: "Özellik", status: "Durum", live: "Aktif", rows: ["Kategori Yönetimi", "Örnek rozetler", "Dinamik Fiyatlandırma"] }
     },
     automation: {
       tag: "Akıllı Otomasyon",
@@ -332,11 +307,6 @@ const translations = {
       title_2: "Temalar ve Fiyatlandırma",
       desc: "SmartMenu temalarınızı mevsime göre otomatik değiştirir.",
       features: ["12 aylık ön ayar", "Otomatik renk geçişleri", "Dinamik arka plan", "Manuel önizleme"]
-    },
-    testimonial: {
-      quote: "\"Tasarım stüdyosu oyun değiştirici. Ortalama sipariş değerinde %22 artış gördük.\"",
-      author: "Marcus Sterling",
-      role: "Direktör, Gastronomi Grubu"
     },
     cta: {
       title_1: "Deneyiminizi",
@@ -353,7 +323,7 @@ const translations = {
       desc: "Dijital varlığınızı yönetmeniz için tam bir araç seti geliştirdik.",
       items: [
         { title: "Görsel Tasarım Stüdyosu", desc: "Premium yazı tipleri ve renklerle özelleştirilebilir estetik." },
-        { title: "Yapay Zeka 'Sıcak' Rozetleri", desc: "En çok satan ürünlerinizi otomatik olarak vurgulayın." },
+        { title: "Örnek rozetler", desc: "Örnek rozetleri önizleyin. Müşteri davranışını veya satış verilerini kullanmazlar." },
         { title: "Otomatik Temalar", desc: "Menünüz takvimle birlikte değişir. Kış, İlkbahar, Yaz, Sonbahar." },
         { title: "Happy Hour Motoru", desc: "İndirimleri ve fiyat kurallarını planlayın." },
         { title: "Atmosfer Efektleri", desc: "Arka planınıza kar, çiçek veya yıldız ekleyin." },
@@ -366,7 +336,7 @@ const translations = {
       title_2: "hızınızda büyütün",
       plans: [
         { name: "Temel", price: "Ücretsiz", desc: "Küçük kafeler için mükemmel başlangıç.", features: ["15 Öğeye Kadar", "Temel Renkler", "Canlı QR", "Mobil Uyumlu", "Topluluk Desteği"], cta: "Ücretsiz Başla" },
-        { name: "Akıllı Pro", price: "TBD", period: "/ay", desc: "Büyüme için gereken her şey.", popular: "En Popüler", features: ["Sınırsız Öğe", "Mevsimsel Temalar", "Yapay Zeka Rozetleri", "Planlı İndirimler", "Özel Markalama", "E-posta Desteği"], cta: "7 Gün Ücretsiz Dene" },
+        { name: "Akıllı Pro", price: "TBD", period: "/ay", desc: "Büyüme için gereken her şey.", popular: "En Popüler", features: ["Sınırsız Öğe", "Mevsimsel Temalar", "Örnek rozetler", "Planlı İndirimler", "Özel Markalama", "E-posta Desteği"], cta: "7 Gün Ücretsiz Dene" },
         { name: "Kurumsal", price: "TBD", period: "/ay", desc: "Çok şubeli gruplar için.", features: ["Çoklu Şube", "White-label", "Gelişmiş API", "Özel Yönetici", "Özel Tasarım", "7/24 Destek"], cta: "Satışla İletişime Geç" }
       ]
     }

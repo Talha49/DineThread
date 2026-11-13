@@ -7,13 +7,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from '@/contexts/ThemeContext';
 
 export function CategoryNav({ categories, activeCategory }) {
     const [active, setActive] = useState(activeCategory);
     const navRef = useRef(null);
     const theme = useTheme();
+    const reduceMotion = useReducedMotion();
     const colors = theme?.config?.colors || {};
 
     useEffect(() => {
@@ -31,7 +32,7 @@ export function CategoryNav({ categories, activeCategory }) {
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: "smooth"
+                behavior: reduceMotion ? "auto" : "smooth"
             });
         }
     };
@@ -49,7 +50,8 @@ export function CategoryNav({ categories, activeCategory }) {
             <div
                 ref={navRef}
                 className="relative flex overflow-x-auto py-5 px-6 gap-4 scrollbar-hide snap-x max-w-7xl mx-auto items-center"
-                role="tablist"
+                role="navigation"
+                aria-label="Menu categories"
             >
                 {categories.map((cat) => {
                     const isActive = active === cat.name;
@@ -57,8 +59,9 @@ export function CategoryNav({ categories, activeCategory }) {
                     return (
                         <motion.button
                             key={cat._id}
-                            whileHover={{ y: -2 }}
-                            whileTap={{ scale: 0.96 }}
+                            aria-pressed={isActive}
+                            whileHover={reduceMotion ? undefined : { y: -2 }}
+                            whileTap={reduceMotion ? undefined : { scale: 0.96 }}
                             onClick={() => scrollToCategory(cat.name)}
                             className={cn(
                                 "group flex items-center gap-3 px-6 py-3 rounded-[1.25rem] text-[10px] uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-500 snap-center border-2",

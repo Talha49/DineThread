@@ -1,0 +1,29 @@
+{
+  "member": "Muhammad Fahad Akhtar (B01844826)",
+  "frozenAt": "2026-11-13T17:00:46.1739470Z",
+  "rounds": 20,
+  "pilotCases": 10,
+  "sizes": [
+    1,
+    4
+  ],
+  "conditions": [
+    "unchanged",
+    "increase",
+    "decrease",
+    "unavailable",
+    "deleted-option",
+    "modifier-price",
+    "unrelated-edit",
+    "second-change"
+  ],
+  "baseline": "Authoritative validation with automatic repricing",
+  "revision": "Selected price facts with explicit reconfirmation",
+  "requestTimeoutMs": 15000,
+  "fixture": "Each selected item has a 1000-pence variant and 100-pence modifier, quantity one. Only the first selected item changes.",
+  "oracle": "Unchanged/unrelated total 1100*n; increase 1100*n+200; decrease 1100*n-200; modifier 1100*n+50. Unavailable/deleted option reject. Second-change A accepts +200 immediately; B requires two confirmations then accepts +300. No production pricing helper is used by the checker.",
+  "comparisonUnit": "One scripted checkout, including any explicit confirmations; paired by round, condition and cart size.",
+  "timing": "Local API elapsed time, server table/menu-validation duration, and entire scripted checkout duration are separate measures. There is no simulated human thinking delay.",
+  "boundary": "Validation does not reserve menu availability until insert. Accepted snapshots survive later edits. Tests use synthetic local data only.",
+  "pilotEvidence": "qa-results/catalogue-pilot-1794589141754"
+}

@@ -1,0 +1,10 @@
+
+> smart-menu@0.1.0 test
+> jest --runInBand
+
+
+Test Suites: 16 passed, 16 total
+Tests:       182 passed, 182 total
+Snapshots:   0 total
+Time:        30.103 s, estimated 35 s
+Ran all test suites.

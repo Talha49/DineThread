@@ -1,0 +1,85 @@
+   ▲ Next.js 15.5.9
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 35.0s
+   Linting and checking validity of types ...
+
+./app/page.js
+233:15  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/40) ...
+   Generating static pages (10/40) 
+   Generating static pages (20/40) 
+   Generating static pages (30/40) 
+ ✓ Generating static pages (40/40)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    4.43 kB         175 kB
+├ ○ /_not-found                             1 kB         103 kB
+├ ƒ /api/admin/migrate                     221 B         102 kB
+├ ƒ /api/admin/verify                      221 B         102 kB
+├ ƒ /api/analytics/summary                 221 B         102 kB
+├ ƒ /api/analytics/track                   221 B         102 kB
+├ ƒ /api/auth/login                        221 B         102 kB
+├ ƒ /api/auth/logout                       221 B         102 kB
+├ ƒ /api/auth/me                           221 B         102 kB
+├ ƒ /api/auth/signup                       221 B         102 kB
+├ ƒ /api/categories                        221 B         102 kB
+├ ƒ /api/categories/[id]                   221 B         102 kB
+├ ƒ /api/categories/reorder                221 B         102 kB
+├ ƒ /api/menu                              221 B         102 kB
+├ ƒ /api/menu/[id]                         221 B         102 kB
+├ ƒ /api/menu/[id]/availability            221 B         102 kB
+├ ƒ /api/menu/reorder                      221 B         102 kB
+├ ƒ /api/orders                            221 B         102 kB
+├ ƒ /api/orders/[id]                       221 B         102 kB
+├ ƒ /api/restaurant                        221 B         102 kB
+├ ƒ /api/restaurant/branding               221 B         102 kB
+├ ƒ /api/restaurant/check-slug             221 B         102 kB
+├ ƒ /api/restaurant/me                     221 B         102 kB
+├ ƒ /api/restaurant/profile                221 B         102 kB
+├ ƒ /api/tables                            221 B         102 kB
+├ ƒ /api/tables/[id]                       221 B         102 kB
+├ ƒ /api/test-db/init-orders               221 B         102 kB
+├ ƒ /api/upload                            221 B         102 kB
+├ ƒ /api/upload/delete                     221 B         102 kB
+├ ○ /contact                             2.09 kB         173 kB
+├ ○ /dashboard                           7.09 kB         179 kB
+├ ○ /dashboard/menu                      46.2 kB         200 kB
+├ ○ /dashboard/orders                    4.69 kB         120 kB
+├ ○ /dashboard/qr                        13.1 kB         127 kB
+├ ○ /dashboard/settings                  8.01 kB         239 kB
+├ ○ /dashboard/settings/branding         8.49 kB         189 kB
+├ ○ /dashboard/tables                    4.99 kB         116 kB
+├ ƒ /dashboard/welcome                     166 B         106 kB
+├ ○ /icon.png                                0 B            0 B
+├ ○ /login                               5.65 kB         139 kB
+├ ƒ /menu/[id]                            109 kB         308 kB
+├ ○ /onboarding                          16.5 kB         214 kB
+├ ƒ /p/menu/[id]                           221 B         102 kB
+├ ƒ /p/orders                              221 B         102 kB
+├ ƒ /p/orders/[id]                         221 B         102 kB
+├ ƒ /p/orders/[id]/request-bill            221 B         102 kB
+├ ƒ /p/orders/cancel                       221 B         102 kB
+├ ƒ /p/session                             221 B         102 kB
+├ ƒ /research/theme                        606 B         215 kB
+├ ○ /robots.txt                            221 B         102 kB
+├ ○ /signup                              4.15 kB         123 kB
+├ ○ /sitemap.xml                           221 B         102 kB
+├ ○ /test-components                     4.78 kB         120 kB
+└ ƒ /tv/[id]                             2.32 kB         118 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/1255-8befde0980f5cba9.js      45.6 kB
+  ├ chunks/4bd1b696-100b9d70ed4e49c1.js  54.2 kB
+  └ other shared chunks (total)          2.12 kB
+
+
+ƒ Middleware                             39.8 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
