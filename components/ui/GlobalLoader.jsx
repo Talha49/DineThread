@@ -13,30 +13,34 @@ import {
     User, Sparkles
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from 'framer-motion';
 
 export function GlobalLoader() {
     const [progress, setProgress] = useState(0);
     const [isVisible, setIsVisible] = useState(true);
+    const reducedMotion = useReducedMotion();
 
     useEffect(() => {
+        if (reducedMotion) { setIsVisible(false); return; }
         // Animation Duration in ms
         const duration = 2500;
         const intervalTime = 20;
         const step = 100 / (duration / intervalTime);
 
+        let hideTimer;
         const timer = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(timer);
-                    setTimeout(() => setIsVisible(false), 500);
+                    hideTimer = setTimeout(() => setIsVisible(false), 500);
                     return 100;
                 }
                 return prev + step;
             });
         }, intervalTime);
 
-        return () => clearInterval(timer);
-    }, []);
+        return () => { clearInterval(timer); clearTimeout(hideTimer); };
+    }, [reducedMotion]);
 
     if (!isVisible) return null;
 
@@ -54,6 +58,7 @@ export function GlobalLoader() {
 
     return (
         <div
+            data-global-loader
             className={cn(
                 "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-1000",
                 progress === 100 ? "opacity-0 pointer-events-none" : "opacity-100"

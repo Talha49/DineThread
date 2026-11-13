@@ -30,7 +30,7 @@ async function main() {
                         variants: [{ _id: new ObjectId('500000000000000000000001'), name: 'Large', price: 10 }],
                         modifiers: [{ _id: new ObjectId('500000000000000000000002'), name: 'Bread', price: 2, category: 'Extras' }]
                     } });
-                    context = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+                    context = await browser.newContext({ viewport: command.nativeZoom ? null : { width: 1280, height: 900 }, reducedMotion: 'reduce' });
                     page = await context.newPage(); await page.goto(env.bases[mode] + '/menu/order-research');
                     await page.getByText('Test soup', { exact: true }).waitFor();
                     if (command.journey !== 'options') {
@@ -53,6 +53,29 @@ async function main() {
                     command.statusText = await page.locator('[data-order-id]').innerText();
                     await page.screenshot({ path: path.join(output, `${mode}-${command.status}.png`) });
                 } else if (command.action === 'screenshot') {
+                    await page.screenshot({ path: path.join(output, `${mode}-${command.label.replace(/[^a-z0-9-]/gi, '')}.png`) });
+                } else if (command.action === 'customise') {
+                    await page.getByText('Test soup', { exact: true }).click();
+                } else if (command.action === 'measure') {
+                    command.measurement = await page.evaluate(() => {
+                        const rgba = value => (value.match(/[\d.]+/g) || []).map(Number);
+                        const blend = (fg,bg) => fg.slice(0,3).map((c,i)=>c*(fg[3]??1)+bg[i]*(1-(fg[3]??1)));
+                        const luminance = rgb => rgb.map(c=>c/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[.2126,.7152,.0722][i],0);
+                        const dialog = document.querySelector('[role="dialog"]');
+                        const candidates = [...(dialog||document).querySelectorAll('h1,h2,h3,p,button,[role="status"],[role="alert"]')]
+                          .filter(el=>el.getClientRects().length&&el.textContent.trim()&&getComputedStyle(el).visibility!=='hidden').slice(0,50);
+                        return { innerWidth, innerHeight, outerWidth, outerHeight, devicePixelRatio, visualScale:visualViewport.scale,
+                            overflow:document.documentElement.scrollWidth>innerWidth,
+                            controls:[...(dialog||document).querySelectorAll('button,input')].filter(el=>el.getClientRects().length).map(el=>{const r=el.getBoundingClientRect();return {name:el.getAttribute('aria-label')||el.textContent.trim(),x:r.x,y:r.y,width:r.width,height:r.height,clippedHorizontally:r.x<0||r.right>innerWidth};}),
+                            contrast:candidates.map(el=>{
+                                const ancestors=[];for(let a=el;a;a=a.parentElement)ancestors.unshift(a);
+                                let bg=[255,255,255],ambiguous=false;
+                                for(const a of ancestors){const s=getComputedStyle(a);if(s.backgroundImage!=='none'||Number(s.opacity)<1)ambiguous=true;bg=blend(rgba(s.backgroundColor),bg);}
+                                const s=getComputedStyle(el),fg=blend(rgba(s.color),bg),a=luminance(fg),b=luminance(bg);
+                                const ratio=(Math.max(a,b)+.05)/(Math.min(a,b)+.05),large=parseFloat(s.fontSize)>=24||(parseFloat(s.fontSize)>=18.66&&Number(s.fontWeight)>=700);
+                                return {text:el.textContent.trim().slice(0,100),foreground:s.color,effectiveBackground:bg,ratio,required:large?3:4.5,ambiguous,disabled:el.disabled||false};
+                            }) };
+                    });
                     await page.screenshot({ path: path.join(output, `${mode}-${command.label.replace(/[^a-z0-9-]/gi, '')}.png`) });
                 }
                 await fs.appendFile(path.join(output, 'actions.jsonl'), JSON.stringify({ ...command, at: new Date().toISOString() }) + '\n');

@@ -7,15 +7,16 @@
  * Feels like a luxury food magazine or a curated gallery.
  */
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MenuItem } from "../MenuItem";
 import { cn } from "@/lib/utils";
 
 export function BentoMagazine({ groupedItems, setSelectedItem, theme }) {
+    const reducedMotion = useReducedMotion();
     return (
         <div className="space-y-24 pb-20">
             {groupedItems.map((group, groupIndex) => (
-                <section key={group._id} className="space-y-12">
+                <section key={group._id || group.name} className="space-y-12">
                     {/* Category Header with large numeral */}
                     <div className="relative flex items-end gap-4 border-b-2 border-zinc-900 pb-6">
                         <span className="text-8xl font-black text-zinc-100 absolute -top-12 -left-4 select-none -z-10">
@@ -57,7 +58,7 @@ export function BentoMagazine({ groupedItems, setSelectedItem, theme }) {
                             return (
                                 <motion.div
                                     key={item._id}
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={reducedMotion ? false : { opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.8, delay: index * 0.1 }}

@@ -29,7 +29,8 @@ import { ItemCustomizationModal } from "@/components/public/ItemCustomizationMod
 import { CartFAB } from "@/components/public/CartDrawer";
 import { useCartStore } from "@/hooks/use-cart-store";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { usePreviewReceiver } from '@/hooks/use-theme-preview';
 import gsap from "gsap";
 import { LayoutFactory } from "@/components/public/layouts/LayoutFactory";
 import { AtmosphereStage } from "@/components/public/AtmosphereStage";
@@ -55,9 +56,10 @@ export default function PublicMenuPage() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [showSplash, setShowSplash] = useState(true);
     const [showInfo, setShowInfo] = useState(false);
-    const [previewOverride, setPreviewOverride] = useState(null);
     const searchParams = useSearchParams();
     const isPreview = searchParams.get("preview") === "true";
+    const previewOverride = usePreviewReceiver(isPreview && Boolean(data));
+    const reducedMotion = useReducedMotion();
     const { t } = useTranslation();
 
     const scrollInterval = useRef(null);
@@ -69,21 +71,6 @@ export default function PublicMenuPage() {
     useEffect(() => {
         if (id) ensureCartRestaurant(id);
     }, [id, ensureCartRestaurant]);
-
-    // 0. Preview Mode Listener
-    useEffect(() => {
-        if (!isPreview) return;
-
-        const handleMessage = (event) => {
-            // In production, we should check event.origin for security
-            if (event.data?.type === "PREVIEW_UPDATE") {
-                setPreviewOverride(event.data.data);
-            }
-        };
-
-        window.addEventListener("message", handleMessage);
-        return () => window.removeEventListener("message", handleMessage);
-    }, [isPreview]);
 
     // Analytics - one real visit = one event. Never fires for the owner's own
     // live-preview iframe (isPreview), and only once per page load even under
@@ -168,6 +155,7 @@ export default function PublicMenuPage() {
     // 1. Cinematic Intro Sequence
     useEffect(() => {
         if (!isLoading && data && showSplash) {
+            if (isPreview || reducedMotion) { setShowSplash(false); return; }
             const tl = gsap.timeline();
 
             tl.to(".splash-logo", { duration: isPreview ? 0.3 : 0.8, scale: 1.1, opacity: 1, ease: "power4.out" })
@@ -181,45 +169,11 @@ export default function PublicMenuPage() {
                         setShowSplash(false);
                     }
                 });
+            return () => tl.kill();
         }
-    }, [isLoading, data, showSplash]);
+    }, [isLoading, data, showSplash, isPreview, reducedMotion]);
 
-    // 2. Menu Item Entry Animation (Fires AFTER splash is gone)
-    useEffect(() => {
-        if (!showSplash && !isLoading && data) {
-            const entranceConfig = activeRestaurant?.experienceConfig?.designSystem?.config?.animations?.itemEntrance || 
-                                 activeRestaurant?.experienceConfig?.themeConfig?.animations?.itemEntrance || 
-                                 { type: 'stagger', duration: 1200, delay: 80 };
-
-            if (entranceConfig.type === 'none') return;
-
-            // Give React a tiny slice of time to render the list before GSAP targets it
-            const timer = setTimeout(() => {
-                const items = document.querySelectorAll(".menu-item");
-                if (items.length > 0) {
-                    const animationProps = {
-                        duration: (entranceConfig.duration || 1200) / 1000,
-                        opacity: 0,
-                        stagger: (entranceConfig.delay || 80) / 1000,
-                        ease: "power4.out",
-                        clearProps: "all"
-                    };
-
-                    if (entranceConfig.type === 'scale') {
-                        animationProps.scale = 0.8;
-                    } else if (entranceConfig.type === 'fade') {
-                        animationProps.y = 0;
-                    } else {
-                        // Default 'stagger' is slide up
-                        animationProps.y = 80;
-                    }
-
-                    gsap.from(items, animationProps);
-                }
-            }, 100);
-            return () => clearTimeout(timer);
-        }
-    }, [showSplash, isLoading, data, activeRestaurant]);
+    // Framer Motion owns menu entrances; GSAP owns only the optional splash.
 
     // TV Mode Scrolling Logic
     useEffect(() => {
@@ -369,7 +323,7 @@ export default function PublicMenuPage() {
                     isTVMode ? "text-white" : "text-zinc-950 font-medium",
                     isPreview && "scrollbar-hide"
                 )} 
-                style={{ fontFamily: restaurant.fontFamily, transform: 'none' }}
+                style={{ fontFamily: 'var(--font-body)', transform: 'none' }}
                 data-shadow={restaurant.experienceConfig?.designSystem?.config?.visual?.shadow || 'md'}
             >
                 {/* Surface Texture Overlay */}

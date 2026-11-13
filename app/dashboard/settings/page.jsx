@@ -49,7 +49,7 @@ export default function SettingsPage() {
     const showLiveIndicator = shellWidth >= 448;
     const showLabels = shellWidth >= 320;
 
-    const activeData = previewData ? deepMerge(restaurant, previewData) : restaurant;
+    const activeData = previewData ? { ...restaurant, ...previewData, experienceConfig: { ...restaurant?.experienceConfig, ...previewData.experienceConfig } } : restaurant;
     const isPro = restaurant?.plan === "pro";
 
     const previewNode = (

@@ -8,7 +8,7 @@
  * Memoization ensures performance at scale.
  */
 
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo, Profiler } from 'react';
 import { processRestaurantTheme } from '@/lib/theme-engine';
 import { renderBackground } from '@/lib/theme-engine/background-renderer';
 
@@ -41,13 +41,20 @@ export function ThemeProvider({ experienceConfig, children }) {
 
     return (
         <ThemeContext.Provider value={theme}>
+          <Profiler id="menu-theme" onRender={(id, phase, actualDuration, baseDuration, startTime, commitTime) => {
+            if (process.env.NEXT_PUBLIC_THEME_RESEARCH === '1' && typeof window !== 'undefined' && ['127.0.0.1','localhost'].includes(location.hostname)) {
+              (window.__themeProfiles ||= []).push({ id, phase, actualDuration, baseDuration, startTime, commitTime });
+            }
+          }}>
             <div
                 className="theme-root min-h-screen"
                 style={rootStyles}
                 data-theme-version={theme.metadata?.version}
+                data-layout={experienceConfig?.layoutID || 'grid'}
             >
                 {children}
             </div>
+          </Profiler>
         </ThemeContext.Provider>
     );
 }

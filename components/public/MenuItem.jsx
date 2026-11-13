@@ -70,7 +70,7 @@ export function HorizontalCard({ item, theme, onClick }) {
                 backgroundColor: cardBg,
                 borderRadius: `var(--theme-radius, ${cardRadius}px)`,
                 boxShadow: `var(--theme-shadow, ${cardShadow})`,
-                padding: `${tConfig?.menuItem?.card?.padding || 16}px`,
+                padding: `${tConfig?.menuItem?.card?.padding ?? 16}px`,
                 backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
                 opacity: `var(--theme-glass-opacity, 1)`
             }}

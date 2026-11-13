@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { ThemeConfigSchema, themePayload } from '@/lib/theme-preview';
+import { themeResearchEnabled } from '@/hooks/use-theme-preview';
 import { useRestaurantStore } from '@/hooks/use-restaurant-store';
 import { useElementWidth } from '@/hooks/use-element-width';
 import {
@@ -48,7 +50,18 @@ export function DesignStudio() {
 
     const isPro = restaurant?.plan === 'pro';
 
-    const [config, setConfig] = useState(null);
+    const [config, setConfigState] = useState(null);
+    const configRef = useRef(null);
+    const savingRef = useRef(false);
+    const setConfig = useCallback((value) => {
+        const parsed = ThemeConfigSchema.safeParse(value);
+        if (!parsed.success) { toast.error('Invalid theme setting. Your previous design is unchanged.'); return false; }
+        const next = validatePresetConfig(parsed.data);
+        configRef.current = next;
+        setConfigState(next);
+        setPreviewData(themePayload(next));
+        return true;
+    }, [setPreviewData]);
     const [appliedPresetId, setAppliedPresetId] = useState(null);
     const [customThemes, setCustomThemes] = useState([]);
     const [showSaveThemeModal, setShowSaveThemeModal] = useState(false);
@@ -81,43 +94,26 @@ export function DesignStudio() {
             }
             setCustomThemes(restaurant?.experienceConfig?.customThemes || []);
         }
-    }, [restaurant, config]);
-
-    // Live preview broadcast
-    useEffect(() => {
-        if (config) {
-            const previewUpdate = {
-                brandColor: config.colors?.brand?.primary,
-                fontFamily: config.typography?.fonts?.heading?.family,
-                experienceConfig: {
-                    designSystem: { config, appliedPreset: appliedPresetId },
-                    themeConfig: config,
-                    layoutID: config.layoutID || 'grid'
-                }
-            };
-            setPreviewData(previewUpdate);
-
-            const iframe = document.querySelector('iframe');
-            if (iframe?.contentWindow) {
-                iframe.contentWindow.postMessage({ type: 'PREVIEW_UPDATE', data: previewUpdate }, '*');
-            }
-        }
-    }, [config, appliedPresetId, setPreviewData]);
+    }, [restaurant, config, setConfig]);
 
     // Accepts explicit overrides so callers (like Reset) can persist a value
     // immediately without waiting on React state to catch up to setConfig().
     const handleSave = async (configOverride, presetOverride, loadingMessage = 'Saving design...', successMessage = 'Design saved!', customThemesOverride) => {
-        const configToSave = configOverride || config;
+        if (savingRef.current) return false;
+        const parsed = ThemeConfigSchema.safeParse(configOverride || configRef.current);
+        if (!parsed.success) { toast.error('Invalid design. Nothing was saved.'); return false; }
+        const configToSave = parsed.data;
         const presetToSave = presetOverride !== undefined ? presetOverride : appliedPresetId;
         const customThemesToSave = customThemesOverride !== undefined ? customThemesOverride : customThemes;
 
+        savingRef.current = true;
         setIsSaving(true);
         const loadingToast = toast.loading(loadingMessage);
         try {
             const payload = {
                 brandColor: configToSave.colors?.brand?.primary,
                 fontFamily: configToSave.typography?.fonts?.heading?.family,
-                logoUrl: configToSave.logoUrl || undefined,
+                logoUrl: configToSave.logoUrl || '',
                 experienceConfig: {
                     designSystem: {
                         config: configToSave,
@@ -141,14 +137,14 @@ export function DesignStudio() {
             toast.error("Failed to save", { id: loadingToast });
             return false;
         } finally {
+            savingRef.current = false;
             setIsSaving(false);
         }
     };
 
     const handleConfigChange = (newConfig) => {
         // Always merge with defaults to prevent null
-        setConfig(validatePresetConfig(newConfig));
-        setAppliedPresetId(null);
+        if (setConfig(newConfig)) setAppliedPresetId(null);
     };
 
     const handleReset = async () => {
@@ -204,6 +200,15 @@ export function DesignStudio() {
         setAppliedPresetId(nextPresetId);
         await handleSave(config, nextPresetId, 'Removing theme...', `Removed "${theme.name}"`, updatedThemes);
     };
+
+    // Local experiment builds expose the same handlers used by the controls.
+    // This bridge is absent from normal deployment builds.
+    useEffect(() => {
+        if (!themeResearchEnabled()) return;
+        window.__themeEditor = { edit: handleConfigChange, getConfig: () => configRef.current,
+            save: () => handleSave(), reset: handleReset };
+        return () => { delete window.__themeEditor; };
+    });
 
     // Loading
     if (isLoading || !config) {

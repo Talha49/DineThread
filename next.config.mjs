@@ -4,6 +4,7 @@ const nextConfig = {
   outputFileTracingRoot: fileURLToPath(new URL('.', import.meta.url)),
   // Separate local research builds avoid overwriting a running comparison.
   distDir: process.env.RESEARCH_DIST_DIR || '.next',
+  reactProductionProfiling: process.env.THEME_PROFILE_BUILD === '1',
   // d3-delaunay (Voronoi Mosaic layout) and its deps ship ESM-only - this
   // also makes next/jest transform them in tests instead of blanket-ignoring
   // all of node_modules.
