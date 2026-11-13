@@ -25,7 +25,20 @@ journeys and additional replay, tampering, identifier and insert-boundary checks
 An edit after validation can precede insertion: no reservation or transaction-wide
 menu snapshot is claimed. Preserve pilot failures and subsequent retests.
 
-## Frontend motion plan
+## Ali protocol
+
+Compare unconditional writes with state/version-conditional writes using the same
+atomic event log, ownership checks and four-second browser polling. Check all 25
+state pairs separately. Four main schedules use distinct action IDs: identical
+actions, different actions, a delayed old action and a bill/preparation overlap.
+A client barrier and server intervals establish overlap for the three concurrent
+schedules. The delayed schedule is intentionally sequential. Ten pilot histories
+per version precede 25 repetitions of each schedule per version. An independent
+checker evaluates histories and refreshed follow-up actions. Browser checks cover
+two staff sessions and one customer, including a verified payment commit whose
+HTTP acknowledgement is lost. No real payment is processed.
+
+## Frontend motion ownership
 
 Existing Framer Motion owns dialog/cart state transitions; CSS owns focus and
 colour feedback. No additional animation library is needed. Edited motion uses

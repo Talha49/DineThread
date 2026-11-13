@@ -128,9 +128,9 @@ test("session ownership applies to replay, reads and bill requests", async () =>
     const path = `/p/orders/${accepted.order._id}`;
     const params = { params: Promise.resolve({ id: String(accepted.order._id) }) };
     expect((await GET(req(path, undefined, otherSession), params)).status).toBe(404);
-    expect((await requestBill(req(`${path}/request-bill`, {}, otherSession), params)).status).toBe(404);
+    expect((await requestBill(req(`${path}/request-bill`, { actionId: randomUUID(), expectedVersion: 0 }, otherSession), params)).status).toBe(404);
     expect((await GET(req(path), params)).status).toBe(200);
-    expect((await requestBill(req(`${path}/request-bill`, {}), params)).status).toBe(200);
+    expect((await requestBill(req(`${path}/request-bill`, { actionId: randomUUID(), expectedVersion: 0 }), params)).status).toBe(200);
 });
 
 test("HTTP rejects missing sessions, malformed identifiers and duplicate modifiers", async () => {
@@ -206,7 +206,7 @@ test("terminal receipts cannot be read or billed as kitchen orders", async () =>
     const receipt = await Order.findOne();
     const params = { params: Promise.resolve({ id: String(receipt._id) }) };
     expect((await GET(req(`/p/orders/${receipt._id}`), params)).status).toBe(404);
-    expect((await requestBill(req(`/p/orders/${receipt._id}/request-bill`, {}), params)).status).toBe(404);
+    expect((await requestBill(req(`/p/orders/${receipt._id}/request-bill`, { actionId: randomUUID(), expectedVersion: 0 }), params)).status).toBe(404);
     expect(await Order.countDocuments(acceptedOrderFilter)).toBe(0);
 });
 
@@ -238,6 +238,6 @@ test("staff's real queue endpoint receives the initial order but never terminal 
     expect(body.orders).toHaveLength(1);
     expect(body.orders[0]).toMatchObject({ _id: String(accepted.order._id), status: "placed", total: 23 });
     expect(body.orders[0].requestId).toBeUndefined();
-    const denied = await updateKitchenOrder(req(`/api/orders/${receipt._id}`, { status: "preparing" }), { params: Promise.resolve({ id: String(receipt._id) }) });
+    const denied = await updateKitchenOrder(req(`/api/orders/${receipt._id}`, { status: "preparing", actionId: randomUUID(), expectedVersion: 0 }), { params: Promise.resolve({ id: String(receipt._id) }) });
     expect(denied.status).toBe(404);
 });

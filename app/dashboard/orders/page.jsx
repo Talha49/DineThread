@@ -1,7 +1,8 @@
 "use client";
 
 import useSWR from "swr";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { pendingStaffActions, sendStaffAction } from '@/lib/staff-action';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { ClipboardList, Receipt, Loader2, CheckCircle2, ChefHat, Bell, PackageCheck, History, LayoutGrid } from "lucide-react";
@@ -33,37 +34,35 @@ function formatDateTime(date) {
     });
 }
 
-function isToday(date) {
-    const d = new Date(date);
-    const now = new Date();
-    return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
-}
-
 export default function OrdersPage() {
     const [view, setView] = useState("active");
     const { data, mutate } = useSWR(view === "history" ? "/api/orders?view=history" : "/api/orders", fetcher, {
         refreshInterval: view === "active" ? 4000 : 0,
     });
     const [advancingId, setAdvancingId] = useState(null);
+    const [pending, setPending] = useState({});
+    const [actionError, setActionError] = useState('');
+    const busy = useRef(false);
+    useEffect(() => { try { setPending(pendingStaffActions()); } catch { setActionError('Action storage is unavailable. Contact staff before updating orders.'); } }, []);
 
     const orders = data?.orders || [];
 
     const handleAdvance = async (order, nextStatus) => {
+        if (busy.current) return;
+        busy.current = true;
         setAdvancingId(order._id);
+        setActionError('');
         try {
-            await fetch(`/api/orders/${order._id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ status: nextStatus }),
-            });
-            mutate();
+            await sendStaffAction(order, nextStatus);
+        } catch (error) {
+            setActionError(error instanceof TypeError || error.name === 'TimeoutError' ? 'The update was not confirmed. Retry the saved action to check its outcome.' : error.message);
         } finally {
+            try { setPending(pendingStaffActions()); } catch {}
+            try { await mutate(); } catch { /* The board will retry its read; never replay a stale command. */ }
+            busy.current = false;
             setAdvancingId(null);
         }
     };
-
-    const todaysOrders = orders.filter((o) => isToday(o.statusUpdatedAt));
-    const todaysTotal = todaysOrders.reduce((sum, o) => sum + o.total, 0);
 
     return (
         <div className="p-6 max-w-7xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -101,18 +100,32 @@ export default function OrdersPage() {
                 </div>
             </div>
 
+            {actionError && <p role="alert" className="text-red-700">{actionError}</p>}
+            {Object.entries(pending).map(([id, command]) => <div key={id} className="rounded-xl border border-amber-600 p-4 space-y-2">
+                <p role="status">An update to {command.status} is waiting for confirmation. Check this saved action before making another decision on the order.</p>
+                <Button disabled={!!advancingId} onClick={() => handleAdvance({ _id: id }, command.status)}>Retry saved action</Button>
+            </div>)}
+
             {view === "history" && data && (
                 <Card className="p-5 bg-primary/5 border-primary/10 flex items-center justify-between flex-wrap gap-3">
                     <p className="text-sm font-medium">
-                        <span className="font-black">{todaysOrders.length}</span> order{todaysOrders.length === 1 ? "" : "s"} paid today
+                        <span className="font-black">{data.summary?.paidCount || 0}</span> paid orders in total
                     </p>
-                    <p className="text-lg font-black">${todaysTotal.toFixed(2)} today</p>
+                    <p className="text-lg font-black">${((data.summary?.totalPence || 0) / 100).toFixed(2)} recorded</p>
                 </Card>
             )}
 
             {!data ? (
                 <div className="flex justify-center py-16">
                     <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                </div>
+            ) : view === 'history' ? (
+                <div className="space-y-3">
+                    {orders.length === 0 && <p>No paid orders.</p>}
+                    {orders.map(order => <Card key={order._id} data-order-id={order._id} data-version={order.workflowVersion} className="p-4 flex justify-between gap-4">
+                        <div><h2 className="font-bold">{order.table?.label || 'Table'} — Paid</h2><p className="text-sm">{formatDateTime(order.statusUpdatedAt)}</p></div>
+                        <p className="font-bold">${order.total.toFixed(2)}</p>
+                    </Card>)}
                 </div>
             ) : (
                 <div className="grid md:grid-cols-4 gap-4">
@@ -134,7 +147,7 @@ export default function OrdersPage() {
                                         </div>
                                     )}
                                     {colOrders.map((order) => (
-                                        <Card key={order._id} className={cn("relative", order.billRequested && "ring-2 ring-amber-400")}>
+                                        <Card key={order._id} data-order-id={order._id} data-version={order.workflowVersion} className={cn("relative", order.billRequested && "ring-2 ring-amber-400")}>
                                             <CardHeader className="pb-2">
                                                 <div className="flex items-center justify-between">
                                                     <CardTitle className="text-base">{order.table?.label || "Table"}</CardTitle>
@@ -159,7 +172,7 @@ export default function OrdersPage() {
                                                     <Button
                                                         size="sm"
                                                         onClick={() => handleAdvance(order, col.next)}
-                                                        disabled={advancingId === order._id}
+                                                        disabled={!!advancingId || !!pending[order._id]}
                                                     >
                                                         {advancingId === order._id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : col.nextLabel}
                                                     </Button>

@@ -22,6 +22,7 @@ const STATUS_STEPS = [
     { key: "preparing", label: "Preparing", icon: ChefHat },
     { key: "ready", label: "Ready", icon: Bell },
     { key: "served", label: "Served", icon: Receipt },
+    { key: "paid", label: "Paid", icon: CheckCircle2 },
 ];
 
 export function CartFAB({ restaurantId, tables, brandColor }) {
@@ -289,6 +290,7 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     const { data, error, mutate } = useSWR(`/p/orders/${orderId}`, fetcher, { refreshInterval: 4000 });
     const [requestingBill, setRequestingBill] = useState(false);
     const prevStatus = useRef(null);
+    const billCommand = useRef(null);
 
     const order = data?.order;
     const status = order?.status;
@@ -316,14 +318,18 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     const currentStepIndex = STATUS_STEPS.findIndex((s) => s.key === order.status);
 
     const handleRequestBill = async () => {
+        if (requestingBill) return;
         setRequestingBill(true);
         try {
-            const response = await fetch(`/p/orders/${orderId}/request-bill`, { method: "POST" });
-            if (!response.ok) throw new Error("Bill request was not confirmed. Please try again or ask staff.");
-            mutate();
+            billCommand.current ||= { actionId: crypto.randomUUID(), expectedVersion: order.workflowVersion || 0 };
+            const response = await fetch(`/p/orders/${orderId}/request-bill`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(billCommand.current), signal: AbortSignal.timeout(15000) });
+            const result = await response.json();
+            if (response.ok || (response.status >= 400 && response.status < 500)) billCommand.current = null;
+            if (!response.ok) throw new Error(result.message || "Bill request was not confirmed. Please try again or ask staff.");
         } catch (error) {
             toast.error(error.message);
         } finally {
+            try { await mutate(); } catch { /* Keep the normal polling recovery available. */ }
             setRequestingBill(false);
         }
     };
@@ -336,7 +342,7 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8" data-order-id={orderId} data-version={order.workflowVersion}>
             <div>
                 <p className="text-xs font-black uppercase tracking-widest text-zinc-400">{order.table?.label}</p>
                 <h2 className="text-2xl font-black italic tracking-tighter">Order Status</h2>
@@ -379,7 +385,7 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
                 </div>
             </div>
 
-            {order.status === "served" && !order.billRequested && (
+            {order.status !== "paid" && !order.billRequested && (
                 <Button onClick={handleRequestBill} disabled={requestingBill} className="w-full h-14 rounded-2xl font-bold uppercase tracking-wider">
                     {requestingBill ? <Loader2 className="w-5 h-5 animate-spin" /> : "Request Bill"}
                 </Button>

@@ -1,0 +1,20 @@
+{
+  "member": "Ali Raza (B01845771)",
+  "frozenAt": "2026-11-13T17:11:32.6345302Z",
+  "rounds": 25,
+  "pilotHistories": 10,
+  "schedules": [
+    "identical",
+    "different",
+    "delayed",
+    "bill-overlap"
+  ],
+  "fixture": "One synthetic accepted order, total 2250 minor units, quantity two at 1125 each. Initial state placed except different-actions starts preparing. Initial version zero.",
+  "baseline": "Unconditional status/bill writes with the same atomic event logging and permissions",
+  "revision": "Permitted state and expected version checked in the atomic update",
+  "sequential": "Every state pair, including all after-payment changes, is checked separately in the automated suite.",
+  "overlap": "Concurrent pairs are released together at a client barrier; server start/end logs must confirm overlap. Delayed-old-action deliberately executes after newer accepted actions.",
+  "recovery": "Distinct action IDs for main conflicts. A separate lost-payment-acknowledgement regression verifies the database event before dropping the response.",
+  "analysis": "History is the comparison unit. The checker records invalid transitions, stale writes, broken histories, missing accepted events, changed totals, valid sequential rejections and unresolved responses. A 409 alone is not a pass.",
+  "pilotEvidence": "qa-results/workflow-pilot-1794589753754"
+}

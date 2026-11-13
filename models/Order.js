@@ -50,6 +50,8 @@ const OrderSchema = new mongoose.Schema(
       index: true,
     },
     billRequested: { type: Boolean, default: false },
+    workflowVersion: { type: Number, default: 0, min: 0 },
+    workflowHistory: { type: [mongoose.Schema.Types.Mixed], default: [], select: false },
     statusUpdatedAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
