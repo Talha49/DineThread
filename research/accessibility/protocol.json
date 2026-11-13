@@ -1,0 +1,21 @@
+{
+  "member": "Bibek Rai B01845378",
+  "baselineBuild": "qa-results/build-workflow-v1",
+  "baselineCommit": "5d4422f",
+  "backend": "Identical recovery, catalogue reconfirmation and conditional workflow policies in A and B; fixed default theme and synthetic fixtures.",
+  "criteria": ["1.4.3", "1.4.10", "2.1.1", "2.4.3", "2.4.7", "2.4.11", "3.3.2", "4.1.2", "4.1.3"],
+  "journeys": {
+    "simple": "Reach dish with keyboard, open named dialog, add once, select table and submit; one accepted order at 8.",
+    "options": "Reach and select Large and Bread by keyboard; selected state exposed; add and submit one order at 12.",
+    "cart": "Add dish, increase then decrease quantity using named buttons; total returns to 8 before submission.",
+    "invalid-table": "Submit without table; visible/announced instruction, no accepted order; select table and successfully retry.",
+    "unavailable": "Item becomes unavailable after cart creation; actionable error, no accepted order, no trapped pending purchase.",
+    "status": "Place order; preparing and ready updates are exposed as status messages, bill request is announced; reload retains accepted order."
+  },
+  "manualOrder": "Record AI-assisted keyboard/focus/bounds observations before reading axe reports for that version. Pointer fallback is recorded as a blocked keyboard step, never a keyboard pass.",
+  "core": "Six journeys at 390 and 1280 CSS pixels in Chromium for A and B: 24 runs.",
+  "reflow": "Menu, customisation, cart and status at 320 CSS pixels in A and B: eight checks. This is viewport reflow, not browser zoom.",
+  "firefox": "Options, invalid-table and status at 1280 CSS pixels for A and B: six runs, subject to pilot availability.",
+  "screenReader": "Actual NVDA on Chromium: customisation, validation and status in both versions. Pending separate desktop availability/permission; ARIA snapshots are not NVDA evidence.",
+  "limits": "Automated rules, keyboard traces and screenshots cannot establish full WCAG conformance or substitute for user testing. Record unresolved/manual-only results separately."
+}

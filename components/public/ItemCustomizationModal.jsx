@@ -83,7 +83,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
         >
             <div className="space-y-6">
                 {/* Item Image & Description */}
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-6">
                     {item.imageUrl && (
                         <div className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-zinc-100 shrink-0">
                             <img
@@ -116,6 +116,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                 <button
                                     key={variant._id || variant.name}
                                     type="button"
+                                    aria-pressed={selectedVariant?._id === variant._id}
                                     onClick={() => setSelectedVariant(variant)}
                                     className={cn(
                                         "flex items-center justify-between p-4 rounded-xl border-2 transition-all",
@@ -161,6 +162,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                             <button
                                                 key={modifier._id || modifier.name}
                                                 type="button"
+                                                aria-pressed={isSelected}
                                                 onClick={() => toggleModifier(modifier._id)}
                                                 className={cn(
                                                     "w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all",
@@ -230,10 +232,12 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 {/* Add to Cart / Close */}
                 <div className="pt-4">
                     {orderingEnabled ? (
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
                             <div className="flex items-center gap-3 bg-zinc-50 rounded-2xl px-2 h-14 shrink-0">
                                 <button
                                     type="button"
+                                    aria-label={`Decrease quantity of ${item.name}`}
+                                    disabled={qty === 1}
                                     onClick={() => setQty((q) => Math.max(1, q - 1))}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-white transition-colors"
                                 >
@@ -242,6 +246,8 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                 <span className="w-6 text-center font-bold">{qty}</span>
                                 <button
                                     type="button"
+                                    aria-label={`Increase quantity of ${item.name}`}
+                                    disabled={qty === 20}
                                     onClick={() => setQty((q) => Math.min(20, q + 1))}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-white transition-colors"
                                 >

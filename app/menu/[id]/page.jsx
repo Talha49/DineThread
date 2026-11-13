@@ -442,7 +442,7 @@ export default function PublicMenuPage() {
                                     <h1 className={cn("font-black tracking-tighter leading-none italic", isTVMode ? "text-2xl md:text-4xl" : "text-xl md:text-3xl")}>
                                         {restaurant.name.toUpperCase()}
                                     </h1>
-                                    {!isTVMode && <span className="hidden md:block text-[10px] font-black tracking-[0.4em] text-zinc-400 mt-1 uppercase">{t('live_menu.visual_gastronomy')}</span>}
+                                    {!isTVMode && <span className="hidden md:block text-[10px] font-black tracking-[0.4em] text-zinc-600 mt-1 uppercase">{t('live_menu.visual_gastronomy')}</span>}
                                 </div>
                             </div>
 
@@ -455,8 +455,9 @@ export default function PublicMenuPage() {
                                 <Button
                                     variant="ghost"
                                     size="icon"
+                                    aria-label={isTVMode ? "Exit TV mode" : "Open TV mode"}
                                     onClick={() => setIsTVMode(!isTVMode)}
-                                    className={cn("rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 transition-all border", isTVMode ? "bg-white/10 text-white border-white/10" : "bg-zinc-50 border-zinc-100 text-zinc-400 hover:text-zinc-950")}
+                                    className={cn("rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 transition-all border", isTVMode ? "bg-white/10 text-white border-white/10" : "bg-zinc-50 border-zinc-100 text-zinc-600 hover:text-zinc-950")}
                                 >
                                     {isTVMode ? <X className="w-4 h-4 md:w-5 md:h-5" /> : <Monitor className="w-4 h-4 md:w-5 md:h-5" />}
                                 </Button>
@@ -464,8 +465,9 @@ export default function PublicMenuPage() {
                                     <Button
                                         variant="ghost"
                                         size="icon"
+                                        aria-label="Restaurant information"
                                         onClick={() => setShowInfo(!showInfo)}
-                                        className="rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 bg-zinc-50 border border-zinc-100 text-zinc-400 hover:text-zinc-950"
+                                        className="rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 bg-zinc-50 border border-zinc-100 text-zinc-600 hover:text-zinc-950"
                                     >
                                         <Info className="w-4 h-4 md:w-5 md:h-5" />
                                     </Button>
@@ -475,9 +477,10 @@ export default function PublicMenuPage() {
 
                         {!isTVMode && (
                             <div className="relative max-w-xl w-full">
-                                <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-300" />
+                                <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
                                 <input
                                     type="text"
+                                    aria-label="Search menu"
                                     placeholder={t('live_menu.search_placeholder')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -525,9 +528,9 @@ export default function PublicMenuPage() {
                     <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 md:gap-12">
                         <div className="flex items-center gap-6 md:gap-12 border-b border-zinc-100 pb-8 md:pb-12 w-full justify-center flex-wrap">
                             <div className="flex items-center gap-3">
-                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-zinc-300">{t('live_menu.share')}</span>
+                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600">{t('live_menu.share')}</span>
                                 <div className="flex gap-2">
-                                    <Button variant="ghost" size="icon" onClick={handleShare} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-zinc-100">
+                                    <Button variant="ghost" size="icon" aria-label="Share menu" onClick={handleShare} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-zinc-100">
                                         <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
                                     </Button>
                                 </div>
@@ -536,14 +539,14 @@ export default function PublicMenuPage() {
                             <div className="w-[1px] h-4 bg-zinc-100 hidden md:block" />
 
                             <div className="flex items-center gap-6">
-                                {bp.socialLinks?.instagram && <a href={formatUrl(bp.socialLinks.instagram)} className="text-zinc-400 hover:text-zinc-950 transition-colors"><Instagram className="w-4 h-4 md:w-5 md:h-5" /></a>}
-                                {bp.socialLinks?.facebook && <a href={formatUrl(bp.socialLinks.facebook)} className="text-zinc-400 hover:text-zinc-950 transition-colors"><Facebook className="w-4 h-4 md:w-5 md:h-5" /></a>}
+                                {bp.socialLinks?.instagram && <a href={formatUrl(bp.socialLinks.instagram)} className="text-zinc-600 hover:text-zinc-950 transition-colors"><Instagram className="w-4 h-4 md:w-5 md:h-5" /></a>}
+                                {bp.socialLinks?.facebook && <a href={formatUrl(bp.socialLinks.facebook)} className="text-zinc-600 hover:text-zinc-950 transition-colors"><Facebook className="w-4 h-4 md:w-5 md:h-5" /></a>}
                             </div>
                         </div>
 
                         <div className="flex flex-col items-center text-center gap-3 md:gap-4">
-                            <div className="text-xl md:text-2xl font-black italic tracking-tighter opacity-20 select-none">{t('live_menu.smart_menu')}</div>
-                            <p className="text-[8px] md:text-[10px] uppercase font-black tracking-[0.2em] text-zinc-300">
+                            <div className="text-xl md:text-2xl font-black italic tracking-tighter text-zinc-600 select-none">{t('live_menu.smart_menu')}</div>
+                            <p className="text-[8px] md:text-[10px] uppercase font-black tracking-[0.2em] text-zinc-600">
                                 ©{new Date().getFullYear()} {activeRestaurant.name.toUpperCase()} / {t('live_menu.future_dining')}
                             </p>
                         </div>
@@ -572,7 +575,7 @@ export default function PublicMenuPage() {
                                 <div className="space-y-12">
                                     <div className="text-center">
                                         <h3 className="text-4xl font-black italic tracking-tighter mb-4">{t('live_menu.establishment_info')}</h3>
-                                        <p className="text-zinc-500 font-medium italic">"{bp.description || "A premier dining destination focused on exceptional quality and flavor."}"</p>
+                                        <p className="text-zinc-500 font-medium italic">&quot;{bp.description || "A premier dining destination focused on exceptional quality and flavor."}&quot;</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -581,14 +584,14 @@ export default function PublicMenuPage() {
                                                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10"><MapPin className="w-5 h-5 text-primary" /></div>
                                                 <div>
                                                     <span className="text-[10px] font-black tracking-widest text-zinc-600 block mb-1">{t('live_menu.location')}</span>
-                                                    <span className="text-sm font-bold text-zinc-300">{bp.address || t('live_menu.contact_address')}</span>
+                                                    <span className="text-sm font-bold text-zinc-600">{bp.address || t('live_menu.contact_address')}</span>
                                                 </div>
                                             </div>
                                             <div className="flex gap-6 items-start">
                                                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10"><Phone className="w-5 h-5 text-primary" /></div>
                                                 <div>
                                                     <span className="text-[10px] font-black tracking-widest text-zinc-600 block mb-1">{t('live_menu.contact')}</span>
-                                                    <span className="text-sm font-bold text-zinc-300">{bp.phone || t('live_menu.no_phone')}</span>
+                                                    <span className="text-sm font-bold text-zinc-600">{bp.phone || t('live_menu.no_phone')}</span>
                                                 </div>
                                             </div>
                                         </div>
