@@ -4,6 +4,7 @@ import { verifyJWT } from "@/lib/jwt";
 import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import Restaurant from "@/models/Restaurant";
+import { acceptedOrderFilter, publicOrder } from "@/lib/order-submission";
 
 export async function GET(req) {
     try {
@@ -24,6 +25,7 @@ export async function GET(req) {
         // unbounded full-history dump.
         const orders = await Order.find({
             restaurant: restaurant._id,
+            ...acceptedOrderFilter,
             status: isHistory ? "paid" : { $ne: "paid" },
         })
             .populate("table", "label")
@@ -31,7 +33,7 @@ export async function GET(req) {
             .limit(isHistory ? 200 : 0)
             .lean();
 
-        return NextResponse.json({ orders });
+        return NextResponse.json({ orders: orders.map(publicOrder) });
     } catch (error) {
         return NextResponse.json({ message: "Server error" }, { status: 500 });
     }

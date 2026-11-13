@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "frozenAt": "2026-11-13T15:58:40.104330+00:00",
+  "seed": "aby-order-recovery-2026-11-13-v1",
+  "apiBatches": 20,
+  "purchasesPerBatch": 20,
+  "browserPairedTrialsPerCondition": 5,
+  "requestTimeoutMs": 15000,
+  "observationDeadlineMs": 15000,
+  "recoveryDeadlineMs": 10000,
+  "retryDelayMs": 100,
+  "conditions": [
+    "normal",
+    "sequential",
+    "two-copy",
+    "five-copy",
+    "separate-identical",
+    "changed-payload",
+    "lost-confirmation"
+  ],
+  "browserConditions": [
+    "lost-confirmation",
+    "reload",
+    "application-restart"
+  ],
+  "optionalTenCopyIncluded": false,
+  "reset": "Delete synthetic records between version-batches, retain indexes. Keep database during application-restart trials.",
+  "order": "Alternate baseline/recovery by condition index plus batch or trial number.",
+  "oracle": "Prewritten intended-purchase IDs, fixed fixture prices and quantities; server attempt labels are observations only.",
+  "observation": "Inspect stored records once all attempts settle; wait to the fixed deadline for purchases with no acknowledged order. Every failed/timeout attempt remains in raw logs.",
+  "scope": "Local single-host synthetic workloads, not production capacity or restaurant demand. Baseline and recovery share pricing and ownership. Whole combined design is compared.",
+  "pilotEvidence": [
+    "qa-results/api-pilot-1794585056463",
+    "qa-results/browser-pilot-1794585390512"
+  ],
+  "retainedFailedPilot": "qa-results/browser-pilot-1794585229868",
+  "pilotDecision": "Keep 20 x 20 API workload and 5 paired browser trials per condition. API overlap and commit-before-drop confirmed. Browser harness starts the first tab before opening the second and explicitly activates tabs. No measured data collected before freeze."
+}
