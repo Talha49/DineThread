@@ -26,3 +26,15 @@ desktop speech and the complete local NVDA log are excluded from the repository.
 The Windows UI Automation focus field sometimes remained on the address bar
 while actual NVDA speech followed page controls; conclusions use the speech log,
 native key events and the browser's rendered state, not that stale field.
+
+## Retest
+
+Session `screenreader-1794595717603` used B build `q6nMds_BQKnZGtsMjQFeu`.
+The baseline status check was repeated with independent DOM-version checks:
+versions 1 and 2 rendered after Preparing and Ready, but no corresponding live
+speech followed. Both states still appeared together as static step labels.
+In B, NVDA announced Preparing and Ready as each version rendered. After
+Shift+Tab and Enter on Request Bill, it announced: “Order status: Ready. Bill
+requested - your server is on the way.” This resolves the first-run bill defect.
+The action log includes the rendered versions and actual visible status text.
+Both native test sessions were closed, and the portable NVDA process was stopped.
