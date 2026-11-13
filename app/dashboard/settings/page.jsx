@@ -76,7 +76,7 @@ export default function SettingsPage() {
     return (
         <div ref={shellRef} className="h-full flex flex-col overflow-hidden">
             {/* Top Bar */}
-            <div className={cn("flex items-center justify-between gap-3 py-3 border-b bg-white shrink-0", shellWidth >= 448 ? "px-6" : "px-4")}>
+            <div className={cn("flex flex-wrap items-center justify-between gap-3 py-3 border-b bg-white shrink-0", shellWidth >= 448 ? "px-6" : "px-4")}>
                 {/* Left: View toggle */}
                 <div className="flex items-center gap-1 bg-zinc-100 p-1 rounded-xl shrink-0">
                     <button

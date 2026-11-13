@@ -24,7 +24,7 @@
     "links": {
       "visual_dna": "Görsel DNA",
       "seasonal_engine": "Mevsimsel Motor",
-      "ai_intelligence": "Yapay Zeka",
+      "ai_intelligence": "Örnek rozetler",
       "pricing": "Fiyatlandırma",
       "api_docs": "API Dokümanları",
       "about_us": "Hakkımızda",
@@ -60,12 +60,12 @@
           "desc": "Restoranınıza uygun renk, yazı tipi ve düzeni seçin."
         },
         {
-          "title": "Yapay Zeka ile Optimize Edin",
-          "desc": "Popüler öğeleri vurgulamak için ısı haritalarını etkinleştirin."
+          "title": "Örnek rozetler",
+          "desc": "Örnek rozetleri önizleyin. Müşteri davranışını veya satış verilerini kullanmazlar."
         }
       ],
       "why_optimize": "Menünüzü Neden Optimize Etmelisiniz?",
-      "why_desc": "İyi düzenlenmiş bir dijital menü daha çok satar. **Yapay Zeka Isı Haritası** kullanarak müşterilerinizi yönlendirin.",
+      "why_desc": "Menü tasarımını seçmeden önce kategorileri düzenleyin ve örnek rozetleri önizleyin.",
       "benefits": [
         "Gerçek zamanlı kontrol",
         "Anında QR Kod"
@@ -76,7 +76,7 @@
         "live": "Aktif",
         "rows": [
           "Kategori Yönetimi",
-          "Yapay Zeka Vurgulama",
+          "Örnek rozetler",
           "Dinamik Fiyatlandırma"
         ]
       }
@@ -92,11 +92,6 @@
         "Dinamik arka plan",
         "Manuel önizleme"
       ]
-    },
-    "testimonial": {
-      "quote": "\"Tasarım stüdyosu oyun değiştirici. Ortalama sipariş değerinde %22 artış gördük.\"",
-      "author": "Marcus Sterling",
-      "role": "Direktör, Gastronomi Grubu"
     },
     "cta": {
       "title_1": "Deneyiminizi",
@@ -117,8 +112,8 @@
           "desc": "Premium yazı tipleri ve renklerle özelleştirilebilir estetik."
         },
         {
-          "title": "Yapay Zeka 'Sıcak' Rozetleri",
-          "desc": "En çok satan ürünlerinizi otomatik olarak vurgulayın."
+          "title": "Örnek rozetler",
+          "desc": "Örnek rozetleri önizleyin. Müşteri davranışını veya satış verilerini kullanmazlar."
         },
         {
           "title": "Otomatik Temalar",
@@ -165,7 +160,7 @@
           "features": [
             "Sınırsız Öğe",
             "Mevsimsel Temalar",
-            "Yapay Zeka Rozetleri",
+            "Örnek rozetler",
             "Planlı İndirimler",
             "Özel Markalama",
             "E-posta Desteği"

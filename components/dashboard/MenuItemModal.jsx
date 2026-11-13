@@ -394,7 +394,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
 
                                 {formData.variants.length === 0 ? (
                                     <div className="text-center py-8 text-sm text-muted-foreground border border-dashed rounded-lg">
-                                        No size options yet. Click "Add Size" to get started.
+                                                No size options yet. Click &quot;Add Size&quot; to get started.
                                     </div>
                                 ) : (
                                     <div className="space-y-2">
@@ -467,7 +467,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
 
                         {formData.modifiers.length === 0 ? (
                             <div className="text-center py-12 text-sm text-muted-foreground border border-dashed rounded-lg">
-                                No add-ons yet. Click "Add Modifier" to create optional extras.
+                                                No add-ons yet. Click &quot;Add Modifier&quot; to create optional extras.
                             </div>
                         ) : (
                             <div className="space-y-2">

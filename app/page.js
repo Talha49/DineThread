@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight, Play, CheckCircle2, Star, ShieldCheck } from "lucide-react";
+import { Sparkles, ArrowRight, Play, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Navbar } from "@/components/marketing/Navbar";
@@ -249,25 +249,6 @@ export default function Home({ user }) {
       </section>
 
       <Pricing />
-
-      {/* Trust Section */}
-      <section className="py-24 px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="flex justify-center gap-2">
-            {[1,2,3,4,5].map(i => <Star key={i} className="w-6 h-6 text-primary fill-primary" />)}
-          </div>
-          <h3 className="text-3xl md:text-5xl font-black italic tracking-tighter uppercase text-zinc-900">
-            {t('home.testimonial.quote')}
-          </h3>
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden" />
-            <div className="text-left rtl:text-right">
-                <p className="font-black uppercase tracking-widest text-sm">{t('home.testimonial.author')}</p>
-                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{t('home.testimonial.role')}</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Final CTA */}
       <section className="py-24 px-4">

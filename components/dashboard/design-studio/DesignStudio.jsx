@@ -148,6 +148,7 @@ export function DesignStudio() {
     };
 
     const handleReset = async () => {
+        if (savingRef.current) return false;
         const freshConfig = { ...DEFAULT_CONFIG };
         setConfig(freshConfig);
         setAppliedPresetId(null);
@@ -155,7 +156,7 @@ export function DesignStudio() {
         // immediately rather than leaving a draft the user has to remember
         // to Save separately - that gap was exactly why Reset used to look
         // like it "did nothing" after leaving the page.
-        await handleSave(freshConfig, null, 'Resetting design...', 'Design Studio reset to factory defaults');
+        return handleSave(freshConfig, null, 'Resetting design...', 'Design Studio reset to factory defaults');
     };
 
     // Clears the working draft only - unlike Reset, this doesn't save, so the
@@ -194,11 +195,15 @@ export function DesignStudio() {
     };
 
     const handleDeleteCustomTheme = async (theme) => {
+        if (savingRef.current) return false;
         const updatedThemes = customThemes.filter((t) => t.id !== theme.id);
         const nextPresetId = appliedPresetId === theme.id ? null : appliedPresetId;
-        setCustomThemes(updatedThemes);
-        setAppliedPresetId(nextPresetId);
-        await handleSave(config, nextPresetId, 'Removing theme...', `Removed "${theme.name}"`, updatedThemes);
+        const success = await handleSave(config, nextPresetId, 'Removing theme...', `Removed "${theme.name}"`, updatedThemes);
+        if (success) {
+            setCustomThemes(updatedThemes);
+            setAppliedPresetId(nextPresetId);
+        }
+        return success;
     };
 
     // Local experiment builds expose the same handlers used by the controls.
@@ -297,6 +302,7 @@ export function DesignStudio() {
                                 toast.success(`Applied: ${preset?.name}`);
                             }}
                             onReset={handleReset}
+                            isSaving={isSaving}
                             onStartCustom={handleStartCustom}
                             currentPresetId={appliedPresetId}
                             customThemes={customThemes}

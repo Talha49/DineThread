@@ -1,0 +1,131 @@
+[
+  {
+    "check": "removed-debug-endpoint",
+    "status": 404,
+    "before": {
+      "users": 1,
+      "restaurants": 1,
+      "menuitems": 1
+    },
+    "after": {
+      "users": 1,
+      "restaurants": 1,
+      "menuitems": 1
+    }
+  },
+  {
+    "check": "pending-save/reset/reload",
+    "width": 1280,
+    "requests": 2,
+    "disabledWhileSaving": true,
+    "persistedDefault": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "check": "invalid-colour",
+    "width": 1280,
+    "value": "#12345",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 1280,
+    "value": "#1234567",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 1280,
+    "value": "rgb(1)",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 1280,
+    "value": "hsl(1,2,3)",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "delete-failure-and-retry",
+    "width": 1280,
+    "retainedOnFailure": true,
+    "removedOnRetry": true
+  },
+  {
+    "check": "copy-navigation-keyboard",
+    "width": 1280,
+    "runtimeErrors": [],
+    "unsupportedTestimonialAbsent": true
+  },
+  {
+    "check": "pending-save/reset/reload",
+    "width": 390,
+    "requests": 2,
+    "disabledWhileSaving": true,
+    "persistedDefault": true,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "check": "mobile-preview-controls",
+    "width": 390,
+    "bounds": {
+      "x": 16,
+      "y": 132,
+      "width": 92.40625,
+      "height": 32
+    },
+    "closeBounds": {
+      "x": 342,
+      "y": 16,
+      "width": 28,
+      "height": 28
+    },
+    "openedAndClosed": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 390,
+    "value": "#12345",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 390,
+    "value": "#1234567",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 390,
+    "value": "rgb(1)",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "invalid-colour",
+    "width": 390,
+    "value": "hsl(1,2,3)",
+    "status": 400,
+    "draftAndDatabaseUnchanged": true
+  },
+  {
+    "check": "delete-failure-and-retry",
+    "width": 390,
+    "retainedOnFailure": true,
+    "removedOnRetry": true
+  },
+  {
+    "check": "copy-navigation-keyboard",
+    "width": 390,
+    "runtimeErrors": [],
+    "unsupportedTestimonialAbsent": true
+  }
+]

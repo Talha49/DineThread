@@ -1,0 +1,2016 @@
+[
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 3,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": false,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "immediate",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": true,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "grid",
+    "strategy": "coalesced",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": false,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "immediate",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": true,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "list",
+    "strategy": "coalesced",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": false,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "immediate",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "single",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "0px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "layout-switch",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "list"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "reset",
+    "preview": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "reopened": {
+      "primary": "#4f46e5",
+      "base": "16px",
+      "padding": "20px",
+      "layout": "grid"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback",
+        "Montserrat",
+        "Montserrat Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 5,
+    "pass": true
+  },
+  {
+    "type": "save-check",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "pendingAtLastEdit": true,
+    "savedLatest": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "save-during-burst",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "expected": "\"Bebas Neue\",\"Bebas Neue Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 34,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "invalid",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Bebas Neue",
+        "Bebas Neue Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Inter\",\"Inter Fallback\"",
+      "expected": "\"Inter\",\"Inter Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "reload",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Outfit\",\"Outfit Fallback\"",
+      "expected": "\"Outfit\",\"Outfit Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  },
+  {
+    "type": "correctness",
+    "layout": "bento-magazine",
+    "strategy": "coalesced",
+    "scenario": "outdated",
+    "preview": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "reopened": {
+      "primary": "#654321",
+      "base": "18px",
+      "padding": "24px",
+      "layout": "bento-magazine"
+    },
+    "previewFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Outfit",
+        "Outfit Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "publicFont": {
+      "heading": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "expected": "\"Playfair Display\",\"Playfair Display Fallback\"",
+      "loaded": [
+        "Inter",
+        "Inter Fallback",
+        "Playfair Display",
+        "Playfair Display Fallback"
+      ]
+    },
+    "savedConfigMatches": true,
+    "revision": 4,
+    "pass": true
+  }
+]

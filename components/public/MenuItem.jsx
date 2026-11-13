@@ -127,7 +127,7 @@ export function HorizontalCard({ item, theme, onClick }) {
                     {isPopular && (
                         <div className="bg-amber-400 text-amber-950 text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest flex items-center gap-1 shadow-sm">
                             <Sparkles className="w-2 h-2" />
-                            HOT
+                            SAMPLE
                         </div>
                     )}
                 </div>
@@ -516,7 +516,7 @@ export function MagazineCard({ item, theme, onClick }) {
             {isPopular && (
                 <div className="absolute top-4 right-4 z-20 bg-amber-400 text-amber-950 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-1 shadow-lg animate-pulse">
                     <Sparkles className="w-3 h-3" />
-                    Top Seller
+                    Sample badge
                 </div>
             )}
 

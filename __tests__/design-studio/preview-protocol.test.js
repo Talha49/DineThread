@@ -14,6 +14,25 @@ function fixture(strategy = 'coalesced') {
   return { c, target, events, frames, receive, tick() { const callbacks = [...frames.values()]; frames.clear(); callbacks.forEach(cb => cb()); } };
 }
 const config = n => ({ ...DEFAULT_CONFIG, layoutID: 'grid', typography: { ...DEFAULT_CONFIG.typography, sizes: { ...DEFAULT_CONFIG.typography.sizes, base: 16 + n } } });
+const withColour = value => ({ ...DEFAULT_CONFIG, colors: { ...DEFAULT_CONFIG.colors, brand: { ...DEFAULT_CONFIG.colors.brand, primary: value } } });
+
+test.each(['#12345', '#1234567', 'rgb(1)', 'rgb(1,2,3,4,5)', 'rgb(10%,2,3)',
+  'rgba(1,2,3,)', 'hsl(1,2,3)', 'hsl(1%,20%,30%)', 'rgb(1..2,2,3)', 'rgb(1e999,2,3)'])('rejects malformed colour %s throughout preview and persistence', value => {
+  const f = fixture('immediate');
+  const valid = themePayload(withColour('#234567'));
+  f.c.update(valid);
+  const invalid = themePayload(withColour(value));
+  expect(ThemeConfigSchema.safeParse(withColour(value)).success).toBe(false);
+  expect(UpdateBrandingSchema.safeParse(invalid).success).toBe(false);
+  expect(f.c.update(invalid)).toBe(false);
+  expect(f.c.snapshot()).toMatchObject({ revision: 1, sent: 1, latest: valid });
+});
+
+test.each(['#abc', '#abcd', '#123456', '#12345678', 'transparent', 'RGB(12, 34, 56)',
+  'rgba(12, 34, 56, .5)', 'rgb(10%, 20%, 30%)', 'hsl(120, 50%, 40%)', 'hsla(-30deg, 50%, 40%, 50%)'])('accepts supported colour %s for both preview and save', value => {
+  expect(ThemeConfigSchema.safeParse(withColour(value)).success).toBe(true);
+  expect(UpdateBrandingSchema.safeParse(themePayload(withColour(value))).success).toBe(true);
+});
 
 test.each(DESIGN_PRESETS.map(p => [p.name, p.config]))('existing preset %s remains valid', (_, value) => {
   expect(ThemeConfigSchema.safeParse(value).error?.issues || []).toEqual([]);
