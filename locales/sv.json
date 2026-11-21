@@ -1,0 +1,289 @@
+{
+  "nav": {
+    "features": "Funktioner",
+    "themes": "Teman",
+    "pricing": "Priser",
+    "contact": "Kontakt",
+    "login": "Logga in",
+    "signup": "Kom igång",
+    "dashboard": "Instrumentpanel"
+  },
+  "common": {
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "loading": "Laddar..."
+  },
+  "footer": {
+    "description": "Det intelligenta designsystemet för den moderna restaurangbranschen.",
+    "platform": "Plattform",
+    "company": "Företag",
+    "contact": "Kontakt",
+    "rights": "© 2024 Davoriq. Byggt för visionärer.",
+    "privacy": "Integritetspolicy",
+    "security": "Säkerhet",
+    "links": {
+      "visual_dna": "Visuellt DNA",
+      "seasonal_engine": "Säsongsmotor",
+      "ai_intelligence": "AI-intelligens",
+      "pricing": "Priser",
+      "api_docs": "API-dokumentation",
+      "about_us": "Om oss",
+      "case_studies": "Fallstudier",
+      "partners": "Partners",
+      "terms": "Villkor"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "v2.0 Intelligensplattform Live",
+      "title_1": "Det smartare sättet",
+      "title_2": "att driva din meny",
+      "subtitle": "Skapa fantastiska digitala menyer som ökar försäljningen och sparar tid.",
+      "cta_primary": "Bygg din upplevelse",
+      "cta_secondary": "Se videon"
+    },
+    "workflow": {
+      "tag": "Enkelt arbetsflöde",
+      "title_1": "Hur Davoriq",
+      "title_2": "fungerar för dig",
+      "steps": [
+        {
+          "title": "Skapa kategorier",
+          "desc": "Organisera menyn i logiska avsnitt som Förrätter, Varmrätter och Drycker."
+        },
+        {
+          "title": "Lägg till objekt",
+          "desc": "Ladda upp foton, ställ in priser och lägg till beskrivningar."
+        },
+        {
+          "title": "Designa ditt varumärke",
+          "desc": "Använd Design Studio för att välja färger, teckensnitt och layouter."
+        },
+        {
+          "title": "Optimera med AI",
+          "desc": "Aktivera AI-värmekartor för att lyfta fram populära rätter."
+        }
+      ],
+      "why_optimize": "Varför optimera din meny?",
+      "why_desc": "En välorganiserad digital meny säljer mer. Genom att använda **AI-värmekartor** och **Kategorioptimering** kan du vägleda kunderna.",
+      "benefits": [
+        "Realtidskontroll",
+        "Omedelbar QR-kodgenerering"
+      ],
+      "table": {
+        "feature": "Funktion",
+        "status": "Status",
+        "live": "Live",
+        "rows": [
+          "Kategorihantering",
+          "AI-objektsmarkering",
+          "Dynamiska prisregler"
+        ]
+      }
+    },
+    "automation": {
+      "tag": "Intelligent Automation",
+      "title_1": "Automatiska säsongsbaserade",
+      "title_2": "Teman & Priser",
+      "desc": "Davoriq ändrar automatiskt dina teman och atmosfäreffekter för att matcha säsongen.",
+      "features": [
+        "12 förkonfigurerade månatliga överlägg",
+        "Automatiska färgövergångar",
+        "Dynamiska bakgrundspartiklar",
+        "Manuella förhandsgranskningar"
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Designstudion är banbrytande. Vi har sett en 22% ökning i genomsnittligt ordervärde.\"",
+      "author": "Marcus Sterling",
+      "role": "Direktör, Gastronomy Group"
+    },
+    "cta": {
+      "title_1": "Redo att lyfta",
+      "title_2": "din upplevelse?",
+      "subtitle": "Gå med i tusentals restauranger som förvandlar sin digitala närvaro.",
+      "btn": "Kom igång nu",
+      "trial": "14 dagars gratis provperiod",
+      "no_card": "Inget kreditkort krävs"
+    },
+    "features": {
+      "tag": "Kraftfulla funktioner",
+      "title_1": "Allt du behöver för",
+      "title_2": "att öka försäljningen",
+      "desc": "Vi har byggt en komplett uppsättning verktyg för att hjälpa dig hantera din restaurang digitalt.",
+      "items": [
+        {
+          "title": "Visuell Designstudio",
+          "desc": "Anpassningsbar high-end estetik med premiumtypsnitt och färger."
+        },
+        {
+          "title": "AI 'Heta' märken",
+          "desc": "Markera automatiskt dina mest sålda rätter."
+        },
+        {
+          "title": "Auto-Magiska Teman",
+          "desc": "Din meny ändras med kalendern. Vinter, Vår, Sommar, Höst."
+        },
+        {
+          "title": "Happy Hour-motor",
+          "desc": "Schemalägg rabatter och dynamiska prisregler."
+        },
+        {
+          "title": "Atmosfäreffekter",
+          "desc": "Lägg till snöfall, blomblad eller stjärnor i din bakgrund."
+        },
+        {
+          "title": "Live Prissynkronisering",
+          "desc": "Ändra ett pris och se det uppdateras direkt."
+        }
+      ]
+    },
+    "pricing": {
+      "tag": "Enkel Prissättning",
+      "title_1": "Väx din verksamhet",
+      "title_2": "i din egen takt",
+      "plans": [
+        {
+          "name": "Bas",
+          "price": "Gratis",
+          "desc": "Den perfekta starten för små kaféer.",
+          "features": [
+            "Upp till 15 rätter",
+            "Grundläggande färger",
+            "Live QR-skanning",
+            "Mobilvänlig",
+            "Gemenskapssupport"
+          ],
+          "cta": "Starta gratis"
+        },
+        {
+          "name": "Smart Pro",
+          "price": "TBD",
+          "period": "/mån",
+          "desc": "Allt du behöver för tillväxt.",
+          "popular": "Mest populär",
+          "features": [
+            "Obegränsat antal rätter",
+            "Säsongsteman",
+            "AI-märken",
+            "Schemalagda Happy Hours",
+            "Anpassat varumärke",
+            "E-postsupport"
+          ],
+          "cta": "Prova 7 dagar gratis"
+        },
+        {
+          "name": "Företag",
+          "price": "TBD",
+          "period": "/mån",
+          "desc": "För restauranggrupper på flera platser.",
+          "features": [
+            "Multilokation",
+            "White-label",
+            "Avancerat API",
+            "Dedikerad chef",
+            "Anpassad design",
+            "24/7 telefonsupport"
+          ],
+          "cta": "Kontakta Försäljning"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Logga in",
+      "subtitle": "Ange din e-postadress och ditt lösenord för att komma åt din instrumentpanel",
+      "email": "E-post",
+      "password": "Lösenord",
+      "forgot": "Glömt lösenordet?",
+      "submit": "Logga in",
+      "no_account": "Har du inget konto?",
+      "signup": "Registrera dig"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Översikt",
+      "menu_management": "Menyhantering",
+      "qr_code": "QR-kod",
+      "tables": "Bord",
+      "orders": "Beställningar",
+      "shop_settings": "Butiksinställningar",
+      "view_live": "Se Livemeny",
+      "launch_tv": "Starta TV-läge",
+      "sign_out": "Logga ut"
+    },
+    "overview": {
+      "loading": "Laddar intelligens...",
+      "title": "Instrumentpanel",
+      "subtitle": "Översikt",
+      "syncing": "Synkroniserar live",
+      "metrics": {
+        "menu_items": "Menyalternativ",
+        "active_items": "Aktiva objekt",
+        "categories": "Kategorier",
+        "sections": "Sektioner",
+        "visual_dna": "Visuellt DNA",
+        "active": "Aktiv",
+        "default": "Standard",
+        "custom_theme": "Anpassat tema",
+        "standard": "Standard",
+        "scans": "RealFlow-skanningar",
+        "pending": "Väntar på analys"
+      },
+      "health": {
+        "title": "Menyhälsa",
+        "completeness": "Fullständighet",
+        "cat_created": "Kategorier skapade",
+        "min_items": "Minst 5 objekt",
+        "visuals_set": "Visuell identitet angiven",
+        "logo_set": "Restauranglogotyp"
+      },
+      "pro": {
+        "title": "Bli Professionell",
+        "desc": "Lås upp obegränsade menyalternativ, AI-värmekartor och premiumteman.",
+        "btn": "Se priser"
+      }
+    },
+    "menu": {
+      "title": "Menyhantering",
+      "subtitle": "Organisera din meny, kategorier och tillgänglighet.",
+      "view_preview": "Se förhandsgranskning",
+      "add_item": "Lägg till nytt objekt",
+      "tabs": {
+        "items": "Menyalternativ",
+        "categories": "Kategorier"
+      },
+      "preview_title": "Förhandsgranskning av livemeny",
+      "preview_desc": "Se hur din meny ser ut för dina kunder. Klicka på ett objekt för att hitta det i listan."
+    },
+    "settings": {
+      "studio": "Designstudio",
+      "profile": "Företagsprofil",
+      "live": "Live"
+    }
+  },
+  "live_menu": {
+    "visual_gastronomy": "Visuell Gastronomi",
+    "search_placeholder": "Kurera din upplevelse...",
+    "share": "Dela",
+    "smart_menu": "SMART MENU",
+    "future_dining": "FRAMTIDENS MATUPPLEVELSE",
+    "establishment_info": "ETABLISSEMANGOINFO",
+    "location": "PLATS",
+    "contact_address": "Kontakta för adress",
+    "contact": "KONTAKT",
+    "no_phone": "Inget telefonnummer angivet",
+    "service_hours": "ÖPPETTIDER",
+    "closed": "Stängt",
+    "return_menu": "Tillbaka till menyn",
+    "choose_size": "Välj storlek",
+    "total_price": "Totalpris",
+    "got_it": "Uppfattat",
+    "our_signature": "VÅR SIGNATUR",
+    "in_stock": "I lager och redo",
+    "price_value": "Prisvärde",
+    "dismiss": "Stäng"
+  }
+}

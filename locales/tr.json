@@ -1,0 +1,289 @@
+{
+  "nav": {
+    "features": "Özellikler",
+    "themes": "Temalar",
+    "pricing": "Fiyatlandırma",
+    "contact": "İletişim",
+    "login": "Giriş Yap",
+    "signup": "Başla",
+    "dashboard": "Panel"
+  },
+  "common": {
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "loading": "Yükleniyor..."
+  },
+  "footer": {
+    "description": "Modern ağırlama sektörü için akıllı tasarım sistemi.",
+    "platform": "Platform",
+    "company": "Şirket",
+    "contact": "İletişim",
+    "rights": "© 2024 Davoriq. Vizyonerler için tasarlandı.",
+    "privacy": "Gizlilik Politikası",
+    "security": "Güvenlik",
+    "links": {
+      "visual_dna": "Görsel DNA",
+      "seasonal_engine": "Mevsimsel Motor",
+      "ai_intelligence": "Yapay Zeka",
+      "pricing": "Fiyatlandırma",
+      "api_docs": "API Dokümanları",
+      "about_us": "Hakkımızda",
+      "case_studies": "Vaka Çalışmaları",
+      "partners": "Ortaklar",
+      "terms": "Şartlar"
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "v2.0 Zeka Platformu Yayında",
+      "title_1": "Menünüzü Yönetmenin",
+      "title_2": "Daha Akıllı Yolu",
+      "subtitle": "Satışları artıran ve size zaman kazandıran çarpıcı dijital menüler oluşturun.",
+      "cta_primary": "Deneyiminizi Oluşturun",
+      "cta_secondary": "Videoyu İzle"
+    },
+    "workflow": {
+      "tag": "Basit İş Akışı",
+      "title_1": "Davoriq Sizin İçin",
+      "title_2": "Nasıl Çalışır",
+      "steps": [
+        {
+          "title": "Kategoriler Oluşturun",
+          "desc": "Menünüzü mantıksal bölümlere ayırın. Sadece isim verin ve sıralarını belirleyin."
+        },
+        {
+          "title": "Öğeler Ekleyin",
+          "desc": "Fotoğraf yükleyin, fiyat belirleyin ve açıklama ekleyin."
+        },
+        {
+          "title": "Markanızı Tasarlayın",
+          "desc": "Restoranınıza uygun renk, yazı tipi ve düzeni seçin."
+        },
+        {
+          "title": "Yapay Zeka ile Optimize Edin",
+          "desc": "Popüler öğeleri vurgulamak için ısı haritalarını etkinleştirin."
+        }
+      ],
+      "why_optimize": "Menünüzü Neden Optimize Etmelisiniz?",
+      "why_desc": "İyi düzenlenmiş bir dijital menü daha çok satar. **Yapay Zeka Isı Haritası** kullanarak müşterilerinizi yönlendirin.",
+      "benefits": [
+        "Gerçek zamanlı kontrol",
+        "Anında QR Kod"
+      ],
+      "table": {
+        "feature": "Özellik",
+        "status": "Durum",
+        "live": "Aktif",
+        "rows": [
+          "Kategori Yönetimi",
+          "Yapay Zeka Vurgulama",
+          "Dinamik Fiyatlandırma"
+        ]
+      }
+    },
+    "automation": {
+      "tag": "Akıllı Otomasyon",
+      "title_1": "Otomatik Mevsimsel",
+      "title_2": "Temalar ve Fiyatlandırma",
+      "desc": "Davoriq temalarınızı mevsime göre otomatik değiştirir.",
+      "features": [
+        "12 aylık ön ayar",
+        "Otomatik renk geçişleri",
+        "Dinamik arka plan",
+        "Manuel önizleme"
+      ]
+    },
+    "testimonial": {
+      "quote": "\"Tasarım stüdyosu oyun değiştirici. Ortalama sipariş değerinde %22 artış gördük.\"",
+      "author": "Marcus Sterling",
+      "role": "Direktör, Gastronomi Grubu"
+    },
+    "cta": {
+      "title_1": "Deneyiminizi",
+      "title_2": "yükseltmeye hazır mısınız?",
+      "subtitle": "Binlerce dünya standartlarında restorana katılın.",
+      "btn": "Hemen Başla",
+      "trial": "14 Gün Ücretsiz Deneme",
+      "no_card": "Kredi Kartı Gerekmez"
+    },
+    "features": {
+      "tag": "Güçlü Özellikler",
+      "title_1": "Satışlarınızı artırmak",
+      "title_2": "için gereken her şey",
+      "desc": "Dijital varlığınızı yönetmeniz için tam bir araç seti geliştirdik.",
+      "items": [
+        {
+          "title": "Görsel Tasarım Stüdyosu",
+          "desc": "Premium yazı tipleri ve renklerle özelleştirilebilir estetik."
+        },
+        {
+          "title": "Yapay Zeka 'Sıcak' Rozetleri",
+          "desc": "En çok satan ürünlerinizi otomatik olarak vurgulayın."
+        },
+        {
+          "title": "Otomatik Temalar",
+          "desc": "Menünüz takvimle birlikte değişir. Kış, İlkbahar, Yaz, Sonbahar."
+        },
+        {
+          "title": "Happy Hour Motoru",
+          "desc": "İndirimleri ve fiyat kurallarını planlayın."
+        },
+        {
+          "title": "Atmosfer Efektleri",
+          "desc": "Arka planınıza kar, çiçek veya yıldız ekleyin."
+        },
+        {
+          "title": "Canlı Fiyat Senkronizasyonu",
+          "desc": "Panonuzdan bir fiyatı değiştirin ve anında güncellensin."
+        }
+      ]
+    },
+    "pricing": {
+      "tag": "Basit Fiyatlandırma",
+      "title_1": "İşletmenizi kendi",
+      "title_2": "hızınızda büyütün",
+      "plans": [
+        {
+          "name": "Temel",
+          "price": "Ücretsiz",
+          "desc": "Küçük kafeler için mükemmel başlangıç.",
+          "features": [
+            "15 Öğeye Kadar",
+            "Temel Renkler",
+            "Canlı QR",
+            "Mobil Uyumlu",
+            "Topluluk Desteği"
+          ],
+          "cta": "Ücretsiz Başla"
+        },
+        {
+          "name": "Akıllı Pro",
+          "price": "TBD",
+          "period": "/ay",
+          "desc": "Büyüme için gereken her şey.",
+          "popular": "En Popüler",
+          "features": [
+            "Sınırsız Öğe",
+            "Mevsimsel Temalar",
+            "Yapay Zeka Rozetleri",
+            "Planlı İndirimler",
+            "Özel Markalama",
+            "E-posta Desteği"
+          ],
+          "cta": "7 Gün Ücretsiz Dene"
+        },
+        {
+          "name": "Kurumsal",
+          "price": "TBD",
+          "period": "/ay",
+          "desc": "Çok şubeli gruplar için.",
+          "features": [
+            "Çoklu Şube",
+            "White-label",
+            "Gelişmiş API",
+            "Özel Yönetici",
+            "Özel Tasarım",
+            "7/24 Destek"
+          ],
+          "cta": "Satışla İletişime Geç"
+        }
+      ]
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Giriş yap",
+      "subtitle": "Panele erişmek için e-posta ve şifrenizi girin",
+      "email": "E-posta",
+      "password": "Şifre",
+      "forgot": "Şifremi unuttum?",
+      "submit": "Giriş Yap",
+      "no_account": "Hesabınız yok mu?",
+      "signup": "Kayıt Ol"
+    }
+  },
+  "dashboard": {
+    "sidebar": {
+      "overview": "Genel Bakış",
+      "menu_management": "Menü Yönetimi",
+      "qr_code": "QR Kod",
+      "tables": "Masalar",
+      "orders": "Siparişler",
+      "shop_settings": "Mağaza Ayarları",
+      "view_live": "Canlı Menüyü Görüntüle",
+      "launch_tv": "TV Modunu Başlat",
+      "sign_out": "Çıkış Yap"
+    },
+    "overview": {
+      "loading": "Zeka Yükleniyor...",
+      "title": "Panel",
+      "subtitle": "Genel Bakış",
+      "syncing": "Canlı Senkronize",
+      "metrics": {
+        "menu_items": "Menü Öğeleri",
+        "active_items": "Aktif Öğeler",
+        "categories": "Kategoriler",
+        "sections": "Bölümler",
+        "visual_dna": "Görsel DNA",
+        "active": "Aktif",
+        "default": "Varsayılan",
+        "custom_theme": "Özel Tema",
+        "standard": "Standart",
+        "scans": "RealFlow Taramaları",
+        "pending": "Analiz Bekleniyor"
+      },
+      "health": {
+        "title": "Menü Sağlığı",
+        "completeness": "Tamamlanma",
+        "cat_created": "Kategoriler Oluşturuldu",
+        "min_items": "Minimum 5 Öğe",
+        "visuals_set": "Görsel Kimlik Belirlendi",
+        "logo_set": "Restoran Logosu"
+      },
+      "pro": {
+        "title": "Profesyonel Olun",
+        "desc": "Sınırsız menü öğesi, yapay zeka ısı haritaları ve premium temaların kilidini açın.",
+        "btn": "Fiyatlandırmayı Görüntüle"
+      }
+    },
+    "menu": {
+      "title": "Menü Yönetimi",
+      "subtitle": "Menünüzü, kategorilerinizi ve uygunluk durumunu düzenleyin.",
+      "view_preview": "Canlı Önizlemeyi Gör",
+      "add_item": "Yeni Öğe Ekle",
+      "tabs": {
+        "items": "Menü Öğeleri",
+        "categories": "Kategoriler"
+      },
+      "preview_title": "Canlı Menü Önizlemesi",
+      "preview_desc": "Müşterilerinizin menünüzü nasıl gördüğünü görün. Listeden bulmak için herhangi bir öğeye tıklayın."
+    },
+    "settings": {
+      "studio": "Tasarım Stüdyosu",
+      "profile": "İşletme Profili",
+      "live": "Canlı"
+    }
+  },
+  "live_menu": {
+    "visual_gastronomy": "Görsel Gastronomi",
+    "search_placeholder": "Deneyiminizi seçin...",
+    "share": "Paylaş",
+    "smart_menu": "SMART MENU",
+    "future_dining": "YEMEĞİN GELECEĞİ",
+    "establishment_info": "KURUM BİLGİSİ",
+    "location": "KONUM",
+    "contact_address": "Adres için iletişime geçin",
+    "contact": "İLETİŞİM",
+    "no_phone": "Telefon belirtilmemiş",
+    "service_hours": "ÇALIŞMA SAATLERİ",
+    "closed": "Kapalı",
+    "return_menu": "Menüye Dön",
+    "choose_size": "Boyut Seçin",
+    "total_price": "Toplam Fiyat",
+    "got_it": "Anladım",
+    "our_signature": "İMZAMIZ",
+    "in_stock": "Stokta ve Hazır",
+    "price_value": "Fiyat Değeri",
+    "dismiss": "Kapat"
+  }
+}
