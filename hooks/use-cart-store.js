@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+export function pendingPurchaseFor(state, restaurantId) {
+    return Object.hasOwn(state.pendingPurchases, restaurantId) ? state.pendingPurchases[restaurantId] : undefined;
+}
+
 // Cart is scoped to whichever restaurant slug is currently active - if a
 // customer previously ordered at a different restaurant in this browser,
 // switching restaurants must not carry that cart/table/order over.
@@ -11,10 +15,15 @@ export const useCartStore = create(
             tableId: null,
             items: [], // { key, menuItemId, name, variantName, modifierNames, unitPrice, qty }
             orderId: null,
+            // Pending purchases survive navigation; an editable cart is never
+            // used to reconstruct an uncertain submission.
+            pendingPurchases: {},
+            confirmedOrders: {},
 
             ensureRestaurant: (restaurantId) => {
                 if (get().restaurantId !== restaurantId) {
-                    set({ restaurantId, tableId: null, items: [], orderId: null });
+                    const orders = get().confirmedOrders;
+                    set({ restaurantId, tableId: null, items: [], orderId: Object.hasOwn(orders, restaurantId) ? orders[restaurantId] : null });
                 }
             },
 
@@ -46,9 +55,42 @@ export const useCartStore = create(
 
             clearCart: () => set({ items: [] }),
 
-            setOrderId: (orderId) => set({ orderId, items: [] }),
+            beginPurchase: (restaurantId, purchase) => {
+                const pending = pendingPurchaseFor(get(), restaurantId);
+                if (pending) return pending;
+                set((state) => ({ pendingPurchases: { ...state.pendingPurchases, [restaurantId]: purchase } }));
+                return purchase;
+            },
 
-            leaveOrder: () => set({ orderId: null }),
+            confirmPurchase: (restaurantId, requestId, orderId) => set((state) => {
+                const pending = pendingPurchaseFor(state, restaurantId);
+                if (pending && pending.requestId !== requestId) return state;
+                const pendingPurchases = { ...state.pendingPurchases };
+                delete pendingPurchases[restaurantId];
+                return {
+                    pendingPurchases,
+                    confirmedOrders: { ...state.confirmedOrders, [restaurantId]: orderId },
+                    ...(state.restaurantId === restaurantId ? {
+                        orderId,
+                        items: JSON.stringify(state.items) === JSON.stringify(pending?.cartItems) ? [] : state.items,
+                    } : {}),
+                };
+            }),
+
+            syncPurchase: (restaurantId, journal) => set((state) => {
+                const pendingPurchases = { ...state.pendingPurchases };
+                if (journal.pending) pendingPurchases[restaurantId] = journal.pending;
+                else delete pendingPurchases[restaurantId];
+                return {
+                    pendingPurchases,
+                    confirmedOrders: { ...state.confirmedOrders, [restaurantId]: journal.orderId || null },
+                    ...(state.restaurantId === restaurantId ? { orderId: journal.orderId || null } : {}),
+                };
+            }),
+
+            setOrderId: (orderId) => set((state) => ({ orderId, items: [], confirmedOrders: { ...state.confirmedOrders, [state.restaurantId]: orderId } })),
+
+            leaveOrder: () => set((state) => ({ orderId: null, confirmedOrders: { ...state.confirmedOrders, [state.restaurantId]: null } })),
 
             cartTotal: () => get().items.reduce((sum, i) => sum + i.unitPrice * i.qty, 0),
             cartCount: () => get().items.reduce((sum, i) => sum + i.qty, 0),
