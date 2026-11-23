@@ -5,6 +5,7 @@ import dbConnect from "@/lib/mongodb";
 import Order from "@/models/Order";
 import Restaurant from "@/models/Restaurant";
 import { UpdateOrderStatusSchema } from "@/lib/validations";
+import { acceptedOrderFilter, publicOrder } from "@/lib/order-submission";
 
 export async function PATCH(req, { params }) {
     try {
@@ -25,7 +26,7 @@ export async function PATCH(req, { params }) {
         const restaurant = await Restaurant.findOne({ owner: user.id });
         if (!restaurant) return NextResponse.json({ message: "Restaurant not found" }, { status: 404 });
 
-        const order = await Order.findOne({ _id: id, restaurant: restaurant._id });
+        const order = await Order.findOne({ _id: id, restaurant: restaurant._id, ...acceptedOrderFilter });
         if (!order) return NextResponse.json({ message: "Order not found" }, { status: 404 });
 
         order.status = validation.data.status;
@@ -33,7 +34,7 @@ export async function PATCH(req, { params }) {
         await order.save();
         await order.populate("table", "label");
 
-        return NextResponse.json({ order });
+        return NextResponse.json({ order: publicOrder(order) });
     } catch (error) {
         return NextResponse.json({ message: "Server error" }, { status: 500 });
     }

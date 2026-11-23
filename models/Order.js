@@ -16,6 +16,14 @@ const OrderItemSchema = new mongoose.Schema(
 
 const OrderSchema = new mongoose.Schema(
   {
+    ownerHash: { type: String, select: false },
+    requestId: { type: String },
+    requestFingerprint: { type: String, select: false },
+    // Terminal rejection/cancellation receipts share the same unique key as
+    // accepted orders. They never enter the kitchen queue.
+    submissionOutcome: { type: String, enum: ["accepted", "rejected", "cancelled"], default: "accepted" },
+    rejectionCode: { type: String },
+    rejectionMessage: { type: String },
     restaurant: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Restaurant",
@@ -31,7 +39,7 @@ const OrderSchema = new mongoose.Schema(
     items: {
       type: [OrderItemSchema],
       required: true,
-      validate: (v) => Array.isArray(v) && v.length > 0,
+      validate: function (v) { return Array.isArray(v) && (this.submissionOutcome !== "accepted" || v.length > 0); },
     },
     total: { type: Number, required: true },
     status: {
@@ -45,6 +53,12 @@ const OrderSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+OrderSchema.index({ restaurant: 1, requestId: 1 }, {
+  unique: true,
+  name: "restaurant_request_unique",
+  partialFilterExpression: { requestId: { $type: "string" } },
+});
 
 if (process.env.NODE_ENV === "development") {
   if (mongoose.models.Order) {

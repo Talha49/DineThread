@@ -49,6 +49,8 @@
     "eslint-config-next": "^15.1.0",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "mongodb-memory-server": "^11.3.0",
+    "playwright": "^1.65.0",
     "tailwindcss": "^4",
     "typescript": "^6.0.3"
   }
