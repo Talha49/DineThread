@@ -1,3 +1,4 @@
+jest.mock('../../scripts/order-test-environment', () => ({}));
 const {observeDeadline} = require('../../scripts/order-api-experiment');
 
 test('keeps late orders in the evidence and counts only insertions by the deadline', () => {
