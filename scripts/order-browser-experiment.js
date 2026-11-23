@@ -1,7 +1,7 @@
 const fs=require('node:fs/promises');
 const path=require('node:path');
 const assert=require('node:assert/strict');
-const { chromium }=require('playwright');
+const { chromium, errors: playwrightErrors }=require('playwright');
 const { createEnvironment, root, recordSource }=require('./order-test-environment');
 
 async function openCart(page, base) {
@@ -13,6 +13,32 @@ async function openCart(page, base) {
     await page.getByRole('button',{name:'Open cart and order status'}).click();
     await page.getByRole('button',{name:'Table 1',exact:true}).click();
 }
+async function readReceiptOnRetry(page, retry, deadlineMs) {
+    const start = performance.now();
+    try {
+        await retry.click({timeout: deadlineMs});
+        const remaining = deadlineMs - (performance.now() - start);
+        if (remaining > 0) {
+            const visible = await page.waitForFunction(() => {
+                const dialog = document.querySelector('[role="dialog"][aria-label="Cart and order status"]');
+                const reference = dialog?.querySelector('[data-testid="receipt-reference"]');
+                const total = dialog?.querySelector('[data-testid="receipt-total"]');
+                const readable = node => node?.checkVisibility({visibilityProperty: true, opacityProperty: true})
+                    && node.innerText.trim();
+                if (readable(reference) && readable(total)) {
+                    return {id: reference.innerText.trim(), total: total.innerText.trim()};
+                }
+                return false;
+            }, null, {timeout: remaining});
+            const elapsedMs = performance.now() - start;
+            return {receipt: await visible.jsonValue(), elapsedMs, timedOut: elapsedMs > deadlineMs};
+        }
+    } catch (error) {
+        if (!(error instanceof playwrightErrors.TimeoutError)) throw error;
+    }
+    return {receipt: null, elapsedMs: performance.now() - start, timedOut: true};
+}
+
 async function browserTrial(env,browser,mode,condition,trial,protocol,output) {
     await env.reset(mode);
     const mobile=trial%2===0;
@@ -53,20 +79,22 @@ async function browserTrial(env,browser,mode,condition,trial,protocol,output) {
             await page.getByRole('button',{name:'Open cart and order status'}).click();
         }
         await new Promise(resolve=>setTimeout(resolve,protocol.retryDelayMs));
-        const recoveryStart=performance.now();
-        await page.getByRole('button',{name:mode==='recovery'?'Retry same purchase':/^Place Order/}).click();
-        await page.getByRole('heading',{name:'Order Status',exact:true}).waitFor({timeout:protocol.recoveryDeadlineMs});
-        const elapsedMs=performance.now()-recoveryStart;
-        const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('smart-menu-cart')).state);
-        const response=await context.request.get(env.bases[mode]+'/p/orders/'+state.orderId);
-        const shown=await response.json();
+        const retry = page.getByRole('button', {name: mode === 'recovery' ? 'Retry same purchase' : /^Place Order/});
+        const {receipt, timedOut, elapsedMs} = await readReceiptOnRetry(page, retry, protocol.recoveryDeadlineMs);
         const count=await env.database(mode).collection('orders').countDocuments({submissionOutcome:{$nin:['rejected','cancelled']}});
-        const text=await page.getByRole('dialog',{name:'Cart and order status'}).innerText();
-        const result={mode,condition,trial,viewport:mobile?'mobile':'desktop',acceptedId:accepted.order._id,displayedId:state.orderId,acceptedTotal:8,displayedTotal:shown.order?.total,renderedTotalPresent:text.includes('$8.00'),storedOrders:count,recoveryMs:elapsedMs,lostConfirmationAfterCommit:verified,databaseKeptDuringRestart:condition==='application-restart',pageErrors:errors};
-        result.recovered=state.orderId===accepted.order._id&&shown.order?.total===8&&result.renderedTotalPresent&&count===1&&elapsedMs<=protocol.recoveryDeadlineMs;
+        const acceptedTotal = accepted.order.total;
+        const correctTotal = receipt?.total === '$' + acceptedTotal.toFixed(2);
+        const result = {
+            mode, condition, trial, viewport: mobile ? 'mobile' : 'desktop',
+            acceptedId: accepted.order._id, acceptedTotal, displayedId: receipt?.id ?? null,
+            displayedTotalText: receipt?.total ?? null, storedOrders: count, recoveryMs: elapsedMs,
+            timedOut, lostConfirmationAfterCommit: verified, databaseKeptDuringRestart: condition === 'application-restart',
+            pageErrors: errors, recovered: !timedOut && receipt?.id === accepted.order._id && correctTotal && count === 1,
+        };
         assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
         assert.deepEqual(errors,[]);
         if(trial===0) await page.screenshot({path:path.join(output,`${mode}-${condition}.png`)});
+        if(trial===1 && condition==='lost-confirmation') await page.screenshot({path:path.join(output,`${mode}-desktop-receipt.png`)});
         await fs.appendFile(path.join(output,'browser-results.jsonl'),JSON.stringify(result)+'\n');
         return result;
     } catch(error) {
@@ -78,6 +106,21 @@ async function browserTrial(env,browser,mode,condition,trial,protocol,output) {
 async function extraRecoveryChecks(env,browser,output) {
     const mode='recovery',base=env.bases[mode],db=env.database(mode);
     const results=[];
+    const receiptPage = await browser.newPage();
+    try {
+        await receiptPage.setContent('<button>Retry</button><section role="dialog" aria-label="Cart and order status">' +
+            '<p>$8.00</p><span data-testid="receipt-reference">first</span>' +
+            '<span data-testid="receipt-total" hidden>$9.00</span></section>');
+        const retry = receiptPage.getByRole('button', {name: 'Retry'});
+        const timeout = await readReceiptOnRetry(receiptPage, retry, 500);
+        assert.equal(timeout.timedOut, true);
+        assert.equal(timeout.receipt, null);
+        await receiptPage.getByTestId('receipt-total').evaluate(node => { node.hidden = false; });
+        const next = await readReceiptOnRetry(receiptPage, retry, 2000);
+        assert.equal(next.timedOut, false);
+        assert.deepEqual(next.receipt, {id: 'first', total: '$9.00'});
+        results.push('missing receipt total times out; the next trial reads the visible total');
+    } finally { await receiptPage.close(); }
     // Reject an unavailable item, allow editing and a genuinely new request.
     await env.reset(mode);
     const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});

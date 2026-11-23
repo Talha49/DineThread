@@ -35,13 +35,23 @@ function maxOverlap(entries) {
     const events = entries.map(e=>[BigInt(e.tick), e.event==='start'?1:-1]).sort((a,b)=>a[0]<b[0]?-1:a[0]>b[0]?1:b[1]-a[1]);
     let active=0,max=0; for(const [,delta] of events) { active+=delta; max=Math.max(max,active); } return max;
 }
+function observeDeadline(ids, insertedAt, sentAtMs, budgetMs) {
+    const deadlineMs = sentAtMs + budgetMs;
+    const insertedAtMs = ids.map(id => {
+        assert.ok(insertedAt.has(id), 'Missing database insert timestamp for ' + id);
+        return insertedAt.get(id);
+    });
+    return {sentAtMs, deadlineMs, insertedAtMs, storedByDeadline: insertedAtMs.some(time => time <= deadlineMs)};
+}
 async function batchRun(env, mode, expected, condition, protocol, output) {
     await env.reset(mode);
     await attempt(env,mode,{ ...expected[0], purchase:'warmup',requestId:stableUuid('warmup')},0,protocol);
     await env.database(mode).collection('orders').deleteMany({});
     const records=[], overlap=[];
+    const sentAt = new Map();
     for(const purchase of expected) {
         const firstSent=performance.now();
+        sentAt.set(purchase.purchase, Date.now());
         if(condition==='two-copy'||condition==='five-copy') {
             records.push(...await Promise.all(Array.from({length:condition==='two-copy'?2:5},(_,i)=>attempt(env,mode,purchase,i,protocol))));
         } else {
@@ -58,12 +68,23 @@ async function batchRun(env, mode, expected, condition, protocol, output) {
     const orders=await env.database(mode).collection('orders').find({submissionOutcome:{$nin:['rejected','cancelled']}}).toArray();
     const stored=new Map(orders.map(o=>[String(o._id),o]));
     const mappings=expected.map(p=>({ purchase:p.purchase, ids:[...new Set(trace.filter(e=>e.purchase===p.purchase && e.orderId).map(e=>e.orderId))].filter(id=>stored.has(id)) }));
+    // MongoDB timestamps successful inserts on the same host as the client.
+    // A later read can then distinguish a late insertion from a late reply.
+    const db = env.database(mode);
+    const inserts = await db.collection('system.profile').find({
+        ns: db.databaseName + '.orders', op: 'insert', ninserted: 1,
+        ts: {$gte: new Date(Math.min(...sentAt.values()))},
+    }, {projection: {ts: 1, 'command.documents._id': 1}}).toArray();
+    const insertedAt = new Map(inserts.map(entry => [String(entry.command.documents[0]._id), entry.ts.getTime()]));
+    for (const mapping of mappings) {
+        Object.assign(mapping, observeDeadline(mapping.ids, insertedAt, sentAt.get(mapping.purchase), protocol.observationDeadlineMs));
+    }
     const idPurchases=new Map(); for(const m of mappings) for(const id of m.ids) idPurchases.set(id,[...(idPurchases.get(id)||[]),m.purchase]);
     let duplicates=0,extraOrders=0,lost=0,incorrectTotals=0,recovered=0,conflicts=0;
     for(const p of expected) {
         const mapping=mappings.find(m=>m.purchase===p.purchase);
         if(mapping.ids.length>1) { duplicates++; extraOrders+=mapping.ids.length-1; }
-        if(!mapping.ids.length) lost++;
+        if(!mapping.storedByDeadline) lost++;
         if(mapping.ids.some(id=>stored.get(id).total!==p.expectedTotal)) incorrectTotals++;
         const calls=records.filter(r=>r.purchase===p.purchase);
         if(condition==='lost-confirmation') {
@@ -103,6 +124,10 @@ async function main() {
     await fs.writeFile(path.join(output,'environment.json'),JSON.stringify({at:new Date().toISOString(),pilot,node:process.version,platform:process.platform,arch:process.arch,cpus:os.cpus().map(c=>c.model),memoryBytes:os.totalmem(),protocolSha256:createHash('sha256').update(await fs.readFile(protocolPath)).digest('hex')},null,2));
     const env=await createEnvironment(output), results=[];
     try {
+        for (const mode of ['baseline', 'recovery']) {
+            const db = env.database(mode);
+            await db.command({profile: 1, filter: {ns: db.databaseName + '.orders', op: 'insert'}});
+        }
         for(const group of expected) {
             const order=(group.batch+conditions.indexOf(group.condition))%2?['recovery','baseline']:['baseline','recovery'];
             for(const mode of order) results.push(await batchRun(env,mode,group.purchases,group.condition,protocol,output));
@@ -116,4 +141,4 @@ async function main() {
     } finally { await env.close(); }
 }
 if(require.main===module) main().catch(error=>{console.error(error);process.exitCode=1;});
-module.exports={workload,median,percentile,stableUuid};
+module.exports={workload,median,percentile,stableUuid,observeDeadline};

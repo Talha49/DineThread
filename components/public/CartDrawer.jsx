@@ -338,6 +338,9 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
             <div>
                 <p className="text-xs font-black uppercase tracking-widest text-zinc-400">{order.table?.label}</p>
                 <h2 className="text-2xl font-black italic tracking-tighter">Order Status</h2>
+                <p className="mt-1 break-all text-sm text-zinc-600">
+                    Order reference <span className="font-mono" data-testid="receipt-reference">{order._id}</span>
+                </p>
             </div>
 
             <div className="flex items-center justify-between">
@@ -373,7 +376,7 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
                 ))}
                 <div className="flex justify-between pt-3 border-t font-black">
                     <span>Total</span>
-                    <span>${order.total.toFixed(2)}</span>
+                    <span data-testid="receipt-total">${order.total.toFixed(2)}</span>
                 </div>
             </div>
 
