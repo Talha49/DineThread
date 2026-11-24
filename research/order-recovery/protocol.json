@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "workloadFrozenAt": "2026-11-13T15:58:40.104330+00:00",
+  "frozenAt": "2026-11-23T00:07:50+00:00",
+  "seed": "aby-order-recovery-2026-11-13-v1",
+  "apiBatches": 20,
+  "purchasesPerBatch": 20,
+  "browserPairedTrialsPerCondition": 5,
+  "requestTimeoutMs": 15000,
+  "observationDeadlineMs": 15000,
+  "recoveryDeadlineMs": 10000,
+  "retryDelayMs": 100,
+  "conditions": [
+    "normal",
+    "sequential",
+    "two-copy",
+    "five-copy",
+    "separate-identical",
+    "changed-payload",
+    "lost-confirmation"
+  ],
+  "browserConditions": [
+    "lost-confirmation",
+    "reload",
+    "application-restart"
+  ],
+  "optionalTenCopyIncluded": false,
+  "reset": "Delete synthetic records between version-batches, retain indexes. Keep database during application-restart trials.",
+  "order": "Alternate baseline/recovery by condition index plus batch or trial number.",
+  "oracle": "Prewritten intended-purchase IDs, fixed fixture prices and quantities; server attempt labels are observations only.",
+  "observation": "For each purchase, compare the database's successful insert completion timestamp with the deadline measured from the first send. The local client and MongoDB use the same host clock. Retain late records and responses for reconciliation.",
+  "receipt": "Time from the first permitted retry until the visible reference and labelled total can be read. An incorrect receipt or a timeout counts as a failed trial. The database must contain exactly one accepted order.",
+  "scope": "Local single-host synthetic workloads, not production capacity or restaurant demand. Baseline and recovery share pricing and ownership. Whole combined design is compared.",
+  "pilotEvidence": [
+    "qa-results/api-pilot-1795392333587",
+    "qa-results/browser-pilot-1795392358226"
+  ],
+  "retainedFailedPilot": "qa-results/browser-pilot-1794585229868",
+  "pilotDecision": "Retain 20 paired API batches of 20 purchases and five paired browser trials per condition. Both versions recorded overlapping requests and confirmed inserts before response loss. The browser pilot checked visible references and totals and continued after a receipt timeout."
+}
