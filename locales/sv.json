@@ -24,7 +24,7 @@
     "links": {
       "visual_dna": "Visuellt DNA",
       "seasonal_engine": "Säsongsmotor",
-      "ai_intelligence": "AI-intelligens",
+      "ai_intelligence": "Exempelmärken",
       "pricing": "Priser",
       "api_docs": "API-dokumentation",
       "about_us": "Om oss",
@@ -60,12 +60,12 @@
           "desc": "Använd Design Studio för att välja färger, teckensnitt och layouter."
         },
         {
-          "title": "Optimera med AI",
-          "desc": "Aktivera AI-värmekartor för att lyfta fram populära rätter."
+          "title": "Exempelmärken",
+          "desc": "Förhandsvisa exempelmärken. De använder inte kundbeteende eller försäljningsdata."
         }
       ],
       "why_optimize": "Varför optimera din meny?",
-      "why_desc": "En välorganiserad digital meny säljer mer. Genom att använda **AI-värmekartor** och **Kategorioptimering** kan du vägleda kunderna.",
+      "why_desc": "Ordna kategorier och förhandsvisa exempelmärken innan du väljer menydesign.",
       "benefits": [
         "Realtidskontroll",
         "Omedelbar QR-kodgenerering"
@@ -76,7 +76,7 @@
         "live": "Live",
         "rows": [
           "Kategorihantering",
-          "AI-objektsmarkering",
+          "Exempelmärken",
           "Dynamiska prisregler"
         ]
       }
@@ -92,11 +92,6 @@
         "Dynamiska bakgrundspartiklar",
         "Manuella förhandsgranskningar"
       ]
-    },
-    "testimonial": {
-      "quote": "\"Designstudion är banbrytande. Vi har sett en 22% ökning i genomsnittligt ordervärde.\"",
-      "author": "Marcus Sterling",
-      "role": "Direktör, Gastronomy Group"
     },
     "cta": {
       "title_1": "Redo att lyfta",
@@ -117,8 +112,8 @@
           "desc": "Anpassningsbar high-end estetik med premiumtypsnitt och färger."
         },
         {
-          "title": "AI 'Heta' märken",
-          "desc": "Markera automatiskt dina mest sålda rätter."
+          "title": "Exempelmärken",
+          "desc": "Förhandsvisa exempelmärken. De använder inte kundbeteende eller försäljningsdata."
         },
         {
           "title": "Auto-Magiska Teman",
@@ -165,7 +160,7 @@
           "features": [
             "Obegränsat antal rätter",
             "Säsongsteman",
-            "AI-märken",
+            "Exempelmärken",
             "Schemalagda Happy Hours",
             "Anpassat varumärke",
             "E-postsupport"
@@ -242,7 +237,7 @@
       },
       "pro": {
         "title": "Bli Professionell",
-        "desc": "Lås upp obegränsade menyalternativ, AI-värmekartor och premiumteman.",
+        "desc": "Lås upp obegränsade menyalternativ, exempelmärken och premiumteman.",
         "btn": "Se priser"
       }
     },

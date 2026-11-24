@@ -8,6 +8,27 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { QuickStartTab } from '@/components/dashboard/design-studio/QuickStartTab';
 
 describe('QuickStartTab', () => {
+    test('reset and deletion cannot run while a save is pending, then become available', () => {
+        const onReset = jest.fn(), onDeleteCustomTheme = jest.fn();
+        const props = { onReset, onDeleteCustomTheme, customThemes: [{ id: 'one', name: 'Saved theme', config: {} }] };
+        const { rerender } = render(<QuickStartTab {...props} isSaving />);
+        const reset = screen.getByRole('button', { name: /Reset Studio/ });
+        expect(reset).toBeDisabled();
+        fireEvent.click(reset);
+        expect(onReset).not.toHaveBeenCalled();
+        fireEvent.click(screen.getByText(/My Themes/));
+        const remove = screen.getByTitle('Delete theme');
+        expect(remove).toBeDisabled();
+        fireEvent.click(remove);
+        expect(onDeleteCustomTheme).not.toHaveBeenCalled();
+        rerender(<QuickStartTab {...props} isSaving={false} />);
+        fireEvent.click(remove);
+        expect(onDeleteCustomTheme).toHaveBeenCalledWith(props.customThemes[0]);
+        fireEvent.click(screen.getByText('Curated'));
+        fireEvent.click(screen.getByRole('button', { name: /Reset Studio/ }));
+        expect(onReset).toHaveBeenCalledTimes(1);
+    });
+
     const mockOnApply = jest.fn();
 
     beforeEach(() => {

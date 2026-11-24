@@ -1,4 +1,4 @@
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Playfair_Display, Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
@@ -16,6 +16,9 @@ const outfit = Outfit({
   variable: "--font-outfit",
   display: 'swap',
 });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap', preload: false });
+const bebas = Bebas_Neue({ subsets: ['latin'], weight: '400', variable: '--font-bebas', display: 'swap', preload: false });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', display: 'swap', preload: false });
 
 export const metadata = {
   metadataBase: new URL("https://davoriq.com"),
@@ -112,7 +115,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground font-sans`}>
+      <body className={`${inter.variable} ${outfit.variable} ${playfair.variable} ${bebas.variable} ${montserrat.variable} antialiased bg-background text-foreground font-sans`}>
         <AuthProvider>
           <ImageUploadProvider>
             <GlobalLoader />

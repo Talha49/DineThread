@@ -24,7 +24,7 @@
     "links": {
       "visual_dna": "Visuelt DNA",
       "seasonal_engine": "Sæsonmotor",
-      "ai_intelligence": "AI-intelligens",
+      "ai_intelligence": "Eksempelbadges",
       "pricing": "Priser",
       "api_docs": "API-dokumentation",
       "about_us": "Om os",
@@ -60,12 +60,12 @@
           "desc": "Brug Design Studio til at vælge farver, skrifttyper og layout."
         },
         {
-          "title": "Optimer med AI",
-          "desc": "Aktiver AI-varmekort for at fremhæve populære elementer."
+          "title": "Eksempelbadges",
+          "desc": "Se eksempelbadges. De bruger ikke kundeadfærd eller salgsdata."
         }
       ],
       "why_optimize": "Hvorfor optimere din menu?",
-      "why_desc": "En velorganiseret digital menu sælger mere. Ved at bruge **AI-varmekort** kan du guide kunderne.",
+      "why_desc": "Organiser kategorier og se eksempelbadges, før du vælger menudesign.",
       "benefits": [
         "Realtids kontrol",
         "Øjeblikkelig QR-kodegenerering"
@@ -76,7 +76,7 @@
         "live": "Live",
         "rows": [
           "Kategoristyring",
-          "AI-elementfremhævning",
+          "Eksempelbadges",
           "Dynamiske prisregler"
         ]
       }
@@ -92,11 +92,6 @@
         "Dynamiske baggrundspartikler",
         "Manuelle forhåndsvisninger"
       ]
-    },
-    "testimonial": {
-      "quote": "\"Designstudiet er fantastisk. Vi har set en stigning på 22% i den gennemsnitlige ordreværdi.\"",
-      "author": "Marcus Sterling",
-      "role": "Direktør, Gastronomy Group"
     },
     "cta": {
       "title_1": "Klar til at hæve",
@@ -117,8 +112,8 @@
           "desc": "Tilpas high-end æstetik med premium skrifttyper og farver."
         },
         {
-          "title": "AI 'Hot'-badges",
-          "desc": "Fremhæv automatisk dine bedst sælgende varer."
+          "title": "Eksempelbadges",
+          "desc": "Se eksempelbadges. De bruger ikke kundeadfærd eller salgsdata."
         },
         {
           "title": "Auto-Magiske Temaer",
@@ -165,7 +160,7 @@
           "features": [
             "Ubegrænsede elementer",
             "Sæsontemaer",
-            "AI-badges",
+            "Eksempelbadges",
             "Planlagte Happy Hours",
             "Brugerdefineret brand",
             "E-mail support"
@@ -242,7 +237,7 @@
       },
       "pro": {
         "title": "Bliv Professionel",
-        "desc": "Lås op for ubegrænsede menupunkter, AI-varmekort og premiumtemaer.",
+        "desc": "Lås op for ubegrænsede menupunkter, eksempelbadges og premiumtemaer.",
         "btn": "Se priser"
       }
     },

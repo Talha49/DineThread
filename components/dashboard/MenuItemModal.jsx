@@ -220,11 +220,13 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                     ? parseFloat(formData.variants.find(v => v.isDefault)?.price || 0)
                     : parseFloat(formData.price || 0),
                 variants: hasVariants ? formData.variants.map(v => ({
+                    ...(v._id ? { _id: v._id } : {}),
                     name: v.name.trim(),
                     price: parseFloat(v.price),
                     isDefault: v.isDefault
                 })) : [],
                 modifiers: formData.modifiers.map(m => ({
+                    ...(m._id ? { _id: m._id } : {}),
                     name: m.name.trim(),
                     price: parseFloat(m.price),
                     category: m.category?.trim() || ""
@@ -392,7 +394,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
 
                                 {formData.variants.length === 0 ? (
                                     <div className="text-center py-8 text-sm text-muted-foreground border border-dashed rounded-lg">
-                                        No size options yet. Click "Add Size" to get started.
+                                                No size options yet. Click &quot;Add Size&quot; to get started.
                                     </div>
                                 ) : (
                                     <div className="space-y-2">
@@ -465,7 +467,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
 
                         {formData.modifiers.length === 0 ? (
                             <div className="text-center py-12 text-sm text-muted-foreground border border-dashed rounded-lg">
-                                No add-ons yet. Click "Add Modifier" to create optional extras.
+                                                No add-ons yet. Click &quot;Add Modifier&quot; to create optional extras.
                             </div>
                         ) : (
                             <div className="space-y-2">

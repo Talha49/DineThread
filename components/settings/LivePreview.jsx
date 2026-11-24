@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
+import { usePreviewSender } from '@/hooks/use-theme-preview';
 import { DeviceFrameset } from 'react-device-frameset';
 import 'react-device-frameset/styles/marvel-devices.min.css';
 
@@ -19,38 +20,10 @@ export function LivePreview({
     const previewUrl = restaurantId ? `/menu/${restaurantId}?preview=true` : null;
     const { brandColor, fontFamily, logoUrl, layoutID } = branding || {};
 
-    useEffect(() => {
-        const sendUpdate = () => {
-            if (iframeRef.current?.contentWindow) {
-                const experienceConfig = restaurant?.experienceConfig || {};
-                iframeRef.current.contentWindow.postMessage({
-                    type: "PREVIEW_UPDATE",
-                    data: {
-                        brandColor,
-                        fontFamily,
-                        logoUrl,
-                        experienceConfig: {
-                            ...experienceConfig,
-                            layoutID: layoutID || experienceConfig.layoutID,
-                            themeConfig: branding?.themeConfig || experienceConfig.themeConfig
-                        }
-                    }
-                }, "*");
-            }
-        };
-        sendUpdate();
-        const timer = setTimeout(sendUpdate, 1000);
-        return () => clearTimeout(timer);
-    }, [
-        brandColor, 
-        fontFamily, 
-        logoUrl, 
-        layoutID, 
-        previewUrl, 
-        restaurant?.experienceConfig?.vibeTokens, 
-        restaurant?.experienceConfig?.themeConfig,
-        restaurant?.experienceConfig?.designSystem?.config
-    ]);
+    const experienceConfig = restaurant?.experienceConfig || {};
+    const connect = usePreviewSender(iframeRef, { brandColor, fontFamily, logoUrl,
+        experienceConfig: { ...experienceConfig, layoutID: layoutID || experienceConfig.layoutID,
+            themeConfig: branding?.themeConfig || experienceConfig.themeConfig } }, previewUrl);
 
     const hasNotch = NOTCH_DEVICES.includes(device);
     const topPad = hasNotch ? 44 : 24;
@@ -66,6 +39,7 @@ export function LivePreview({
             ) : (
                 <iframe
                     ref={iframeRef}
+                    onLoad={connect}
                     src={previewUrl}
                     className="w-full border-none"
                     style={{

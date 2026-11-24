@@ -24,7 +24,7 @@
     "links": {
       "visual_dna": "Visuelt DNA",
       "seasonal_engine": "Sesongmotor",
-      "ai_intelligence": "AI-intelligens",
+      "ai_intelligence": "Eksempelmerker",
       "pricing": "Priser",
       "api_docs": "API-dokumentasjon",
       "about_us": "Om oss",
@@ -60,12 +60,12 @@
           "desc": "Bruk Design Studio for å velge farger, skrifttyper og oppsett."
         },
         {
-          "title": "Optimaliser med AI",
-          "desc": "Aktiver AI-varmekart for å fremheve populære elementer."
+          "title": "Eksempelmerker",
+          "desc": "Forhåndsvis eksempelmerker. De bruker ikke kundeatferd eller salgsdata."
         }
       ],
       "why_optimize": "Hvorfor optimalisere menyen din?",
-      "why_desc": "En godt organisert digital meny selger mer. Ved å bruke **AI-varmekart** og **Kategorioptimalisering**, kan du guide kundene automatisk.",
+      "why_desc": "Organiser kategorier og forhåndsvis eksempelmerker før du velger menydesign.",
       "benefits": [
         "Sanntids dashbord-kontroll",
         "Umiddelbar QR-kodegenerering"
@@ -76,7 +76,7 @@
         "live": "Live",
         "rows": [
           "Kategoristyring",
-          "AI-elementfremheving",
+          "Eksempelmerker",
           "Dynamiske prisregler"
         ]
       }
@@ -92,11 +92,6 @@
         "Dynamiske bakgrunnspartikler",
         "Manuelle forhåndsvisningsbrytere"
       ]
-    },
-    "testimonial": {
-      "quote": "\"Designstudioet er fantastisk. Vi har sett en 22% økning i gjennomsnittlig ordreverdi.\"",
-      "author": "Marcus Sterling",
-      "role": "Direktør, Gastronomy Group"
     },
     "cta": {
       "title_1": "Klar til å heve",
@@ -117,8 +112,8 @@
           "desc": "Tilpassbar high-end estetikk med premium skrifttyper og farger."
         },
         {
-          "title": "AI 'Hot'-merker",
-          "desc": "Fremhev automatisk de mest solgte elementene."
+          "title": "Eksempelmerker",
+          "desc": "Forhåndsvis eksempelmerker. De bruker ikke kundeatferd eller salgsdata."
         },
         {
           "title": "Auto-Magiske Temaer",
@@ -165,7 +160,7 @@
           "features": [
             "Ubegrensede elementer",
             "Sesongtemaer",
-            "AI-merker",
+            "Eksempelmerker",
             "Planlagte Happy Hours",
             "Egendefinert merkevare",
             "E-poststøtte"
@@ -242,7 +237,7 @@
       },
       "pro": {
         "title": "Gå profesjonell",
-        "desc": "Lås opp ubegrensede menyelementer, AI-varmekart og premium-temaer.",
+        "desc": "Lås opp ubegrensede menyelementer, eksempelmerker og premiumtemaer.",
         "btn": "Se priser"
       }
     },

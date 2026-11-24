@@ -9,6 +9,7 @@ import { ResponsiveGrid } from '@/components/ui/ResponsiveGrid';
 export function QuickStartTab({
     onApplyPreset,
     onReset,
+    isSaving = false,
     onStartCustom,
     currentPresetId,
     contentWidth = 600,
@@ -104,7 +105,8 @@ export function QuickStartTab({
                         {/* Reset Action Card */}
                         <button
                             onClick={() => onReset && onReset()}
-                            className="group relative p-6 rounded-[2rem] border-2 border-dashed border-red-100 bg-red-50/30 transition-all text-left flex flex-col items-start gap-4 hover:border-red-200 hover:bg-red-50 hover:shadow-xl active:scale-95"
+                            disabled={isSaving}
+                            className="group relative p-6 rounded-[2rem] border-2 border-dashed border-red-100 bg-red-50/30 transition-all text-left flex flex-col items-start gap-4 hover:border-red-200 hover:bg-red-50 hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-wait"
                         >
                             <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-sm group-hover:rotate-12 transition-transform">
                                 🗑️
@@ -177,14 +179,14 @@ export function QuickStartTab({
                         <div className="space-y-1">
                             <h3 className="text-lg font-black tracking-tight text-indigo-600">New Custom Theme</h3>
                             <p className="text-xs text-indigo-400 font-medium leading-relaxed">
-                                Start from a blank canvas, then save it here when you're happy with it.
+                                Start from a blank canvas, then save it here when you&apos;re happy with it.
                             </p>
                         </div>
                     </button>
 
                     {customThemes.length === 0 && (
                         <div className="col-span-full text-center py-12 space-y-3">
-                            <p className="text-zinc-400 text-sm font-medium">No saved themes yet. Design something in the other tabs, then use "Save as My Theme" to keep it here.</p>
+                            <p className="text-zinc-400 text-sm font-medium">No saved themes yet. Design something in the other tabs, then use &quot;Save as My Theme&quot; to keep it here.</p>
                         </div>
                     )}
 
@@ -221,6 +223,7 @@ export function QuickStartTab({
 
                             <button
                                 onClick={() => onDeleteCustomTheme && onDeleteCustomTheme(theme)}
+                                disabled={isSaving}
                                 title="Delete theme"
                                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white border border-zinc-100 shadow-sm flex items-center justify-center text-zinc-300 hover:text-red-500 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100"
                             >

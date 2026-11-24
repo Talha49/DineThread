@@ -3,7 +3,7 @@
 /**
  * Advanced Automations & Scheduling Tab
  * 
- * Controls for seasonal transitions and AI-driven layout optimization.
+ * Controls for seasonal transitions and sample item highlighting.
  */
 
 import { Calendar, Bot, Zap, Clock } from 'lucide-react';
@@ -72,22 +72,22 @@ export function AutomationsTab({ config, contentWidth = 600, onChange }) {
                             <h3 className={cn(
                                 "text-lg font-black italic tracking-tight mb-2 uppercase",
                                 config?.intelligence?.heatmap?.enabled ? "text-white" : "text-zinc-900"
-                            )}>Heatmap Optimization</h3>
+                            )}>Sample Highlighting</h3>
                             <p className={cn(
                                 "text-xs font-medium leading-relaxed",
                                 config?.intelligence?.heatmap?.enabled ? "text-white/50" : "text-zinc-500"
                             )}>
-                                AI analyzes customer interactions to automatically promote high-margin items during peak hours.
+                                Preview sample item badges. These use item names and random selection, not customer behaviour or sales data.
                             </p>
 
                             {config?.intelligence?.heatmap?.enabled && (
                                 <div className="mt-6 flex items-center gap-3 animate-in slide-in-from-left-4">
                                     <div className="flex -space-x-2">
                                         {[1, 2, 3].map(i => (
-                                            <div key={i} className="w-6 h-6 rounded-full border-2 border-zinc-900 bg-primary flex items-center justify-center text-[8px] font-bold">AI</div>
+                                            <div key={i} className="w-6 h-6 rounded-full border-2 border-zinc-900 bg-primary flex items-center justify-center text-[8px] font-bold">{i}</div>
                                         ))}
                                     </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Optimizing Live...</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Sample badges enabled</span>
                                 </div>
                             )}
                         </div>
@@ -108,7 +108,7 @@ export function AutomationsTab({ config, contentWidth = 600, onChange }) {
                                         : "bg-white text-zinc-900 border-2 border-zinc-200"
                                 )}
                             >
-                                {config?.intelligence?.heatmap?.enabled ? 'Active' : 'Activate AI'}
+                                {config?.intelligence?.heatmap?.enabled ? 'Disable sample badges' : 'Enable sample badges'}
                             </button>
 
                             {config?.intelligence?.heatmap?.enabled && (
@@ -131,7 +131,7 @@ export function AutomationsTab({ config, contentWidth = 600, onChange }) {
                                             config?.intelligence?.heatmap?.showPreview ? "right-1" : "left-1"
                                         )} />
                                     </div>
-                                    <span className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">Show Heatmap</span>
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">Show sample badges</span>
                                 </label>
                             )}
                         </div>
