@@ -33,7 +33,12 @@ export async function GET(req) {
             .limit(isHistory ? 200 : 0)
             .lean();
 
-        return NextResponse.json({ orders: orders.map(publicOrder) });
+        const [summary] = isHistory ? await Order.aggregate([
+            { $match: { restaurant: restaurant._id, ...acceptedOrderFilter, status: 'paid' } },
+            { $group: { _id: null, paidCount: { $sum: 1 }, totalPence: { $sum: { $round: [{ $multiply: ['$total', 100] }, 0] } } } },
+            { $project: { _id: 0, paidCount: 1, totalPence: 1 } },
+        ]) : [];
+        return NextResponse.json({ orders: orders.map(publicOrder), ...(isHistory ? { summary: summary || { paidCount: 0, totalPence: 0 } } : {}) }, { headers: { 'Cache-Control': 'no-store' } });
     } catch (error) {
         return NextResponse.json({ message: "Server error" }, { status: 500 });
     }
