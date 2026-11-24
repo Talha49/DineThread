@@ -39,8 +39,9 @@ async function createEnvironment(output, options = {}) {
     const client = await MongoClient.connect(mongo.getUri());
     const apps = {}, proxies = {}, drops = [];
     const secrets = { baseline: randomBytes(32).toString('hex'), recovery: randomBytes(32).toString('hex') };
-    const bases = { baseline: 'http://127.0.0.1:3041', recovery: 'http://127.0.0.1:3042' };
-    const proxyBases = { baseline: 'http://127.0.0.1:3043', recovery: 'http://127.0.0.1:3044' };
+    const offset = options.portOffset || 0;
+    const bases = { baseline: `http://127.0.0.1:${3041 + offset}`, recovery: `http://127.0.0.1:${3042 + offset}` };
+    const proxyBases = { baseline: `http://127.0.0.1:${3043 + offset}`, recovery: `http://127.0.0.1:${3044 + offset}` };
     const database = mode => client.db(`dinethread_${mode}_research`);
     const logPath = mode => path.join(output, `server-${mode}.jsonl`);
     const reset = async mode => {

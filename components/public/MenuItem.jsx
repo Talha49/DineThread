@@ -12,7 +12,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 
 /**
@@ -40,6 +40,7 @@ export function MenuItem({ item, theme, onClick, variant }) {
  * Image left, content right - classic restaurant menu style
  */
 export function HorizontalCard({ item, theme, onClick }) {
+    const reduceMotion = useReducedMotion();
     const tConfig = theme?.config || theme;
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -55,8 +56,14 @@ export function HorizontalCard({ item, theme, onClick }) {
     return (
         <motion.div
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${item.name}`}
+            onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick?.(); }
+            }}
             className={cn(
-                "group flex items-center gap-4 cursor-pointer transition-all duration-300 relative",
+                "group flex items-center gap-4 cursor-pointer transition-colors duration-300 relative",
                 isPopular && "ring-2 ring-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]"
             )}
             style={{
@@ -67,14 +74,14 @@ export function HorizontalCard({ item, theme, onClick }) {
                 backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
                 opacity: `var(--theme-glass-opacity, 1)`
             }}
-            whileHover={{
+            whileHover={reduceMotion ? undefined : {
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.02 : 1,
                 y: tConfig?.menuItem?.card?.hoverEffect === 'lift' ? -4 : 0,
                 boxShadow: tConfig?.menuItem?.card?.hoverEffect === 'glow'
                     ? `0 8px 20px ${tConfig?.colors?.brand?.primary}40`
                     : cardShadow
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
         >
             {/* Image */}
             {imageEnabled && (
@@ -90,7 +97,7 @@ export function HorizontalCard({ item, theme, onClick }) {
                         src={item.imageUrl}
                         alt={item.name}
                         className={cn(
-                            "w-full h-full transition-all duration-500",
+                            "w-full h-full transition-colors duration-500",
                             `object-${tConfig?.menuItem?.image?.objectFit || 'cover'}`,
                             imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110",
                             "group-hover:scale-110"
@@ -162,6 +169,7 @@ export function HorizontalCard({ item, theme, onClick }) {
  * Image top, content bottom - Instagram/Pinterest style
  */
 export function VerticalCard({ item, theme, onClick }) {
+    const reduceMotion = useReducedMotion();
     const tConfig = theme?.config || theme;
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -177,8 +185,14 @@ export function VerticalCard({ item, theme, onClick }) {
     return (
         <motion.div
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${item.name}`}
+            onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick?.(); }
+            }}
             className={cn(
-                "group cursor-pointer overflow-hidden transition-all duration-300 relative",
+                "group cursor-pointer overflow-hidden transition-colors duration-300 relative",
                 isPopular && "ring-2 ring-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]"
             )}
             style={{
@@ -188,14 +202,14 @@ export function VerticalCard({ item, theme, onClick }) {
                 backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
                 opacity: `var(--theme-glass-opacity, 1)`
             }}
-            whileHover={{
+            whileHover={reduceMotion ? undefined : {
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.03 : 1,
                 y: tConfig?.menuItem?.card?.hoverEffect === 'lift' ? -6 : 0,
                 boxShadow: tConfig?.menuItem?.card?.hoverEffect === 'glow'
                     ? `0 8px 20px ${tConfig?.colors?.brand?.primary}40`
                     : cardShadow
             }}
-            whileTap={{ scale: 0.97 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.97 }}
         >
             {/* Image */}
             {imageEnabled && (
@@ -207,7 +221,7 @@ export function VerticalCard({ item, theme, onClick }) {
                         src={item.imageUrl}
                         alt={item.name}
                         className={cn(
-                            "w-full h-full transition-all duration-500",
+                            "w-full h-full transition-colors duration-500",
                             `object-${tConfig?.menuItem?.image?.objectFit || 'cover'}`,
                             imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110",
                             "group-hover:scale-105"
@@ -271,6 +285,7 @@ export function VerticalCard({ item, theme, onClick }) {
  * Image background with content overlay - dramatic presentation
  */
 export function OverlayCard({ item, theme, onClick }) {
+    const reduceMotion = useReducedMotion();
     const tConfig = theme?.config || theme;
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -285,8 +300,14 @@ export function OverlayCard({ item, theme, onClick }) {
     return (
         <motion.div
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${item.name}`}
+            onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick?.(); }
+            }}
             className={cn(
-                "group relative cursor-pointer overflow-hidden transition-all duration-300",
+                "group relative cursor-pointer overflow-hidden transition-colors duration-300",
                 isPopular && "ring-4 ring-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.4)]"
             )}
             style={{
@@ -295,11 +316,11 @@ export function OverlayCard({ item, theme, onClick }) {
                 aspectRatio: tConfig?.menuItem?.image?.aspectRatio || '4/3',
                 minHeight: '250px'
             }}
-            whileHover={{
+            whileHover={reduceMotion ? undefined : {
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.02 : 1,
                 y: tConfig?.menuItem?.card?.hoverEffect === 'lift' ? -4 : 0
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
         >
             {/* Background Image */}
             {imageEnabled ? (
@@ -307,7 +328,7 @@ export function OverlayCard({ item, theme, onClick }) {
                     src={item.imageUrl}
                     alt={item.name}
                     className={cn(
-                        "absolute inset-0 w-full h-full transition-all duration-700",
+                        "absolute inset-0 w-full h-full transition-colors duration-700",
                         `object-${tConfig?.menuItem?.image?.objectFit || 'cover'}`,
                         imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110",
                         "group-hover:scale-110"
@@ -379,15 +400,22 @@ export function OverlayCard({ item, theme, onClick }) {
  * Text-only, compact - for high-density menus
  */
 export function MinimalCard({ item, theme, onClick }) {
+    const reduceMotion = useReducedMotion();
     const tConfig = theme?.config || theme;
     return (
         <motion.div
             onClick={onClick}
-            className="group cursor-pointer border-b transition-all duration-200 py-4"
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${item.name}`}
+            onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick?.(); }
+            }}
+            className="group cursor-pointer border-b transition-colors duration-200 py-4"
             style={{
                 borderColor: tConfig?.colors?.borders?.light || '#E5E7EB'
             }}
-            whileHover={{
+            whileHover={reduceMotion ? undefined : {
                 backgroundColor: tConfig?.colors?.backgrounds?.card || '#F9FAFB',
                 paddingLeft: '8px'
             }}
@@ -446,6 +474,7 @@ export function MinimalCard({ item, theme, onClick }) {
  * High-end editorial style for featured items
  */
 export function MagazineCard({ item, theme, onClick }) {
+    const reduceMotion = useReducedMotion();
     const tConfig = theme?.config || theme;
     const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -460,8 +489,14 @@ export function MagazineCard({ item, theme, onClick }) {
     return (
         <motion.div
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            aria-label={`View ${item.name}`}
+            onKeyDown={event => {
+                if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); onClick?.(); }
+            }}
             className={cn(
-                "group relative h-full w-full cursor-pointer overflow-hidden flex flex-col transition-all duration-700",
+                "group relative h-full w-full cursor-pointer overflow-hidden flex flex-col transition-colors duration-700",
                 isPopular && "ring-4 ring-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.4)]"
             )}
             style={{
@@ -471,11 +506,11 @@ export function MagazineCard({ item, theme, onClick }) {
                 backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
                 opacity: `var(--theme-glass-opacity, 1)`
             }}
-            whileHover={{ 
+            whileHover={reduceMotion ? undefined : {
                 y: tConfig?.menuItem?.card?.hoverEffect === 'lift' ? -8 : 0,
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.02 : 1
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
         >
             {/* Heatmap Badge */}
             {isPopular && (
@@ -491,7 +526,7 @@ export function MagazineCard({ item, theme, onClick }) {
                     src={item.imageUrl}
                     alt={item.name}
                     className={cn(
-                        "w-full h-full transition-all duration-1000",
+                        "w-full h-full transition-colors duration-1000",
                         `object-${tConfig?.menuItem?.image?.objectFit || 'cover'}`,
                         imageLoaded ? "opacity-100 scale-100" : "opacity-0 scale-110",
                         "group-hover:scale-110"

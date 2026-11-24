@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Two-tone focus indicator stays visible on light and dark menu surfaces. */
+:is(button, a, input, select, textarea, [role="button"]):focus-visible {
+  outline: 3px solid #18181b;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #fff;
+  scroll-margin-block: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @theme {
   /* Colors */
   --color-background: var(--background);

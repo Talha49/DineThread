@@ -2,7 +2,7 @@
 
 import { MenuItem } from "../MenuItem";
 import { useTheme } from "@/contexts/ThemeContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const MOTION_MAPPING = {
@@ -14,6 +14,7 @@ const MOTION_MAPPING = {
 
 export function ClassicGrid({ isTVMode, groupedItems, setSelectedItem }) {
     const theme = useTheme();
+    const reduceMotion = useReducedMotion();
     const entrance = theme.config?.animations?.itemEntrance || { type: 'stagger' };
     
     // Map IDs to Framer Motion variants
@@ -56,12 +57,12 @@ export function ClassicGrid({ isTVMode, groupedItems, setSelectedItem }) {
                             <motion.div
                                 key={item._id}
                                 layout
-                                initial={variant.initial}
+                                initial={reduceMotion ? false : variant.initial}
                                 whileInView={variant.animate}
                                 viewport={{ once: true }}
                                 transition={{
-                                    duration: 0.8,
-                                    delay: index * 0.05,
+                                    duration: reduceMotion ? 0 : 0.8,
+                                    delay: reduceMotion ? 0 : index * 0.05,
                                     ease: motionEase
                                 }}
                                 className="menu-item"
