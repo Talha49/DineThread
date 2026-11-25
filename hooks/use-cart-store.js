@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { selectionKey } from "@/lib/catalogue-policy";
 
 export function pendingPurchaseFor(state, restaurantId) {
     return Object.hasOwn(state.pendingPurchases, restaurantId) ? state.pendingPurchases[restaurantId] : undefined;
@@ -19,11 +20,12 @@ export const useCartStore = create(
             // used to reconstruct an uncertain submission.
             pendingPurchases: {},
             confirmedOrders: {},
+            needsPriceConfirmation: false,
 
             ensureRestaurant: (restaurantId) => {
                 if (get().restaurantId !== restaurantId) {
                     const orders = get().confirmedOrders;
-                    set({ restaurantId, tableId: null, items: [], orderId: Object.hasOwn(orders, restaurantId) ? orders[restaurantId] : null });
+                    set({ restaurantId, tableId: null, items: [], needsPriceConfirmation: false, orderId: Object.hasOwn(orders, restaurantId) ? orders[restaurantId] : null });
                 }
             },
 
@@ -31,7 +33,7 @@ export const useCartStore = create(
 
             addItem: (line) => {
                 // Same item + same variant/modifiers combo just bumps quantity.
-                const key = [line.menuItemId, line.variantName || "", (line.modifierNames || []).slice().sort().join(",")].join("|");
+                const key = selectionKey(line);
                 set((state) => {
                     const existing = state.items.find((i) => i.key === key);
                     if (existing) {
@@ -55,6 +57,13 @@ export const useCartStore = create(
 
             clearCart: () => set({ items: [] }),
 
+            applyCheckoutQuote: (restaurantId, originalItems, quotes) => set(state => {
+                if (state.restaurantId !== restaurantId || JSON.stringify(state.items) !== JSON.stringify(originalItems)) return state;
+                const byKey = new Map(quotes.map(quote => [quote.key, quote]));
+                if (state.items.some(line => !byKey.has(selectionKey(line)))) return state;
+                return { needsPriceConfirmation: true, items: state.items.map(line => ({ ...line, ...byKey.get(selectionKey(line)), key: line.key })) };
+            }),
+
             beginPurchase: (restaurantId, purchase) => {
                 const pending = pendingPurchaseFor(get(), restaurantId);
                 if (pending) return pending;
@@ -72,6 +81,7 @@ export const useCartStore = create(
                     confirmedOrders: { ...state.confirmedOrders, [restaurantId]: orderId },
                     ...(state.restaurantId === restaurantId ? {
                         orderId,
+                        needsPriceConfirmation: false,
                         items: JSON.stringify(state.items) === JSON.stringify(pending?.cartItems) ? [] : state.items,
                     } : {}),
                 };
