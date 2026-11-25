@@ -79,7 +79,7 @@ export async function DELETE(req, { params }) {
     if (!itemToDelete) return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
 
     // Attempt to delete image from Blob storage if it exists
-    if (itemToDelete.imageUrl) {
+    if (itemToDelete.imageUrl && !itemToDelete.imageUrl.startsWith('/')) {
         try {
             await del(itemToDelete.imageUrl);
         } catch (blobError) {

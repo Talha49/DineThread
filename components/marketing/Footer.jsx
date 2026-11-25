@@ -20,7 +20,7 @@ export function Footer() {
                             <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-zinc-900 shadow-xl">
                                 <Sparkles className="w-5 h-5" />
                             </div>
-                            <span className="text-xl font-black italic tracking-tighter uppercase text-white">Davoriq</span>
+                            <span className="text-xl font-black italic tracking-tighter uppercase text-white">DineThread</span>
                         </Link>
                         <p className="text-sm text-white/50 font-medium leading-relaxed max-w-xs">
                             {t('footer.description')}
@@ -73,10 +73,12 @@ export function Footer() {
                     <div>
                         <h5 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-8">{t('footer.contact')}</h5>
                         <ul className="space-y-4">
-                            <li className="flex items-center gap-3 text-white/60">
-                                <Mail className="w-4 h-4" />
-                                <span className="text-[11px] font-bold">hello@smartmenu.ai</span>
-                            </li>
+                            {process.env.NEXT_PUBLIC_CONTACT_EMAIL && (
+                                <li className="flex items-center gap-3 text-white/60">
+                                    <Mail className="w-4 h-4" />
+                                    <span className="text-[11px] font-bold">{process.env.NEXT_PUBLIC_CONTACT_EMAIL}</span>
+                                </li>
+                            )}
                             <li className="flex items-center gap-3 text-white/60">
                                 <MapPin className="w-4 h-4" />
                                 <span className="text-[11px] font-bold">London, United Kingdom</span>

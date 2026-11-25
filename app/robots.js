@@ -1,3 +1,5 @@
+import { siteOrigin } from "@/lib/site-origin";
+
 export default function robots() {
   return {
     rules: {
@@ -5,6 +7,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/dashboard/', '/api/'], // Prevent crawling of private dashboards and raw APIs
     },
-    sitemap: 'https://davoriq.com/sitemap.xml',
+    sitemap: `${siteOrigin}/sitemap.xml`,
   };
 }

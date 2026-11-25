@@ -91,7 +91,7 @@ export function ImageUpload({ value, onChange, disabled }) {
     };
 
     const handleRemove = async () => {
-        if (value) {
+        if (value && !value.startsWith('/')) {
             try {
                 await fetch('/api/upload/delete', {
                     method: 'POST',

@@ -8,7 +8,7 @@ const translations = {
   en: {
     workflow: {
       tag: "Simple Workflow",
-      title_1: "How SmartMenu",
+      title_1: "How DineThread",
       title_2: "works for you",
       steps: [
         { title: "Create Categories", desc: "Organize your menu into logical sections like Starters, Mains, and Drinks. Simply name them and set their order." },
@@ -25,7 +25,7 @@ const translations = {
       tag: "Intelligent Automation",
       title_1: "Automatic Seasonal",
       title_2: "Themes & Pricing",
-      desc: "Stop worrying about updating your menu for every holiday. SmartMenu automatically changes your themes and atmosphere effects to match the season, and optimizes your prices for Happy Hour.",
+      desc: "Stop worrying about updating your menu for every holiday. DineThread automatically changes your themes and atmosphere effects to match the season, and optimizes your prices for Happy Hour.",
       features: ["12 Pre-configured Monthly Overlays", "Automated Lighting & Color Transitions", "Dynamic Background Particle Engines", "Manual Preview Dashboard Toggles"]
     },
     cta: {
@@ -64,7 +64,7 @@ const translations = {
   ar: {
     workflow: {
       tag: "سير عمل بسيط",
-      title_1: "كيف تعمل القائمة الذكية",
+      title_1: "كيف تعمل DineThread",
       title_2: "من أجلك",
       steps: [
         { title: "إنشاء الفئات", desc: "نظم قائمتك في أقسام منطقية مثل المقبلات، والأطباق الرئيسية، والمشروبات. ببساطة قم بتسميتها وتحديد ترتيبها." },
@@ -81,7 +81,7 @@ const translations = {
       tag: "أتمتة ذكية",
       title_1: "سمات وأسعار",
       title_2: "موسمية تلقائية",
-      desc: "توقف عن القلق بشأن تحديث قائمتك لكل عطلة. تقوم القائمة الذكية بتغيير السمات وتأثيرات الأجواء تلقائيًا لتتناسب مع الموسم، وتحسن أسعارك لساعات التخفيضات.",
+      desc: "توقف عن القلق بشأن تحديث قائمتك لكل عطلة. تقوم DineThread بتغيير السمات وتأثيرات الأجواء تلقائيًا لتتناسب مع الموسم، وتحسن أسعارك لساعات التخفيضات.",
       features: ["12 مظهر شهري مسبق التكوين", "انتقالات تلقائية للإضاءة والألوان", "محركات جزيئات خلفية ديناميكية", "مفاتيح معاينة يدوية في لوحة القيادة"]
     },
     cta: {
@@ -120,7 +120,7 @@ const translations = {
   no: {
     workflow: {
       tag: "Enkel arbeidsflyt",
-      title_1: "Hvordan SmartMenu",
+      title_1: "Hvordan DineThread",
       title_2: "fungerer for deg",
       steps: [
         { title: "Opprett kategorier", desc: "Organiser menyen i logiske seksjoner som Forretter, Hovedretter og Drikke." },
@@ -137,7 +137,7 @@ const translations = {
       tag: "Intelligent Automasjon",
       title_1: "Automatisk sesongbasert",
       title_2: "Temaer og priser",
-      desc: "SmartMenu endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
+      desc: "DineThread endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
       features: ["12 forhåndskonfigurerte månedlige overlegg", "Automatiske fargeoverganger", "Dynamiske bakgrunnspartikler", "Manuelle forhåndsvisningsbrytere"]
     },
     cta: {
@@ -176,7 +176,7 @@ const translations = {
   sv: {
     workflow: {
       tag: "Enkelt arbetsflöde",
-      title_1: "Hur SmartMenu",
+      title_1: "Hur DineThread",
       title_2: "fungerar för dig",
       steps: [
         { title: "Skapa kategorier", desc: "Organisera menyn i logiska avsnitt som Förrätter, Varmrätter och Drycker." },
@@ -193,7 +193,7 @@ const translations = {
       tag: "Intelligent Automation",
       title_1: "Automatiska säsongsbaserade",
       title_2: "Teman & Priser",
-      desc: "SmartMenu ändrar automatiskt dina teman och atmosfäreffekter för att matcha säsongen.",
+      desc: "DineThread ändrar automatiskt dina teman och atmosfäreffekter för att matcha säsongen.",
       features: ["12 förkonfigurerade månatliga överlägg", "Automatiska färgövergångar", "Dynamiska bakgrundspartiklar", "Manuella förhandsgranskningar"]
     },
     cta: {
@@ -232,7 +232,7 @@ const translations = {
   da: {
     workflow: {
       tag: "Simpel arbejdsgang",
-      title_1: "Hvordan SmartMenu",
+      title_1: "Hvordan DineThread",
       title_2: "fungerer for dig",
       steps: [
         { title: "Opret Kategorier", desc: "Organiser din menu i logiske sektioner som Forretter, Hovedretter og Drikkevarer." },
@@ -249,7 +249,7 @@ const translations = {
       tag: "Intelligent Automation",
       title_1: "Automatisk Sæsonbaseret",
       title_2: "Temaer & Priser",
-      desc: "SmartMenu ændrer automatisk dine temaer for at matche sæsonen.",
+      desc: "DineThread ændrer automatisk dine temaer for at matche sæsonen.",
       features: ["12 forudkonfigurerede månedlige overlays", "Automatiske farveovergange", "Dynamiske baggrundspartikler", "Manuelle forhåndsvisninger"]
     },
     cta: {
@@ -288,7 +288,7 @@ const translations = {
   tr: {
     workflow: {
       tag: "Basit İş Akışı",
-      title_1: "SmartMenu Sizin İçin",
+      title_1: "DineThread Sizin İçin",
       title_2: "Nasıl Çalışır",
       steps: [
         { title: "Kategoriler Oluşturun", desc: "Menünüzü mantıksal bölümlere ayırın. Sadece isim verin ve sıralarını belirleyin." },
@@ -305,7 +305,7 @@ const translations = {
       tag: "Akıllı Otomasyon",
       title_1: "Otomatik Mevsimsel",
       title_2: "Temalar ve Fiyatlandırma",
-      desc: "SmartMenu temalarınızı mevsime göre otomatik değiştirir.",
+      desc: "DineThread temalarınızı mevsime göre otomatik değiştirir.",
       features: ["12 aylık ön ayar", "Otomatik renk geçişleri", "Dinamik arka plan", "Manuel önizleme"]
     },
     cta: {

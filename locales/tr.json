@@ -18,7 +18,7 @@
     "platform": "Platform",
     "company": "Şirket",
     "contact": "İletişim",
-    "rights": "© 2024 Davoriq. Vizyonerler için tasarlandı.",
+    "rights": "© 2024 DineThread. Vizyonerler için tasarlandı.",
     "privacy": "Gizlilik Politikası",
     "security": "Güvenlik",
     "links": {
@@ -44,7 +44,7 @@
     },
     "workflow": {
       "tag": "Basit İş Akışı",
-      "title_1": "Davoriq Sizin İçin",
+      "title_1": "DineThread Sizin İçin",
       "title_2": "Nasıl Çalışır",
       "steps": [
         {
@@ -85,7 +85,7 @@
       "tag": "Akıllı Otomasyon",
       "title_1": "Otomatik Mevsimsel",
       "title_2": "Temalar ve Fiyatlandırma",
-      "desc": "Davoriq temalarınızı mevsime göre otomatik değiştirir.",
+      "desc": "DineThread temalarınızı mevsime göre otomatik değiştirir.",
       "features": [
         "12 aylık ön ayar",
         "Otomatik renk geçişleri",
@@ -263,7 +263,6 @@
     "visual_gastronomy": "Görsel Gastronomi",
     "search_placeholder": "Deneyiminizi seçin...",
     "share": "Paylaş",
-    "smart_menu": "SMART MENU",
     "future_dining": "YEMEĞİN GELECEĞİ",
     "establishment_info": "KURUM BİLGİSİ",
     "location": "KONUM",

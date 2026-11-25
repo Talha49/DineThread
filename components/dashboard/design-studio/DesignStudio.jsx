@@ -320,7 +320,7 @@ export function DesignStudio() {
                                 <div className="space-y-2">
                                     <h2 className="text-3xl font-black tracking-tight text-zinc-900">Pro Feature</h2>
                                     <p className="text-zinc-500 font-medium leading-relaxed">
-                                        Upgrade to Davoriq Pro to unlock full customization. Design custom layouts, advanced colors, and create a unique visual DNA for your brand.
+                                        Upgrade to DineThread Pro to unlock full customization. Design custom layouts, advanced colors, and create a unique visual DNA for your brand.
                                     </p>
                                 </div>
                                 <div className="pt-4">

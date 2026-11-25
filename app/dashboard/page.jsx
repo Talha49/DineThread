@@ -190,9 +190,14 @@ export default function DashboardPage() {
                                 <p className="text-sm text-white/70 font-medium mb-6">{t('dashboard.overview.pro.desc')}</p>
                                 <button
                                     onClick={() => {
-                                        const subject = encodeURIComponent("Davoriq Pro - early access");
+                                        const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+                                        if (!contactEmail) {
+                                            toast.error("Early access requests are currently closed.");
+                                            return;
+                                        }
+                                        const subject = encodeURIComponent("DineThread Pro - early access");
                                         const body = encodeURIComponent(`Hi,\n\nI'd like to upgrade "${restaurant?.name || 'my restaurant'}" (${restaurant?.restaurantId || ''}) to Pro.\n\nThanks!`);
-                                        window.location.href = `mailto:hello@davoriq.com?subject=${subject}&body=${body}`;
+                                        window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
                                         toast.success("Opening your email client...");
                                     }}
                                     className="w-full bg-white text-primary text-[10px] font-black uppercase tracking-widest py-4 px-6 rounded-2xl shadow-lg hover:opacity-90 transition-opacity"

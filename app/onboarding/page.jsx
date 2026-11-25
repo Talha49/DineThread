@@ -160,7 +160,7 @@ export default function OnboardingPage() {
                 colors: [formData.brandColor, '#ffffff']
             });
 
-            toast.success("Welcome to Davoriq!");
+            toast.success("Welcome to DineThread!");
 
             // Refresh user state to get the new restaurantId
             await refresh();
@@ -356,7 +356,7 @@ function StepIdentity({ formData, slugStatus, loading, onChange, onSlugChange, o
                     />
                     <div className="flex items-center justify-between px-1">
                         <p className="text-xs text-muted-foreground flex items-center gap-1.5">
-                            smartmenu.com/<span className={cn("font-bold", isSuccess ? "text-green-600" : "text-foreground")}>
+                            /menu/<span className={cn("font-bold", isSuccess ? "text-green-600" : "text-foreground")}>
                                 {formData.restaurantId || 'link'}
                             </span>
                         </p>

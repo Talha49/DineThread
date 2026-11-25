@@ -52,7 +52,7 @@ export function Sidebar({ className, onClose, isMobile }) {
             <div className="flex h-16 items-center px-6 border-b justify-between">
                 <Link href="/dashboard" className="flex items-center gap-2 font-display font-bold text-xl tracking-tight">
                     <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                        Davoriq
+                        DineThread
                     </span>
                 </Link>
                 {isMobile && (

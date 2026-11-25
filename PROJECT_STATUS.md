@@ -1,16 +1,16 @@
-# SmartMenu: Project Status & Architecture Report
+# DineThread project status and architecture
 
-> **Generated on:** January 8, 2026
+> **Last updated:** November 25, 2026
 > **Version:** 0.1.0 (Alpha)
 > **Status:** Active Development (Post-Redesign Revert)
 
-This document serves as the **Single Source of Truth** for the SmartMenu SaaS project. It details the architecture, database schema, technology stack, and current implementation status of every module.
+This January 2026 snapshot describes the architecture, database schema and modules of the restaurant menu application.
 
 ---
 
 ## 1. Project Overview
 
-**SmartMenu** is a Next.js-based SaaS platform enabling restaurants to create, manage, and customize digital QR menus. It features a sophisticated **Theme Engine** that allows for high-end, dynamic visual customization ("Vibes") and granular control ("Theme Studio").
+**DineThread** is a Next.js-based SaaS platform enabling restaurants to create, manage, and customize digital QR menus. It features a sophisticated **Theme Engine** that allows for high-end, dynamic visual customization ("Vibes") and granular control ("Theme Studio").
 
 ### Core Capabilities
 - **Digital Menu Management**: Categories, Items, Prices, Images.
@@ -57,7 +57,7 @@ graph TD
 
 ### Directory Structure Map
 ```
-d:\FullStack\smart-menu\
+DineThread/
 ├── app/                        # Next.js App Router
 │   ├── (auth)/                 # Login/Register Routes
 │   ├── api/                    # Backend API Endpoints

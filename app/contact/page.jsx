@@ -89,13 +89,15 @@ export default function ContactPage({ user }) {
                         {/* Contact Info */}
                         <div className="space-y-12 py-10">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="p-8 rounded-[3rem] bg-zinc-50 border-2 border-zinc-100 hover:border-primary/20 transition-colors group">
-                                    <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <Mail className="w-5 h-5 text-zinc-900" />
+                                {process.env.NEXT_PUBLIC_CONTACT_EMAIL && (
+                                    <div className="p-8 rounded-[3rem] bg-zinc-50 border-2 border-zinc-100 hover:border-primary/20 transition-colors group">
+                                        <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                            <Mail className="w-5 h-5 text-zinc-900" />
+                                        </div>
+                                        <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Email Us</h4>
+                                        <p className="text-lg font-black italic tracking-tighter uppercase text-zinc-900">{process.env.NEXT_PUBLIC_CONTACT_EMAIL}</p>
                                     </div>
-                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2">Email Us</h4>
-                                    <p className="text-lg font-black italic tracking-tighter uppercase text-zinc-900">hello@smartmenu.ai</p>
-                                </div>
+                                )}
                                 <div className="p-8 rounded-[3rem] bg-zinc-50 border-2 border-zinc-100 hover:border-primary/20 transition-colors group">
                                     <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                         <Phone className="w-5 h-5 text-zinc-900" />

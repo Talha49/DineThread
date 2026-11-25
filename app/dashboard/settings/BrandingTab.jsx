@@ -67,7 +67,7 @@ export function BrandingTab() {
                     <Lock className="w-12 h-12 text-primary mb-4" />
                     <h3 className="text-xl font-bold mb-2">Pro Feature</h3>
                     <p className="text-muted-foreground mb-6 max-w-sm">
-                        Upgrade to Davoriq Pro to customize your logo and layout.
+                        Upgrade to DineThread Pro to customize your logo and layout.
                     </p>
                     <Button className="bg-gradient-to-r from-primary to-purple-600 hover:opacity-90">
                         Upgrade to Pro

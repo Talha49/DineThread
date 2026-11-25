@@ -232,7 +232,7 @@ export default function Home({ user }) {
             >
               <img 
                 src="/seasonal-showcase.png" 
-                alt="Davoriq Digital QR Menu Software Interface Showcase" 
+                alt="DineThread Digital QR Menu Software Interface Showcase"
                 className="w-full h-full object-cover"
               />
             </motion.div>
