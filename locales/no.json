@@ -18,7 +18,7 @@
     "platform": "Plattform",
     "company": "Selskap",
     "contact": "Kontakt",
-    "rights": "© 2024 Davoriq. Bygget for visjonære.",
+    "rights": "© 2024 DineThread. Bygget for visjonære.",
     "privacy": "Personvern",
     "security": "Sikkerhet",
     "links": {
@@ -44,7 +44,7 @@
     },
     "workflow": {
       "tag": "Enkel arbeidsflyt",
-      "title_1": "Hvordan Davoriq",
+      "title_1": "Hvordan DineThread",
       "title_2": "fungerer for deg",
       "steps": [
         {
@@ -85,7 +85,7 @@
       "tag": "Intelligent Automasjon",
       "title_1": "Automatisk sesongbasert",
       "title_2": "Temaer og priser",
-      "desc": "Davoriq endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
+      "desc": "DineThread endrer automatisk temaene og atmosfæreeffektene dine for å matche sesongen.",
       "features": [
         "12 forhåndskonfigurerte månedlige overlegg",
         "Automatiske fargeoverganger",
@@ -263,7 +263,6 @@
     "visual_gastronomy": "Visuell Gastronomi",
     "search_placeholder": "Tilpass din opplevelse...",
     "share": "Del",
-    "smart_menu": "SMART MENU",
     "future_dining": "FREMTIDENS SERVERING",
     "establishment_info": "ETABLISSEMENTSINFO",
     "location": "BELIGGENHET",

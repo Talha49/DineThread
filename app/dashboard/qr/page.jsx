@@ -57,7 +57,7 @@ export default function QRPage() {
         if (!qrUrl) return;
         const link = document.createElement("a");
         link.href = qrUrl;
-        link.download = `smart-menu-${restaurant?.restaurantId}-qr.png`;
+        link.download = `dinethread-${restaurant?.restaurantId}-qr.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

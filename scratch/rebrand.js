@@ -5,7 +5,7 @@ function replaceInFile(filePath) {
     if (!fs.existsSync(filePath)) return;
     let content = fs.readFileSync(filePath, 'utf8');
     if (content.includes('SmartMenu')) {
-        content = content.replace(/SmartMenu/g, 'Davoriq');
+        content = content.replace(/SmartMenu/g, 'DineThread');
         fs.writeFileSync(filePath, content, 'utf8');
         console.log(`Updated: ${filePath}`);
     }
@@ -30,7 +30,7 @@ const filesToUpdate = [
 ];
 
 filesToUpdate.forEach(file => {
-    const fullPath = path.join('d:/FullStack/smart-menu', file);
+    const fullPath = path.resolve(__dirname, '..', file);
     replaceInFile(fullPath);
 });
 

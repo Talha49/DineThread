@@ -18,7 +18,7 @@ export default function TestComponentsPage() {
             <div className="max-w-5xl mx-auto space-y-12">
                 <header className="space-y-4">
                     <h1 className="text-4xl font-bold font-display bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                        Davoriq UI Kit
+                        DineThread UI Kit
                     </h1>
                     <p className="text-muted-foreground text-lg">
                         Chunk 1.1 & 1.2 Verification: Base Component Library

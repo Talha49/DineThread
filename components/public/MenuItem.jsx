@@ -88,8 +88,8 @@ export function HorizontalCard({ item, theme, onClick }) {
                 <div
                     className="flex-shrink-0 overflow-hidden"
                     style={{
-                        width: tConfig?.menuItem?.image?.position === 'left' ? '120px' : '80px',
-                        height: tConfig?.menuItem?.image?.position === 'left' ? '120px' : '80px',
+                        width: tConfig?.menuItem?.image?.position === 'left' ? 'min(28%, 120px)' : 'min(28%, 80px)',
+                        aspectRatio: '1',
                         borderRadius: `${tConfig?.borders?.radius?.[tConfig?.menuItem?.image?.borderRadius] || 12}px`
                     }}
                 >
@@ -112,7 +112,7 @@ export function HorizontalCard({ item, theme, onClick }) {
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                     <h3
-                        className="font-bold line-clamp-2"
+                        className="min-w-0 font-bold break-words"
                         style={{
                             fontSize: `var(--text-item-name, ${tConfig?.typography?.sizes?.itemName || 18}px)`,
                             color: tConfig?.colors?.text?.primary,

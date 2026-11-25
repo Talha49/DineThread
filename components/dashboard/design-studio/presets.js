@@ -1,7 +1,7 @@
 /**
  * Unified Preset Library
  * 
- * Professional collection of curated design presets for Davoriq.
+ * Professional collection of curated design presets for DineThread.
  * Each preset is a complete, validated design system configuration.
  * 
  * @version 2.0.0

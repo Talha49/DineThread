@@ -64,7 +64,7 @@ export default function LoginPage() {
             <div className="max-w-md w-full animate-fade-in">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold font-display bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent inline-block mb-2">
-                        Davoriq
+                        DineThread
                     </h1>
                     <p className="text-muted-foreground">{t('home.hero.subtitle').substring(0, 40)}...</p>
                 </div>

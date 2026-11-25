@@ -1,12 +1,12 @@
 /**
  * Design System Configuration Defaults
  * 
- * Enterprise-grade default configuration for the Davoriq Design System.
+ * Enterprise-grade default configuration for the DineThread Design System.
  * Every field is intentionally defined to prevent runtime null reference errors
  * and provide sensible fallbacks for incomplete preset data.
  * 
  * @version 2.0.0
- * @author Davoriq Design Team
+ * @author DineThread Design Team
  */
 
 import { deepMerge } from '@/lib/object-utils';

@@ -40,7 +40,7 @@ export function Navbar({ user }) {
                     <div className="w-10 h-10 bg-zinc-900 rounded-2xl flex items-center justify-center text-white shadow-xl group-hover:rotate-12 transition-transform">
                         <Sparkles className="w-5 h-5" />
                     </div>
-                    <span className="text-xl font-black italic tracking-tighter uppercase text-zinc-900">Davoriq</span>
+                    <span className="text-xl font-black italic tracking-tighter uppercase text-zinc-900">DineThread</span>
                 </Link>
 
                 {/* Desktop Links */}

@@ -499,7 +499,7 @@ export default function PublicMenuPage() {
                         </div>
 
                         <div className="flex flex-col items-center text-center gap-3 md:gap-4">
-                            <div className="text-xl md:text-2xl font-black italic tracking-tighter text-zinc-600 select-none">{t('live_menu.smart_menu')}</div>
+                            <div className="text-xl md:text-2xl font-black italic tracking-tighter text-zinc-600 select-none">DineThread</div>
                             <p className="text-[8px] md:text-[10px] uppercase font-black tracking-[0.2em] text-zinc-600">
                                 ©{new Date().getFullYear()} {activeRestaurant.name.toUpperCase()} / {t('live_menu.future_dining')}
                             </p>

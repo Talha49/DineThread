@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import en from '@/locales/en.json';
@@ -23,19 +24,10 @@ export const useTranslationStore = create(
         (set, get) => ({
             language: 'en',
             
-            // Set the new language and immediately apply RTL/LTR styling
-            setLanguage: (lang) => {
-                const langObj = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0];
-                if (typeof document !== 'undefined') {
-                    document.documentElement.dir = langObj.dir;
-                    document.documentElement.lang = langObj.code;
-                }
-                set({ language: lang });
-            },
+            setLanguage: (language) => set({ language }),
             
             // Core translation function t('nav.features')
-            t: (key) => {
-                const { language } = get();
+            t: (key, language = get().language) => {
                 const dict = dictionaries[language] || dictionaries['en'];
                 const keys = key.split('.');
                 
@@ -66,14 +58,7 @@ export const useTranslationStore = create(
         }),
         {
             name: 'smartmenu-language',
-            // When Zustand rehydrates from localStorage on first load, apply direction
-            onRehydrateStorage: () => (state) => {
-                if (state && typeof document !== 'undefined') {
-                    const langObj = LANGUAGES.find(l => l.code === state.language) || LANGUAGES[0];
-                    document.documentElement.dir = langObj.dir;
-                    document.documentElement.lang = langObj.code;
-                }
-            }
+            skipHydration: true,
         }
     )
 );
@@ -82,6 +67,8 @@ export const useTranslationStore = create(
 export function useTranslation() {
     const language = useTranslationStore(state => state.language);
     const setLanguage = useTranslationStore(state => state.setLanguage);
-    const t = useTranslationStore(state => state.t);
+    const translate = useTranslationStore(state => state.t);
+    // A section still hydrating must translate with its own React snapshot.
+    const t = useCallback(key => translate(key, language), [translate, language]);
     return { language, setLanguage, t };
 }

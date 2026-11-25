@@ -1,7 +1,9 @@
 import { Inter, Outfit, Playfair_Display, Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
+import { siteOrigin } from "@/lib/site-origin";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { LanguageSync } from "@/components/providers/LanguageSync";
 import { GlobalLoader } from "@/components/ui/GlobalLoader";
 import { ImageUploadProvider } from "@/context/ImageUploadContext";
 
@@ -21,17 +23,17 @@ const bebas = Bebas_Neue({ subsets: ['latin'], weight: '400', variable: '--font-
 const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat', display: 'swap', preload: false });
 
 export const metadata = {
-  metadataBase: new URL("https://davoriq.com"),
+  metadataBase: new URL(siteOrigin),
   title: {
-    default: "Davoriq | Best Digital QR Menu Maker & Restaurant Software",
-    template: "%s | Davoriq Digital Menus"
+    default: "DineThread | Best Digital QR Menu Maker & Restaurant Software",
+    template: "%s | DineThread Digital Menus"
   },
-  description: "Davoriq is the ultimate digital QR menu maker and restaurant ordering system. Create stunning, contactless smart menus in seconds, increase sales, and elevate your dine-in experience.",
+  description: "DineThread is the ultimate digital QR menu maker and restaurant ordering system. Create stunning, contactless smart menus in seconds, increase sales, and elevate your dine-in experience.",
   keywords: [
     "QR code menu generator", 
     "digital menu software", 
     "contactless restaurant menu", 
-    "Davoriq", 
+    "DineThread",
     "smart restaurant menu", 
     "dine-in ordering system",
     "restaurant menu builder",
@@ -39,23 +41,23 @@ export const metadata = {
     "digital dining experience",
     "scan to order menu"
   ],
-  authors: [{ name: "Davoriq" }],
-  creator: "Davoriq",
-  publisher: "Davoriq",
+  authors: [{ name: "DineThread" }],
+  creator: "DineThread",
+  publisher: "DineThread",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Davoriq | Best Digital QR Menu Maker",
+    title: "DineThread | Best Digital QR Menu Maker",
     description: "Create beautiful digital menus for your restaurant in seconds. Increase sales with our intelligent, contactless ordering system.",
-    url: "https://davoriq.com",
-    siteName: "Davoriq",
+    url: siteOrigin,
+    siteName: "DineThread",
     images: [
       {
-        url: "/og-image.png", // Ensure you add an og-image.png to the public folder
-        width: 1200,
-        height: 630,
-        alt: "Davoriq Digital Menu Software Preview",
+        url: "/dashboard-showcase.png",
+        width: 1024,
+        height: 1024,
+        alt: "DineThread Digital Menu Software Preview",
       },
     ],
     locale: "en_US",
@@ -63,10 +65,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Davoriq | Digital QR Menu SaaS",
+    title: "DineThread | Digital QR Menu SaaS",
     description: "Create beautiful, high-converting digital menus for your restaurant in seconds.",
-    images: ["/og-image.png"],
-    creator: "@davoriq", // Optional: Change to your actual Twitter handle
+    images: ["/dashboard-showcase.png"],
   },
   robots: {
     index: true,
@@ -79,9 +80,6 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: "google-site-verification=F7dWTD5auE9UbBI1vaiJfzIpZ9Fw0PhUL30enmTYfqM", // TODO: Replace this with actual Google Console ID
-  },
 };
 
 export default function RootLayout({ children }) {
@@ -89,10 +87,10 @@ export default function RootLayout({ children }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Davoriq",
+    "name": "DineThread",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "All",
-    "url": "https://davoriq.com",
+    "url": siteOrigin,
     "description": "Enterprise-grade digital QR menu maker and smart contactless ordering system for restaurants and hospitality businesses.",
     "offers": {
       "@type": "Offer",
@@ -102,13 +100,13 @@ export default function RootLayout({ children }) {
     },
     "creator": {
       "@type": "Organization",
-      "name": "Davoriq",
-      "url": "https://davoriq.com"
+      "name": "DineThread",
+      "url": siteOrigin
     }
   };
 
   return (
-    <html lang="en">
+    <html lang="en" dir="ltr">
       <head>
         <script
           type="application/ld+json"
@@ -116,6 +114,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${inter.variable} ${outfit.variable} ${playfair.variable} ${bebas.variable} ${montserrat.variable} antialiased bg-background text-foreground font-sans`}>
+        <LanguageSync />
         <AuthProvider>
           <ImageUploadProvider>
             <GlobalLoader />
