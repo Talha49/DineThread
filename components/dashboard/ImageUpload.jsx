@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { useImageUpload } from "@/context/ImageUploadContext";
 
-async function uploadImage(file) {
+export async function uploadImage(file) {
     const reservation = await fetch('/api/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -19,15 +19,25 @@ async function uploadImage(file) {
     return upload(pathname, file, { access: 'public', handleUploadUrl: '/api/upload' });
 }
 
-export function ImageUpload({ value, onChange, disabled }) {
+export function ImageUpload({ value, onChange, disabled, onFileReady, onProcessingChange }) {
     const { requestCrop, compressImage } = useImageUpload();
     const [isLoading, setIsLoading] = useState(false);
     const [dragActive, setDragActive] = useState(false);
     const [aiUsed, setAiUsed] = useState(false);
     const inputRef = useRef(null);
+    const processing = useRef(false);
+
+    async function acceptPhoto(file) {
+        if (onFileReady) {
+            onFileReady(file);
+        } else {
+            const photo = await uploadImage(file);
+            onChange(photo.url);
+        }
+    }
 
     const handleFile = async (file) => {
-        if (!file) return;
+        if (!file || processing.current || disabled) return;
 
         // Validate type
         const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
@@ -37,6 +47,8 @@ export function ImageUpload({ value, onChange, disabled }) {
         }
 
         let toastId;
+        processing.current = true;
+        onProcessingChange?.(true);
         try {
             // 1. Crop (User interaction)
             // This opens the modal via context and waits for user to click "Done"
@@ -49,16 +61,16 @@ export function ImageUpload({ value, onChange, disabled }) {
             // 2. Compress
             const compressedFile = await compressImage(croppedBlob);
 
-            const newBlob = await uploadImage(compressedFile);
-
-            onChange(newBlob.url);
+            await acceptPhoto(compressedFile);
             setAiUsed(false); // Reset AI usage on new upload
-            toast.success("Image uploaded", { id: toastId });
+            toast.success(onFileReady ? "Photo ready to save" : "Image uploaded", { id: toastId });
         } catch (error) {
             console.error(error);
             toast.error("Upload failed", { id: toastId });
         } finally {
             setIsLoading(false);
+            processing.current = false;
+            onProcessingChange?.(false);
         }
     };
 
@@ -153,8 +165,10 @@ export function ImageUpload({ value, onChange, disabled }) {
                                         e.preventDefault();
                                         e.stopPropagation();
 
-                                        if (isLoading) return;
+                                        if (processing.current || disabled) return;
+                                        processing.current = true;
                                         setIsLoading(true);
+                                        onProcessingChange?.(true);
                                         const toastId = toast.loading("Removing background via AI...");
 
                                         try {
@@ -175,10 +189,7 @@ export function ImageUpload({ value, onChange, disabled }) {
 
                                             const newBlob = await apiRes.blob();
 
-                                            toast.loading("Uploading processed image...", { id: toastId });
-                                            const uploadedBlob = await uploadImage(newBlob);
-
-                                            onChange(uploadedBlob.url);
+                                            await acceptPhoto(newBlob);
                                             setAiUsed(true); // Mark AI as used
                                             toast.success("Background Removed!", { id: toastId });
 
@@ -187,6 +198,8 @@ export function ImageUpload({ value, onChange, disabled }) {
                                             toast.error("Failed to remove background", { id: toastId });
                                         } finally {
                                             setIsLoading(false);
+                                            processing.current = false;
+                                            onProcessingChange?.(false);
                                         }
                                     }}
                                     disabled={disabled || isLoading}

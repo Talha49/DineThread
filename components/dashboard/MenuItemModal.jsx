@@ -1,15 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { ImageUpload } from "@/components/dashboard/ImageUpload";
+import { ImageUpload, uploadImage } from "@/components/dashboard/ImageUpload";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/Tabs";
 import { Loader2, Star, Plus, X, DollarSign, Layers, ShoppingBag } from "lucide-react";
 import toast from "react-hot-toast";
 import { useCategoryStore } from "@/hooks/use-category-store";
 import { cn } from "@/lib/utils";
+
+async function discardRejectedPhoto(url) {
+    try {
+        const result = await fetch("/api/upload/delete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ url })
+        });
+        if (!result.ok && result.status !== 404) throw new Error();
+    } catch {
+        toast.error("Could not clean up the unused upload.");
+    }
+}
 
 function CategorySelect({ value, onChange }) {
     const { categories } = useCategoryStore();
@@ -32,6 +45,17 @@ function CategorySelect({ value, onChange }) {
 
 export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
     const [loading, setLoading] = useState(false);
+    const saving = useRef(false);
+    const [preparingPhoto, setPreparingPhoto] = useState(false);
+    const [photoFile, setPhotoFile] = useState(null);
+    const [photoPreview, setPhotoPreview] = useState("");
+
+    useEffect(() => {
+        if (!photoFile) return;
+        const url = URL.createObjectURL(photoFile);
+        setPhotoPreview(url);
+        return () => URL.revokeObjectURL(url);
+    }, [photoFile]);
     const [activeTab, setActiveTab] = useState("basic");
     const [hasVariants, setHasVariants] = useState(false);
 
@@ -85,6 +109,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
     };
 
     const handleImageChange = (url) => {
+        setPhotoFile(null);
         setFormData(prev => ({ ...prev, imageUrl: url }));
     };
 
@@ -170,6 +195,8 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (saving.current || preparingPhoto) return;
+        saving.current = true;
         setLoading(true);
 
         try {
@@ -233,8 +260,10 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                 }))
             };
 
-            if (!initialData || formData.imageUrl !== (initialData.imageUrl || "")) {
-                payload.imageUrl = formData.imageUrl;
+            const uploadedUrl = photoFile ? (await uploadImage(photoFile)).url : null;
+            const imageUrl = uploadedUrl ?? formData.imageUrl;
+            if (!initialData || imageUrl !== (initialData.imageUrl || "")) {
+                payload.imageUrl = imageUrl;
                 if (initialData) payload.previousImageUrl = initialData.imageUrl || "";
             }
 
@@ -244,9 +273,11 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                 body: JSON.stringify(payload)
             });
 
-            const data = await res.json();
-
             if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                // Only discard a new upload after the server answers. A lost
+                // response can still belong to a dish that is being saved.
+                if (uploadedUrl && data.message) await discardRejectedPhoto(uploadedUrl);
                 throw new Error(data.message || "Something went wrong");
             }
 
@@ -257,24 +288,25 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
         } catch (error) {
             toast.error(error.message);
         } finally {
+            saving.current = false;
             setLoading(false);
         }
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={initialData ? "Edit Menu Item" : "New Menu Item"} size="xl">
+        <Modal isOpen={isOpen} onClose={() => { if (!saving.current) onClose(); }} title={initialData ? "Edit Menu Item" : "New Menu Item"} size="xl">
             <form onSubmit={handleSubmit} className="space-y-6">
-                <Tabs defaultValue="basic" value={activeTab} onValueChange={setActiveTab}>
+                <Tabs defaultValue="basic" value={activeTab} onValueChange={setActiveTab} inert={loading}>
                     <TabsList className="grid grid-cols-3 w-full">
-                        <TabsTrigger value="basic" className="gap-2">
+                        <TabsTrigger value="basic" disabled={preparingPhoto} className="gap-2">
                             <ShoppingBag className="w-4 h-4" />
                             Basic Info
                         </TabsTrigger>
-                        <TabsTrigger value="pricing" className="gap-2">
+                        <TabsTrigger value="pricing" disabled={preparingPhoto} className="gap-2">
                             <DollarSign className="w-4 h-4" />
                             Pricing
                         </TabsTrigger>
-                        <TabsTrigger value="addons" className="gap-2">
+                        <TabsTrigger value="addons" disabled={preparingPhoto} className="gap-2">
                             <Layers className="w-4 h-4" />
                             Add-ons
                         </TabsTrigger>
@@ -285,8 +317,10 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                         <div className="space-y-2">
                             <label className="text-sm font-medium">Item Image</label>
                             <ImageUpload
-                                value={formData.imageUrl}
+                                value={photoFile ? photoPreview : formData.imageUrl}
                                 onChange={handleImageChange}
+                                onFileReady={setPhotoFile}
+                                onProcessingChange={setPreparingPhoto}
                                 disabled={loading}
                             />
                         </div>
@@ -523,8 +557,8 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                     <Button type="button" variant="ghost" onClick={onClose} disabled={loading}>
                         Cancel
                     </Button>
-                    <Button type="submit" isLoading={loading}>
-                        {initialData ? "Save Changes" : "Create Item"}
+                    <Button type="submit" disabled={preparingPhoto} isLoading={loading}>
+                        {preparingPhoto ? "Preparing photo…" : initialData ? "Save Changes" : "Create Item"}
                     </Button>
                 </div>
             </form>
