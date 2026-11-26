@@ -11,6 +11,7 @@
     "unavailable": "Email support is currently unavailable."
   },
   "accessibility": {
+    "openNavigation": "Open navigation",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
     "closeNavigation": "Close navigation",
@@ -55,7 +56,7 @@
       "badge": "Enterprise Digital Menu Platform Live",
       "title_1": "The Best Digital",
       "title_2": "QR Menu Maker",
-      "subtitle": "DineThread is the ultimate digital QR menu software for restaurants. Create stunning contactless menus that increase sales, streamline dine-in ordering, and elevate your customer experience.",
+      "subtitle": "Create your menu, share a table QR code and follow each order from the guest’s phone to your kitchen.",
       "cta_primary": "Start Free Trial",
       "cta_secondary": "See How It Works"
     },
@@ -215,6 +216,10 @@
     }
   },
   "dashboard": {
+    "preview": {
+      "previous": "Previous dishes",
+      "next": "Next dishes"
+    },
     "sidebar": {
       "overview": "Overview",
       "menu_management": "Menu Management",
@@ -232,6 +237,11 @@
       "subtitle": "Overview",
       "syncing": "Syncing Live",
       "metrics": {
+        "visits": "Menu Visits",
+        "today": "{count} today",
+        "week": "Last 7 days",
+        "empty_week": "No menu visits in the last 7 days",
+        "unavailable": "Visits unavailable",
         "menu_items": "Menu Items",
         "active_items": "Active Items",
         "categories": "Categories",
@@ -280,6 +290,9 @@
     }
   },
   "live_menu": {
+    "search_label": "Search menu",
+    "no_matches": "No dishes match your search.",
+    "clear_search": "Clear search",
     "tv_mode": "TV mode",
     "open_tv_mode": "Open TV mode",
     "exit_tv_mode": "Exit TV mode",

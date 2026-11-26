@@ -50,6 +50,7 @@ export default function PublicMenuPage() {
     });
 
     const [searchQuery, setSearchQuery] = useState("");
+    const searchInput = useRef(null);
     const [activeCategory, setActiveCategory] = useState("");
     const [isTVMode, setIsTVMode] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -315,11 +316,12 @@ export default function PublicMenuPage() {
         return url.startsWith("http") ? url : `https://${url}`;
     };
 
+    const query = isTVMode ? '' : searchQuery.trim().toLowerCase();
     const filteredMenu = menu.map(group => ({
         ...group,
         items: (group.items || []).filter(item =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.description?.toLowerCase().includes(searchQuery.toLowerCase())
+            item.name.toLowerCase().includes(query) ||
+            item.description?.toLowerCase().includes(query)
         )
     })).filter(group => group.items.length > 0);
 
@@ -343,7 +345,7 @@ export default function PublicMenuPage() {
                 )}
 
                 {/* Premium Liquid Aura Background */}
-                {!isTVMode && !isPreview && (
+                {!isTVMode && !isPreview && !reducedMotion && (
                     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
                         <motion.div
                             animate={{
@@ -446,7 +448,8 @@ export default function PublicMenuPage() {
                                 <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                 <input
                                     type="text"
-                                    aria-label="Search menu"
+                                    ref={searchInput}
+                                    aria-label={t('live_menu.search_label')}
                                     placeholder={t('live_menu.search_placeholder')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -461,7 +464,7 @@ export default function PublicMenuPage() {
                 </header>
 
                 {
-                    !isTVMode && activeRestaurant.experienceConfig?.layoutID !== "orbital-wheel" && (
+                    !isTVMode && filteredMenu.length > 0 && activeRestaurant.experienceConfig?.layoutID !== "orbital-wheel" && (
                         <CategoryNav
                             categories={filteredMenu}
                             activeCategory={activeCategory}
@@ -475,13 +478,21 @@ export default function PublicMenuPage() {
                         "max-w-7xl mx-auto px-4 md:px-6 transition-all duration-1000",
                         isTVMode ? "pt-10" : (activeRestaurant.experienceConfig?.layoutID === "orbital-wheel" ? "pt-0" : "pt-8 md:pt-12")
                     )}>
-                        <LayoutFactory
+                        {query && filteredMenu.length === 0 ? (
+                            <div className="mx-auto max-w-md rounded-2xl border border-border bg-background px-5 py-8 text-center text-foreground">
+                                <p role="status" className="font-semibold">{t('live_menu.no_matches')}</p>
+                                <button type="button" className="mt-3 min-h-11 rounded-lg px-4 font-bold underline underline-offset-4"
+                                    onClick={() => { setSearchQuery(''); searchInput.current?.focus(); }}>
+                                    {t('live_menu.clear_search')}
+                                </button>
+                            </div>
+                        ) : <LayoutFactory
                             layoutID={activeRestaurant.experienceConfig?.layoutID}
                             isTVMode={isTVMode}
                             groupedItems={filteredMenu}
                             setSelectedItem={setSelectedItem}
                             {...activeRestaurant.experienceConfig}
-                        />
+                        />}
                     </main>
                 </AtmosphereStage>
 

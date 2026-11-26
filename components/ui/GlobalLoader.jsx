@@ -17,29 +17,33 @@ import { useReducedMotion } from 'framer-motion';
 
 export function GlobalLoader() {
     const [progress, setProgress] = useState(0);
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const reducedMotion = useReducedMotion();
 
     useEffect(() => {
-        if (reducedMotion) { setIsVisible(false); return; }
-        // Animation Duration in ms
-        const duration = 2500;
-        const intervalTime = 20;
-        const step = 100 / (duration / intervalTime);
-
-        let hideTimer;
-        const timer = setInterval(() => {
-            setProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(timer);
-                    hideTimer = setTimeout(() => setIsVisible(false), 500);
-                    return 100;
-                }
-                return prev + step;
-            });
-        }, intervalTime);
-
-        return () => { clearInterval(timer); clearTimeout(hideTimer); };
+        if (reducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setIsVisible(false);
+            return;
+        }
+        try {
+            if (sessionStorage.getItem('dinethread-intro-seen')) return;
+        } catch { /* Private browsing can disable storage. */ }
+        setProgress(0);
+        setIsVisible(true);
+        const start = performance.now();
+        const timer = setInterval(() => setProgress(Math.min(100, (performance.now() - start) / 7)), 40);
+        const finish = () => {
+            clearInterval(timer);
+            setIsVisible(false);
+            try { sessionStorage.setItem('dinethread-intro-seen', '1'); } catch { /* The intro still finishes. */ }
+        };
+        const hideTimer = setTimeout(finish, 920);
+        window.addEventListener('keydown', finish, { once: true });
+        return () => {
+            clearInterval(timer);
+            clearTimeout(hideTimer);
+            window.removeEventListener('keydown', finish);
+        };
     }, [reducedMotion]);
 
     if (!isVisible) return null;
@@ -59,8 +63,9 @@ export function GlobalLoader() {
     return (
         <div
             data-global-loader
+            aria-hidden="true"
             className={cn(
-                "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-1000",
+                "pointer-events-none fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-200",
                 progress === 100 ? "opacity-0 pointer-events-none" : "opacity-100"
             )}
         >

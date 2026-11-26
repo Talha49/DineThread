@@ -1,12 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Check, ArrowRight, Zap, Target, Palette, Box } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0, totalScans = 0, totalVisits = 0 }) {
-    const reduceMotion = useReducedMotion();
     const hasVisuals = !!restaurant?.experienceConfig?.designSystem?.config;
 
     const steps = [
@@ -59,18 +58,17 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {steps.map((step, i) => {
+                {steps.map((step) => {
                     const Icon = step.icon;
                     return (
                         <motion.div
-                            key={i}
-                            initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
+                            key={step.link + step.title}
+                            initial={false}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.1 }}
                             className={cn(
-                                "group relative p-6 rounded-[2.5rem] border-2 transition-all duration-500",
+                                "group relative p-6 rounded-3xl border transition-colors",
                                 step.completed 
-                                    ? "bg-zinc-50 border-zinc-100 opacity-60" 
+                                    ? "bg-zinc-50 border-zinc-200"
                                     : "bg-white border-zinc-50 hover:border-zinc-200 hover:shadow-xl"
                             )}
                         >
@@ -102,7 +100,7 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
                                     {step.title}
                                 </h4>
                                 <p className={cn(
-                                    "text-xs font-medium leading-relaxed",
+                                    "text-sm font-medium leading-relaxed",
                                     step.completed ? "text-zinc-600" : "text-zinc-500"
                                 )}>
                                     {step.desc}

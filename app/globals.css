@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./brand-surfaces.css";
 
 /* Two-tone focus indicator stays visible on light and dark menu surfaces. */
 :is(button, a, input, select, textarea, [role="button"]):focus-visible {

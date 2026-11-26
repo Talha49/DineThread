@@ -15,7 +15,7 @@ import {
     ListChecks
 } from "lucide-react";
 import { DashboardHero } from "@/components/dashboard/overview/DashboardHero";
-import { MetricCard } from "@/components/dashboard/overview/MetricCard";
+import { MetricCard, VisitHistory } from "@/components/dashboard/overview/MetricCard";
 import { SuccessRoadmap } from "@/components/dashboard/overview/SuccessRoadmap";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/store/useTranslation";
@@ -26,8 +26,8 @@ export default function DashboardPage() {
     const { restaurant, isLoading } = useRestaurantStore();
     const { categories, fetchCategories } = useCategoryStore();
     const { items: menuItems, fetchItems } = useMenuStore();
-    const { summary, fetchSummary } = useAnalyticsStore();
-    const { t } = useTranslation();
+    const { summary, error: analyticsError, fetchSummary } = useAnalyticsStore();
+    const { t, language } = useTranslation();
 
     useEffect(() => {
         fetchCategories();
@@ -66,10 +66,10 @@ export default function DashboardPage() {
     ].filter(Boolean).length * 25;
 
     return (
-        <div className="space-y-10 pb-20 max-w-[1400px] mx-auto animate-in fade-in duration-1000">
+        <div className="dt-overview space-y-6 md:space-y-8 pb-16 max-w-7xl mx-auto">
             {/* Header / Breadcrumb */}
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-600 dark:text-zinc-300">
+                <div className="flex items-center gap-2 text-xs font-bold tracking-wide text-zinc-600 dark:text-zinc-300">
                     <LayoutDashboard className="w-3 h-3 rtl:ml-2" />
                     <span>{t('dashboard.overview.title')}</span>
                     <span className="opacity-30">/</span>
@@ -77,8 +77,8 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse rtl:ml-2" />
-                        <span className="text-[9px] font-black uppercase tracking-widest text-emerald-800">{t('dashboard.overview.syncing')}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 rtl:ml-2" />
+                        <span className="text-xs font-bold tracking-wide text-emerald-800">{t('dashboard.overview.syncing')}</span>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@ export default function DashboardPage() {
             />
 
             {/* Performance Metrics (Wired to Real Data) */}
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            <div className="dt-metrics grid gap-3 sm:gap-4">
                 <MetricCard 
                     title={t('dashboard.overview.metrics.menu_items')} 
                     value={totalItems} 
@@ -114,13 +114,15 @@ export default function DashboardPage() {
                     color="orange"
                 />
                 <MetricCard
-                    title="Menu Visits"
+                    title={t('dashboard.overview.metrics.visits')}
                     value={totalVisits ?? "—"}
-                    unit={summary ? `${summary.todayCount} today` : "Loading..."}
+                    unit={summary ? t('dashboard.overview.metrics.today').replace('{count}', summary.todayCount.toLocaleString(language))
+                        : t(analyticsError ? 'dashboard.overview.metrics.unavailable' : 'common.loading')}
                     icon={QrCode}
                     color="emerald"
-                    sparkline={visitSparkline}
-                />
+                >
+                    {visitSparkline?.length > 0 && <VisitHistory days={visitSparkline} />}
+                </MetricCard>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -146,7 +148,7 @@ export default function DashboardPage() {
                         
                         <div className="space-y-6">
                             <div>
-                                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-2">
+                                <div className="flex justify-between text-xs font-bold tracking-wide mb-2">
                                     <span className="text-zinc-600">{t('dashboard.overview.health.completeness')}</span>
                                     <span className="text-indigo-700">{completionScore}%</span>
                                 </div>
@@ -167,7 +169,7 @@ export default function DashboardPage() {
                                     { label: t('dashboard.overview.health.logo_set'), ok: hasLogo }
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center justify-between">
-                                        <span className="text-[10px] font-medium text-zinc-500">{item.label}</span>
+                                        <span className="text-sm font-medium text-zinc-600">{item.label}</span>
                                         <div className={cn(
                                             "w-4 h-4 rounded-full flex items-center justify-center",
                                             item.ok ? "bg-emerald-50 text-emerald-500" : "bg-zinc-50 text-zinc-300"
@@ -202,7 +204,7 @@ export default function DashboardPage() {
                                         window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
                                         toast.success("Opening your email client...");
                                     }}
-                                    className="w-full bg-white text-primary text-[10px] font-black uppercase tracking-widest py-4 px-6 rounded-2xl shadow-lg hover:opacity-90 transition-opacity"
+                                    className="w-full bg-white text-primary text-xs font-bold tracking-wide py-4 px-6 rounded-2xl shadow-lg hover:opacity-90 transition-opacity"
                                 >
                                     {t('dashboard.overview.pro.btn')}
                                 </button>

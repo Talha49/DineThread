@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Check, Sparkles, Zap, Shield } from 'lucide-react';
 import Link from "next/link";
 import { useAuth } from "@/components/providers/AuthProvider";
@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { useTranslation } from '@/store/useTranslation';
 
 export function Pricing() {
+    const reduceMotion = useReducedMotion();
     const { t } = useTranslation();
     const { user } = useAuth();
     const plans = [
@@ -48,7 +49,7 @@ export function Pricing() {
     ];
 
     return (
-        <section id="pricing" className="py-24 px-4 bg-zinc-50 overflow-hidden">
+        <section id="pricing" className="scroll-mt-20 py-14 md:py-24 px-4 bg-zinc-50 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16 space-y-4">
                     <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-primary">{t('home.pricing.tag')}</h2>
@@ -62,9 +63,10 @@ export function Pricing() {
                     {plans.map((plan, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.1 }}
+                            initial={false}
+                            whileInView={reduceMotion ? undefined : { y: [8, 0] }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.28, delay: i * 0.04 }}
                             className={cn(
                                 "relative p-10 rounded-[3rem] flex flex-col transition-all duration-500",
                                 plan.popular
