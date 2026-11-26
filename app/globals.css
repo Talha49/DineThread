@@ -202,6 +202,15 @@
     --primary: var(--color-primary);
     --background: var(--bg-page);
     --card: var(--bg-card);
+    --color-background: var(--bg-page);
+    --color-foreground: var(--text-primary);
+    --color-muted: var(--bg-elevated);
+    --color-muted-foreground: var(--text-secondary);
+    --color-accent: var(--bg-elevated);
+    --color-accent-foreground: var(--text-primary);
+    --color-border: var(--border-medium);
+    --color-input: var(--border-medium);
+    color: var(--text-primary);
     
     font-family: var(--font-body);
     font-weight: var(--font-body-weight);

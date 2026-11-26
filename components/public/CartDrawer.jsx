@@ -12,6 +12,13 @@ import { sendCustomerOrder, cancelPendingPurchase, startNewCustomerOrder } from 
 import { useModalFocus } from "@/hooks/use-modal-focus";
 import { purchaseKey, syncPurchaseJournal } from "@/lib/purchase-journal";
 
+import { textOnBrand } from "@/lib/theme-engine/color-contrast";
+
+function brandStyle(brandColor) {
+    if (!brandColor) return undefined;
+    return { backgroundColor: brandColor, color: textOnBrand(brandColor) };
+}
+
 const fetcher = async (url) => {
     const res = await fetch(url);
     if (!res.ok) throw new Error("API Error");
@@ -54,12 +61,12 @@ export function CartFAB({ restaurantId, tables, brandColor }) {
                 animate={{ scale: 1, opacity: 1 }}
                 whileTap={reduceMotion ? undefined : { scale: 0.92 }}
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-6 right-6 rtl:right-auto rtl:left-6 z-[130] w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-white"
-                style={{ backgroundColor: brandColor || "#18181b" }}
+                className="fixed bottom-6 right-6 rtl:right-auto rtl:left-6 z-[130] w-16 h-16 rounded-full shadow-2xl flex items-center justify-center bg-primary text-primary-foreground"
+                style={brandStyle(brandColor)}
             >
                 <ShoppingCart className="w-6 h-6" />
                 {showBadge && (
-                    <span className="absolute -top-1 -right-1 min-w-[22px] h-[22px] px-1 rounded-full bg-red-500 text-white text-[11px] font-black flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 min-w-[22px] h-[22px] px-1 rounded-full bg-red-700 text-white text-[11px] font-black flex items-center justify-center">
                         {orderId ? "•" : cartCount}
                     </span>
                 )}
@@ -104,13 +111,13 @@ function CartDrawer({ restaurantId, tables, isOpen, onClose, brandColor }) {
                         animate={{ y: 0 }}
                         exit={reduceMotion ? { opacity: 0 } : { y: "100%" }}
                         transition={reduceMotion ? { duration: 0 } : { type: "spring", damping: 28, stiffness: 240 }}
-                        className="fixed inset-x-0 bottom-0 z-[150] bg-white rounded-t-[2.5rem] shadow-2xl max-w-xl mx-auto max-h-[85vh] flex flex-col outline-none"
+                        className="fixed inset-x-0 bottom-0 z-[150] bg-background text-foreground rounded-t-[2.5rem] shadow-2xl max-w-xl mx-auto max-h-[85vh] flex flex-col outline-none"
                     >
-                        <div className="w-12 h-1.5 bg-zinc-200 rounded-full mx-auto mt-4" />
+                        <div className="w-12 h-1.5 bg-muted-foreground rounded-full mx-auto mt-4" />
                         <button
                             aria-label="Close cart"
                             onClick={onClose}
-                            className="absolute top-5 right-5 rtl:right-auto rtl:left-5 w-9 h-9 rounded-full bg-zinc-100 flex items-center justify-center"
+                            className="absolute top-5 right-5 rtl:right-auto rtl:left-5 w-9 h-9 rounded-full bg-muted flex items-center justify-center"
                         >
                             <X className="w-4 h-4" />
                         </button>
@@ -181,13 +188,13 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
         return (
             <div className="space-y-5">
                 <h2 className="text-2xl font-black">Check your purchase</h2>
-                <p className="text-sm text-zinc-700" role="status">We have kept the details of your submitted purchase. Retry to confirm its status before placing another order.</p>
-                {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
+                <p className="text-sm text-foreground" role="status">We have kept the details of your submitted purchase. Retry to confirm its status before placing another order.</p>
+                {error && <p role="alert" className="text-sm text-foreground border-s-2 border-red-500 ps-2">{error}</p>}
                 <Button onClick={handlePlaceOrder} disabled={isPlacing} className="w-full h-14 rounded-2xl">
                     {isPlacing ? "Checking purchase…" : "Retry same purchase"}
                 </Button>
-                <button onClick={handleCancel} disabled={isPlacing} className="w-full rounded-2xl border border-zinc-300 p-3 text-sm font-semibold text-zinc-800 disabled:opacity-50">Cancel pending purchase</button>
-                <p className="text-sm text-zinc-600">Cancellation only stops a purchase that has not been accepted. If it is already placed, we will show its confirmation. If your browser session is lost, ask staff to check the order.</p>
+                <button onClick={handleCancel} disabled={isPlacing} className="w-full rounded-2xl border border-border p-3 text-sm font-semibold text-foreground disabled:opacity-50">Cancel pending purchase</button>
+                <p className="text-sm text-muted-foreground">Cancellation only stops a purchase that has not been accepted. If it is already placed, we will show its confirmation. If your browser session is lost, ask staff to check the order.</p>
             </div>
         );
     }
@@ -195,9 +202,9 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     if (items.length === 0) {
         return (
             <div className="text-center py-16">
-                <ShoppingCart className="w-10 h-10 text-zinc-600 mx-auto mb-4" />
+                <ShoppingCart className="w-10 h-10 text-muted-foreground mx-auto mb-4" />
                 <p className="font-bold text-lg">Your cart is empty</p>
-                <p className="text-zinc-600 text-sm mt-1">Add a dish to start your order.</p>
+                <p className="text-muted-foreground text-sm mt-1">Add a dish to start your order.</p>
             </div>
         );
     }
@@ -205,20 +212,20 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-black italic tracking-tighter">Your Order</h2>
-            {needsPriceConfirmation && <p role="status" className="text-sm text-zinc-700">Your selected prices have changed. Review the amounts below, then confirm if you want to continue.</p>}
+            {needsPriceConfirmation && <p role="status" className="text-sm text-foreground">Your selected prices have changed. Review the amounts below, then confirm if you want to continue.</p>}
 
             <div className="space-y-3">
                 {items.map((line) => (
-                    <div key={line.key} className="flex items-center gap-3 p-3 rounded-2xl bg-zinc-50">
+                    <div key={line.key} className="flex items-center gap-3 p-3 rounded-2xl bg-muted">
                         <div className="flex-1 min-w-0">
                             <p className="font-bold text-sm truncate">{line.name}</p>
                             {(line.variantName || line.modifierNames?.length > 0) && (
-                                <p className="text-xs text-zinc-600 truncate">
+                                <p className="text-xs text-muted-foreground truncate">
                                     {[line.variantName, ...(line.modifierNames || [])].filter(Boolean).join(", ")}
                                 </p>
                             )}
                         </div>
-                        <div className="flex items-center gap-2 bg-white rounded-xl px-1.5">
+                        <div className="flex items-center gap-2 bg-background text-foreground rounded-xl px-1.5">
                             <button aria-label={`Remove one ${line.name}`} onClick={() => updateQty(line.key, line.qty - 1)} className="w-7 h-7 flex items-center justify-center">
                                 {line.qty === 1 ? <Trash2 className="w-3.5 h-3.5 text-red-500" /> : <Minus className="w-3.5 h-3.5" />}
                             </button>
@@ -233,7 +240,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
             </div>
 
             <fieldset>
-                <legend className="block text-xs font-black uppercase tracking-wider text-zinc-500 mb-2">Select your table to place the order (required)</legend>
+                <legend className="block text-xs font-black uppercase tracking-wider text-muted-foreground mb-2">Select your table to place the order (required)</legend>
                 <div className="flex flex-wrap gap-2">
                     {tables.map((tbl) => (
                         <button
@@ -242,9 +249,9 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                             onClick={() => setTable(tbl._id)}
                             className={cn(
                                 "px-4 py-2.5 rounded-xl text-sm font-bold border-2 transition-colors",
-                                tableId === tbl._id ? "text-white border-transparent" : "border-zinc-100 bg-zinc-50 text-zinc-600"
+                                tableId === tbl._id ? "bg-primary text-primary-foreground border-transparent" : "border-border bg-muted text-muted-foreground"
                             )}
-                            style={tableId === tbl._id ? { backgroundColor: brandColor || "#18181b" } : undefined}
+                            style={tableId === tbl._id ? brandStyle(brandColor) : undefined}
                         >
                             {tbl.label}
                         </button>
@@ -252,13 +259,13 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
                 </div>
             </fieldset>
 
-            {error && <p role="alert" className="text-sm text-red-700 font-medium">{error}</p>}
+            {error && <p role="alert" className="text-sm text-foreground border-s-2 border-red-500 ps-2 font-medium">{error}</p>}
 
             <Button
                 onClick={handlePlaceOrder}
                 disabled={isPlacing}
                 className="w-full h-16 rounded-2xl font-black uppercase tracking-wider text-base"
-                style={{ backgroundColor: brandColor || undefined }}
+                style={brandStyle(brandColor)}
             >
                 {isPlacing ? <span role="status">Placing order…</span> : `${needsPriceConfirmation ? "Confirm updated prices" : "Place Order"} - $${total.toFixed(2)}`}
             </Button>
@@ -325,9 +332,9 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
     return (
         <div className="space-y-8" data-order-id={orderId} data-version={order.workflowVersion}>
             <div>
-                <p className="text-xs font-black uppercase tracking-widest text-zinc-600">{order.table?.label}</p>
+                <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">{order.table?.label}</p>
                 <h2 className="text-2xl font-black italic tracking-tighter">Order Status</h2>
-                <p className="mt-1 break-all text-sm text-zinc-600">
+                <p className="mt-1 break-all text-sm text-muted-foreground">
                     Order reference <span className="font-mono" data-testid="receipt-reference">{order._id}</span>
                 </p>
             </div>
@@ -346,12 +353,12 @@ function OrderStatusPanel({ restaurantId, orderId, brandColor, onClose }) {
                                 />
                             )}
                             <div
-                                className={cn("w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors", isDone ? "text-white border-transparent" : "bg-zinc-50 border-zinc-100 text-zinc-600")}
-                                style={isDone ? { backgroundColor: brandColor || "#18181b" } : undefined}
+                                className={cn("w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors", isDone ? "bg-primary text-primary-foreground border-transparent" : "bg-muted border-border text-muted-foreground")}
+                                style={isDone ? brandStyle(brandColor) : undefined}
                             >
                                 <Icon className="w-4 h-4" />
                             </div>
-                            <span className={cn("text-[10px] font-bold uppercase tracking-wider", isDone ? "text-zinc-900" : "text-zinc-600")}>{step.label}</span>
+                            <span className={cn("text-[10px] font-bold uppercase tracking-wider", isDone ? "text-foreground" : "text-muted-foreground")}>{step.label}</span>
                         </div>
                     );
                 })}

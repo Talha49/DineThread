@@ -59,8 +59,9 @@ export function SaveThemeModal({ isOpen, onClose, config, onSave, isSaving }) {
 
                 {/* Name */}
                 <div className="space-y-2">
-                    <label className="block text-xs font-black uppercase tracking-wider text-zinc-500">Theme Name</label>
+                    <label className="block text-xs font-black uppercase tracking-wider text-zinc-500" htmlFor="saved-theme-name">Theme Name</label>
                     <input
+                        id="saved-theme-name"
                         autoFocus
                         type="text"
                         value={name}
@@ -68,7 +69,7 @@ export function SaveThemeModal({ isOpen, onClose, config, onSave, isSaving }) {
                         onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
                         maxLength={40}
                         placeholder="e.g. Weekend Brunch Vibe"
-                        className="w-full px-4 py-2.5 bg-zinc-50 border-2 border-transparent rounded-xl text-sm font-semibold focus:bg-white focus:border-zinc-900 transition-all outline-none"
+                        className="w-full px-4 py-2.5 bg-zinc-50 border-2 border-transparent rounded-xl text-sm font-semibold text-zinc-900 placeholder:text-zinc-600 focus:bg-white focus:border-zinc-900 transition-all outline-none"
                     />
                 </div>
 

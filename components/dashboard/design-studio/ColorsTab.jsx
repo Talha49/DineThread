@@ -9,6 +9,7 @@
 import { useState, useMemo } from 'react';
 import { Palette, Droplet, FileText, Square, RefreshCcw, ShieldCheck, AlertTriangle, Zap, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { relativeLuminance } from '@/lib/theme-engine/color-contrast';
 import { DEFAULT_CONFIG } from './config-defaults';
 import { ResponsiveGrid } from '@/components/ui/ResponsiveGrid';
 
@@ -28,7 +29,7 @@ export function ColorsTab({ config, contentWidth = 600, onChange }) {
 
         if (key === 'backgrounds.card') {
             newColors.backgrounds.card = value;
-            const isDark = getLuminance(value) < 0.5;
+            const isDark = relativeLuminance(value) < 0.5;
             newColors.backgrounds.elevated = isDark ? adjustColor(value, 10) : adjustColor(value, 5);
             
             // Auto-generate all borders and lines based on the Menu Item Background
@@ -42,7 +43,7 @@ export function ColorsTab({ config, contentWidth = 600, onChange }) {
 
         if (key === 'text.primary') {
             newColors.text.primary = value;
-            const isDark = getLuminance(value) < 0.5;
+            const isDark = relativeLuminance(value) < 0.5;
             newColors.text.secondary = isDark ? adjustColor(value, 40) : adjustColor(value, -40);
             newColors.text.tertiary = isDark ? adjustColor(value, 70) : adjustColor(value, -70);
             newColors.text.inverse = isDark ? '#FFFFFF' : '#111827';
@@ -130,6 +131,7 @@ function ColorCard({ label, desc, value, onChange, contrastBg, contrastText }) {
                     style={{ backgroundColor: value }}
                 >
                     <input 
+                        aria-label={label + " picker"}
                         type="color"
                         value={value.startsWith('#') ? value : '#000000'}
                         onChange={(e) => {
@@ -144,6 +146,7 @@ function ColorCard({ label, desc, value, onChange, contrastBg, contrastText }) {
             <div className="flex items-center gap-2">
                 <div className="relative flex-1">
                     <input 
+                        aria-label={label}
                         type="text"
                         value={inputValue}
                         onChange={(e) => {
@@ -152,7 +155,7 @@ function ColorCard({ label, desc, value, onChange, contrastBg, contrastText }) {
                                 onChange(e.target.value);
                             }
                         }}
-                        className="w-full px-4 py-2.5 bg-zinc-50 border-2 border-transparent rounded-xl text-xs font-mono font-bold focus:bg-white focus:border-zinc-900 transition-all outline-none"
+                        className="w-full px-4 py-2.5 bg-zinc-50 border-2 border-transparent rounded-xl text-xs font-mono font-bold text-zinc-900 placeholder:text-zinc-600 focus:bg-white focus:border-zinc-900 transition-all outline-none"
                         placeholder="#000000"
                     />
                 </div>
@@ -197,29 +200,8 @@ function adjustColor(hex, percent) {
 }
 
 function calculateContrast(c1, c2) {
-    if (!c1.startsWith('#') || !c2.startsWith('#')) return 5; // Default safe value
-    const lum1 = getLuminance(c1);
-    const lum2 = getLuminance(c2);
-    const brightest = Math.max(lum1, lum2);
-    const darkest = Math.min(lum1, lum2);
-    return (brightest + 0.05) / (darkest + 0.05);
-}
-
-function getLuminance(hex) {
-    const rgb = hexToRgb(hex);
-    if (!rgb) return 0;
-    const [r, g, b] = [rgb.r, rgb.g, rgb.b].map(v => {
-        v /= 255;
-        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-    });
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-function hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
+    const lum1 = relativeLuminance(c1);
+    const lum2 = relativeLuminance(c2);
+    if (lum1 === null || lum2 === null) return null;
+    return (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
 }

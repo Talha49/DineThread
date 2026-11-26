@@ -75,6 +75,7 @@ export default function PublicMenuPage() {
     // Analytics - one real visit = one event. Never fires for the owner's own
     // live-preview iframe (isPreview), and only once per page load even under
     // React's dev-mode double-invoke of effects.
+    const dialogHost = useRef(null);
     const trackedRef = useRef(false);
     useEffect(() => {
         if (isPreview || trackedRef.current || !id) return;
@@ -316,11 +317,12 @@ export default function PublicMenuPage() {
 
     return (
         <ThemeProvider experienceConfig={restaurant.experienceConfig}>
+            <div ref={dialogHost} />
             <div 
                 key="menu-main" 
                 className={cn(
                     "relative min-h-screen transition-all duration-1000 overflow-x-hidden",
-                    isTVMode ? "text-white" : "text-zinc-950 font-medium",
+                    isTVMode ? "text-white" : "text-foreground font-medium",
                     isPreview && "scrollbar-hide"
                 )} 
                 style={{ fontFamily: 'var(--font-body)', transform: 'none' }}
@@ -363,6 +365,7 @@ export default function PublicMenuPage() {
 
                 <ItemCustomizationModal
                     item={selectedItem}
+                    portalContainer={dialogHost.current}
                     isOpen={!!selectedItem}
                     onClose={() => setSelectedItem(null)}
                     orderingEnabled={orderingEnabled}
@@ -412,7 +415,7 @@ export default function PublicMenuPage() {
                                     size="icon"
                                     aria-label={isTVMode ? "Exit TV mode" : "Open TV mode"}
                                     onClick={() => setIsTVMode(!isTVMode)}
-                                    className={cn("rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 transition-all border", isTVMode ? "bg-white/10 text-white border-white/10" : "bg-zinc-50 border-zinc-100 text-zinc-600 hover:text-zinc-950")}
+                                    className={cn("rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 transition-all border", isTVMode ? "bg-white/10 text-white border-white/10" : "bg-muted border-border text-foreground hover:text-foreground")}
                                 >
                                     {isTVMode ? <X className="w-4 h-4 md:w-5 md:h-5" /> : <Monitor className="w-4 h-4 md:w-5 md:h-5" />}
                                 </Button>
@@ -422,7 +425,7 @@ export default function PublicMenuPage() {
                                         size="icon"
                                         aria-label="Restaurant information"
                                         onClick={() => setShowInfo(!showInfo)}
-                                        className="rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 bg-zinc-50 border border-zinc-100 text-zinc-600 hover:text-zinc-950"
+                                        className="rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 bg-muted border border-border text-foreground hover:text-foreground"
                                     >
                                         <Info className="w-4 h-4 md:w-5 md:h-5" />
                                     </Button>
@@ -432,7 +435,7 @@ export default function PublicMenuPage() {
 
                         {!isTVMode && (
                             <div className="relative max-w-xl w-full">
-                                <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" />
+                                <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                 <input
                                     type="text"
                                     aria-label="Search menu"
@@ -440,7 +443,7 @@ export default function PublicMenuPage() {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className={cn(
-                                        "w-full pl-12 pr-6 rtl:pl-6 rtl:pr-12 rounded-2xl md:rounded-3xl border-2 border-zinc-50 bg-zinc-50 text-zinc-950 placeholder:text-zinc-600 focus:bg-white focus:border-zinc-200 transition-all outline-none text-xs md:text-sm font-bold tracking-tight",
+                                        "w-full pl-12 pr-6 rtl:pl-6 rtl:pr-12 rounded-2xl md:rounded-3xl border-2 border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-current transition-all outline-none text-xs md:text-sm font-bold tracking-tight",
                                         restaurant.experienceConfig?.layoutID === "orbital-wheel" ? "py-2" : "py-3 md:py-4"
                                     )}
                                 />
@@ -530,7 +533,7 @@ export default function PublicMenuPage() {
                                 <div className="space-y-12">
                                     <div className="text-center">
                                         <h3 className="text-4xl font-black italic tracking-tighter mb-4">{t('live_menu.establishment_info')}</h3>
-                                        <p className="text-zinc-500 font-medium italic">&quot;{bp.description || "A premier dining destination focused on exceptional quality and flavor."}&quot;</p>
+                                        <p className="text-zinc-300 font-medium italic">&quot;{bp.description || "A premier dining destination focused on exceptional quality and flavor."}&quot;</p>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -538,27 +541,27 @@ export default function PublicMenuPage() {
                                             <div className="flex gap-6 items-start">
                                                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10"><MapPin className="w-5 h-5 text-primary" /></div>
                                                 <div>
-                                                    <span className="text-[10px] font-black tracking-widest text-zinc-600 block mb-1">{t('live_menu.location')}</span>
-                                                    <span className="text-sm font-bold text-zinc-600">{bp.address || t('live_menu.contact_address')}</span>
+                                                    <span className="text-[10px] font-black tracking-widest text-zinc-300 block mb-1">{t('live_menu.location')}</span>
+                                                    <span className="text-sm font-bold text-zinc-300">{bp.address || t('live_menu.contact_address')}</span>
                                                 </div>
                                             </div>
                                             <div className="flex gap-6 items-start">
                                                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center shrink-0 border border-white/10"><Phone className="w-5 h-5 text-primary" /></div>
                                                 <div>
-                                                    <span className="text-[10px] font-black tracking-widest text-zinc-600 block mb-1">{t('live_menu.contact')}</span>
-                                                    <span className="text-sm font-bold text-zinc-600">{bp.phone || t('live_menu.no_phone')}</span>
+                                                    <span className="text-[10px] font-black tracking-widest text-zinc-300 block mb-1">{t('live_menu.contact')}</span>
+                                                    <span className="text-sm font-bold text-zinc-300">{bp.phone || t('live_menu.no_phone')}</span>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div className="space-y-4 bg-white/5 p-6 rounded-3xl border border-white/10">
-                                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest text-zinc-500 mb-2">
+                                            <div className="flex items-center gap-2 text-[10px] font-black tracking-widest text-zinc-300 mb-2">
                                                 <Clock className="w-4 h-4 rtl:ml-2" /> {t('live_menu.service_hours')}
                                             </div>
                                             <div className="space-y-2">
                                                 {bp.openingHours?.map((h, i) => (
                                                     <div key={i} className="flex justify-between text-xs font-bold">
-                                                        <span className="text-zinc-600">{h.day}</span>
+                                                        <span className="text-zinc-300">{h.day}</span>
                                                         <span className={h.isClosed ? "text-red-500" : "text-white"}>{h.isClosed ? t('live_menu.closed') : `${h.open} - ${h.close}`}</span>
                                                     </div>
                                                 ))}

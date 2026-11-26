@@ -382,7 +382,7 @@ export function OverlayCard({ item, theme, onClick }) {
                     style={{
                         fontSize: `var(--text-price, ${tConfig?.typography?.sizes?.price || 18}px)`,
                         backgroundColor: tConfig?.colors?.brand?.primary,
-                        color: 'white',
+                        color: 'var(--color-primary-foreground)',
                         fontWeight: 'var(--font-heading-weight)'
                     }}
                 >
@@ -532,7 +532,7 @@ export function MagazineCard({ item, theme, onClick }) {
                 />
                 {/* Price Tag */}
                 <div 
-                    className="absolute top-6 left-6 px-6 py-2 rounded-2xl text-white font-black italic text-lg shadow-2xl flex flex-col"
+                    className="absolute top-6 left-6 px-6 py-2 rounded-2xl text-primary-foreground font-black italic text-lg shadow-2xl flex flex-col"
                     style={{ 
                         backgroundColor: tConfig?.colors?.brand?.primary,
                         fontWeight: 'var(--font-heading-weight)',
