@@ -86,7 +86,7 @@ export default function SettingsPage() {
                             shellWidth >= 448 ? "px-5" : "px-3",
                             activeView === "studio"
                                 ? "bg-white text-zinc-900 shadow-sm"
-                                : "text-zinc-500 hover:text-zinc-700"
+                                : "text-zinc-600 hover:text-zinc-800"
                         )}
                     >
                         <Sparkles className="w-4 h-4" />
@@ -99,7 +99,7 @@ export default function SettingsPage() {
                             shellWidth >= 448 ? "px-5" : "px-3",
                             activeView === "profile"
                                 ? "bg-white text-zinc-900 shadow-sm"
-                                : "text-zinc-500 hover:text-zinc-700"
+                                : "text-zinc-600 hover:text-zinc-800"
                         )}
                     >
                         <Store className="w-4 h-4" />
@@ -148,7 +148,7 @@ export default function SettingsPage() {
                                 {showLiveIndicator && (
                                     <div className="flex items-center gap-1.5 shrink-0">
                                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                                        <span className="text-xs text-zinc-400 font-medium">{t('dashboard.settings.live')}</span>
+                                        <span className="text-xs text-zinc-600 font-medium">{t('dashboard.settings.live')}</span>
                                     </div>
                                 )}
                             </>

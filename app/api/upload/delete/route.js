@@ -1,25 +1,18 @@
-import { del } from '@vercel/blob';
 import { NextResponse } from 'next/server';
-import { cookies } from "next/headers";
-import { verifyJWT } from "@/lib/jwt";
+import { verifyJWT } from '@/lib/jwt';
+import { removeMenuImage } from '@/lib/menu-images';
 
 export async function POST(request) {
-  const { url } = await request.json();
-  const cookieStore = await cookies();
-  const token = cookieStore.get("auth-token")?.value;
-  const user = token ? await verifyJWT(token) : null;
+    const user = await verifyJWT(request.cookies.get('auth-token')?.value);
+    if (!user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    await del(url);
-    return NextResponse.json({});
-  } catch (error) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 400 }
-    );
-  }
+    const body = await request.json().catch(() => null);
+    if (typeof body?.url !== 'string') return NextResponse.json({ error: 'Image URL required' }, { status: 400 });
+    try {
+        const removed = await removeMenuImage(user.id, body.url);
+        if (!removed) return NextResponse.json({ error: 'Image unavailable' }, { status: 404 });
+        return NextResponse.json({ removed: true });
+    } catch {
+        return NextResponse.json({ error: 'Could not remove image' }, { status: 502 });
+    }
 }

@@ -1,12 +1,16 @@
 "use client";
 
 import * as React from "react";
+import { useTranslation } from "@/store/useTranslation";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff, AlertCircle } from "lucide-react";
 
 const Input = React.forwardRef(
     ({ className, type, label, error, startIcon, endIcon, ...props }, ref) => {
         const [showPassword, setShowPassword] = React.useState(false);
+        const { t } = useTranslation();
+        const generatedId = React.useId();
+        const inputId = props.id || generatedId;
         const inputType = type === "password" && showPassword ? "text" : type;
 
         return (
@@ -32,10 +36,11 @@ const Input = React.forwardRef(
                         placeholder={label || "placeholder"} // Placeholder required for peer-placeholder-shown
                         ref={ref}
                         {...props}
+                        id={inputId}
                     />
 
                     {label && (
-                        <label
+                        <label htmlFor={inputId}
                             className={cn(
                                 "absolute left-3 top-2.5 z-10 origin-[0] -translate-y-3 scale-75 transform text-sm text-muted-foreground bg-background px-1 duration-150 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-3 peer-focus:scale-75 peer-focus:text-primary",
                                 startIcon && "left-10",
@@ -49,8 +54,9 @@ const Input = React.forwardRef(
                     {type === "password" ? (
                         <button
                             type="button"
+                            aria-label={t(showPassword ? "accessibility.hidePassword" : "accessibility.showPassword")}
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
+                            className="absolute right-1 grid h-10 w-10 place-items-center top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
                         >
                             {showPassword ? (
                                 <EyeOff className="h-4 w-4" />
@@ -59,7 +65,7 @@ const Input = React.forwardRef(
                             )}
                         </button>
                     ) : endIcon ? (
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
+                        <div className="absolute right-1 grid h-10 w-10 place-items-center top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none">
                             {endIcon}
                         </div>
                     ) : null}

@@ -5,7 +5,7 @@ import { useRestaurantStore } from "@/hooks/use-restaurant-store";
 import { useCategoryStore } from "@/hooks/use-category-store";
 import { useMenuStore } from "@/hooks/use-menu-store";
 import { useAnalyticsStore } from "@/hooks/use-analytics-store";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
     Utensils,
     QrCode,
@@ -22,6 +22,7 @@ import { useTranslation } from "@/store/useTranslation";
 import toast from "react-hot-toast";
 
 export default function DashboardPage() {
+    const reduceMotion = useReducedMotion();
     const { restaurant, isLoading } = useRestaurantStore();
     const { categories, fetchCategories } = useCategoryStore();
     const { items: menuItems, fetchItems } = useMenuStore();
@@ -39,7 +40,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-center h-[60vh]">
                 <div className="flex flex-col items-center gap-4">
                     <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400">{t('dashboard.overview.loading')}</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-300">{t('dashboard.overview.loading')}</span>
                 </div>
             </div>
         );
@@ -68,16 +69,16 @@ export default function DashboardPage() {
         <div className="space-y-10 pb-20 max-w-[1400px] mx-auto animate-in fade-in duration-1000">
             {/* Header / Breadcrumb */}
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-600 dark:text-zinc-300">
                     <LayoutDashboard className="w-3 h-3 rtl:ml-2" />
                     <span>{t('dashboard.overview.title')}</span>
                     <span className="opacity-30">/</span>
-                    <span className="text-zinc-900">{t('dashboard.overview.subtitle')}</span>
+                    <span className="text-foreground">{t('dashboard.overview.subtitle')}</span>
                 </div>
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse rtl:ml-2" />
-                        <span className="text-[9px] font-black uppercase tracking-widest text-emerald-600">{t('dashboard.overview.syncing')}</span>
+                        <span className="text-[9px] font-black uppercase tracking-widest text-emerald-800">{t('dashboard.overview.syncing')}</span>
                     </div>
                 </div>
             </div>
@@ -145,12 +146,12 @@ export default function DashboardPage() {
                         <div className="space-y-6">
                             <div>
                                 <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-2">
-                                    <span className="text-zinc-400">{t('dashboard.overview.health.completeness')}</span>
-                                    <span className="text-primary">{completionScore}%</span>
+                                    <span className="text-zinc-600">{t('dashboard.overview.health.completeness')}</span>
+                                    <span className="text-indigo-700">{completionScore}%</span>
                                 </div>
                                 <div className="h-2 w-full bg-zinc-100 rounded-full overflow-hidden">
                                     <motion.div 
-                                        initial={{ width: 0 }}
+                                        initial={reduceMotion ? false : { width: 0 }}
                                         animate={{ width: `${completionScore}%` }}
                                         className="h-full bg-primary" 
                                     />
@@ -181,7 +182,7 @@ export default function DashboardPage() {
                     {/* Pro Plan Card */}
                     {restaurant?.plan === 'free' && (
                         <motion.div 
-                            whileHover={{ scale: 1.02 }}
+                            whileHover={reduceMotion ? undefined : { scale: 1.02 }}
                             className="p-8 rounded-[3rem] bg-gradient-to-br from-primary to-indigo-600 text-white shadow-2xl relative overflow-hidden group"
                         >
                             <Sparkles className="absolute -right-4 -top-4 w-32 h-32 opacity-20 group-hover:rotate-12 transition-transform duration-700 rtl:-left-4 rtl:-right-auto" />

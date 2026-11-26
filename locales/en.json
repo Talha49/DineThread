@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "Contact DineThread",
+    "emailTeam": "Email the team",
+    "contactBody": "For help with your menu, account or plan, open an email using the address below.",
+    "enquirySubject": "DineThread enquiry",
+    "accountTitle": "Help signing in",
+    "accountBody": "For help accessing your restaurant account, email the DineThread team from the address you registered with. Include your restaurant name and leave out your password.",
+    "accountSubject": "DineThread account access",
+    "back": "Back to sign in",
+    "unavailable": "Email support is currently unavailable."
+  },
+  "accessibility": {
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "closeNavigation": "Close navigation",
+    "walkthrough": "DineThread dashboard walkthrough"
+  },
   "nav": {
     "features": "Features",
     "themes": "Themes",

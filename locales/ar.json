@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "تواصل مع DineThread",
+    "emailTeam": "راسل الفريق",
+    "contactBody": "للحصول على مساعدة بشأن قائمتك أو حسابك أو باقتك، راسلنا على عنوان البريد الإلكتروني أدناه.",
+    "enquirySubject": "استفسار عن DineThread",
+    "accountTitle": "المساعدة في تسجيل الدخول",
+    "accountBody": "إذا تعذّر عليك الدخول إلى حساب مطعمك، فراسل فريق DineThread من البريد الإلكتروني الذي سجّلت به. اذكر اسم مطعمك ولا ترسل كلمة المرور.",
+    "accountSubject": "الدخول إلى حساب DineThread",
+    "back": "العودة إلى تسجيل الدخول",
+    "unavailable": "الدعم عبر البريد الإلكتروني غير متاح حاليًا."
+  },
+  "accessibility": {
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور",
+    "closeNavigation": "إغلاق قائمة التنقل",
+    "walkthrough": "جولة في لوحة تحكم DineThread"
+  },
   "nav": {
     "features": "الميزات",
     "themes": "السمات",

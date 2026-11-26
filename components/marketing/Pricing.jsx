@@ -54,7 +54,7 @@ export function Pricing() {
                     <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-primary">{t('home.pricing.tag')}</h2>
                     <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase text-zinc-900 leading-none">
                         {t('home.pricing.title_1')} <br />
-                        <span className="text-zinc-400">{t('home.pricing.title_2')}</span>
+                        <span className="text-zinc-600">{t('home.pricing.title_2')}</span>
                     </h3>
                 </div>
 
@@ -88,9 +88,9 @@ export function Pricing() {
                                 <h4 className="text-xl font-black uppercase tracking-tight mb-2">{plan.name}</h4>
                                 <div className="flex items-baseline gap-1">
                                     <span className="text-5xl font-black italic tracking-tighter">{plan.price}</span>
-                                    {plan.period && <span className="text-lg font-bold text-zinc-500">{plan.period}</span>}
+                                    {plan.period && <span className={cn("text-lg font-bold", plan.popular ? "text-zinc-300" : "text-zinc-600")}>{plan.period}</span>}
                                 </div>
-                                <p className={cn("mt-4 text-sm font-medium", plan.popular ? "text-white/50" : "text-zinc-500")}>
+                                <p className={cn("mt-4 text-sm font-medium", plan.popular ? "text-zinc-300" : "text-zinc-500")}>
                                     {plan.desc}
                                 </p>
                             </div>

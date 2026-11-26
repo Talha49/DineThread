@@ -269,7 +269,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                     });
                                     onClose();
                                 }}
-                                className="flex-1 h-14 rounded-2xl font-bold uppercase tracking-wider"
+                                className="flex-1 h-14 rounded-2xl bg-indigo-700 text-white hover:bg-indigo-800 font-bold uppercase tracking-wider"
                             >
                                 <ShoppingCart className="w-4 h-4 mr-2" />
                                 Add - ${(calculateTotal() * qty).toFixed(2)}

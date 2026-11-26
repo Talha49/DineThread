@@ -100,7 +100,7 @@ export default function LoginPage() {
                             <div className="flex items-center justify-end">
                                 <Link
                                     href="/forgot-password"
-                                    className="text-sm font-medium text-primary hover:text-primary/90 transition-colors"
+                                    className="text-sm font-medium text-indigo-700 dark:text-indigo-300 hover:underline transition-colors"
                                 >
                                     {t('auth.login.forgot')}
                                 </Link>
@@ -118,7 +118,7 @@ export default function LoginPage() {
                             </Button>
                             <div className="text-center text-sm text-muted-foreground">
                                 {t('auth.login.no_account')}{" "}
-                                <Link href="/signup" className="text-primary font-medium hover:underline">
+                                <Link href="/signup" className="text-indigo-700 dark:text-indigo-300 font-medium hover:underline">
                                     {t('auth.login.signup')}
                                 </Link>
                             </div>

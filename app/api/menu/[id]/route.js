@@ -5,7 +5,7 @@ import dbConnect from "@/lib/mongodb";
 import MenuItem from "@/models/MenuItem";
 import Restaurant from "@/models/Restaurant";
 import { MenuItemSchema } from "@/lib/validations";
-import { del } from '@vercel/blob';
+import { removeMenuImage } from '@/lib/menu-images';
 
 export async function GET(req, { params }) {
   try {
@@ -73,21 +73,18 @@ export async function DELETE(req, { params }) {
     const restaurant = await Restaurant.findOne({ owner: user.id });
     if (!restaurant) return NextResponse.json({ message: "Restaurant not found" }, { status: 404 });
 
-    // Find the item first to get the image URL
-    const itemToDelete = await MenuItem.findOne({ _id: id, restaurant: restaurant._id });
+    const itemToDelete = await MenuItem.findOneAndDelete({ _id: id, restaurant: restaurant._id });
     
     if (!itemToDelete) return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
 
     // Attempt to delete image from Blob storage if it exists
     if (itemToDelete.imageUrl && !itemToDelete.imageUrl.startsWith('/')) {
         try {
-            await del(itemToDelete.imageUrl);
+            await removeMenuImage(user.id, itemToDelete.imageUrl);
         } catch (blobError) {
             console.error("Failed to delete blob image:", blobError);
         }
     }
-
-    await MenuItem.deleteOne({ _id: id });
 
     return NextResponse.json({ message: "Item deleted successfully" });
   } catch (error) {

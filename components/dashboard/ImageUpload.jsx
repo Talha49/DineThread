@@ -7,11 +7,20 @@ import { X, Loader2, UploadCloud } from "lucide-react";
 import toast from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { useImageUpload } from "@/context/ImageUploadContext";
-import { useRestaurantStore } from "@/hooks/use-restaurant-store";
+
+async function uploadImage(file) {
+    const reservation = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'reserve-image', contentType: file.type })
+    });
+    if (!reservation.ok) throw new Error('Could not reserve image');
+    const { pathname } = await reservation.json();
+    return upload(pathname, file, { access: 'public', handleUploadUrl: '/api/upload' });
+}
 
 export function ImageUpload({ value, onChange, disabled }) {
     const { requestCrop, compressImage } = useImageUpload();
-    const { restaurant } = useRestaurantStore();
     const [isLoading, setIsLoading] = useState(false);
     const [dragActive, setDragActive] = useState(false);
     const [aiUsed, setAiUsed] = useState(false);
@@ -27,6 +36,7 @@ export function ImageUpload({ value, onChange, disabled }) {
             return;
         }
 
+        let toastId;
         try {
             // 1. Crop (User interaction)
             // This opens the modal via context and waits for user to click "Done"
@@ -34,29 +44,19 @@ export function ImageUpload({ value, onChange, disabled }) {
             if (!croppedBlob) return; // User cancelled
 
             setIsLoading(true);
-            const toastId = toast.loading("Optimizing image...");
+            toastId = toast.loading("Optimizing image...");
 
             // 2. Compress
             const compressedFile = await compressImage(croppedBlob);
 
-            // 3. Upload to Vercel Blob (Folder: restaurantId/filename)
-            // Use restaurantId slug for folder, fallback to 'uploads' if missing
-            const folder = restaurant?.restaurantId || 'uploads';
-            // Clean filename
-            const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, '');
-            const filename = `${folder}/${Date.now()}-${cleanName}`;
-
-            const newBlob = await upload(filename, compressedFile, {
-                access: 'public',
-                handleUploadUrl: '/api/upload',
-            });
+            const newBlob = await uploadImage(compressedFile);
 
             onChange(newBlob.url);
             setAiUsed(false); // Reset AI usage on new upload
             toast.success("Image uploaded", { id: toastId });
         } catch (error) {
             console.error(error);
-            toast.error("Upload failed");
+            toast.error("Upload failed", { id: toastId });
         } finally {
             setIsLoading(false);
         }
@@ -93,14 +93,16 @@ export function ImageUpload({ value, onChange, disabled }) {
     const handleRemove = async () => {
         if (value && !value.startsWith('/')) {
             try {
-                await fetch('/api/upload/delete', {
+                const result = await fetch('/api/upload/delete', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url: value }),
                 });
-            } catch (e) {
-                console.error("Failed to delete blob:", e);
-                // Continue to clear UI even if delete fails
+                // Legacy images can be detached from the form without deleting shared storage.
+                if (!result.ok && result.status !== 404) throw new Error('Image removal failed');
+            } catch {
+                toast.error('Could not remove the image. Please try again.');
+                return;
             }
         }
         onChange("");
@@ -185,17 +187,8 @@ export function ImageUpload({ value, onChange, disabled }) {
 
                                             const newBlob = await apiRes.blob();
 
-                                            // 3. Upload processed image back to storage
-                                            // Use same folder structure
-                                            const folder = restaurant?.restaurantId || 'uploads';
-                                            const filename = `${folder}/no-bg-${Date.now()}.png`;
-
                                             toast.loading("Uploading processed image...", { id: toastId });
-
-                                            const uploadedBlob = await upload(filename, newBlob, {
-                                                access: 'public',
-                                                handleUploadUrl: '/api/upload',
-                                            });
+                                            const uploadedBlob = await uploadImage(newBlob);
 
                                             onChange(uploadedBlob.url);
                                             setAiUsed(true); // Mark AI as used
@@ -231,7 +224,7 @@ export function ImageUpload({ value, onChange, disabled }) {
                             <span className="font-semibold text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
                         </p>
                         <p className="text-xs text-muted-foreground">
-                            SVG, PNG, JPG or GIF (max. 5MB)
+                            WebP, PNG, JPG or GIF (max. 5MB)
                         </p>
                     </div>
                 )}

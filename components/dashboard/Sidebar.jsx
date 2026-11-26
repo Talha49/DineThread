@@ -56,7 +56,7 @@ export function Sidebar({ className, onClose, isMobile }) {
                     </span>
                 </Link>
                 {isMobile && (
-                    <Button variant="ghost" size="icon" className="md:hidden" onClick={onClose}>
+                    <Button variant="ghost" size="icon" aria-label={t("accessibility.closeNavigation")} className="md:hidden" onClick={onClose}>
                         <X className="h-5 w-5" />
                     </Button>
                 )}
@@ -126,7 +126,7 @@ export function Sidebar({ className, onClose, isMobile }) {
                 )}
                 <button
                     onClick={logout}
-                    className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
+                    className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-red-700 dark:text-red-300 hover:bg-destructive/10 transition-colors"
                 >
                     <LogOut className="h-4 w-4" />
                     {t('dashboard.sidebar.sign_out')}

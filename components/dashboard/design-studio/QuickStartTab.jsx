@@ -33,7 +33,7 @@ export function QuickStartTab({
                     <Sparkles className="w-6 h-6 text-indigo-500 animate-pulse" />
                     <h2 className="text-2xl font-black tracking-tight">Quick Start Themes</h2>
                 </div>
-                <p className="text-zinc-500 font-medium">Professional presets for instant menu branding</p>
+                <p className="text-zinc-600 font-medium">Professional presets for instant menu branding</p>
             </div>
 
             {/* Curated / My Themes Switcher */}
@@ -43,7 +43,7 @@ export function QuickStartTab({
                         onClick={() => setSource('curated')}
                         className={cn(
                             "px-6 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all",
-                            source === 'curated' ? "bg-white text-zinc-900 shadow-md" : "text-zinc-400 hover:text-zinc-600"
+                            source === 'curated' ? "bg-white text-zinc-900 shadow-md" : "text-zinc-600 hover:text-zinc-600"
                         )}
                     >
                         Curated
@@ -52,7 +52,7 @@ export function QuickStartTab({
                         onClick={() => setSource('mine')}
                         className={cn(
                             "px-6 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all",
-                            source === 'mine' ? "bg-white text-zinc-900 shadow-md" : "text-zinc-400 hover:text-zinc-600"
+                            source === 'mine' ? "bg-white text-zinc-900 shadow-md" : "text-zinc-600 hover:text-zinc-600"
                         )}
                     >
                         My Themes {customThemes.length > 0 && `(${customThemes.length})`}
@@ -64,7 +64,7 @@ export function QuickStartTab({
                 <>
                     {/* Category Filter */}
                     <div className="flex items-center justify-center gap-2 flex-wrap pb-2">
-                        <Filter className="w-4 h-4 text-zinc-400 mr-2" />
+                        <Filter className="w-4 h-4 text-zinc-600 mr-2" />
                         {categories.map((cat) => (
                             <button
                                 key={cat}
@@ -73,7 +73,7 @@ export function QuickStartTab({
                                     "px-4 py-1.5 rounded-full text-xs font-bold transition-all border-2",
                                     activeCategory === cat
                                         ? "bg-zinc-900 border-zinc-900 text-white shadow-md"
-                                        : "bg-white border-zinc-100 text-zinc-500 hover:border-zinc-200"
+                                        : "bg-white border-zinc-100 text-zinc-600 hover:border-zinc-200"
                                 )}
                             >
                                 {cat}
@@ -93,12 +93,12 @@ export function QuickStartTab({
                             </div>
                             <div className="space-y-1">
                                 <h3 className="text-lg font-black tracking-tight text-indigo-600">Start a Custom Theme</h3>
-                                <p className="text-xs text-indigo-400 font-medium leading-relaxed">
+                                <p className="text-xs text-indigo-700 font-medium leading-relaxed">
                                     Build your own look from a blank canvas across Colors, Visuals, Typography and Layout.
                                 </p>
                             </div>
                             <div className="mt-auto pt-2">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-indigo-300">Blank Canvas</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-indigo-700">Blank Canvas</span>
                             </div>
                         </button>
 
@@ -113,12 +113,12 @@ export function QuickStartTab({
                             </div>
                             <div className="space-y-1">
                                 <h3 className="text-lg font-black tracking-tight text-red-600">Reset Studio</h3>
-                                <p className="text-xs text-red-400 font-medium leading-relaxed">
+                                <p className="text-xs text-red-700 font-medium leading-relaxed">
                                     Clear everything and start designing from absolute scratch.
                                 </p>
                             </div>
                             <div className="mt-auto pt-2">
-                                <span className="text-[10px] font-black uppercase tracking-widest text-red-300">Clean Slate</span>
+                                <span className="text-[10px] font-black uppercase tracking-widest text-red-700">Clean Slate</span>
                             </div>
                         </button>
 
@@ -141,11 +141,11 @@ export function QuickStartTab({
                                 <div className="space-y-1">
                                     <div className="flex items-center gap-2">
                                         <h3 className="text-lg font-black tracking-tight">{preset.name}</h3>
-                                        <span className="px-2 py-0.5 rounded-md bg-zinc-100 text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
+                                        <span className="px-2 py-0.5 rounded-md bg-zinc-100 text-[10px] font-bold text-zinc-600 uppercase tracking-wider">
                                             {preset.category}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-zinc-500 leading-relaxed line-clamp-2">{preset.description}</p>
+                                    <p className="text-xs text-zinc-600 leading-relaxed line-clamp-2">{preset.description}</p>
                                 </div>
 
                                 {/* Color Swatch Preview */}
@@ -178,7 +178,7 @@ export function QuickStartTab({
                         </div>
                         <div className="space-y-1">
                             <h3 className="text-lg font-black tracking-tight text-indigo-600">New Custom Theme</h3>
-                            <p className="text-xs text-indigo-400 font-medium leading-relaxed">
+                            <p className="text-xs text-indigo-700 font-medium leading-relaxed">
                                 Start from a blank canvas, then save it here when you&apos;re happy with it.
                             </p>
                         </div>
@@ -186,7 +186,7 @@ export function QuickStartTab({
 
                     {customThemes.length === 0 && (
                         <div className="col-span-full text-center py-12 space-y-3">
-                            <p className="text-zinc-400 text-sm font-medium">No saved themes yet. Design something in the other tabs, then use &quot;Save as My Theme&quot; to keep it here.</p>
+                            <p className="text-zinc-600 text-sm font-medium">No saved themes yet. Design something in the other tabs, then use &quot;Save as My Theme&quot; to keep it here.</p>
                         </div>
                     )}
 
@@ -210,7 +210,7 @@ export function QuickStartTab({
                                 </div>
                                 <div className="space-y-1">
                                     <h3 className="text-lg font-black tracking-tight">{theme.name}</h3>
-                                    <p className="text-xs text-zinc-400 font-medium">
+                                    <p className="text-xs text-zinc-600 font-medium">
                                         Saved {theme.createdAt ? new Date(theme.createdAt).toLocaleDateString() : ''}
                                     </p>
                                 </div>

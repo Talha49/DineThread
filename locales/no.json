@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "Kontakt DineThread",
+    "emailTeam": "Send oss en e-post",
+    "contactBody": "Trenger du hjelp med menyen, kontoen eller abonnementet ditt? Send oss en e-post på adressen nedenfor.",
+    "enquirySubject": "Spørsmål om DineThread",
+    "accountTitle": "Hjelp med innlogging",
+    "accountBody": "Trenger du hjelp med å logge inn på restaurantkontoen? Send en e-post til DineThread fra adressen du registrerte deg med. Oppgi restaurantens navn og utelat passordet.",
+    "accountSubject": "Tilgang til DineThread-konto",
+    "back": "Tilbake til innlogging",
+    "unavailable": "E-poststøtte er for øyeblikket utilgjengelig."
+  },
+  "accessibility": {
+    "showPassword": "Vis passord",
+    "hidePassword": "Skjul passord",
+    "closeNavigation": "Lukk navigasjonen",
+    "walkthrough": "Gjennomgang av DineThread-kontrollpanelet"
+  },
   "nav": {
     "features": "Funksjoner",
     "themes": "Temaer",
