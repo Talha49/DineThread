@@ -11,6 +11,7 @@
     "unavailable": "E-poststøtte er for øyeblikket utilgjengelig."
   },
   "accessibility": {
+    "openNavigation": "Åpne navigasjonen",
     "showPassword": "Vis passord",
     "hidePassword": "Skjul passord",
     "closeNavigation": "Lukk navigasjonen",
@@ -55,7 +56,7 @@
       "badge": "v2.0 Intelligensplattform Live",
       "title_1": "Den smartere måten",
       "title_2": "å drive menyen på",
-      "subtitle": "Lag fantastiske digitale menyer som øker salget og sparer tid.",
+      "subtitle": "Lag menyen, del en QR-kode ved bordet og følg hver bestilling fra gjestens telefon til kjøkkenet.",
       "cta_primary": "Bygg din opplevelse",
       "cta_secondary": "Se video"
     },
@@ -215,6 +216,10 @@
     }
   },
   "dashboard": {
+    "preview": {
+      "previous": "Forrige retter",
+      "next": "Neste retter"
+    },
     "sidebar": {
       "overview": "Oversikt",
       "menu_management": "Menyadministrasjon",
@@ -232,6 +237,11 @@
       "subtitle": "Oversikt",
       "syncing": "Synkroniserer live",
       "metrics": {
+        "visits": "Menybesøk",
+        "today": "{count} i dag",
+        "week": "Siste 7 dager",
+        "empty_week": "Ingen menybesøk de siste 7 dagene",
+        "unavailable": "Besøkstall er utilgjengelige",
         "menu_items": "Menyelementer",
         "active_items": "Aktive elementer",
         "categories": "Kategorier",
@@ -271,14 +281,26 @@
       "preview_desc": "Se hvordan menyen din ser ut for kundene. Klikk på et element for å finne det i listen."
     },
     "settings": {
+      "preview": "Forhåndsvisning",
+      "preview_device": "Enhet for forhåndsvisning",
+      "preview_zoom": "Zoom i forhåndsvisning",
       "studio": "Designstudio",
       "profile": "Forretningsprofil",
       "live": "Live"
     }
   },
   "live_menu": {
+    "search_label": "Søk i menyen",
+    "no_matches": "Ingen retter samsvarer med søket ditt.",
+    "clear_search": "Tøm søket",
+    "tv_mode": "TV-visning",
+    "open_tv_mode": "Åpne TV-visning",
+    "exit_tv_mode": "Avslutt TV-visning",
     "visual_gastronomy": "Visuell Gastronomi",
     "search_placeholder": "Tilpass din opplevelse...",
+    "share_menu": "Del meny",
+    "link_copied": "Menylenken er kopiert",
+    "copy_link": "Kopier denne menylenken",
     "share": "Del",
     "future_dining": "FREMTIDENS SERVERING",
     "establishment_info": "ETABLISSEMENTSINFO",

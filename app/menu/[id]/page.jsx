@@ -2,7 +2,6 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import toast from "react-hot-toast";
 import useSWR from "swr";
 import {
     Search,
@@ -15,13 +14,13 @@ import {
     Facebook,
     Twitter,
     Clock,
-    Share2,
     Monitor,
     X,
     Info,
     ChevronDown,
     Plus
 } from "lucide-react";
+import { ShareMenuButton } from "@/components/public/ShareMenuButton";
 import { Button } from "@/components/ui/Button";
 import { CategoryNav } from "@/components/public/CategoryNav";
 import { MenuItemDetail } from "@/components/public/MenuItemDetail";
@@ -51,6 +50,7 @@ export default function PublicMenuPage() {
     });
 
     const [searchQuery, setSearchQuery] = useState("");
+    const searchInput = useRef(null);
     const [activeCategory, setActiveCategory] = useState("");
     const [isTVMode, setIsTVMode] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
@@ -62,7 +62,7 @@ export default function PublicMenuPage() {
     const reducedMotion = useReducedMotion();
     const { t } = useTranslation();
 
-    const scrollInterval = useRef(null);
+    const requestedFullscreen = useRef(false);
     const ensureCartRestaurant = useCartStore((s) => s.ensureRestaurant);
     const addToCart = useCartStore((s) => s.addItem);
     const tables = data?.tables || [];
@@ -176,23 +176,47 @@ export default function PublicMenuPage() {
 
     // Framer Motion owns menu entrances; GSAP owns only the optional splash.
 
-    // TV Mode Scrolling Logic
-    useEffect(() => {
-        if (isTVMode) {
-            scrollInterval.current = setInterval(() => {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 10) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    window.scrollBy({ top: 1, behavior: 'auto' });
-                }
-            }, 30);
-            document.documentElement.requestFullscreen?.();
-        } else {
-            clearInterval(scrollInterval.current);
-            if (document.fullscreenElement) document.exitFullscreen?.();
+    function toggleTVMode() {
+        if (!isTVMode && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+            requestedFullscreen.current = true;
+            document.documentElement.requestFullscreen().catch(() => {
+                requestedFullscreen.current = false;
+            });
         }
-        return () => clearInterval(scrollInterval.current);
+        setIsTVMode(!isTVMode);
+    }
+
+    useEffect(() => {
+        if (!isTVMode) return;
+        const onFullscreenChange = () => {
+            if (!document.fullscreenElement) setIsTVMode(false);
+        };
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') setIsTVMode(false);
+        };
+        document.addEventListener('fullscreenchange', onFullscreenChange);
+        document.addEventListener('keydown', onKeyDown);
+        return () => {
+            document.removeEventListener('fullscreenchange', onFullscreenChange);
+            document.removeEventListener('keydown', onKeyDown);
+            if (requestedFullscreen.current && document.fullscreenElement === document.documentElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+            requestedFullscreen.current = false;
+        };
     }, [isTVMode]);
+
+    useEffect(() => {
+        if (!isTVMode || reducedMotion) return;
+        const timer = window.setInterval(() => {
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1) {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            } else {
+                window.scrollBy({ top: 1, behavior: 'instant' });
+            }
+        }, 30);
+        return () => window.clearInterval(timer);
+    }, [isTVMode, reducedMotion]);
 
     // 3. Dynamic Font Loading
     // Used to only ever request the heading font - if you picked a different
@@ -223,21 +247,6 @@ export default function PublicMenuPage() {
     }, [headingFont, bodyFont, accentFont]);
 
     // 4. Category Tracking (Intersection Observer)
-
-    const handleShare = async () => {
-        try {
-            if (navigator.share) {
-                await navigator.share({
-                    title: data?.restaurant?.name || "Digital Menu",
-                    text: `Check out our digital menu at ${data?.restaurant?.name}`,
-                    url: window.location.href,
-                });
-            } else {
-                await navigator.clipboard.writeText(window.location.href);
-                toast.success("Link copied to clipboard!");
-            }
-        } catch (err) { console.error(err); }
-    };
 
     if (error) return (
         <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center bg-zinc-950 text-white">
@@ -307,11 +316,12 @@ export default function PublicMenuPage() {
         return url.startsWith("http") ? url : `https://${url}`;
     };
 
+    const query = isTVMode ? '' : searchQuery.trim().toLowerCase();
     const filteredMenu = menu.map(group => ({
         ...group,
         items: (group.items || []).filter(item =>
-            item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            item.description?.toLowerCase().includes(searchQuery.toLowerCase())
+            item.name.toLowerCase().includes(query) ||
+            item.description?.toLowerCase().includes(query)
         )
     })).filter(group => group.items.length > 0);
 
@@ -321,8 +331,8 @@ export default function PublicMenuPage() {
             <div 
                 key="menu-main" 
                 className={cn(
-                    "relative min-h-screen transition-all duration-1000 overflow-x-hidden",
-                    isTVMode ? "text-white" : "text-foreground font-medium",
+                    "relative min-h-screen transition-all duration-1000 text-foreground",
+                    isTVMode ? "overflow-x-clip bg-[var(--bg-page)]" : "overflow-x-hidden font-medium",
                     isPreview && "scrollbar-hide"
                 )} 
                 style={{ fontFamily: 'var(--font-body)', transform: 'none' }}
@@ -335,7 +345,7 @@ export default function PublicMenuPage() {
                 )}
 
                 {/* Premium Liquid Aura Background */}
-                {!isTVMode && !isPreview && (
+                {!isTVMode && !isPreview && !reducedMotion && (
                     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
                         <motion.div
                             animate={{
@@ -379,7 +389,7 @@ export default function PublicMenuPage() {
                 {/* Header: High-End Minimalist */}
                 <header className={cn(
                     "sticky top-0 z-50 backdrop-blur-3xl border-b transition-all duration-700",
-                    isTVMode ? "bg-black/90 border-white/5 py-4" : "bg-[var(--bg-elevated,#fff)] text-[var(--text-primary,#18181b)] border-[var(--border-light,#e4e4e7)]",
+                    isTVMode ? "bg-zinc-950 text-white border-white/10 py-4 px-4 md:px-6" : "bg-[var(--bg-elevated,#fff)] text-[var(--text-primary,#18181b)] border-[var(--border-light,#e4e4e7)]",
                     !isTVMode && (activeRestaurant.experienceConfig?.layoutID === "orbital-wheel" ? "py-1 px-4" : "py-4 md:py-8 px-4 md:px-6")
                 )}>
                     <div className={cn(
@@ -387,7 +397,7 @@ export default function PublicMenuPage() {
                         restaurant.experienceConfig?.layoutID === "orbital-wheel" ? "gap-1" : "gap-4 md:gap-6"
                     )}>
                         <div className="w-full flex items-center justify-between">
-                            <div className="flex items-center gap-3 md:gap-6">
+                            <div className="flex min-w-0 items-center gap-3 md:gap-6">
                                 {restaurant.logoUrl && (
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}
@@ -396,7 +406,7 @@ export default function PublicMenuPage() {
                                         <img src={restaurant.logoUrl} alt={restaurant.name} className="w-full h-full object-contain" />
                                     </motion.div>
                                 )}
-                                <div className="flex flex-col">
+                                <div className="flex min-w-0 flex-col [overflow-wrap:anywhere]">
                                     <h1 className={cn("font-black tracking-tighter leading-none italic", isTVMode ? "text-2xl md:text-4xl" : "text-xl md:text-3xl")}>
                                         {restaurant.name.toUpperCase()}
                                     </h1>
@@ -404,7 +414,7 @@ export default function PublicMenuPage() {
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-2 md:gap-3">
+                            <div className="flex shrink-0 items-center gap-2 md:gap-3">
                                 {!isTVMode && (
                                     <div className="hidden sm:block">
                                         <LanguageSwitcher />
@@ -412,12 +422,12 @@ export default function PublicMenuPage() {
                                 )}
                                 <Button
                                     variant="ghost"
-                                    size="icon"
-                                    aria-label={isTVMode ? "Exit TV mode" : "Open TV mode"}
-                                    onClick={() => setIsTVMode(!isTVMode)}
-                                    className={cn("rounded-xl md:rounded-2xl w-10 h-10 md:w-12 md:h-12 transition-all border", isTVMode ? "bg-white/10 text-white border-white/10" : "bg-muted border-border text-foreground hover:text-foreground")}
+                                    aria-label={isTVMode ? t('live_menu.exit_tv_mode') : t('live_menu.open_tv_mode')}
+                                    onClick={toggleTVMode}
+                                    className={cn("rounded-xl md:rounded-2xl gap-2 h-10 md:h-12 px-3 border", isTVMode ? "bg-zinc-800 text-white border-zinc-600 hover:bg-zinc-700 hover:text-white" : "bg-muted border-border text-foreground hover:text-foreground")}
                                 >
                                     {isTVMode ? <X className="w-4 h-4 md:w-5 md:h-5" /> : <Monitor className="w-4 h-4 md:w-5 md:h-5" />}
+                                    {isTVMode ? t('live_menu.exit_tv_mode') : t('live_menu.tv_mode')}
                                 </Button>
                                 {!isTVMode && (
                                     <Button
@@ -438,7 +448,8 @@ export default function PublicMenuPage() {
                                 <Search className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                                 <input
                                     type="text"
-                                    aria-label="Search menu"
+                                    ref={searchInput}
+                                    aria-label={t('live_menu.search_label')}
                                     placeholder={t('live_menu.search_placeholder')}
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -453,7 +464,7 @@ export default function PublicMenuPage() {
                 </header>
 
                 {
-                    !isTVMode && activeRestaurant.experienceConfig?.layoutID !== "orbital-wheel" && (
+                    !isTVMode && filteredMenu.length > 0 && activeRestaurant.experienceConfig?.layoutID !== "orbital-wheel" && (
                         <CategoryNav
                             categories={filteredMenu}
                             activeCategory={activeCategory}
@@ -467,13 +478,21 @@ export default function PublicMenuPage() {
                         "max-w-7xl mx-auto px-4 md:px-6 transition-all duration-1000",
                         isTVMode ? "pt-10" : (activeRestaurant.experienceConfig?.layoutID === "orbital-wheel" ? "pt-0" : "pt-8 md:pt-12")
                     )}>
-                        <LayoutFactory
+                        {query && filteredMenu.length === 0 ? (
+                            <div className="mx-auto max-w-md rounded-2xl border border-border bg-background px-5 py-8 text-center text-foreground">
+                                <p role="status" className="font-semibold">{t('live_menu.no_matches')}</p>
+                                <button type="button" className="mt-3 min-h-11 rounded-lg px-4 font-bold underline underline-offset-4"
+                                    onClick={() => { setSearchQuery(''); searchInput.current?.focus(); }}>
+                                    {t('live_menu.clear_search')}
+                                </button>
+                            </div>
+                        ) : <LayoutFactory
                             layoutID={activeRestaurant.experienceConfig?.layoutID}
                             isTVMode={isTVMode}
                             groupedItems={filteredMenu}
                             setSelectedItem={setSelectedItem}
                             {...activeRestaurant.experienceConfig}
-                        />
+                        />}
                     </main>
                 </AtmosphereStage>
 
@@ -485,18 +504,8 @@ export default function PublicMenuPage() {
                 )}>
                     <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 md:gap-12">
                         <div className="flex items-center gap-6 md:gap-12 border-b border-zinc-100 pb-8 md:pb-12 w-full justify-center flex-wrap">
-                            <div className="flex items-center gap-3">
-                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em]">{t('live_menu.share')}</span>
-                                <div className="flex gap-2">
-                                    <Button variant="ghost" size="icon" aria-label="Share menu" onClick={handleShare} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-zinc-100">
-                                        <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <div className="w-[1px] h-4 bg-zinc-100 hidden md:block" />
-
-                            <div className="flex items-center gap-6">
+                            <ShareMenuButton menuPath={'/menu/' + encodeURIComponent(id)} title={activeRestaurant.name} />
+                            <div className="flex items-center gap-6 empty:hidden">
                                 {bp.socialLinks?.instagram && <a href={formatUrl(bp.socialLinks.instagram)} aria-label="Instagram"><Instagram aria-hidden="true" className="w-4 h-4 md:w-5 md:h-5" /></a>}
                                 {bp.socialLinks?.facebook && <a href={formatUrl(bp.socialLinks.facebook)} aria-label="Facebook"><Facebook aria-hidden="true" className="w-4 h-4 md:w-5 md:h-5" /></a>}
                             </div>

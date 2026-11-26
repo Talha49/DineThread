@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Sparkles, ArrowRight, Play, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 import { Navbar } from "@/components/marketing/Navbar";
 import { Features } from "@/components/marketing/Features";
 import { Pricing } from "@/components/marketing/Pricing";
@@ -18,105 +18,51 @@ export default function Home({ user }) {
   const effectiveUser = user || authUser;
   const primaryCtaHref = effectiveUser ? "/dashboard" : "/signup";
 
-  const videoRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+  const walkthrough = useRef(null);
   useEffect(() => {
-    const video = videoRef.current;
+    const video = walkthrough.current;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => {
+    function syncPlayback() {
       if (preference.matches) video.pause();
-      else video.play().catch(() => {}); // Native controls remain available if autoplay is blocked.
-    };
-    update();
-    preference.addEventListener("change", update);
-    return () => preference.removeEventListener("change", update);
+      else video.play().catch(() => {}); // Native playback controls handle blocked autoplay.
+    }
+    syncPlayback();
+    preference.addEventListener("change", syncPlayback);
+    return () => preference.removeEventListener("change", syncPlayback);
   }, []);
-
   return (
     <div className="min-h-screen [--color-primary:#4338ca] text-zinc-900 bg-white selection:bg-primary selection:text-white overflow-x-hidden">
       <Navbar user={user} />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4">
-        {/* Background Decorative Blurs */}
-        <div className="absolute rtl:left-0 rtl:right-auto rtl:-translate-x-1/2 top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute rtl:right-0 rtl:left-auto rtl:translate-x-1/2 bottom-0 left-0 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
-
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-50 border border-zinc-100 mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{t('home.hero.badge')}</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase text-zinc-900 leading-[0.9] mb-8"
-          >
-            {t('home.hero.title_1')} <br />
-            <span className="text-zinc-600">{t('home.hero.title_2')}</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-2xl mx-auto text-lg md:text-xl text-zinc-500 font-medium leading-relaxed mb-12"
-          >
-            {t('home.hero.subtitle')}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <Link href={primaryCtaHref}>
-              <Button size="lg" className="h-16 px-10 rounded-2xl text-[12px] font-black uppercase tracking-[0.2em] shadow-2xl shadow-primary/40 group">
-                {t('home.hero.cta_primary')} <ArrowRight className="ml-3 rtl:mr-3 rtl:ml-0 rtl:rotate-180 w-5 h-5 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform" />
-              </Button>
+      <section className="dt-intro relative px-4">
+        <div className="relative z-10 mx-auto max-w-7xl text-center">
+          <h1 className="dt-headline font-black italic uppercase">
+            {t('home.hero.title_1')}<br />
+            <span>{t('home.hero.title_2')}</span>
+          </h1>
+          <p className="dt-summary">{t('home.hero.subtitle')}</p>
+          <div className="dt-actions">
+            <Link href={primaryCtaHref} className="dt-action dt-action-primary">
+              {effectiveUser ? t('nav.dashboard') : t('home.hero.cta_primary')}
+              <ArrowRight aria-hidden="true" className="size-5 rtl:rotate-180" />
             </Link>
-            <a href="#how-it-works" className="h-16 px-10 rounded-2xl bg-zinc-50 border-2 border-zinc-100 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900 flex items-center gap-3 hover:bg-zinc-100 transition-all">
-              <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
-                <Play className="w-3 h-3 text-white ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180" />
-              </div>
+            <a href="#how-it-works" className="dt-action dt-action-secondary">
+              <Play aria-hidden="true" className="size-4 fill-current rtl:rotate-180" />
               {t('home.hero.cta_secondary')}
             </a>
-          </motion.div>
-
-          {/* Video / Dashboard Showcase */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="mt-20 relative max-w-6xl mx-auto rounded-[3rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.1)] border-[12px] border-zinc-50 bg-zinc-900 group"
-          >
-            <div className="aspect-video relative overflow-hidden">
-               <video 
-                ref={videoRef}
-                controls
-                preload="metadata"
-                poster="/dashboard-showcase.png"
-                aria-label={t("accessibility.walkthrough")}
-                loop 
-                muted 
-                playsInline
-                className="w-full h-full object-contain"
-               >
-                 <source src="/inro.mp4" type="video/mp4" />
-               </video>
-            </div>
-          </motion.div>
+          </div>
+          <div id="how-it-works" className="dt-walkthrough">
+            <video ref={walkthrough} controls muted playsInline loop preload="metadata"
+              poster="/dashboard-showcase.png" aria-label={t("accessibility.walkthrough")}>
+              <source src="/inro.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </section>
 
       {/* How it Works Section */}
-      <section id="how-it-works" className="scroll-mt-20 py-24 px-4 bg-zinc-50">
+      <section id="workflow" className="scroll-mt-20 py-24 px-4 bg-zinc-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <span className="block text-[11px] font-black uppercase tracking-[0.4em] text-primary" role="doc-subtitle">{t('home.workflow.tag')}</span>
@@ -153,11 +99,11 @@ export default function Home({ user }) {
                 icon: "⚡"
               }
             ].map((item, i) => (
-              <div key={i} className="bg-white p-8 rounded-[3rem] border-2 border-zinc-100 relative group hover:border-primary/20 transition-all">
+              <div key={i} className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-200 relative group hover:border-primary/20 transition-all">
                 <div className="text-4xl mb-6">{item.icon}</div>
-                <div className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-[10px] font-black uppercase tracking-widest text-indigo-700">{item.step}</div>
+                <div className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-xs font-bold uppercase tracking-wide text-indigo-700">{item.step}</div>
                 <h4 className="text-xl font-black uppercase tracking-tight mb-3 text-zinc-900">{item.title}</h4>
-                <p className="text-sm font-medium text-zinc-500 leading-relaxed">
+                <p className="text-base font-medium text-zinc-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -168,24 +114,24 @@ export default function Home({ user }) {
              <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                    <h4 className="text-2xl font-black italic tracking-tighter uppercase">{t('home.workflow.why_optimize')}</h4>
-                   <p className="text-sm text-white/60 font-medium leading-relaxed">
+                   <p className="text-sm text-zinc-300 font-medium leading-relaxed">
                      {t('home.workflow.why_desc')}
                    </p>
                    <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <CheckCircle2 className="w-4 h-4 text-primary" />
-                        <span className="text-[10px] font-black uppercase tracking-widest">{t('home.workflow.benefits.0')}</span>
+                        <span className="text-xs font-bold uppercase tracking-wide">{t('home.workflow.benefits.0')}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <CheckCircle2 className="w-4 h-4 text-primary" />
-                        <span className="text-[10px] font-black uppercase tracking-widest">{t('home.workflow.benefits.1')}</span>
+                        <span className="text-xs font-bold uppercase tracking-wide">{t('home.workflow.benefits.1')}</span>
                       </div>
                    </div>
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4">
                    <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">{t('home.workflow.table.feature')}</span>
-                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">{t('home.workflow.table.status')}</span>
+                      <span className="text-xs font-bold uppercase tracking-wide text-zinc-300">{t('home.workflow.table.feature')}</span>
+                      <span className="text-xs font-bold uppercase tracking-wide text-zinc-300">{t('home.workflow.table.status')}</span>
                    </div>
                    <div className="flex items-center justify-between">
                       <span className="text-[11px] font-bold">{t('home.workflow.table.rows.0')}</span>
@@ -205,17 +151,6 @@ export default function Home({ user }) {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-20 border-y border-zinc-100">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center md:justify-between items-center gap-12 text-zinc-600 grayscale hover:grayscale-0 transition-all duration-700">
-          <div className="text-xl font-black italic tracking-tighter uppercase">Marriott</div>
-          <div className="text-xl font-black italic tracking-tighter uppercase">Hilton</div>
-          <div className="text-xl font-black italic tracking-tighter uppercase">Four Seasons</div>
-          <div className="text-xl font-black italic tracking-tighter uppercase">Ritz-Carlton</div>
-          <div className="text-xl font-black italic tracking-tighter uppercase">Nobu</div>
-        </div>
-      </section>
-
       <Features />
 
       {/* Visual DNA Showcase */}
@@ -229,7 +164,7 @@ export default function Home({ user }) {
               {t('home.automation.title_1')} <br />
               <span className="text-zinc-300">{t('home.automation.title_2')}</span>
             </h2>
-            <p className="text-lg text-white/50 font-medium leading-relaxed">
+            <p className="text-lg text-zinc-300 font-medium leading-relaxed">
               {t('home.automation.desc')}
             </p>
             <ul className="space-y-4">
@@ -244,20 +179,25 @@ export default function Home({ user }) {
 
           <div className="relative">
             <motion.div 
-              initial={{ rotate: -5 }}
+              initial={false}
               whileInView={{ rotate: 0 }}
               className="relative z-10 rounded-[4rem] overflow-hidden shadow-2xl border-[16px] border-white/5"
             >
-              <img 
-                src="/seasonal-showcase.png" 
-                alt="DineThread Digital QR Menu Software Interface Showcase"
-                className="w-full h-full object-cover"
+              <Image
+                src="/seasonal-showcase.png"
+                width={1024}
+                height={1024}
+                sizes="(min-width: 1280px) 600px, (min-width: 1024px) 45vw, 100vw"
+                alt=""
+                className="w-full h-auto"
               />
             </motion.div>
             {/* Floaties */}
             <motion.div 
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              initial={false}
+              whileInView={reducedMotion ? undefined : { y: [6, 0] }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
               className="absolute -right-10 rtl:-left-10 rtl:-right-auto top-20 p-6 bg-white rounded-3xl shadow-2xl z-20"
             >
               <Sparkles className="w-8 h-8 text-primary" />
@@ -270,27 +210,26 @@ export default function Home({ user }) {
 
       {/* Final CTA */}
       <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto rounded-[4rem] bg-zinc-900 p-12 md:p-24 text-center relative overflow-hidden">
+        <div className="max-w-7xl mx-auto rounded-3xl md:rounded-[4rem] bg-zinc-900 px-5 py-12 md:p-24 text-center relative overflow-hidden">
            <div className="absolute inset-0 bg-primary/5 blur-[100px]" />
            <div className="relative z-10 space-y-8">
               <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase text-white">
                 {t('home.cta.title_1')} <br /> {t('home.cta.title_2')}
               </h2>
-              <p className="max-w-xl mx-auto text-white/50 text-lg font-medium">
+              <p className="max-w-xl mx-auto text-zinc-300 text-lg font-medium">
                 {t('home.cta.subtitle')}
               </p>
               <div className="flex justify-center gap-4">
-                 <Link href={primaryCtaHref}>
-                   <Button size="lg" className="h-16 px-12 rounded-2xl font-black uppercase tracking-widest shadow-2xl shadow-primary/20">
-                     {t('home.cta.btn')}
-                   </Button>
+                 <Link href={primaryCtaHref} className="dt-action dt-action-primary">
+                     {effectiveUser ? t('nav.dashboard') : t('home.cta.btn')}
+                     <ArrowRight aria-hidden="true" className="size-5 rtl:rotate-180" />
                  </Link>
               </div>
               <div className="flex items-center justify-center gap-8 pt-8">
-                  <div className="flex items-center gap-2 text-zinc-300 text-[10px] font-black uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-zinc-300 text-xs font-bold uppercase tracking-wide">
                     <ShieldCheck className="w-4 h-4 rtl:ml-2" /> {t('home.cta.trial')}
                   </div>
-                  <div className="flex items-center gap-2 text-zinc-300 text-[10px] font-black uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-zinc-300 text-xs font-bold uppercase tracking-wide">
                     <CheckCircle2 className="w-4 h-4 rtl:ml-2" /> {t('home.cta.no_card')}
                   </div>
               </div>

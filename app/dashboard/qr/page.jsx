@@ -1,59 +1,40 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRestaurantStore } from "@/hooks/use-restaurant-store";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
 import { QrCode, Download, Printer, ExternalLink, Loader2 } from "lucide-react";
 import QRCode from "qrcode";
 import Link from "next/link";
+import { createPortal } from "react-dom";
+import { ShareMenuButton } from "@/components/public/ShareMenuButton";
 
 export default function QRPage() {
     const { restaurant } = useRestaurantStore();
-    const [qrUrl, setQrUrl] = useState("");
-    const [loading, setLoading] = useState(true);
-    const canvasRef = useRef(null);
-
-    const [isLocalhost, setIsLocalhost] = useState(false);
-
-    useEffect(() => {
-        if (window.location.hostname === "localhost") {
-            setIsLocalhost(true);
-        }
-    }, []);
-
-    // ?src=qr lets the public menu page tell a QR scan apart from a direct
-    // visit/share link - see app/api/analytics/track.
-    const publicMenuUrl = restaurant?.restaurantId
-        ? `${window.location.protocol}//${window.location.host}/menu/${restaurant.restaurantId}?src=qr`
-        : "";
+    const [origin, setOrigin] = useState("");
+    const [qr, setQr] = useState(null);
+    useEffect(() => setOrigin(window.location.origin), []);
+    const menuPath = restaurant?.restaurantId ? "/menu/" + encodeURIComponent(restaurant.restaurantId) : "";
+    const publicMenuUrl = origin && menuPath ? origin + menuPath + "?src=qr" : "";
+    const qrUrl = qr?.url === publicMenuUrl ? qr.image : "";
+    const qrError = qr?.url === publicMenuUrl && qr.error;
+    const isLocalhost = origin && ["localhost", "127.0.0.1", "[::1]"].includes(new URL(origin).hostname);
 
     useEffect(() => {
-        if (publicMenuUrl) {
-            generateQR();
-        }
-    }, [publicMenuUrl, restaurant]);
+        if (!publicMenuUrl) return;
+        let current = true;
+        QRCode.toDataURL(publicMenuUrl, {
+            width: 600, margin: 4, color: { dark: "#18181b", light: "#ffffff" },
+        }).then(image => {
+            if (current) setQr({ url: publicMenuUrl, image });
+        }).catch(() => {
+            if (current) setQr({ url: publicMenuUrl, error: true });
+        });
+        return () => { current = false; };
+    }, [publicMenuUrl]);
 
-    const generateQR = async () => {
-        try {
-            setLoading(true);
-            const url = await QRCode.toDataURL(publicMenuUrl, {
-                width: 400,
-                margin: 2,
-                color: {
-                    dark: restaurant?.brandColor || "#000000",
-                    light: "#ffffff",
-                },
-            });
-            setQrUrl(url);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleDownload = (format) => {
+    const handleDownload = () => {
         if (!qrUrl) return;
         const link = document.createElement("a");
         link.href = qrUrl;
@@ -61,32 +42,6 @@ export default function QRPage() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    };
-
-    const handlePrint = () => {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
-            <html>
-                <head>
-                    <title>Menu QR Code</title>
-                    <style>
-                        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; }
-                        img { max-width: 300px; }
-                        h1 { margin-bottom: 10px; }
-                        p { margin-top: 0; color: #555; }
-                    </style>
-                </head>
-                <body>
-                    <h1>${restaurant?.name || "Scan for Menu"}</h1>
-                    <img src="${qrUrl}" />
-                    <p>Scan to view menu</p>
-                    <script>
-                        window.onload = function() { window.print(); window.close(); }
-                    </script>
-                </body>
-            </html>
-        `);
-        printWindow.document.close();
     };
 
     if (!restaurant) return null;
@@ -105,17 +60,17 @@ export default function QRPage() {
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* QR Display */}
-                <Card className="flex flex-col items-center justify-center p-8 bg-white/50 backdrop-blur-sm">
-                    <div className="bg-white p-6 rounded-2xl shadow-xl border border-dashed border-primary/20 mb-6">
-                        {loading ? (
-                            <div className="w-[300px] h-[300px] flex items-center justify-center bg-muted/20 rounded-lg">
+                <Card className="min-w-0 flex flex-col items-center justify-center p-4 sm:p-8">
+                    <div className="w-full max-w-[300px] aspect-square bg-white p-2 rounded-2xl shadow-sm mb-6">
+                        {qrError ? <p role="alert" className="p-4 text-zinc-900">Could not generate the QR code. Reload to retry.</p> : !qrUrl ? (
+                            <div className="w-full h-full flex items-center justify-center bg-muted/20 rounded-lg">
                                 <Loader2 className="w-10 h-10 text-primary animate-spin" />
                             </div>
                         ) : (
-                            <img src={qrUrl} alt="Menu QR Code" className="w-[300px] h-[300px]" />
+                            <img src={qrUrl} alt="Menu QR Code" className="w-full h-full" />
                         )}
                     </div>
-                    <div className="text-center space-y-1">
+                    <div className="w-full text-center space-y-1">
                         <p className="font-mono text-xs text-muted-foreground bg-muted py-1 px-3 rounded-full break-all">
                             {publicMenuUrl}
                         </p>
@@ -138,27 +93,32 @@ export default function QRPage() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <Button onClick={() => handleDownload("png")} className="w-full justify-start" variant="outline" size="lg">
+                        <Button disabled={!qrUrl} onClick={handleDownload} className="w-full justify-start" variant="outline" size="lg">
                             <Download className="w-5 h-5 mr-3" />
                             Download QR Image (PNG)
                         </Button>
 
-                        <Button onClick={handlePrint} className="w-full justify-start" variant="outline" size="lg">
+                        <Button disabled={!qrUrl} onClick={() => window.print()} className="w-full justify-start" variant="outline" size="lg">
                             <Printer className="w-5 h-5 mr-3" />
                             Print QR Flyer
                         </Button>
 
-                        <div className="pt-4 mt-4 border-t">
-                            <Link href={`/menu/${restaurant.restaurantId}`} target="_blank">
-                                <Button className="w-full" size="lg">
-                                    <ExternalLink className="w-5 h-5 mr-2" />
-                                    Open Menu Link
-                                </Button>
+                        <div className="grid gap-3 pt-4 border-t">
+                            <ShareMenuButton menuPath={menuPath} title={restaurant.name} className="w-full rounded-md" />
+                            <Link href={menuPath} target="_blank" rel="noopener" className="flex min-h-11 items-center justify-center gap-2 rounded-md border font-medium">
+                                <ExternalLink aria-hidden="true" className="size-4" /> Open Menu Link
                             </Link>
                         </div>
                     </CardContent>
                 </Card>
             </div>
+            {qrUrl && createPortal(
+                <section id="menu-qr-flyer" className="hidden">
+                    <h1>{restaurant.name}</h1>
+                    <img src={qrUrl} alt="Menu QR code for printing" width="320" height="320" />
+                    <p>Scan to view the menu</p>
+                </section>, document.body
+            )}
         </div>
     );
 }

@@ -1,20 +1,42 @@
 "use client";
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/store/useTranslation';
 
-export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, color = 'indigo', sparkline }) {
-    const reduceMotion = useReducedMotion();
-    // Normalize real daily counts to 0-100 bar heights - no sparkline is
-    // rendered at all unless real numbers are passed in (see dashboard/page.jsx).
-    const bars = sparkline?.length
-        ? (() => {
-            const max = Math.max(...sparkline, 1);
-            return sparkline.map((v) => Math.max(8, Math.round((v / max) * 100)));
-        })()
-        : null;
+export function VisitHistory({ days }) {
+    const { language, t } = useTranslation();
+    const chart = useRef(null);
+    const inView = useInView(chart, { once: true, amount: 0.5 });
+    const peak = Math.max(0, ...days.map(day => day.count));
+    const weekday = new Intl.DateTimeFormat(language, { weekday: 'short', timeZone: 'UTC' });
+    const dateLabel = new Intl.DateTimeFormat(language, { dateStyle: 'medium', timeZone: 'UTC' });
+    return (
+        <figure ref={chart} className="dt-history" data-in-view={inView}>
+            <figcaption>{t(peak ? 'dashboard.overview.metrics.week' : 'dashboard.overview.metrics.empty_week')}</figcaption>
+            <ol>
+                {days.map(({ date, count }) => {
+                    const day = new Date(date);
+                    const description = dateLabel.format(day) + ' · ' + t('dashboard.overview.metrics.visits') + ' ' + count.toLocaleString(language);
+                    return (
+                        <li key={date} title={description}>
+                            <span className="sr-only">{description}</span>
+                            <div className="dt-history-track" aria-hidden="true">
+                                <span className={count ? 'dt-history-bar' : 'dt-history-zero'}
+                                    style={count ? { height: (count / peak * 100) + '%' } : undefined} />
+                            </div>
+                            <time dateTime={date} aria-hidden="true">{weekday.format(day)}</time>
+                        </li>
+                    );
+                })}
+            </ol>
+        </figure>
+    );
+}
 
+export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, color = 'indigo', children }) {
     const colorClasses = {
         indigo: "from-indigo-500/20 to-blue-500/20 text-indigo-600",
         purple: "from-purple-500/20 to-pink-500/20 text-purple-600",
@@ -24,10 +46,9 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
 
     return (
         <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={reduceMotion ? undefined : { y: -5 }}
-            className="group relative p-6 rounded-[2.5rem] bg-white border-2 border-zinc-50 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
+            className="dt-metric group relative rounded-3xl bg-white border border-zinc-200 shadow-sm overflow-hidden"
         >
             {/* Background Glow */}
             <div className={cn(
@@ -35,7 +56,7 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
                 colorClasses[color]
             )} />
 
-            <div className="relative z-10 flex flex-col h-full justify-between">
+            <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-4">
                     <div className={cn(
                         "p-3 rounded-2xl bg-gradient-to-br shadow-sm",
@@ -55,30 +76,14 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
                 </div>
 
                 <div>
-                    <h3 className="text-xs font-black uppercase tracking-widest text-zinc-600 mb-1">{title}</h3>
-                    <div className="flex items-baseline gap-2">
+                    <h3 className="text-sm font-bold text-zinc-700 mb-1">{title}</h3>
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0">
                         <span className="text-3xl font-black italic tracking-tighter text-zinc-900">{value}</span>
                         {unit && <span className="text-xs font-bold text-zinc-600">{unit}</span>}
                     </div>
                 </div>
 
-                {/* Last 7 days, real counts only - no data in, no bars shown */}
-                {bars && (
-                    <div className="mt-4 flex items-end gap-1 h-8">
-                        {bars.map((h, i) => (
-                            <motion.div
-                                key={i}
-                                initial={reduceMotion ? false : { height: 0 }}
-                                animate={{ height: `${h}%` }}
-                                transition={{ delay: i * 0.1, duration: 0.6 }}
-                                className={cn(
-                                    "flex-1 rounded-full transition-colors",
-                                    i === bars.length - 1 ? "bg-zinc-900" : "bg-zinc-100 group-hover:bg-zinc-200"
-                                )}
-                            />
-                        ))}
-                    </div>
-                )}
+                {children}
             </div>
         </motion.div>
     );

@@ -1,26 +1,27 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Button } from "@/components/ui/Button";
 import { Menu, X, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from '@/store/useTranslation';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { useAuth } from '@/components/providers/AuthProvider';
 
-const loginLink = "inline-flex items-center justify-center border border-zinc-300 bg-white text-zinc-900 hover:bg-zinc-100 focus-visible:bg-zinc-100 font-black uppercase transition-colors";
+const loginLink = "inline-flex items-center justify-center border border-zinc-300 bg-white text-zinc-900 hover:bg-zinc-100 focus-visible:bg-zinc-100 font-bold transition-colors";
 
 export function Navbar({ user }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const toggleRef = useRef(null);
     const { t } = useTranslation();
     const { user: authUser } = useAuth();
     const effectiveUser = user || authUser;
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -32,26 +33,33 @@ export function Navbar({ user }) {
     ];
 
     return (
-        <nav className={cn(
-            "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 py-4",
-            isScrolled ? "bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
+        <nav onKeyDown={(event) => {
+            if (event.key === 'Escape' && isMobileMenuOpen) {
+                setIsMobileMenuOpen(false);
+                toggleRef.current?.focus();
+            }
+        }} onBlur={(event) => {
+            if (event.relatedTarget && !event.currentTarget.contains(event.relatedTarget)) setIsMobileMenuOpen(false);
+        }} className={cn(
+            "dt-nav fixed top-0 inset-x-0 z-50 border-b px-4 py-3 text-zinc-900 transition-colors md:px-8",
+            isScrolled || isMobileMenuOpen ? "border-zinc-200 bg-white/95 shadow-sm backdrop-blur-md" : "border-transparent bg-white/95"
         )}>
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <div className="max-w-7xl mx-auto grid grid-cols-[1fr_auto] items-center lg:grid-cols-[1fr_auto_1fr] gap-4">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group">
-                    <div className="w-10 h-10 bg-zinc-900 rounded-2xl flex items-center justify-center text-white shadow-xl group-hover:rotate-12 transition-transform">
+                <Link href="/" className="flex w-fit items-center gap-2 group">
+                    <div className="w-10 h-10 bg-zinc-900 rounded-2xl flex items-center justify-center text-white shadow-xl motion-safe:group-hover:rotate-6 motion-safe:transition-transform">
                         <Sparkles className="w-5 h-5" />
                     </div>
                     <span className="text-xl font-black italic tracking-tighter uppercase text-zinc-900">DineThread</span>
                 </Link>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-8">
+                <div className="hidden lg:flex items-center gap-6">
                     {navLinks.map((link) => (
                         <Link 
                             key={link.href} 
                             href={link.href}
-                            className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-500 hover:text-zinc-900 transition-colors"
+                            className="dt-nav-link text-sm font-bold text-zinc-700 hover:text-zinc-900 transition-colors"
                         >
                             {link.name}
                         </Link>
@@ -59,32 +67,26 @@ export function Navbar({ user }) {
                 </div>
 
                 {/* Actions */}
-                <div className="hidden md:flex items-center gap-4">
+                <div className="hidden lg:flex justify-self-end items-center gap-3">
                     <LanguageSwitcher />
                     {effectiveUser ? (
-                        <Link href="/dashboard">
-                            <Button className="rounded-full px-8 text-[11px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-                                {t('nav.dashboard')}
-                            </Button>
-                        </Link>
+                        <Link href="/dashboard" className="dt-nav-action">{t('nav.dashboard')}</Link>
                     ) : (
                         <>
-                            <Link href="/login" className={cn(loginLink, "h-10 rounded-full px-4 text-[11px] tracking-widest")}>
+                            <Link href="/login" className={cn(loginLink, "h-11 rounded-full px-5 text-sm")}>
                                 {t('nav.login')}
                             </Link>
-                            <Link href="/signup">
-                                <Button className="rounded-full px-8 text-[11px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
-                                    {t('nav.signup')}
-                                </Button>
-                            </Link>
+                            <Link href="/signup" className="dt-nav-action">{t('nav.signup')}</Link>
                         </>
                     )}
                 </div>
 
                 {/* Mobile Toggle */}
                 <button 
-                    className="md:hidden p-2 text-zinc-900"
-                    aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+                    ref={toggleRef}
+                    className="lg:hidden justify-self-end grid size-11 place-items-center rounded-xl text-zinc-900 hover:bg-zinc-100"
+                    aria-label={t(isMobileMenuOpen ? 'accessibility.closeNavigation' : 'accessibility.openNavigation')}
+                    aria-controls={isMobileMenuOpen ? 'mobile-navigation' : undefined}
                     aria-expanded={isMobileMenuOpen}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
@@ -94,13 +96,13 @@ export function Navbar({ user }) {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="absolute top-full left-4 right-4 mt-2 max-h-[calc(100dvh-5rem)] overflow-y-auto bg-white rounded-[2rem] shadow-2xl border border-zinc-100 p-8 flex flex-col gap-6 md:hidden animate-in fade-in slide-in-from-top-4">
+                <div id="mobile-navigation" className="absolute top-full inset-x-4 mt-2 max-h-[calc(100dvh-5rem)] overflow-y-auto bg-white rounded-3xl shadow-2xl border border-zinc-200 p-5 flex flex-col gap-1 lg:hidden dt-drawer">
                     {navLinks.map((link) => (
                         <Link 
                             key={link.name} 
                             href={link.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-lg font-black uppercase tracking-widest text-zinc-900 border-b border-zinc-50 pb-4"
+                            className="rounded-lg px-3 py-3 text-base font-bold text-zinc-900 hover:bg-zinc-100"
                         >
                             {link.name}
                         </Link>
@@ -108,17 +110,13 @@ export function Navbar({ user }) {
                     <div className="flex flex-col gap-3 pt-4">
                         <LanguageSwitcher className="mx-auto mb-2" />
                         {effectiveUser ? (
-                            <Link href="/dashboard" className="w-full">
-                                <Button className="w-full rounded-2xl h-14 font-black uppercase shadow-xl shadow-primary/20">{t('nav.dashboard')}</Button>
-                            </Link>
+                            <Link href="/dashboard" className="dt-nav-action w-full">{t('nav.dashboard')}</Link>
                         ) : (
                             <>
                                 <Link href="/login" className={cn(loginLink, "w-full h-14 rounded-2xl text-sm")}>
                                     {t('nav.login')}
                                 </Link>
-                                <Link href="/signup" className="w-full">
-                                    <Button className="w-full rounded-2xl h-14 font-black uppercase shadow-xl shadow-primary/20">{t('nav.signup')}</Button>
-                                </Link>
+                                <Link href="/signup" className="dt-nav-action w-full">{t('nav.signup')}</Link>
                             </>
                         )}
                     </div>

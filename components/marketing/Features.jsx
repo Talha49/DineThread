@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Zap, Sparkles, Layout, BarChart3, Clock, Smartphone } from 'lucide-react';
 import { useTranslation } from '@/store/useTranslation';
 
 export function Features() {
     const { t } = useTranslation();
+    const reducedMotion = useReducedMotion();
     const features = [0, 1, 2, 3, 4, 5].map(i => ({
         title: t(`home.features.items.${i}.title`),
         desc: t(`home.features.items.${i}.desc`),
@@ -14,9 +15,9 @@ export function Features() {
     }));
 
     return (
-        <section id="features" className="py-24 px-4 bg-white">
+        <section id="features" className="scroll-mt-20 py-14 md:py-24 px-4 bg-white">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-20">
+                <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-5 mb-8 md:mb-14">
                     <div className="max-w-2xl space-y-4">
                         <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-primary">{t('home.features.tag')}</h2>
                         <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase text-zinc-900 leading-none">
@@ -24,7 +25,7 @@ export function Features() {
                             <span className="text-zinc-600">{t('home.features.title_2')}</span>
                         </h3>
                     </div>
-                    <p className="max-w-md text-lg text-zinc-500 font-medium leading-relaxed pb-2">
+                    <p className="max-w-md text-lg text-zinc-600 font-medium leading-relaxed pb-2">
                         {t('home.features.desc')}
                     </p>
                 </div>
@@ -33,16 +34,17 @@ export function Features() {
                     {features.map((f, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.05 }}
+                            initial={false}
+                            whileInView={reducedMotion ? undefined : { y: [8, 0] }}
+                            viewport={{ once: true, amount: 0.15 }}
+                            transition={{ duration: 0.3, delay: (i % 3) * 0.04 }}
                             className="group p-8 rounded-[3rem] border-2 border-zinc-50 bg-zinc-50/30 hover:bg-white hover:border-zinc-200 hover:shadow-2xl transition-all duration-500"
                         >
                             <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform">
                                 <f.icon className="w-6 h-6 text-zinc-900" />
                             </div>
                             <h4 className="text-xl font-black uppercase tracking-tight mb-3 text-zinc-900">{f.title}</h4>
-                            <p className="text-sm font-medium text-zinc-500 leading-relaxed">
+                            <p className="text-base font-medium text-zinc-600 leading-relaxed">
                                 {f.desc}
                             </p>
                         </motion.div>

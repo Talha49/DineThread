@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./brand-surfaces.css";
 
 /* Two-tone focus indicator stays visible on light and dark menu surfaces. */
 :is(button, a, input, select, textarea, [role="button"]):focus-visible {
@@ -231,4 +232,11 @@
   .theme-root .font-bold {
     font-weight: var(--font-heading-weight);
   }
+}
+
+@media print {
+  body:has(> #menu-qr-flyer) > :not(#menu-qr-flyer) { display: none !important; }
+  body:has(> #menu-qr-flyer) { background: white; color: black; }
+  #menu-qr-flyer { display: grid; justify-items: center; gap: 1rem; padding: 2rem; text-align: center; }
+  #menu-qr-flyer h1 { font-size: 2rem; font-weight: 700; }
 }

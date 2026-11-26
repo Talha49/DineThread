@@ -5,6 +5,7 @@ import { useModalFocus } from "@/hooks/use-modal-focus";
 import { useTranslation } from "@/store/useTranslation";
 import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/dashboard/Sidebar";
+import { OrderArrivalNotice } from "@/components/dashboard/OrderArrivalNotice";
 import { TopBar } from "@/components/dashboard/TopBar";
 import { useRestaurantStore } from "@/hooks/use-restaurant-store";
 import { useCategoryStore } from "@/hooks/use-category-store";
@@ -43,6 +44,7 @@ export default function DashboardLayout({ children }) {
   // extra vertical space on top of a height calc that already assumes none.
   const isFullBleed = pathname === "/dashboard/settings";
 
+  const restaurantId = useRestaurantStore(state => state.restaurant?.restaurantId);
   const fetchRestaurant = useRestaurantStore((state) => state.fetchRestaurant);
   const fetchCategories = useCategoryStore((state) => state.fetchCategories);
   const fetchItems = useMenuStore((state) => state.fetchItems);
@@ -85,6 +87,7 @@ export default function DashboardLayout({ children }) {
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopBar onMenuClick={toggleSidebar} isSidebarOpen={isMobile ? isMobileOpen : isDesktopOpen}
             navigationId={isMobile ? "mobile-navigation" : "desktop-navigation"} />
+        {restaurantId && <OrderArrivalNotice key={restaurantId} onBoard={pathname === "/dashboard/orders"} />}
         <main className={cn("flex-1 overflow-y-auto", !isFullBleed && "p-4 md:p-8")}>
            <div className={cn("animate-fade-in", isFullBleed ? "h-full" : "mx-auto max-w-7xl")}>
               {children}
