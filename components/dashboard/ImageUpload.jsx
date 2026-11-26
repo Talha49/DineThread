@@ -76,7 +76,7 @@ export function ImageUpload({ value, onChange, disabled }) {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        if (disabled) return;
+        if (disabled || isLoading) return;
 
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             handleFile(e.dataTransfer.files[0]);
@@ -86,25 +86,13 @@ export function ImageUpload({ value, onChange, disabled }) {
     const handleChange = (e) => {
         e.preventDefault();
         if (e.target.files && e.target.files[0]) {
-            handleFile(e.target.files[0]);
+            const file = e.target.files[0];
+            e.target.value = "";
+            handleFile(file);
         }
     };
 
-    const handleRemove = async () => {
-        if (value && !value.startsWith('/')) {
-            try {
-                const result = await fetch('/api/upload/delete', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url: value }),
-                });
-                // Legacy images can be detached from the form without deleting shared storage.
-                if (!result.ok && result.status !== 404) throw new Error('Image removal failed');
-            } catch {
-                toast.error('Could not remove the image. Please try again.');
-                return;
-            }
-        }
+    const handleRemove = () => {
         onChange("");
         setAiUsed(false);
     };
@@ -142,7 +130,7 @@ export function ImageUpload({ value, onChange, disabled }) {
                             />
 
                             {/* Actions Overlay */}
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity flex items-center justify-center gap-2">
                                 <Button
                                     onClick={handleRemove}
                                     disabled={disabled || isLoading}
@@ -159,7 +147,7 @@ export function ImageUpload({ value, onChange, disabled }) {
 
                         {/* Magic Remove BG Button */}
                         {!aiUsed && (
-                            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-max opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity z-10">
                                 <Button
                                     onClick={async (e) => {
                                         e.preventDefault();
@@ -214,19 +202,21 @@ export function ImageUpload({ value, onChange, disabled }) {
                         )}
                     </div>
                 ) : (
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4" onClick={() => inputRef.current?.click()}>
+                    <button type="button" disabled={disabled || isLoading} aria-label="Upload image"
+                        className="flex h-full w-full flex-col items-center justify-center rounded-lg px-4 py-5 text-center focus-visible:outline-2 focus-visible:outline-offset-2"
+                        onClick={() => inputRef.current?.click()}>
                         {isLoading ? (
                             <Loader2 className="h-8 w-8 text-muted-foreground animate-spin mb-3" />
                         ) : (
                             <UploadCloud className={cn("h-8 w-8 mb-3 transition-colors", dragActive ? "text-primary" : "text-muted-foreground")} />
                         )}
-                        <p className="mb-1 text-sm text-foreground font-medium">
+                        <span className="mb-1 text-sm text-foreground font-medium">
                             <span className="font-semibold text-primary cursor-pointer hover:underline">Click to upload</span> or drag and drop
-                        </p>
-                        <p className="text-xs text-muted-foreground">
+                        </span>
+                        <span className="text-xs text-muted-foreground">
                             WebP, PNG, JPG or GIF (max. 5MB)
-                        </p>
-                    </div>
+                        </span>
+                    </button>
                 )}
             </div>
         </div>

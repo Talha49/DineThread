@@ -9,7 +9,8 @@ import MenuImage from '@/models/MenuImage';
 import MenuItem from '@/models/MenuItem';
 import { POST as authorizeUpload } from '@/app/api/upload/route';
 import { POST as deleteUpload } from '@/app/api/upload/delete/route';
-import { DELETE as deleteDish } from '@/app/api/menu/[id]/route';
+import { PUT as updateBranding } from '@/app/api/restaurant/branding/route';
+import { PUT as updateDish, DELETE as deleteDish } from '@/app/api/menu/[id]/route';
 
 jest.mock('@vercel/blob', () => ({
     head: jest.fn(), del: jest.fn(), BlobNotFoundError: class extends Error {}
@@ -78,6 +79,45 @@ test('deleting an owned dish removes its verified blob', async () => {
     const url = blobUrl(pathname);
     const dish = await MenuItem.create({ restaurant: secondRestaurant._id, name: 'Tart', price: 4, category: 'Dessert', imageUrl: url });
     expect((await deleteDish({}, { params: { id: String(dish._id) } })).status).toBe(200);
+    expect(del).toHaveBeenCalledWith(url);
+});
+
+test('an invalid or stale photo edit keeps the saved photo; a successful edit cleans up after saving', async () => {
+    signIn(second);
+    const url = blobUrl(await reserve());
+    const dish = await MenuItem.create({ restaurant: secondRestaurant._id, name: 'Pasta', price: 12, category: 'Lunch', imageUrl: url });
+    const edit = data => updateDish(request(data), { params: { id: String(dish._id) } });
+    expect((await edit({ imageUrl: '', previousImageUrl: url, price: -1 })).status).toBe(400);
+    expect((await edit({ imageUrl: '', previousImageUrl: 'old-photo' })).status).toBe(409);
+    expect((await edit({ description: 'Lunch special' })).status).toBe(200);
+    expect((await MenuItem.findById(dish._id)).imageUrl).toBe(url);
+    expect(del).not.toHaveBeenCalled();
+
+    const replacement = blobUrl(await reserve());
+    let savedAtDeletion;
+    del.mockImplementationOnce(async () => {
+        savedAtDeletion = (await MenuItem.findById(dish._id)).imageUrl;
+    });
+    expect((await edit({ imageUrl: replacement, previousImageUrl: url })).status).toBe(200);
+    expect(savedAtDeletion).toBe(replacement);
+    expect(del).toHaveBeenCalledTimes(1);
+    expect(del).toHaveBeenCalledWith(url);
+    expect((await edit({ imageUrl: '', previousImageUrl: replacement })).status).toBe(200);
+    expect(del).toHaveBeenLastCalledWith(replacement);
+});
+
+test('a shared photo stays available until the last saved reference is removed', async () => {
+    signIn(second);
+    const url = blobUrl(await reserve());
+    const dish = await MenuItem.create({ restaurant: secondRestaurant._id, name: 'Toast', price: 6, category: 'Lunch', imageUrl: url });
+    await Restaurant.updateOne({ _id: secondRestaurant._id }, { $set: { logoUrl: url } });
+    expect((await deleteUpload(request({ url }))).status).toBe(404);
+    await deleteDish({}, { params: { id: String(dish._id) } });
+    expect(del).not.toHaveBeenCalled();
+
+    const branding = await updateBranding(request({ logoUrl: '' }));
+    expect(branding.status).toBe(200);
+    expect((await Restaurant.findById(secondRestaurant._id)).logoUrl).toBe('');
     expect(del).toHaveBeenCalledWith(url);
 });
 

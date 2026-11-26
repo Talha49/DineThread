@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useId } from "react";
 import Cropper from "react-easy-crop";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
@@ -10,6 +10,7 @@ import { X, Check, Maximize } from "lucide-react";
 export function ImageCropper({ isOpen, onClose, imageSrc, onCropComplete, onUseOriginal, aspect = 1 }) {
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
+    const zoomId = useId();
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
     const [isSaving, setIsSaving] = useState(false); // Add local loading state
 
@@ -45,14 +46,14 @@ export function ImageCropper({ isOpen, onClose, imageSrc, onCropComplete, onUseO
 
             <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                    <span className="text-sm font-medium w-12">Zoom</span>
+                    <label htmlFor={zoomId} className="text-sm font-medium w-12">Zoom</label>
                     <input
                         type="range"
                         value={zoom}
                         min={1}
                         max={3}
                         step={0.1}
-                        aria-labelledby="Zoom"
+                        id={zoomId}
                         onChange={(e) => setZoom(Number(e.target.value))}
                         className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
                     />

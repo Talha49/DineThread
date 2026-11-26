@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "@/store/useTranslation";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
-export function Sidebar({ className, onClose, isMobile }) {
+export function Sidebar({ className, onClose, isMobile, closeButtonRef }) {
     const pathname = usePathname();
     const { restaurant } = useRestaurantStore();
     const { logout } = useAuth();
@@ -50,13 +50,13 @@ export function Sidebar({ className, onClose, isMobile }) {
         <aside className={cn("flex h-full flex-col bg-card border-r rtl:border-r-0 rtl:border-l", className)}>
             {/* Header / Logo */}
             <div className="flex h-16 items-center px-6 border-b justify-between">
-                <Link href="/dashboard" className="flex items-center gap-2 font-display font-bold text-xl tracking-tight">
+                <Link href="/dashboard" onClick={isMobile ? onClose : undefined} className="flex items-center gap-2 font-display font-bold text-xl tracking-tight">
                     <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
                         DineThread
                     </span>
                 </Link>
                 {isMobile && (
-                    <Button variant="ghost" size="icon" aria-label={t("accessibility.closeNavigation")} className="md:hidden" onClick={onClose}>
+                    <Button ref={closeButtonRef} variant="ghost" size="icon" aria-label={t("accessibility.closeNavigation")} className="md:hidden" onClick={onClose}>
                         <X className="h-5 w-5" />
                     </Button>
                 )}

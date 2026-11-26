@@ -85,6 +85,11 @@ describe('IdentityTab', () => {
         expect(screen.getByTestId('image-value').textContent).toBe('https://new-logo.com/fresh.png');
     });
 
+    test('keeps a removed logo empty while editing', () => {
+        render(<IdentityTab config={{ ...baseConfig, logoUrl: '' }} onChange={mockOnChange} restaurant={mockRestaurant} />);
+        expect(screen.getByTestId('image-value')).toBeEmptyDOMElement();
+    });
+
     test('falls back to restaurant.logoUrl when config has no logo', () => {
         render(<IdentityTab config={baseConfig} onChange={mockOnChange} restaurant={mockRestaurant} />);
 

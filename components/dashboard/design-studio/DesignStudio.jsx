@@ -113,7 +113,7 @@ export function DesignStudio() {
             const payload = {
                 brandColor: configToSave.colors?.brand?.primary,
                 fontFamily: configToSave.typography?.fonts?.heading?.family,
-                logoUrl: configToSave.logoUrl || '',
+                logoUrl: configToSave.logoUrl ?? restaurant?.logoUrl ?? '',
                 experienceConfig: {
                     designSystem: {
                         config: configToSave,
