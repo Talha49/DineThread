@@ -233,23 +233,23 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 <div className="pt-4">
                     {orderingEnabled ? (
                         <div className="flex flex-wrap items-center gap-3">
-                            <div className="flex items-center gap-3 bg-zinc-50 rounded-2xl px-2 h-14 shrink-0">
+                            <div className="flex items-center gap-3 bg-secondary text-secondary-foreground rounded-2xl px-2 h-14 shrink-0">
                                 <button
                                     type="button"
                                     aria-label={`Decrease quantity of ${item.name}`}
                                     disabled={qty === 1}
                                     onClick={() => setQty((q) => Math.max(1, q - 1))}
-                                    className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-white transition-colors"
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center enabled:hover:bg-background enabled:hover:text-foreground disabled:text-muted-foreground transition-colors"
                                 >
                                     <Minus className="w-4 h-4" />
                                 </button>
-                                <span className="w-6 text-center font-bold">{qty}</span>
+                                <span aria-live="polite" className="w-6 text-center font-bold tabular-nums">{qty}</span>
                                 <button
                                     type="button"
                                     aria-label={`Increase quantity of ${item.name}`}
                                     disabled={qty === 20}
                                     onClick={() => setQty((q) => Math.min(20, q + 1))}
-                                    className="w-8 h-8 rounded-xl flex items-center justify-center hover:bg-white transition-colors"
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center enabled:hover:bg-background enabled:hover:text-foreground disabled:text-muted-foreground transition-colors"
                                 >
                                     <Plus className="w-4 h-4" />
                                 </button>
