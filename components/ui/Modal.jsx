@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { createPortal } from "react-dom";
 import { useModalFocus } from "@/hooks/use-modal-focus";
 
-const Modal = ({ isOpen, onClose, title, children, footer, size = "md" }) => {
+const Modal = ({ isOpen, onClose, title, children, footer, portalContainer, size = "md" }) => {
     const [isMounted, setIsMounted] = React.useState(false);
     const modalRef = React.useRef(null);
     const titleId = React.useId();
@@ -50,7 +50,7 @@ const Modal = ({ isOpen, onClose, title, children, footer, size = "md" }) => {
             >
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b">
-                    <h2 id={titleId} className="text-xl font-semibold font-display tracking-tight">{title}</h2>
+                    <h2 id={titleId} className={cn("text-xl font-semibold tracking-tight", !portalContainer && "font-display")}>{title}</h2>
                     <button
                         onClick={onClose}
                         className="rounded-full p-2 hover:bg-accent hover:text-accent-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring"
@@ -73,7 +73,7 @@ const Modal = ({ isOpen, onClose, title, children, footer, size = "md" }) => {
                 )}
             </div>
         </div>,
-        document.body
+        portalContainer || document.body
     );
 };
 

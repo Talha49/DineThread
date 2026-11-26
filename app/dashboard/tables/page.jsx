@@ -167,8 +167,9 @@ export default function TablesPage() {
                 }
             >
                 <div className="space-y-3">
-                    <label className="block text-xs font-black uppercase tracking-wider text-zinc-500">Table Label</label>
+                    <label htmlFor="table-label" className="block text-xs font-black uppercase tracking-wider text-muted-foreground">Table Label</label>
                     <input
+                        id="table-label"
                         autoFocus
                         type="text"
                         value={newLabel}
@@ -176,7 +177,7 @@ export default function TablesPage() {
                         onKeyDown={(e) => e.key === "Enter" && handleAdd()}
                         maxLength={40}
                         placeholder="e.g. Table 4"
-                        className="w-full px-4 py-2.5 bg-zinc-50 border-2 border-transparent rounded-xl text-sm font-semibold focus:bg-white focus:border-zinc-900 transition-all outline-none"
+                        className="w-full px-4 py-2.5 bg-background text-foreground border-2 border-input rounded-xl text-sm font-semibold placeholder:text-muted-foreground focus:border-ring"
                     />
                     {error && <p className="text-sm text-destructive">{error}</p>}
                 </div>

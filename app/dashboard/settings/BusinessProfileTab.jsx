@@ -181,7 +181,7 @@ export function BusinessProfileTab() {
 
             <form onSubmit={handleSubmit} className="space-y-10">
                 {/* Identity Card: Brand Story */}
-                <div className="bg-white rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white text-zinc-900 rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-center gap-4 mb-8">
                         <div className="w-12 h-12 rounded-2xl bg-zinc-50 flex items-center justify-center text-zinc-900 border border-zinc-100">
                             <Info className="w-6 h-6" />
@@ -194,7 +194,7 @@ export function BusinessProfileTab() {
 
                     <div className="relative group">
                         <textarea
-                            className="flex min-h-[200px] w-full rounded-2xl border-2 border-zinc-50 bg-zinc-50/30 px-6 py-6 text-base font-medium ring-offset-background placeholder:text-zinc-300 focus-visible:outline-none focus-visible:border-zinc-200 focus-visible:bg-white transition-all resize-none"
+                            className="flex min-h-[200px] w-full rounded-2xl border-2 border-zinc-50 bg-zinc-50/30 px-6 py-6 text-base font-medium ring-offset-background placeholder:text-zinc-600 focus-visible:outline-none focus-visible:border-zinc-200 focus-visible:bg-white transition-all resize-none"
                             placeholder="What makes your restaurant unique? Share your vision, heritage, and flavors..."
                             value={formData.description}
                             onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
@@ -207,7 +207,7 @@ export function BusinessProfileTab() {
                 </div>
 
                 {/* Connect Card: Address & Contact */}
-                <div className="bg-white rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white text-zinc-900 rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-12 rounded-2xl bg-zinc-50 flex items-center justify-center text-zinc-900 border border-zinc-100">
                             <MapPin className="w-6 h-6" />
@@ -229,7 +229,7 @@ export function BusinessProfileTab() {
                             />
                             <div className="relative">
                                 <Input
-                                    className="h-14 rounded-2xl border-2 border-zinc-50 bg-zinc-50/50 pl-12 focus-visible:ring-0 focus-visible:border-zinc-200 focus-visible:bg-white transition-all text-sm font-bold"
+                                    className="h-14 rounded-2xl border-2 border-zinc-50 bg-zinc-50/50 placeholder:text-zinc-600 pl-12 focus-visible:ring-0 focus-visible:border-zinc-200 focus-visible:bg-white transition-all text-sm font-bold"
                                     placeholder="123 Culinary Avenue, Food District"
                                     value={formData.address}
                                     onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
@@ -249,7 +249,7 @@ export function BusinessProfileTab() {
                             />
                             <div className="relative">
                                 <Input
-                                    className="h-14 rounded-2xl border-2 border-zinc-50 bg-zinc-50/50 pl-12 focus-visible:ring-0 focus-visible:border-zinc-200 focus-visible:bg-white transition-all text-sm font-bold"
+                                    className="h-14 rounded-2xl border-2 border-zinc-50 bg-zinc-50/50 placeholder:text-zinc-600 pl-12 focus-visible:ring-0 focus-visible:border-zinc-200 focus-visible:bg-white transition-all text-sm font-bold"
                                     placeholder="+1 234 567 890"
                                     value={formData.phone}
                                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
@@ -307,7 +307,7 @@ export function BusinessProfileTab() {
                 </div>
 
                 {/* Scheduling Engine Card */}
-                <div className="bg-white rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-white text-zinc-900 rounded-[2rem] border border-zinc-100 p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="w-12 h-12 rounded-2xl bg-zinc-50 flex items-center justify-center text-zinc-900 border border-zinc-100">
                             <Clock className="w-6 h-6" />
@@ -332,7 +332,7 @@ export function BusinessProfileTab() {
                                                 value={h.open}
                                                 onChange={(e) => updateOpeningHour(i, 'open', e.target.value)}
                                             />
-                                            <span className="text-xs font-bold text-zinc-300">TO</span>
+                                            <span className="text-xs font-bold text-zinc-600">TO</span>
                                             <input
                                                 type="time"
                                                 className="bg-transparent text-xs font-bold outline-none w-16"

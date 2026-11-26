@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "@/store/useTranslation";
 import { displayedSelection } from "@/lib/catalogue-policy";
 
-export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled = false, onAddToCart }) {
+export function ItemCustomizationModal({ item, isOpen, onClose, portalContainer, orderingEnabled = false, onAddToCart }) {
     const { t } = useTranslation();
     const [selectedVariant, setSelectedVariant] = useState(null);
     const [selectedModifiers, setSelectedModifiers] = useState([]);
@@ -76,6 +76,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
 
     return (
         <Modal
+            portalContainer={portalContainer}
             isOpen={isOpen}
             onClose={onClose}
             title={item.name}
@@ -85,7 +86,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 {/* Item Image & Description */}
                 <div className="flex flex-wrap gap-6">
                     {item.imageUrl && (
-                        <div className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-zinc-100 shrink-0">
+                        <div className="w-32 h-32 rounded-2xl overflow-hidden border-2 border-border shrink-0">
                             <img
                                 src={item.imageUrl}
                                 alt={item.name}
@@ -108,7 +109,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 {/* Size Selection */}
                 {hasVariants && (
                     <div className="space-y-3">
-                        <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-700">
+                        <h3 className="text-sm font-bold uppercase tracking-wider text-foreground">
                             {t('live_menu.choose_size')}
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -122,7 +123,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                         "flex items-center justify-between p-4 rounded-xl border-2 transition-all",
                                         selectedVariant?.name === variant.name
                                             ? "border-primary bg-primary/5 shadow-sm"
-                                            : "border-zinc-100 hover:border-zinc-200 hover:bg-zinc-50"
+                                            : "border-border hover:border-current hover:bg-muted"
                                     )}
                                 >
                                     <div className="flex items-center gap-3">
@@ -130,10 +131,10 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                             "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
                                             selectedVariant?.name === variant.name
                                                 ? "border-primary bg-primary"
-                                                : "border-zinc-300"
+                                                : "border-input"
                                         )}>
                                             {selectedVariant?.name === variant.name && (
-                                                <Check className="w-3 h-3 text-white" />
+                                                <Check className="w-3 h-3 text-primary-foreground" />
                                             )}
                                         </div>
                                         <span className="font-bold text-sm">{variant.name}</span>
@@ -152,7 +153,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                     <div className="space-y-4">
                         {Object.entries(groupedModifiers).map(([category, mods]) => (
                             <div key={category} className="space-y-3">
-                                <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-700">
+                                <h3 className="text-sm font-bold uppercase tracking-wider text-foreground">
                                     {category}
                                 </h3>
                                 <div className="space-y-2">
@@ -168,7 +169,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                                     "w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all",
                                                     isSelected
                                                         ? "border-primary bg-primary/5 shadow-sm"
-                                                        : "border-zinc-100 hover:border-zinc-200 hover:bg-zinc-50"
+                                                        : "border-border hover:border-current hover:bg-muted"
                                                 )}
                                             >
                                                 <div className="flex items-center gap-3">
@@ -176,10 +177,10 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                                         "w-5 h-5 rounded border-2 flex items-center justify-center transition-all",
                                                         isSelected
                                                             ? "border-primary bg-primary"
-                                                            : "border-zinc-300"
+                                                            : "border-input"
                                                     )}>
                                                         {isSelected && (
-                                                            <Check className="w-3 h-3 text-white" />
+                                                            <Check className="w-3 h-3 text-primary-foreground" />
                                                         )}
                                                     </div>
                                                     <span className="font-medium text-sm">{modifier.name}</span>
@@ -200,7 +201,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 {(hasVariants || hasModifiers) && (
                     <div className="pt-6 border-t">
                         <div className="flex items-center justify-between mb-4">
-                            <span className="text-sm font-bold uppercase tracking-wider text-zinc-700">
+                            <span className="text-sm font-bold uppercase tracking-wider text-foreground">
                                 {t('live_menu.total_price')}
                             </span>
                             <div className="text-3xl font-black tracking-tighter">
@@ -233,7 +234,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                 <div className="pt-4">
                     {orderingEnabled ? (
                         <div className="flex flex-wrap items-center gap-3">
-                            <div className="flex items-center gap-3 bg-secondary text-secondary-foreground rounded-2xl px-2 h-14 shrink-0">
+                            <div className="flex items-center gap-3 bg-muted text-foreground rounded-2xl px-2 h-14 shrink-0">
                                 <button
                                     type="button"
                                     aria-label={`Decrease quantity of ${item.name}`}
@@ -269,7 +270,7 @@ export function ItemCustomizationModal({ item, isOpen, onClose, orderingEnabled 
                                     });
                                     onClose();
                                 }}
-                                className="flex-1 h-14 rounded-2xl bg-indigo-700 text-white hover:bg-indigo-800 font-bold uppercase tracking-wider"
+                                className="flex-1 h-14 rounded-2xl bg-primary text-primary-foreground hover:bg-primary font-bold uppercase tracking-wider"
                             >
                                 <ShoppingCart className="w-4 h-4 mr-2" />
                                 Add - ${(calculateTotal() * qty).toFixed(2)}
