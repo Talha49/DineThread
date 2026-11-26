@@ -41,7 +41,7 @@ export function CategoryNav({ categories, activeCategory }) {
         <div
             className="sticky top-[72px] md:top-[80px] z-40 w-full transition-all duration-700"
             style={{
-                backgroundColor: `${colors.backgrounds?.elevated || '#ffffff'}cc`,
+                backgroundColor: colors.backgrounds?.elevated || '#ffffff',
                 backdropFilter: 'blur(24px)',
                 WebkitBackdropFilter: 'blur(24px)',
                 borderBottom: `1px solid ${colors.borders?.light || '#e5e7eb'}`
@@ -68,14 +68,14 @@ export function CategoryNav({ categories, activeCategory }) {
                                 isActive ? "" : "shadow-sm"
                             )}
                             style={isActive ? {
-                                backgroundColor: colors.brand?.primary || '#4f46e5',
-                                color: colors.text?.inverse || '#ffffff',
-                                borderColor: 'transparent',
+                                backgroundColor: colors.backgrounds?.elevated || '#ffffff',
+                                color: colors.text?.primary || '#111827',
+                                borderColor: colors.brand?.primary || '#4f46e5',
                                 boxShadow: `0 15px 35px -10px ${colors.brand?.primary || '#4f46e5'}60`,
                                 fontWeight: 'var(--font-heading-weight)',
                                 fontFamily: 'var(--font-heading)'
                             } : {
-                                backgroundColor: `${colors.backgrounds?.card || '#ffffff'}80`,
+                                backgroundColor: colors.backgrounds?.card || '#ffffff',
                                 color: colors.text?.secondary || '#6b7280',
                                 borderColor: colors.borders?.light || '#e5e7eb',
                                 fontWeight: 'var(--font-heading-weight)',
@@ -92,7 +92,7 @@ export function CategoryNav({ categories, activeCategory }) {
                                 if (!isActive) {
                                     e.currentTarget.style.borderColor = colors.borders?.light || '#e5e7eb';
                                     e.currentTarget.style.color = colors.text?.secondary || '#6b7280';
-                                    e.currentTarget.style.backgroundColor = `${colors.backgrounds?.card || '#ffffff'}80`;
+                                    e.currentTarget.style.backgroundColor = colors.backgrounds?.card || '#ffffff';
                                 }
                             }}
                         >
@@ -105,7 +105,7 @@ export function CategoryNav({ categories, activeCategory }) {
                                     layoutId="navIndicator"
                                     className="w-1 h-1 rounded-full ml-1"
                                     style={{
-                                        backgroundColor: colors.text?.inverse || '#ffffff'
+                                        backgroundColor: 'currentColor'
                                     }}
                                 />
                             )}
@@ -118,13 +118,13 @@ export function CategoryNav({ categories, activeCategory }) {
             <div
                 className="absolute left-0 top-0 bottom-0 w-16 pointer-events-none z-10"
                 style={{
-                    background: `linear-gradient(to right, ${colors.backgrounds?.elevated || '#ffffff'}dd, transparent)`
+                    background: `linear-gradient(to right, ${colors.backgrounds?.elevated || '#ffffff'}, transparent)`
                 }}
             />
             <div
                 className="absolute right-0 top-0 bottom-0 w-16 pointer-events-none z-10"
                 style={{
-                    background: `linear-gradient(to left, ${colors.backgrounds?.elevated || '#ffffff'}dd, transparent)`
+                    background: `linear-gradient(to left, ${colors.backgrounds?.elevated || '#ffffff'}, transparent)`
                 }}
             />
         </div>

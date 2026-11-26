@@ -67,12 +67,12 @@ export default function Home({ user }) {
                 {t('home.hero.cta_primary')} <ArrowRight className="ml-3 rtl:mr-3 rtl:ml-0 rtl:rotate-180 w-5 h-5 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 transition-transform" />
               </Button>
             </Link>
-            <button className="h-16 px-10 rounded-2xl bg-zinc-50 border-2 border-zinc-100 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900 flex items-center gap-3 hover:bg-zinc-100 transition-all">
+            <a href="#how-it-works" className="h-16 px-10 rounded-2xl bg-zinc-50 border-2 border-zinc-100 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-900 flex items-center gap-3 hover:bg-zinc-100 transition-all">
               <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center">
                 <Play className="w-3 h-3 text-white ml-0.5 rtl:mr-0.5 rtl:ml-0 rtl:rotate-180" />
               </div>
               {t('home.hero.cta_secondary')}
-            </button>
+            </a>
           </motion.div>
 
           {/* Video / Dashboard Showcase */}
@@ -98,7 +98,7 @@ export default function Home({ user }) {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-24 px-4 bg-zinc-50">
+      <section id="how-it-works" className="scroll-mt-20 py-24 px-4 bg-zinc-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <span className="block text-[11px] font-black uppercase tracking-[0.4em] text-primary" role="doc-subtitle">{t('home.workflow.tag')}</span>
@@ -201,7 +201,7 @@ export default function Home({ user }) {
       <Features />
 
       {/* Visual DNA Showcase */}
-      <section className="py-24 px-4 bg-zinc-900 overflow-hidden relative">
+      <section id="themes" className="scroll-mt-20 py-24 px-4 bg-zinc-900 overflow-hidden relative">
         <div className="absolute top-0 right-0 rtl:left-0 rtl:right-auto w-[1000px] h-[1000px] bg-primary/20 rounded-full blur-[150px] translate-x-1/2 rtl:-translate-x-1/2 -translate-y-1/2" />
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">

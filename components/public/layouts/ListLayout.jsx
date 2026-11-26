@@ -21,7 +21,7 @@ export function ListLayout({ groupedItems, setSelectedItem, isTVMode }) {
     return (
         <div className="space-y-16">
             {groupedItems.map((category, catIndex) => (
-                <section key={category.name} className="category-section">
+                <section key={category.name} id={`category-${category.name}`} className="category-section">
                     {/* Category Header */}
                     <motion.h2
                         initial={reducedMotion ? false : { opacity: 0, x: -20 }}
@@ -34,7 +34,7 @@ export function ListLayout({ groupedItems, setSelectedItem, isTVMode }) {
                         )}
                         style={{
                             fontSize: `${config.categorySection?.header?.size || 32}px`,
-                            color: config.colors?.brand?.primary || '#111827',
+                            color: config.colors?.text?.primary || '#111827',
                             borderColor: config.categorySection?.header?.decoration?.type === 'underline'
                                 ? config.colors?.brand?.primary
                                 : 'transparent',

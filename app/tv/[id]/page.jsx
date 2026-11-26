@@ -5,12 +5,16 @@ import { useParams } from "next/navigation";
 import { Loader2, Tv } from "lucide-react";
 import { TVCarousel } from "@/components/tv/TVCarousel";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = async (url) => {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Menu unavailable");
+    return response.json();
+};
 
 export default function TVPage() {
     const { id } = useParams();
     // Poll slower for TV (every 60s is fine)
-    const { data, error, isLoading } = useSWR(`/api/public/menu/${id}`, fetcher, {
+    const { data, error, isLoading } = useSWR(id ? `/p/menu/${encodeURIComponent(id)}` : null, fetcher, {
         refreshInterval: 60000,
     });
 
@@ -21,11 +25,11 @@ export default function TVPage() {
         </div>
     );
 
-    if (error || data?.error) return (
+    if (error || !data?.restaurant || !Array.isArray(data.menu)) return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-background p-8 text-center">
             <Tv className="w-24 h-24 text-muted-foreground mb-4 opacity-20" />
             <h1 className="text-4xl font-bold mb-4">Display Not Available</h1>
-            <p className="text-xl text-muted-foreground">Please check the URL or restaurant subscription.</p>
+            <p className="text-xl text-muted-foreground">Check the menu address and try again.</p>
         </div>
     );
 

@@ -74,7 +74,13 @@ export async function POST(req) {
 
     return response;
   } catch (error) {
-    console.error("Signup error:", error);
+    if (error.code === 11000) {
+      return NextResponse.json({ message: "User with this email already exists" }, { status: 409 });
+    }
+    if (error.name === "ValidationError") {
+      return NextResponse.json({ message: "Invalid account details" }, { status: 400 });
+    }
+    console.error("Signup error:", error.name);
     return NextResponse.json(
       { message: "Internal server error" },
       { status: 500 }

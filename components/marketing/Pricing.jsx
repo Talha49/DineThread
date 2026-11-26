@@ -2,13 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { Check, Sparkles, Zap, Shield } from 'lucide-react';
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { useAuth } from "@/components/providers/AuthProvider";
 import { cn } from '@/lib/utils';
 
 import { useTranslation } from '@/store/useTranslation';
 
 export function Pricing() {
     const { t } = useTranslation();
+    const { user } = useAuth();
     const plans = [
         {
             name: t('home.pricing.plans.0.name'),
@@ -16,7 +18,8 @@ export function Pricing() {
             desc: t('home.pricing.plans.0.desc'),
             icon: Shield,
             features: [0, 1, 2, 3, 4].map(i => t(`home.pricing.plans.0.features.${i}`)),
-            cta: t('home.pricing.plans.0.cta'),
+            href: user ? '/dashboard' : '/signup',
+            cta: user ? t('nav.dashboard') : t('home.pricing.plans.0.cta'),
             popular: false
         },
         {
@@ -26,7 +29,8 @@ export function Pricing() {
             desc: t('home.pricing.plans.1.desc'),
             icon: Zap,
             features: [0, 1, 2, 3, 4, 5].map(i => t(`home.pricing.plans.1.features.${i}`)),
-            cta: t('home.pricing.plans.1.cta'),
+            href: '/contact',
+            cta: t('nav.contact'),
             popular: true,
             popularLabel: t('home.pricing.plans.1.popular')
         },
@@ -37,6 +41,7 @@ export function Pricing() {
             desc: t('home.pricing.plans.2.desc'),
             icon: Sparkles,
             features: [0, 1, 2, 3, 4, 5].map(i => t(`home.pricing.plans.2.features.${i}`)),
+            href: '/contact',
             cta: t('home.pricing.plans.2.cta'),
             popular: false
         }
@@ -104,16 +109,16 @@ export function Pricing() {
                                 ))}
                             </div>
 
-                            <Button
+                            <Link href={plan.href}
                                 className={cn(
-                                    "w-full h-14 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all",
+                                    "flex items-center justify-center w-full h-14 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all",
                                     plan.popular
                                         ? "bg-primary hover:bg-indigo-500 shadow-xl shadow-primary/40"
                                         : "bg-zinc-900 hover:bg-zinc-800 text-white"
                                 )}
                             >
                                 {plan.cta}
-                            </Button>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

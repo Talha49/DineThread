@@ -376,7 +376,8 @@ export default function PublicMenuPage() {
                 {/* Header: High-End Minimalist */}
                 <header className={cn(
                     "sticky top-0 z-50 backdrop-blur-3xl border-b transition-all duration-700",
-                    isTVMode ? "bg-black/90 border-white/5 py-4" : (restaurant.experienceConfig?.layoutID === "orbital-wheel" ? "bg-white/80 border-zinc-100 py-1 px-4" : "bg-white/80 border-zinc-100 py-4 md:py-8 px-4 md:px-6")
+                    isTVMode ? "bg-black/90 border-white/5 py-4" : "bg-[var(--bg-elevated,#fff)] text-[var(--text-primary,#18181b)] border-[var(--border-light,#e4e4e7)]",
+                    !isTVMode && (activeRestaurant.experienceConfig?.layoutID === "orbital-wheel" ? "py-1 px-4" : "py-4 md:py-8 px-4 md:px-6")
                 )}>
                     <div className={cn(
                         "max-w-7xl mx-auto flex flex-col items-center",
@@ -396,7 +397,7 @@ export default function PublicMenuPage() {
                                     <h1 className={cn("font-black tracking-tighter leading-none italic", isTVMode ? "text-2xl md:text-4xl" : "text-xl md:text-3xl")}>
                                         {restaurant.name.toUpperCase()}
                                     </h1>
-                                    {!isTVMode && <span className="hidden md:block text-[10px] font-black tracking-[0.4em] text-zinc-600 mt-1 uppercase">{t('live_menu.visual_gastronomy')}</span>}
+                                    {!isTVMode && <span className="hidden md:block text-[10px] font-black tracking-[0.4em] text-[var(--text-secondary,#52525b)] mt-1 uppercase">{t('live_menu.visual_gastronomy')}</span>}
                                 </div>
                             </div>
 
@@ -439,7 +440,7 @@ export default function PublicMenuPage() {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className={cn(
-                                        "w-full pl-12 pr-6 rtl:pl-6 rtl:pr-12 rounded-2xl md:rounded-3xl border-2 border-zinc-50 bg-zinc-50 focus:bg-white focus:border-zinc-200 transition-all outline-none text-xs md:text-sm font-bold tracking-tight",
+                                        "w-full pl-12 pr-6 rtl:pl-6 rtl:pr-12 rounded-2xl md:rounded-3xl border-2 border-zinc-50 bg-zinc-50 text-zinc-950 placeholder:text-zinc-600 focus:bg-white focus:border-zinc-200 transition-all outline-none text-xs md:text-sm font-bold tracking-tight",
                                         restaurant.experienceConfig?.layoutID === "orbital-wheel" ? "py-2" : "py-3 md:py-4"
                                     )}
                                 />
@@ -476,13 +477,13 @@ export default function PublicMenuPage() {
 
                 {/* Minimalist Premium Footer */}
                 <footer className={cn(
-                    "py-12 md:py-16 px-4 md:px-6 border-t border-zinc-100 transition-opacity duration-1000",
+                    "py-12 md:py-16 px-4 md:px-6 border-t border-zinc-100 bg-[var(--bg-page,#fff)] text-[var(--text-secondary,#52525b)] transition-opacity duration-1000",
                     (isTVMode || isPreview) ? "hidden" : "block"
                 )}>
                     <div className="max-w-7xl mx-auto flex flex-col items-center gap-8 md:gap-12">
                         <div className="flex items-center gap-6 md:gap-12 border-b border-zinc-100 pb-8 md:pb-12 w-full justify-center flex-wrap">
                             <div className="flex items-center gap-3">
-                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600">{t('live_menu.share')}</span>
+                                <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em]">{t('live_menu.share')}</span>
                                 <div className="flex gap-2">
                                     <Button variant="ghost" size="icon" aria-label="Share menu" onClick={handleShare} className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-zinc-100">
                                         <Share2 className="w-3.5 h-3.5 md:w-4 md:h-4" />
@@ -493,14 +494,14 @@ export default function PublicMenuPage() {
                             <div className="w-[1px] h-4 bg-zinc-100 hidden md:block" />
 
                             <div className="flex items-center gap-6">
-                                {bp.socialLinks?.instagram && <a href={formatUrl(bp.socialLinks.instagram)} className="text-zinc-600 hover:text-zinc-950 transition-colors"><Instagram className="w-4 h-4 md:w-5 md:h-5" /></a>}
-                                {bp.socialLinks?.facebook && <a href={formatUrl(bp.socialLinks.facebook)} className="text-zinc-600 hover:text-zinc-950 transition-colors"><Facebook className="w-4 h-4 md:w-5 md:h-5" /></a>}
+                                {bp.socialLinks?.instagram && <a href={formatUrl(bp.socialLinks.instagram)} aria-label="Instagram"><Instagram aria-hidden="true" className="w-4 h-4 md:w-5 md:h-5" /></a>}
+                                {bp.socialLinks?.facebook && <a href={formatUrl(bp.socialLinks.facebook)} aria-label="Facebook"><Facebook aria-hidden="true" className="w-4 h-4 md:w-5 md:h-5" /></a>}
                             </div>
                         </div>
 
                         <div className="flex flex-col items-center text-center gap-3 md:gap-4">
-                            <div className="text-xl md:text-2xl font-black italic tracking-tighter text-zinc-600 select-none">DineThread</div>
-                            <p className="text-[8px] md:text-[10px] uppercase font-black tracking-[0.2em] text-zinc-600">
+                            <div className="text-xl md:text-2xl font-black italic tracking-tighter select-none">DineThread</div>
+                            <p className="text-[8px] md:text-[10px] uppercase font-black tracking-[0.2em]">
                                 ©{new Date().getFullYear()} {activeRestaurant.name.toUpperCase()} / {t('live_menu.future_dining')}
                             </p>
                         </div>
