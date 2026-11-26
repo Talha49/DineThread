@@ -9,6 +9,8 @@ import { useTranslation } from '@/store/useTranslation';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { useAuth } from '@/components/providers/AuthProvider';
 
+const loginLink = "inline-flex items-center justify-center border border-zinc-300 bg-white text-zinc-900 hover:bg-zinc-100 focus-visible:bg-zinc-100 font-black uppercase transition-colors";
+
 export function Navbar({ user }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -67,8 +69,8 @@ export function Navbar({ user }) {
                         </Link>
                     ) : (
                         <>
-                            <Link href="/login">
-                                <Button variant="ghost" className="text-[11px] font-black uppercase tracking-widest">{t('nav.login')}</Button>
+                            <Link href="/login" className={cn(loginLink, "h-10 rounded-full px-4 text-[11px] tracking-widest")}>
+                                {t('nav.login')}
                             </Link>
                             <Link href="/signup">
                                 <Button className="rounded-full px-8 text-[11px] font-black uppercase tracking-widest shadow-xl shadow-primary/20">
@@ -92,7 +94,7 @@ export function Navbar({ user }) {
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="absolute top-full left-4 right-4 mt-2 bg-white rounded-[2rem] shadow-2xl border border-zinc-100 p-8 flex flex-col gap-6 md:hidden animate-in fade-in slide-in-from-top-4">
+                <div className="absolute top-full left-4 right-4 mt-2 max-h-[calc(100dvh-5rem)] overflow-y-auto bg-white rounded-[2rem] shadow-2xl border border-zinc-100 p-8 flex flex-col gap-6 md:hidden animate-in fade-in slide-in-from-top-4">
                     {navLinks.map((link) => (
                         <Link 
                             key={link.name} 
@@ -111,8 +113,8 @@ export function Navbar({ user }) {
                             </Link>
                         ) : (
                             <>
-                                <Link href="/login" className="w-full">
-                                    <Button variant="outline" className="w-full rounded-2xl h-14 font-black uppercase">{t('nav.login')}</Button>
+                                <Link href="/login" className={cn(loginLink, "w-full h-14 rounded-2xl text-sm")}>
+                                    {t('nav.login')}
                                 </Link>
                                 <Link href="/signup" className="w-full">
                                     <Button className="w-full rounded-2xl h-14 font-black uppercase shadow-xl shadow-primary/20">{t('nav.signup')}</Button>
