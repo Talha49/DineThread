@@ -6,14 +6,7 @@ import { cn } from '@/lib/utils';
 
 export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, color = 'indigo', sparkline }) {
     const reduceMotion = useReducedMotion();
-    // Normalize real daily counts to 0-100 bar heights - no sparkline is
-    // rendered at all unless real numbers are passed in (see dashboard/page.jsx).
-    const bars = sparkline?.length
-        ? (() => {
-            const max = Math.max(...sparkline, 1);
-            return sparkline.map((v) => Math.max(8, Math.round((v / max) * 100)));
-        })()
-        : null;
+    const peak = Math.max(1, ...(sparkline || []).map(day => day.count));
 
     const colorClasses = {
         indigo: "from-indigo-500/20 to-blue-500/20 text-indigo-600",
@@ -62,22 +55,19 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
                     </div>
                 </div>
 
-                {/* Last 7 days, real counts only - no data in, no bars shown */}
-                {bars && (
-                    <div className="mt-4 flex items-end gap-1 h-8">
-                        {bars.map((h, i) => (
-                            <motion.div
-                                key={i}
-                                initial={reduceMotion ? false : { height: 0 }}
-                                animate={{ height: `${h}%` }}
-                                transition={{ delay: i * 0.1, duration: 0.6 }}
-                                className={cn(
-                                    "flex-1 rounded-full transition-colors",
-                                    i === bars.length - 1 ? "bg-zinc-900" : "bg-zinc-100 group-hover:bg-zinc-200"
-                                )}
-                            />
-                        ))}
-                    </div>
+                {sparkline?.length > 0 && (
+                    <figure className="mt-3 text-zinc-600">
+                        <figcaption className="mb-1.5 text-xs font-medium">Visits over the last 7 days</figcaption>
+                        <ol className="flex h-8 items-end gap-1.5 border-b border-zinc-300">
+                            {sparkline.map(({ date, count }) => (
+                                <li key={date} title={date + ' · ' + count} className="flex h-full flex-1 items-end justify-center">
+                                    <span className="sr-only">{date}, {count} visits</span>
+                                    <span aria-hidden="true" className={cn('w-full max-w-3 rounded-t-sm', count ? 'bg-teal-700' : 'bg-zinc-300')}
+                                        style={{ height: count ? Math.max(5, count / peak * 100) + '%' : '1px' }} />
+                                </li>
+                            ))}
+                        </ol>
+                    </figure>
                 )}
             </div>
         </motion.div>

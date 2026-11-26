@@ -1,11 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { Sparkles, ArrowRight, ExternalLink, QrCode } from 'lucide-react';
+import { Sparkles, ArrowRight, ExternalLink, QrCode, Utensils } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
-export function DashboardHero({ restaurantName, restaurantId }) {
+export function DashboardHero({ restaurantName, restaurantId, menuItems }) {
     const reduceMotion = useReducedMotion();
+    const dishes = menuItems.filter(item => item.isAvailable !== false).slice(0, 2);
     return (
         <div className="relative p-10 rounded-[3rem] bg-zinc-900 overflow-hidden shadow-2xl">
             {/* Animated Decorative Elements */}
@@ -65,34 +67,28 @@ export function DashboardHero({ restaurantName, restaurantId }) {
                     initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="hidden lg:block relative"
+                    className="relative"
                 >
-                    <div className="relative aspect-square w-full max-w-[320px] ml-auto bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[3rem] border-4 border-white/5 shadow-2xl p-6 flex flex-col justify-between group cursor-pointer hover:border-primary/30 transition-all duration-700 overflow-hidden">
-                        {/* Visual DNA Preview Mockup */}
-                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="relative z-10 flex items-center justify-between">
-                            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                                <Sparkles className="w-6 h-6 text-primary" />
+                    <Link href="/dashboard/settings" className="group mx-auto block max-w-sm rounded-3xl border border-white/15 bg-zinc-800 p-5 text-white shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300 lg:me-0">
+                        <span className="flex items-center gap-2 text-sm font-semibold"><Sparkles aria-hidden="true" className="size-4 text-indigo-300" /> Menu preview</span>
+                        {dishes.length ? (
+                            <div className="mt-4 grid grid-cols-2 gap-3">
+                                {dishes.map(dish => (
+                                    <div key={dish._id}>
+                                        <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-zinc-700">
+                                            {dish.imageUrl ? (
+                                                <Image src={dish.imageUrl} alt="" fill sizes="160px" className="object-cover motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105" />
+                                            ) : <Utensils aria-hidden="true" className="absolute inset-0 m-auto size-6 text-zinc-300" />}
+                                        </div>
+                                        <span className="mt-2 block truncate text-sm font-medium">{dish.name}</span>
+                                    </div>
+                                ))}
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Visual DNA 2.0</span>
-                        </div>
-                        
-                        <div className="space-y-4">
-                            <div className="h-4 w-3/4 bg-white/10 rounded-full" />
-                            <div className="h-4 w-1/2 bg-white/5 rounded-full" />
-                            <div className="grid grid-cols-2 gap-3 pt-4">
-                                <div className="h-20 rounded-2xl bg-white/5" />
-                                <div className="h-20 rounded-2xl bg-white/5" />
-                            </div>
-                        </div>
-
-                        <Link href="/dashboard/settings" className="relative z-10 mt-6 flex items-center justify-between group/link">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-white">Enter Design Studio</span>
-                            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center group-hover/link:translate-x-2 transition-transform">
-                                <ArrowRight className="w-4 h-4 text-white" />
-                            </div>
-                        </Link>
-                    </div>
+                        ) : <p className="my-6 text-sm text-zinc-300">Available dishes will appear here when you add them to your menu.</p>}
+                        <span className="mt-4 flex items-center justify-between border-t border-white/15 pt-3 text-sm font-semibold">
+                            Enter Design Studio <ArrowRight aria-hidden="true" className="size-4 motion-safe:transition-transform motion-safe:group-hover:translate-x-1" />
+                        </span>
+                    </Link>
                 </motion.div>
             </div>
         </div>

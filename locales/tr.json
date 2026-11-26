@@ -271,14 +271,23 @@
       "preview_desc": "Müşterilerinizin menünüzü nasıl gördüğünü görün. Listeden bulmak için herhangi bir öğeye tıklayın."
     },
     "settings": {
+      "preview": "Önizleme",
+      "preview_device": "Önizleme cihazı",
+      "preview_zoom": "Önizleme yakınlaştırması",
       "studio": "Tasarım Stüdyosu",
       "profile": "İşletme Profili",
       "live": "Canlı"
     }
   },
   "live_menu": {
+    "tv_mode": "TV modu",
+    "open_tv_mode": "TV modunu aç",
+    "exit_tv_mode": "TV modundan çık",
     "visual_gastronomy": "Görsel Gastronomi",
     "search_placeholder": "Deneyiminizi seçin...",
+    "share_menu": "Menüyü paylaş",
+    "link_copied": "Menü bağlantısı kopyalandı",
+    "copy_link": "Bu menü bağlantısını kopyalayın",
     "share": "Paylaş",
     "future_dining": "YEMEĞİN GELECEĞİ",
     "establishment_info": "KURUM BİLGİSİ",

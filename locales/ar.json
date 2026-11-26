@@ -271,14 +271,23 @@
       "preview_desc": "شاهد كيف تبدو قائمتك لعملائك. انقر فوق أي عنصر للعثور عليه في القائمة."
     },
     "settings": {
+      "preview": "معاينة",
+      "preview_device": "جهاز المعاينة",
+      "preview_zoom": "تكبير المعاينة",
       "studio": "استوديو التصميم",
       "profile": "ملف النشاط التجاري",
       "live": "مباشر"
     }
   },
   "live_menu": {
+    "tv_mode": "وضع التلفاز",
+    "open_tv_mode": "فتح وضع التلفاز",
+    "exit_tv_mode": "إنهاء وضع التلفاز",
     "visual_gastronomy": "فن الطهو البصري",
     "search_placeholder": "ابحث في القائمة...",
+    "share_menu": "مشاركة القائمة",
+    "link_copied": "تم نسخ رابط القائمة",
+    "copy_link": "انسخ رابط القائمة",
     "share": "مشاركة",
     "future_dining": "مستقبل تناول الطعام",
     "establishment_info": "معلومات المطعم",

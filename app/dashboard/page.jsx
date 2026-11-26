@@ -55,7 +55,7 @@ export default function DashboardPage() {
     const hasLogo = !!restaurant?.logoUrl;
 
     const totalVisits = summary ? summary.totalViews + summary.totalScans : null;
-    const visitSparkline = summary?.last7Days?.map((d) => d.count) || null;
+    const visitSparkline = summary?.last7Days;
 
     // Calculate Completeness %
     const completionScore = [
@@ -87,6 +87,7 @@ export default function DashboardPage() {
             <DashboardHero 
                 restaurantName={restaurant?.name || 'Your Restaurant'} 
                 restaurantId={restaurant?.restaurantId}
+                menuItems={menuItems}
             />
 
             {/* Performance Metrics (Wired to Real Data) */}

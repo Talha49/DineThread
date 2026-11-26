@@ -271,14 +271,23 @@
       "preview_desc": "Se hvordan din menu ser ud for dine kunder. Klik på et element for at finde det i listen."
     },
     "settings": {
+      "preview": "Forhåndsvisning",
+      "preview_device": "Enhed til forhåndsvisning",
+      "preview_zoom": "Zoom i forhåndsvisning",
       "studio": "Designstudie",
       "profile": "Virksomhedsprofil",
       "live": "Live"
     }
   },
   "live_menu": {
+    "tv_mode": "TV-visning",
+    "open_tv_mode": "Åbn TV-visning",
+    "exit_tv_mode": "Afslut TV-visning",
     "visual_gastronomy": "Visuel Gastronomi",
     "search_placeholder": "Tilpas din oplevelse...",
+    "share_menu": "Del menu",
+    "link_copied": "Menulinket er kopieret",
+    "copy_link": "Kopiér dette menulink",
     "share": "Del",
     "future_dining": "FREMTIDENS SPISEOPLEVELSE",
     "establishment_info": "VIRKSOMHEDSINFO",

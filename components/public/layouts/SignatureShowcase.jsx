@@ -48,10 +48,9 @@ export function SignatureShowcase({ isTVMode, groupedItems, setSelectedItem }) {
                         />
                         <h2
                             className={cn(
-                                "font-black tracking-tighter uppercase italic",
-                                isTVMode ? "text-4xl md:text-7xl text-white" : "text-2xl md:text-4xl text-zinc-900"
+                                "font-black tracking-tighter uppercase italic text-foreground",
+                                isTVMode ? "text-4xl md:text-7xl" : "text-2xl md:text-4xl"
                             )}
-                            style={{ color: !isTVMode ? theme.config?.colors?.text?.primary : undefined }}
                         >
                             Signature Selections
                         </h2>
@@ -85,11 +84,10 @@ export function SignatureShowcase({ isTVMode, groupedItems, setSelectedItem }) {
                     <div className="flex items-center gap-4 mb-8 md:mb-16">
                         <h2
                             className={cn(
-                                "font-black uppercase italic",
-                                isTVMode ? "text-4xl md:text-8xl text-white" : "text-zinc-900"
+                                "font-black uppercase italic text-foreground",
+                                isTVMode && "text-4xl md:text-8xl"
                             )}
                             style={{
-                                color: !isTVMode ? theme.config?.colors?.text?.primary : undefined,
                                 fontSize: isTVMode ? undefined : 'var(--text-category-title, 40px)',
                                 lineHeight: 'var(--line-height-tight)',
                                 letterSpacing: 'var(--letter-spacing-tight)'

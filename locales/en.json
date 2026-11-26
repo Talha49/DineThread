@@ -271,14 +271,23 @@
       "preview_desc": "See how your menu looks to your customers. Click any item to find it in your list."
     },
     "settings": {
+      "preview": "Preview",
+      "preview_device": "Preview device",
+      "preview_zoom": "Preview zoom",
       "studio": "Design Studio",
       "profile": "Business Profile",
       "live": "Live"
     }
   },
   "live_menu": {
+    "tv_mode": "TV mode",
+    "open_tv_mode": "Open TV mode",
+    "exit_tv_mode": "Exit TV mode",
     "visual_gastronomy": "Visual Gastronomy",
     "search_placeholder": "Curate your experience...",
+    "share_menu": "Share menu",
+    "link_copied": "Menu link copied",
+    "copy_link": "Copy this menu link",
     "share": "Share",
     "future_dining": "THE FUTURE OF DINING",
     "establishment_info": "ESTABLISHMENT INFO",

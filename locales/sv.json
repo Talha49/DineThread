@@ -271,14 +271,23 @@
       "preview_desc": "Se hur din meny ser ut för dina kunder. Klicka på ett objekt för att hitta det i listan."
     },
     "settings": {
+      "preview": "Förhandsvisning",
+      "preview_device": "Enhet för förhandsvisning",
+      "preview_zoom": "Zoom i förhandsvisning",
       "studio": "Designstudio",
       "profile": "Företagsprofil",
       "live": "Live"
     }
   },
   "live_menu": {
+    "tv_mode": "TV-läge",
+    "open_tv_mode": "Öppna TV-läge",
+    "exit_tv_mode": "Avsluta TV-läge",
     "visual_gastronomy": "Visuell Gastronomi",
     "search_placeholder": "Kurera din upplevelse...",
+    "share_menu": "Dela menyn",
+    "link_copied": "Menylänken har kopierats",
+    "copy_link": "Kopiera den här menylänken",
     "share": "Dela",
     "future_dining": "FRAMTIDENS MATUPPLEVELSE",
     "establishment_info": "ETABLISSEMANGOINFO",

@@ -1,6 +1,6 @@
 "use client";
 
-import useSWR from "swr";
+import { useStaffOrders } from "@/hooks/use-staff-orders";
 import { useState, useEffect, useRef } from "react";
 import { pendingStaffActions, sendStaffAction } from '@/lib/staff-action';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
@@ -8,17 +8,11 @@ import { Button } from "@/components/ui/Button";
 import { ClipboardList, Receipt, Loader2, CheckCircle2, ChefHat, Bell, PackageCheck, History, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const fetcher = async (url) => {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("API Error");
-    return res.json();
-};
-
 const COLUMNS = [
-    { status: "placed", label: "Placed", icon: CheckCircle2, next: "preparing", nextLabel: "Start Preparing" },
-    { status: "preparing", label: "Preparing", icon: ChefHat, next: "ready", nextLabel: "Mark Ready" },
-    { status: "ready", label: "Ready", icon: Bell, next: "served", nextLabel: "Mark Served" },
-    { status: "served", label: "Served", icon: Receipt, next: "paid", nextLabel: "Mark Paid" },
+    { accent: "bg-indigo-500", status: "placed", label: "Placed", icon: CheckCircle2, next: "preparing", nextLabel: "Start Preparing" },
+    { accent: "bg-amber-500", status: "preparing", label: "Preparing", icon: ChefHat, next: "ready", nextLabel: "Mark Ready" },
+    { accent: "bg-emerald-500", status: "ready", label: "Ready", icon: Bell, next: "served", nextLabel: "Mark Served" },
+    { accent: "bg-sky-500", status: "served", label: "Served", icon: Receipt, next: "paid", nextLabel: "Mark Paid" },
 ];
 
 function elapsed(createdAt) {
@@ -36,9 +30,7 @@ function formatDateTime(date) {
 
 export default function OrdersPage() {
     const [view, setView] = useState("active");
-    const { data, mutate } = useSWR(view === "history" ? "/api/orders?view=history" : "/api/orders", fetcher, {
-        refreshInterval: view === "active" ? 4000 : 0,
-    });
+    const { data, error, mutate } = useStaffOrders(view);
     const [advancingId, setAdvancingId] = useState(null);
     const [pending, setPending] = useState({});
     const [actionError, setActionError] = useState('');
@@ -75,24 +67,26 @@ export default function OrdersPage() {
                     <p className="text-muted-foreground text-lg">
                         {view === "history"
                             ? "Every paid order, most recent first."
-                            : "Live orders from your tables. Tap a card to move it to the next stage."}
+                            : "Live orders from your tables. Use the button on an order to move it to the next stage."}
                     </p>
                 </div>
                 <div className="flex items-center gap-1.5 p-1.5 bg-zinc-100 rounded-2xl w-fit">
                     <button
                         onClick={() => setView("active")}
+                        aria-pressed={view === "active"}
                         className={cn(
                             "flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all",
-                            view === "active" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-400 hover:text-zinc-600"
+                            view === "active" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-600 hover:text-zinc-900"
                         )}
                     >
                         <LayoutGrid className="w-3.5 h-3.5" /> Active
                     </button>
                     <button
                         onClick={() => setView("history")}
+                        aria-pressed={view === "history"}
                         className={cn(
                             "flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all",
-                            view === "history" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-400 hover:text-zinc-600"
+                            view === "history" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-600 hover:text-zinc-900"
                         )}
                     >
                         <History className="w-3.5 h-3.5" /> History
@@ -115,7 +109,8 @@ export default function OrdersPage() {
                 </Card>
             )}
 
-            {!data ? (
+            {error && <p role="alert" className="rounded-xl border border-amber-500 p-3">Kitchen updates are unavailable. <button className="underline" onClick={() => mutate()}>Retry</button></p>}
+            {!data && error ? null : !data ? (
                 <div className="flex justify-center py-16">
                     <Loader2 className="w-8 h-8 text-primary animate-spin" />
                 </div>
@@ -128,21 +123,22 @@ export default function OrdersPage() {
                     </Card>)}
                 </div>
             ) : (
-                <div className="grid md:grid-cols-4 gap-4">
+                <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
                     {COLUMNS.map((col) => {
                         const Icon = col.icon;
                         const colOrders = orders.filter((o) => o.status === col.status);
                         return (
-                            <div key={col.status} className="space-y-3">
+                            <div key={col.status} className="min-w-0 space-y-3 rounded-2xl border border-border bg-card p-3">
                                 <div className="flex items-center gap-2 px-1">
+                                    <span aria-hidden="true" className={cn("h-5 w-1 shrink-0 rounded-full", col.accent)} />
                                     <Icon className="w-4 h-4 text-muted-foreground" />
                                     <h2 className="font-bold text-sm uppercase tracking-wider text-muted-foreground">{col.label}</h2>
-                                    <span className="text-xs font-bold bg-zinc-100 text-zinc-500 rounded-full px-2 py-0.5">{colOrders.length}</span>
+                                    <span className="text-xs font-bold ms-auto bg-muted text-foreground rounded-full px-2 py-0.5">{colOrders.length}</span>
                                 </div>
 
                                 <div className="space-y-3 min-h-[100px]">
                                     {colOrders.length === 0 && (
-                                        <div className="rounded-2xl border-2 border-dashed border-zinc-100 p-6 text-center text-xs text-muted-foreground">
+                                        <div className="rounded-2xl border border-dashed border-border p-4 text-center text-xs text-muted-foreground">
                                             No orders
                                         </div>
                                     )}
