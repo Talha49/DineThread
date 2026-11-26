@@ -65,7 +65,7 @@ export function ColorsTab({ config, contentWidth = 600, onChange }) {
             <ResponsiveGrid width={contentWidth} cols={{ base: 1, 448: 2 }} className="gap-6">
                 <ColorCard
                     label="Brand Accent Color"
-                    desc="Used for Price Tags, Active Category Tabs, and Buttons."
+                    desc="Used for category highlights, buttons and accents."
                     value={colors.brand.primary}
                     onChange={(val) => handleCoreColorChange('brand.primary', val)}
                     contrastBg={colors.backgrounds.card}

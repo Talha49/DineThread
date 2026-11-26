@@ -67,12 +67,11 @@ export function HorizontalCard({ item, theme, onClick }) {
                 isPopular && "ring-2 ring-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]"
             )}
             style={{
-                backgroundColor: cardBg,
+                backgroundColor: `color-mix(in srgb, ${cardBg} calc(var(--theme-glass-opacity, 1) * 100%), transparent)`,
                 borderRadius: `var(--theme-radius, ${cardRadius}px)`,
                 boxShadow: `var(--theme-shadow, ${cardShadow})`,
                 padding: `${tConfig?.menuItem?.card?.padding ?? 16}px`,
-                backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
-                opacity: `var(--theme-glass-opacity, 1)`
+                backdropFilter: `blur(var(--theme-glass-blur, 0px))`
             }}
             whileHover={reduceMotion ? undefined : {
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.02 : 1,
@@ -153,7 +152,7 @@ export function HorizontalCard({ item, theme, onClick }) {
                 className="flex-shrink-0"
                 style={{
                     fontSize: `var(--text-price, ${tConfig?.typography?.sizes?.price || 18}px)`,
-                    color: tConfig?.colors?.brand?.primary,
+                    color: tConfig?.colors?.text?.primary,
                     fontWeight: 'var(--font-heading-weight)',
                     fontFamily: 'var(--font-heading)'
                 }}
@@ -196,11 +195,10 @@ export function VerticalCard({ item, theme, onClick }) {
                 isPopular && "ring-2 ring-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)]"
             )}
             style={{
-                backgroundColor: cardBg,
+                backgroundColor: `color-mix(in srgb, ${cardBg} calc(var(--theme-glass-opacity, 1) * 100%), transparent)`,
                 borderRadius: `var(--theme-radius, ${cardRadius}px)`,
                 boxShadow: `var(--theme-shadow, ${cardShadow})`,
-                backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
-                opacity: `var(--theme-glass-opacity, 1)`
+                backdropFilter: `blur(var(--theme-glass-blur, 0px))`
             }}
             whileHover={reduceMotion ? undefined : {
                 scale: tConfig?.menuItem?.card?.hoverEffect === 'scale' ? 1.03 : 1,
@@ -268,7 +266,7 @@ export function VerticalCard({ item, theme, onClick }) {
                     className="font-bold"
                     style={{
                         fontSize: `var(--text-price, ${tConfig?.typography?.sizes?.price || 20}px)`,
-                        color: tConfig?.colors?.brand?.primary,
+                        color: tConfig?.colors?.text?.primary,
                         fontWeight: 'var(--font-heading-weight)',
                         fontFamily: 'var(--font-heading)'
                     }}
@@ -457,7 +455,7 @@ export function MinimalCard({ item, theme, onClick }) {
                     className="flex-shrink-0 font-bold"
                     style={{
                         fontSize: `var(--text-price, ${tConfig?.typography?.sizes?.price || 16}px)`,
-                        color: tConfig?.colors?.brand?.primary,
+                        color: tConfig?.colors?.text?.primary,
                         fontWeight: 'var(--font-heading-weight)',
                         fontFamily: 'var(--font-heading)'
                     }}
@@ -500,11 +498,10 @@ export function MagazineCard({ item, theme, onClick }) {
                 isPopular && "ring-4 ring-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.4)]"
             )}
             style={{
-                backgroundColor: cardBg,
+                backgroundColor: `color-mix(in srgb, ${cardBg} calc(var(--theme-glass-opacity, 1) * 100%), transparent)`,
                 borderRadius: `var(--theme-radius, ${cardRadius}px)`,
                 boxShadow: `var(--theme-shadow, ${cardShadow})`,
-                backdropFilter: `blur(var(--theme-glass-blur, 0px))`,
-                opacity: `var(--theme-glass-opacity, 1)`
+                backdropFilter: `blur(var(--theme-glass-blur, 0px))`
             }}
             whileHover={reduceMotion ? undefined : {
                 y: tConfig?.menuItem?.card?.hoverEffect === 'lift' ? -8 : 0,

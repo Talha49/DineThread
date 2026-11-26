@@ -11,3 +11,5 @@ DineThread lets guests order from a restaurant’s QR menu and follow their orde
 ## Public URL
 
 For a custom domain, set `SITE_URL` to the public origin for this DineThread deployment. On Vercel the app can use the project URL automatically. Restaurant accounts and menus come from the database configured for that deployment.
+
+Set `NEXT_PUBLIC_CONTACT_EMAIL` to a monitored DineThread inbox before building. The contact and account-help pages open an email addressed to that inbox. After changing the address on Vercel, rebuild the deployment.

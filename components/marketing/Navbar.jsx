@@ -23,9 +23,9 @@ export function Navbar({ user }) {
     }, []);
 
     const navLinks = [
-        { name: t('nav.features'), href: '#features' },
-        { name: t('nav.themes'), href: '#themes' },
-        { name: t('nav.pricing'), href: '#pricing' },
+        { name: t('nav.features'), href: '/#features' },
+        { name: t('nav.themes'), href: '/#themes' },
+        { name: t('nav.pricing'), href: '/#pricing' },
         { name: t('nav.contact'), href: '/contact' },
     ];
 
@@ -82,6 +82,8 @@ export function Navbar({ user }) {
                 {/* Mobile Toggle */}
                 <button 
                     className="md:hidden p-2 text-zinc-900"
+                    aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+                    aria-expanded={isMobileMenuOpen}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 >
                     {isMobileMenuOpen ? <X /> : <Menu />}

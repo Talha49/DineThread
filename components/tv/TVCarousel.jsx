@@ -22,9 +22,10 @@ export function TVCarousel({ menu, brandColor }) {
         return () => clearInterval(interval);
     }, [validGroups.length]);
 
-    if (validGroups.length === 0) return null;
+    if (validGroups.length === 0) return <p className="p-8 text-2xl">No dishes are available right now.</p>;
 
-    const currentGroup = validGroups[currentIndex];
+    const visibleIndex = currentIndex % validGroups.length;
+    const currentGroup = validGroups[visibleIndex];
 
     // Identify top picks (global first 3 across all items in all valid groups)
     const topPickIds = [];
@@ -42,7 +43,7 @@ export function TVCarousel({ menu, brandColor }) {
     }
 
     // Calculate progress bar width
-    const progress = ((currentIndex + 1) / validGroups.length) * 100;
+    const progress = ((visibleIndex + 1) / validGroups.length) * 100;
 
     return (
         <div className="flex flex-col h-full overflow-hidden relative">
@@ -60,7 +61,7 @@ export function TVCarousel({ menu, brandColor }) {
                             key={idx}
                             className={cn(
                                 "w-3 h-3 rounded-full transition-all duration-500",
-                                idx === currentIndex ? "bg-primary scale-125" : "bg-primary/20"
+                                idx === visibleIndex ? "bg-primary scale-125" : "bg-primary/20"
                             )}
                         />
                     ))}

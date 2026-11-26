@@ -233,7 +233,7 @@ function CartPanel({ restaurantId, tables, brandColor, onClose }) {
             </div>
 
             <fieldset>
-                <legend className="block text-xs font-black uppercase tracking-wider text-zinc-500 mb-2">Which table are you at?</legend>
+                <legend className="block text-xs font-black uppercase tracking-wider text-zinc-500 mb-2">Select your table to place the order (required)</legend>
                 <div className="flex flex-wrap gap-2">
                     {tables.map((tbl) => (
                         <button
