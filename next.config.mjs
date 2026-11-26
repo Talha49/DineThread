@@ -8,7 +8,12 @@ const nextConfig = {
   // d3-delaunay (Voronoi Mosaic layout) and its deps ship ESM-only - this
   // also makes next/jest transform them in tests instead of blanket-ignoring
   // all of node_modules.
-  transpilePackages: ['d3-delaunay', 'delaunator', 'robust-predicates'],
+  transpilePackages: [
+    'd3-delaunay', 'delaunator', 'robust-predicates',
+    // The MongoDB driver imports the OS module dynamically during its handshake.
+    // Let next/jest compile that import for its CommonJS test environment.
+    ...(process.env.NODE_ENV === 'test' ? ['mongodb'] : []),
+  ],
   images: {
     remotePatterns: [
       {
