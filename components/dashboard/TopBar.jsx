@@ -12,7 +12,7 @@ const PAGE_TITLES = {
     "/dashboard/settings/branding": "Branding & Appearance",
 };
 
-export function TopBar({ onMenuClick, isSidebarOpen }) {
+export function TopBar({ onMenuClick, isSidebarOpen, navigationId }) {
     const { user } = useAuth();
     const pathname = usePathname();
 
@@ -21,7 +21,7 @@ export function TopBar({ onMenuClick, isSidebarOpen }) {
     return (
         <header className="flex h-16 items-center gap-4 border-b bg-background/50 backdrop-blur-md px-6 sticky top-0 z-30">
             {/* Toggle Button - Visible on Mobile AND Desktop if we support collapsing */}
-            <Button variant="ghost" size="icon" onClick={onMenuClick} className="mr-2">
+            <Button variant="ghost" size="icon" onClick={onMenuClick} aria-expanded={isSidebarOpen} aria-controls={navigationId} className="mr-2">
                 <MenuIcon className="h-5 w-5" />
                 <span className="sr-only">Toggle Menu</span>
             </Button>

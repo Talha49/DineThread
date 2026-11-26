@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 // Keep keyboard and assistive-technology navigation inside an open modal.
-export function useModalFocus(ref, open, onClose) {
+export function useModalFocus(ref, open, onClose, initialFocusRef) {
     const close = useRef(onClose);
     close.current = onClose;
     useEffect(() => {
@@ -18,8 +18,9 @@ export function useModalFocus(ref, open, onClose) {
             }
         }
         document.body.style.overflow = 'hidden';
-        panel.focus({ preventScroll: true });
+        (initialFocusRef?.current || panel).focus({ preventScroll: true });
         const keydown = event => {
+            if (panel.closest('[inert]')) return; // A nested dialog owns focus while it is open.
             if (event.key === 'Escape') { event.preventDefault(); close.current?.(); }
             if (event.key !== 'Tab') return;
             const controls = [...panel.querySelectorAll('button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]')]
@@ -29,7 +30,9 @@ export function useModalFocus(ref, open, onClose) {
             else if (event.shiftKey && (document.activeElement === first || document.activeElement === panel)) { event.preventDefault(); last.focus(); }
             else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
         };
-        const focusin = event => { if (!panel.contains(event.target)) panel.focus(); };
+        const focusin = event => {
+            if (!panel.closest('[inert]') && !panel.contains(event.target)) panel.focus();
+        };
         document.addEventListener('keydown', keydown); document.addEventListener('focusin', focusin);
         return () => {
             document.removeEventListener('keydown', keydown); document.removeEventListener('focusin', focusin);
@@ -37,5 +40,5 @@ export function useModalFocus(ref, open, onClose) {
             document.body.style.overflow = overflow;
             if (previous?.isConnected) previous.focus({ preventScroll: true });
         };
-    }, [open, ref]);
+    }, [open, ref, initialFocusRef]);
 }

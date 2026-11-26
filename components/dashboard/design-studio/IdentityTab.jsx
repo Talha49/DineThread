@@ -27,7 +27,7 @@ export function IdentityTab({ config, onChange, restaurant }) {
                 <label className="text-sm font-semibold text-zinc-700">Restaurant Logo</label>
                 <div className="max-w-sm">
                     <ImageUpload
-                        value={config?.logoUrl || restaurant?.logoUrl || ""}
+                        value={config?.logoUrl ?? restaurant?.logoUrl ?? ""}
                         onChange={(url) => onChange({ ...config, logoUrl: url })}
                     />
                 </div>

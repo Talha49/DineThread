@@ -5,7 +5,7 @@ import dbConnect from "@/lib/mongodb";
 import MenuItem from "@/models/MenuItem";
 import Restaurant from "@/models/Restaurant";
 import { MenuItemSchema } from "@/lib/validations";
-import { removeMenuImage } from '@/lib/menu-images';
+import { cleanUpSavedImage } from '@/lib/menu-images';
 
 export async function GET(req, { params }) {
   try {
@@ -45,14 +45,31 @@ export async function PUT(req, { params }) {
     // Omitted arrays are unchanged; description-only edits must preserve options.
     const updateData = Object.fromEntries(Object.entries(validation.data).filter(([key]) => Object.hasOwn(body, key)));
 
+    const filter = { _id: id, restaurant: restaurant._id };
+    const editsImage = Object.hasOwn(updateData, "imageUrl");
+    let previousImage;
+    if (editsImage) {
+        const current = await MenuItem.findOne(filter).select("imageUrl").lean();
+        if (!current) return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
+        previousImage = current.imageUrl;
+        if (Object.hasOwn(body, "previousImageUrl") && body.previousImageUrl !== (previousImage || "")) {
+            return NextResponse.json({ message: "The photo has changed. Reopen the item to edit it." }, { status: 409 });
+        }
+        filter.imageUrl = previousImage ?? null;
+    }
     const updatedItem = await MenuItem.findOneAndUpdate(
-        { _id: id, restaurant: restaurant._id },
+        filter,
         { $set: updateData },
         { new: true, runValidators: true }
     );
 
-    if (!updatedItem) return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
-
+    if (!updatedItem) {
+        if (editsImage) return NextResponse.json({ message: "The item changed. Reopen it to edit the photo." }, { status: 409 });
+        return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
+    }
+    if (editsImage && previousImage !== updatedItem.imageUrl) {
+        await cleanUpSavedImage(user.id, previousImage);
+    }
     return NextResponse.json({ item: updatedItem });
   } catch (error) {
     return NextResponse.json({ message: "Server error" }, { status: 500 });
@@ -77,14 +94,7 @@ export async function DELETE(req, { params }) {
     
     if (!itemToDelete) return NextResponse.json({ message: "Item not found or unauthorized" }, { status: 404 });
 
-    // Attempt to delete image from Blob storage if it exists
-    if (itemToDelete.imageUrl && !itemToDelete.imageUrl.startsWith('/')) {
-        try {
-            await removeMenuImage(user.id, itemToDelete.imageUrl);
-        } catch (blobError) {
-            console.error("Failed to delete blob image:", blobError);
-        }
-    }
+    await cleanUpSavedImage(user.id, itemToDelete.imageUrl);
 
     return NextResponse.json({ message: "Item deleted successfully" });
   } catch (error) {

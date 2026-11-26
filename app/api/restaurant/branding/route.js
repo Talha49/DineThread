@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { verifyJWT } from "@/lib/jwt";
 import dbConnect from "@/lib/mongodb";
 import Restaurant from "@/models/Restaurant";
+import { brandingImageUrls, cleanUpSavedImage } from "@/lib/menu-images";
 import { UpdateBrandingSchema } from "@/lib/validations";
 
 export async function PUT(req) {
@@ -35,6 +36,8 @@ export async function PUT(req) {
     }
 
     const { brandColor, fontFamily, logoUrl, experienceConfig } = validation.data;
+
+    const previousImages = brandingImageUrls(restaurant);
 
     // 4. Update Fields
     if (brandColor) restaurant.brandColor = brandColor;
@@ -130,6 +133,10 @@ export async function PUT(req) {
     }
 
     await restaurant.save();
+    const savedImages = brandingImageUrls(restaurant);
+    for (const url of previousImages) {
+        if (!savedImages.has(url)) await cleanUpSavedImage(user.id, url);
+    }
 
     return NextResponse.json({ message: "Branding updated successfully", restaurant });
 

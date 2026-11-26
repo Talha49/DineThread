@@ -55,6 +55,7 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                 setHasVariants(hasExistingVariants);
                 setFormData({
                     ...initialData,
+                    imageUrl: initialData.imageUrl || "",
                     price: initialData.price?.toString() || "",
                     isFeatured: initialData.isFeatured || false,
                     variants: initialData.variants || [],
@@ -212,7 +213,6 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                 name: formData.name,
                 description: formData.description,
                 category: formData.category,
-                imageUrl: formData.imageUrl,
                 isAvailable: formData.isAvailable,
                 isFeatured: formData.isFeatured,
                 // Primary price: If variants exist, use the default variant's price
@@ -232,6 +232,11 @@ export function MenuItemModal({ isOpen, onClose, initialData, onRefresh }) {
                     category: m.category?.trim() || ""
                 }))
             };
+
+            if (!initialData || formData.imageUrl !== (initialData.imageUrl || "")) {
+                payload.imageUrl = formData.imageUrl;
+                if (initialData) payload.previousImageUrl = initialData.imageUrl || "";
+            }
 
             const res = await fetch(url, {
                 method,
