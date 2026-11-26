@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Check, ArrowRight, Zap, Target, Palette, Box } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0, totalScans = 0, totalVisits = 0 }) {
+    const reduceMotion = useReducedMotion();
     const hasVisuals = !!restaurant?.experienceConfig?.designSystem?.config;
 
     const steps = [
@@ -48,12 +49,12 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h3 className="text-xl font-black italic tracking-tighter uppercase text-zinc-900">Success Roadmap</h3>
-                    <p className="text-xs text-zinc-400 font-bold uppercase tracking-widest mt-1">Scale your restaurant experience</p>
+                    <h3 className="text-xl font-black italic tracking-tighter uppercase text-foreground">Success Roadmap</h3>
+                    <p className="text-xs text-zinc-600 dark:text-zinc-300 font-bold uppercase tracking-widest mt-1">Scale your restaurant experience</p>
                 </div>
                 <div className="text-right">
                     <span className="text-2xl font-black italic text-primary">{progress}%</span>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Completed</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-600 dark:text-zinc-300">Completed</p>
                 </div>
             </div>
 
@@ -63,7 +64,7 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
                     return (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0.95 }}
+                            initial={reduceMotion ? false : { opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: i * 0.1 }}
                             className={cn(
@@ -85,7 +86,7 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
                                         <Check className="w-3 h-3 text-white" />
                                     </div>
                                 ) : (
-                                    <Link href={step.link}>
+                                    <Link href={step.link} aria-label={step.title}>
                                         <div className="w-10 h-10 rounded-full bg-zinc-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                                             <ArrowRight className="w-4 h-4" />
                                         </div>
@@ -96,13 +97,13 @@ export function SuccessRoadmap({ restaurant, totalCategories = 0, totalItems = 0
                             <div className="mt-4">
                                 <h4 className={cn(
                                     "text-lg font-black tracking-tight",
-                                    step.completed ? "text-zinc-400" : "text-zinc-900"
+                                    step.completed ? "text-zinc-600" : "text-zinc-900"
                                 )}>
                                     {step.title}
                                 </h4>
                                 <p className={cn(
                                     "text-xs font-medium leading-relaxed",
-                                    step.completed ? "text-zinc-300" : "text-zinc-500"
+                                    step.completed ? "text-zinc-600" : "text-zinc-500"
                                 )}>
                                     {step.desc}
                                 </p>

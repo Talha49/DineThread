@@ -21,7 +21,7 @@ export function Features() {
                         <h2 className="text-[11px] font-black uppercase tracking-[0.4em] text-primary">{t('home.features.tag')}</h2>
                         <h3 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase text-zinc-900 leading-none">
                             {t('home.features.title_1')} <br />
-                            <span className="text-zinc-400">{t('home.features.title_2')}</span>
+                            <span className="text-zinc-600">{t('home.features.title_2')}</span>
                         </h3>
                     </div>
                     <p className="max-w-md text-lg text-zinc-500 font-medium leading-relaxed pb-2">

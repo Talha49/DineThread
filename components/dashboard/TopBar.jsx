@@ -33,7 +33,7 @@ export function TopBar({ onMenuClick, isSidebarOpen }) {
                     </h1>
                     {user?.restaurantId && (
                         <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted border text-[10px] font-mono font-bold text-muted-foreground">
-                            <span className="opacity-50">/menu/</span>
+                            <span className="text-zinc-600 dark:text-zinc-300">/menu/</span>
                             <span className="text-foreground">{user.restaurantId}</span>
                         </div>
                     )}

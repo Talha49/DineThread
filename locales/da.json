@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "Kontakt DineThread",
+    "emailTeam": "Send os en mail",
+    "contactBody": "Har du brug for hjælp til din menu, din konto eller dit abonnement? Skriv til os på mailadressen nedenfor.",
+    "enquirySubject": "Spørgsmål om DineThread",
+    "accountTitle": "Hjælp til login",
+    "accountBody": "Har du brug for hjælp til at logge ind på restaurantens konto? Skriv til DineThread fra den mailadresse, du tilmeldte dig med. Oplys restaurantens navn, og udelad din adgangskode.",
+    "accountSubject": "Adgang til DineThread-konto",
+    "back": "Tilbage til login",
+    "unavailable": "Mailsupport er ikke tilgængelig i øjeblikket."
+  },
+  "accessibility": {
+    "showPassword": "Vis adgangskode",
+    "hidePassword": "Skjul adgangskode",
+    "closeNavigation": "Luk navigationen",
+    "walkthrough": "Gennemgang af DineThreads kontrolpanel"
+  },
   "nav": {
     "features": "Funktioner",
     "themes": "Temaer",

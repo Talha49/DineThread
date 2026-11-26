@@ -46,7 +46,7 @@ export default function DashboardLayout({ children }) {
     <ImageUploadProvider>
     <div className="flex h-screen overflow-hidden bg-muted/20">
       {/* Desktop Sidebar - Collapsible */}
-      <div className={cn(
+      <div inert={!isDesktopOpen} className={cn(
           "hidden md:block flex-shrink-0 transition-all duration-300 ease-in-out border-r bg-card h-full overflow-hidden",
           isDesktopOpen ? "w-64 opacity-100" : "w-0 opacity-0 border-none"
       )}>
@@ -62,7 +62,7 @@ export default function DashboardLayout({ children }) {
       )}
       
       {/* Mobile Sidebar */}
-      <div className={cn(
+      <div inert={!isMobileOpen} className={cn(
         "fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-200 ease-in-out md:hidden shadow-2xl",
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       )}>

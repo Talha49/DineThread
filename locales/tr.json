@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "DineThread ile iletişim",
+    "emailTeam": "Ekibe e-posta gönderin",
+    "contactBody": "Menünüz, hesabınız veya aboneliğiniz hakkında yardım almak için aşağıdaki adrese e-posta gönderin.",
+    "enquirySubject": "DineThread hakkında soru",
+    "accountTitle": "Oturum açma yardımı",
+    "accountBody": "Restoran hesabınıza erişmek için yardıma ihtiyacınız varsa kayıtlı e-posta adresinizden DineThread ekibine yazın. Restoranınızın adını belirtin ve şifrenizi paylaşmayın.",
+    "accountSubject": "DineThread hesabına erişim",
+    "back": "Oturum açma sayfasına dön",
+    "unavailable": "E-posta desteği şu anda kullanılamıyor."
+  },
+  "accessibility": {
+    "showPassword": "Şifreyi göster",
+    "hidePassword": "Şifreyi gizle",
+    "closeNavigation": "Gezinme menüsünü kapat",
+    "walkthrough": "DineThread yönetim paneli tanıtımı"
+  },
   "nav": {
     "features": "Özellikler",
     "themes": "Temalar",

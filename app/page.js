@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Sparkles, ArrowRight, Play, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -17,8 +18,21 @@ export default function Home({ user }) {
   const effectiveUser = user || authUser;
   const primaryCtaHref = effectiveUser ? "/dashboard" : "/signup";
 
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const video = videoRef.current;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => {
+      if (preference.matches) video.pause();
+      else video.play().catch(() => {}); // Native controls remain available if autoplay is blocked.
+    };
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white selection:bg-primary selection:text-white overflow-x-hidden">
+    <div className="min-h-screen [--color-primary:#4338ca] text-zinc-900 bg-white selection:bg-primary selection:text-white overflow-x-hidden">
       <Navbar user={user} />
 
       {/* Hero Section */}
@@ -44,7 +58,7 @@ export default function Home({ user }) {
             className="text-5xl md:text-8xl font-black italic tracking-tighter uppercase text-zinc-900 leading-[0.9] mb-8"
           >
             {t('home.hero.title_1')} <br />
-            <span className="text-zinc-300">{t('home.hero.title_2')}</span>
+            <span className="text-zinc-600">{t('home.hero.title_2')}</span>
           </motion.h1>
 
           <motion.p
@@ -84,7 +98,11 @@ export default function Home({ user }) {
           >
             <div className="aspect-video relative overflow-hidden">
                <video 
-                autoPlay 
+                ref={videoRef}
+                controls
+                preload="metadata"
+                poster="/dashboard-showcase.png"
+                aria-label={t("accessibility.walkthrough")}
                 loop 
                 muted 
                 playsInline
@@ -104,7 +122,7 @@ export default function Home({ user }) {
             <span className="block text-[11px] font-black uppercase tracking-[0.4em] text-primary" role="doc-subtitle">{t('home.workflow.tag')}</span>
             <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase text-zinc-900 leading-none">
               {t('home.workflow.title_1')} <br />
-              <span className="text-zinc-400">{t('home.workflow.title_2')}</span>
+              <span className="text-zinc-600">{t('home.workflow.title_2')}</span>
             </h2>
           </div>
 
@@ -137,7 +155,7 @@ export default function Home({ user }) {
             ].map((item, i) => (
               <div key={i} className="bg-white p-8 rounded-[3rem] border-2 border-zinc-100 relative group hover:border-primary/20 transition-all">
                 <div className="text-4xl mb-6">{item.icon}</div>
-                <div className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-[10px] font-black uppercase tracking-widest text-primary/30">{item.step}</div>
+                <div className="absolute top-8 right-8 rtl:left-8 rtl:right-auto text-[10px] font-black uppercase tracking-widest text-indigo-700">{item.step}</div>
                 <h4 className="text-xl font-black uppercase tracking-tight mb-3 text-zinc-900">{item.title}</h4>
                 <p className="text-sm font-medium text-zinc-500 leading-relaxed">
                   {item.desc}
@@ -166,8 +184,8 @@ export default function Home({ user }) {
                 </div>
                 <div className="bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4">
                    <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t('home.workflow.table.feature')}</span>
-                      <span className="text-[10px] font-black uppercase tracking-widest text-white/40">{t('home.workflow.table.status')}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">{t('home.workflow.table.feature')}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">{t('home.workflow.table.status')}</span>
                    </div>
                    <div className="flex items-center justify-between">
                       <span className="text-[11px] font-bold">{t('home.workflow.table.rows.0')}</span>
@@ -189,7 +207,7 @@ export default function Home({ user }) {
 
       {/* Social Proof */}
       <section className="py-20 border-y border-zinc-100">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center md:justify-between items-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center md:justify-between items-center gap-12 text-zinc-600 grayscale hover:grayscale-0 transition-all duration-700">
           <div className="text-xl font-black italic tracking-tighter uppercase">Marriott</div>
           <div className="text-xl font-black italic tracking-tighter uppercase">Hilton</div>
           <div className="text-xl font-black italic tracking-tighter uppercase">Four Seasons</div>
@@ -206,10 +224,10 @@ export default function Home({ user }) {
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
           <div className="space-y-8">
-            <span className="block text-[11px] font-black uppercase tracking-[0.4em] text-primary" role="doc-subtitle">{t('home.automation.tag')}</span>
+            <span className="block text-[11px] font-black uppercase tracking-[0.4em] text-indigo-300" role="doc-subtitle">{t('home.automation.tag')}</span>
             <h2 className="text-4xl md:text-7xl font-black italic tracking-tighter uppercase text-white leading-[0.9]">
               {t('home.automation.title_1')} <br />
-              <span className="text-white/20">{t('home.automation.title_2')}</span>
+              <span className="text-zinc-300">{t('home.automation.title_2')}</span>
             </h2>
             <p className="text-lg text-white/50 font-medium leading-relaxed">
               {t('home.automation.desc')}
@@ -269,10 +287,10 @@ export default function Home({ user }) {
                  </Link>
               </div>
               <div className="flex items-center justify-center gap-8 pt-8">
-                  <div className="flex items-center gap-2 text-white/30 text-[10px] font-black uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-zinc-300 text-[10px] font-black uppercase tracking-widest">
                     <ShieldCheck className="w-4 h-4 rtl:ml-2" /> {t('home.cta.trial')}
                   </div>
-                  <div className="flex items-center gap-2 text-white/30 text-[10px] font-black uppercase tracking-widest">
+                  <div className="flex items-center gap-2 text-zinc-300 text-[10px] font-black uppercase tracking-widest">
                     <CheckCircle2 className="w-4 h-4 rtl:ml-2" /> {t('home.cta.no_card')}
                   </div>
               </div>

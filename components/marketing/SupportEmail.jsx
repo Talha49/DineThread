@@ -1,7 +1,10 @@
+import { useTranslation } from "@/store/useTranslation";
+
 export function SupportEmail({ subject }) {
+    const { t } = useTranslation();
     const address = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
     if (!address) {
-        return <p className="text-sm text-zinc-600">Email support is currently unavailable.</p>;
+        return <p className="text-sm text-zinc-600">{t("support.unavailable")}</p>;
     }
 
     return (

@@ -1,4 +1,21 @@
 {
+  "support": {
+    "title": "Kontakta DineThread",
+    "emailTeam": "Mejla oss",
+    "contactBody": "Behöver du hjälp med din meny, ditt konto eller ditt abonnemang? Mejla oss på adressen nedan.",
+    "enquirySubject": "Fråga om DineThread",
+    "accountTitle": "Hjälp med inloggning",
+    "accountBody": "Om du behöver hjälp att komma åt restaurangens konto, mejla DineThread från den adress du registrerade dig med. Ange restaurangens namn och utelämna lösenordet.",
+    "accountSubject": "Åtkomst till DineThread-konto",
+    "back": "Tillbaka till inloggningen",
+    "unavailable": "E-postsupporten är för närvarande inte tillgänglig."
+  },
+  "accessibility": {
+    "showPassword": "Visa lösenord",
+    "hidePassword": "Dölj lösenord",
+    "closeNavigation": "Stäng navigeringen",
+    "walkthrough": "Genomgång av DineThreads kontrollpanel"
+  },
   "nav": {
     "features": "Funktioner",
     "themes": "Teman",

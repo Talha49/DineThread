@@ -219,14 +219,14 @@ export function DesignStudio() {
     if (isLoading || !config) {
         return (
             <div className="flex items-center justify-center h-full gap-3">
-                <Loader2 className="w-5 h-5 text-zinc-400 animate-spin" />
-                <span className="text-sm text-zinc-400">Loading design engine...</span>
+                <Loader2 className="w-5 h-5 text-zinc-600 animate-spin" />
+                <span className="text-sm text-zinc-600">Loading design engine...</span>
             </div>
         );
     }
 
     return (
-        <div ref={panelRef} className={cn("h-full flex", isRailVertical ? "flex-row" : "flex-col")}>
+        <div ref={panelRef} className={cn("h-full flex bg-zinc-50 text-zinc-900", isRailVertical ? "flex-row" : "flex-col")}>
             {/* Nav - a horizontal strip when the panel is narrow, a vertical rail once there's real room */}
             <nav className={cn(
                 "shrink-0 bg-zinc-50 flex",
@@ -248,7 +248,7 @@ export function DesignStudio() {
                                     "shrink-0 w-14 h-14 flex flex-col items-center justify-center gap-1 rounded-xl transition-all",
                                     isActive
                                         ? "bg-white shadow-sm text-zinc-900 border border-zinc-200"
-                                        : "text-zinc-400 hover:text-zinc-600 hover:bg-white/60"
+                                        : "text-zinc-600 hover:text-zinc-600 hover:bg-white/60"
                                 )}
                             >
                                 <Icon className="w-[18px] h-[18px]" />
@@ -267,7 +267,7 @@ export function DesignStudio() {
                         onClick={() => setShowSaveThemeModal(true)}
                         disabled={isSaving}
                         title="Save as My Theme"
-                        className="w-14 h-14 flex flex-col items-center justify-center gap-1 rounded-xl text-zinc-400 hover:text-indigo-600 hover:bg-white transition-all active:scale-95"
+                        className="w-14 h-14 flex flex-col items-center justify-center gap-1 rounded-xl text-zinc-600 hover:text-indigo-600 hover:bg-white transition-all active:scale-95"
                     >
                         <Wand2 className="w-[18px] h-[18px]" />
                         <span className="text-[9px] font-semibold leading-none">Theme</span>

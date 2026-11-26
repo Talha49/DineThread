@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, color = 'indigo', sparkline }) {
+    const reduceMotion = useReducedMotion();
     // Normalize real daily counts to 0-100 bar heights - no sparkline is
     // rendered at all unless real numbers are passed in (see dashboard/page.jsx).
     const bars = sparkline?.length
@@ -23,9 +24,9 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -5 }}
+            whileHover={reduceMotion ? undefined : { y: -5 }}
             className="group relative p-6 rounded-[2.5rem] bg-white border-2 border-zinc-50 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
         >
             {/* Background Glow */}
@@ -54,10 +55,10 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
                 </div>
 
                 <div>
-                    <h3 className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-1">{title}</h3>
+                    <h3 className="text-xs font-black uppercase tracking-widest text-zinc-600 mb-1">{title}</h3>
                     <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-black italic tracking-tighter text-zinc-900">{value}</span>
-                        {unit && <span className="text-xs font-bold text-zinc-400">{unit}</span>}
+                        {unit && <span className="text-xs font-bold text-zinc-600">{unit}</span>}
                     </div>
                 </div>
 
@@ -67,7 +68,7 @@ export function MetricCard({ title, value, unit, trend, trendValue, icon: Icon, 
                         {bars.map((h, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ height: 0 }}
+                                initial={reduceMotion ? false : { height: 0 }}
                                 animate={{ height: `${h}%` }}
                                 transition={{ delay: i * 0.1, duration: 0.6 }}
                                 className={cn(
