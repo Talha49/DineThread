@@ -12,7 +12,7 @@
     "unavailable": "Item becomes unavailable after cart creation; actionable error, no accepted order, no trapped pending purchase.",
     "status": "Place order; preparing and ready updates are exposed as status messages, bill request is announced; reload retains accepted order."
   },
-  "manualOrder": "Record AI-assisted keyboard/focus/bounds observations before reading axe reports for that version. Pointer fallback is recorded as a blocked keyboard step, never a keyboard pass.",
+  "manualOrder": "Record manual keyboard, focus and element bounds observations before reviewing axe reports for that version. Pointer fallback is recorded as a blocked keyboard step, never a keyboard pass.",
   "core": "Six journeys at 390 and 1280 CSS pixels in Chromium for A and B: 24 runs.",
   "reflow": "Menu, customisation, cart and status at 320 CSS pixels in A and B: eight checks. This is viewport reflow, not browser zoom.",
   "firefox": "Options, invalid-table and status at 1280 CSS pixels for A and B: six runs, subject to pilot availability.",
