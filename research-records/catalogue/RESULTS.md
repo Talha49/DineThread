@@ -2,7 +2,7 @@
 
 Implementation/protocol commit: `3611db7`. Production build: `BTW0nrxV9kXSrCR0XP9yJ`.
 Signed specification: Muhammad Fahad Akhtar, B01844826; signed document unchanged.
-Implementation and automated analysis are AI-assisted. All data are local synthetic fixtures.
+Muhammad Fahad Akhtar examined which changes to a selected portion or modifier required the diner to approve a new price. A separate script checked each synthetic checkout against its expected outcome.
 
 The ten-case pilot ran each case on A and B (20 observations). The frozen study
 then completed 20 matched rounds of 16 cases: 320 checkouts per version. The

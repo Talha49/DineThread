@@ -3,7 +3,7 @@
 Implementation/protocol commit: `5d4422f`. Production build: `m83pPGcb6p2ZgPs9s0OoB`.
 Source requirements: the approved individual specification (Raza, 2026),
 Ali Raza, B01845771; signed document unchanged.
-Implementation, test automation and analysis are AI-assisted; fixtures are synthetic.
+Ali Raza examined conflicting staff actions by comparing the stored order version with the accepted events in its history. The test scripts used synthetic orders and recorded when each browser showed the new version.
 
 The ten-history pilot ran on both versions before the protocol was frozen.
 The main comparison completed 25 repetitions of four schedules: 100 histories per

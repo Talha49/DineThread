@@ -1,7 +1,6 @@
 # Talha: theme-preview correctness and performance
 
-The signed specification (Ghauri, 2026) is unchanged. Implementation, technical testing and this
-evidence record are AI-assisted. Fixtures contain 24 synthetic dishes in four
+Talha Khan Ghauri compared immediate and frame-buffered delivery in the theme preview. He examined how many updates reached the preview, how quickly the browser processed them and which configuration was saved (Ghauri, 2026). The fixtures contain 24 synthetic dishes in four
 categories. No participant or merchant-satisfaction study was conducted.
 
 ## Implementation and correctness

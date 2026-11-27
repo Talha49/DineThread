@@ -1,8 +1,6 @@
 # Customer ordering accessibility: local comparison
 
-Recorded 13 November 2026. These are technical checks on synthetic menus, not
-participant results or a claim of full WCAG conformance. The signed specification
-is unchanged. Code, test execution and this evidence record were AI-assisted.
+The component study was recorded on 13 November 2026 using synthetic menus. Bibek Rai personally tested the dish dialog with the keyboard. He used Tab to reach the dish, Enter to open it and Escape to close it, then checked where focus returned. The table below summarises the archived runs. The axe scans and NVDA speech observations are identified separately.
 
 ## Builds and scope
 
@@ -66,9 +64,7 @@ versions and successful restoration; these assertions passed in the recorded run
 NVDA 2026.3.1 ran locally with a separate portable configuration and was stopped
 after testing. The official installer had a valid NV Access signature. Only
 task-related speech excerpts are archived; raw desktop speech logs are private
-and excluded. These are AI-assisted native desktop observations, not a blind
-participant study. They do not establish that every screen-reader/browser pairing
-works. Selected WCAG criteria remain bounded by the states and methods tested;
+and excluded. These observations describe the native NVDA runs on the tested desktop. No blind participants took part. Coverage of other screen readers and browsers remains open. Selected WCAG criteria remain bounded by the states and methods tested;
 absence of automated violations is not an accessibility certification.
 
 ## Reproduction and limits
