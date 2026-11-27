@@ -13,6 +13,7 @@
     "status": "Place order; preparing and ready updates are exposed as status messages, bill request is announced; reload retains accepted order."
   },
   "manualOrder": "Record AI-assisted keyboard/focus/bounds observations before reading axe reports for that version. Pointer fallback is recorded as a blocked keyboard step, never a keyboard pass.",
+  "individualKeyboardCheck": "Bibek Rai used Tab to reach a dish, Enter to open it and Escape to close it, then checked whether focus returned to the dish. RESULTS.md describes his check. The separate recorded inspections are documented in manual-baseline.md, manual-revised.md and screenreader.md.",
   "core": "Six journeys at 390 and 1280 CSS pixels in Chromium for A and B: 24 runs.",
   "reflow": "Menu, customisation, cart and status at 320 CSS pixels in A and B: eight checks. This is viewport reflow, not browser zoom.",
   "firefox": "Options, invalid-table and status at 1280 CSS pixels for A and B: six runs, subject to pilot availability.",

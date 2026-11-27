@@ -7,6 +7,10 @@ Native keyboard/pointer checks were AI-assisted. Synthetic fixtures were prepare
 with Playwright; the recorded speech comes from NVDA's own IO log. This is a
 screen-reader inspection, not a blind participant usability study.
 
+Bibek Rai checked the dish dialog himself. He pressed Tab to reach the dish,
+Enter to open it and Escape to close it, then checked whether focus returned
+to the dish. His [keyboard check](RESULTS.md) is separate from the NVDA sessions below.
+
 First session: `screenreader-1794595153110`. A uses build
 `m83pPGcb6p2ZgPs9s0OoB`; B uses `Tr08L6Iuyz9VH_OifDqm1`.
 
