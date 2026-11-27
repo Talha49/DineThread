@@ -1,0 +1,42 @@
+[
+  {
+    "revision": "6d332ca",
+    "build": "ULFNOpdQwfdQoOG1i2Loa",
+    "chrome": "158.0.8127.88",
+    "reference": "6b08bcc5112a2344d8e43b95",
+    "total": 9,
+    "kitchen_records": 1,
+    "bill_recorded": true,
+    "focus_returned": true,
+    "quote": "CONFIRM UPDATED PRICES - $9.00 button",
+    "loss": "alert Confirmation has not arrived. Check the connection, then retry this same purchase.",
+    "automatic_receipt": [
+      "Cart and order status",
+      "Cart and order status dialog",
+      "Loading order status..."
+    ],
+    "reference_on_navigation": "Order reference 6b 08bcc 5112a 2344d 8e 43b 95",
+    "total_on_navigation": "1x Test soup$9.00Total$9.00 button REQUEST BILL",
+    "bill": "Order status: Placed. Bill requested - your server is on the way."
+  },
+  {
+    "revision": "f1f1ae4",
+    "build": "yDWQDUUlJF8X4BI3R4JBW",
+    "chrome": "158.0.8127.88",
+    "reference": "6b08bd09069c354a3691a35d",
+    "total": 9,
+    "kitchen_records": 1,
+    "bill_recorded": true,
+    "focus_returned": true,
+    "quote": "CONFIRM UPDATED PRICES - $9.00 button",
+    "loss": "alert Confirmation has not arrived. Check the connection, then retry this same purchase.",
+    "automatic_receipt": [
+      "Cart and order status",
+      "Cart and order status dialog",
+      "Loading order status..."
+    ],
+    "reference_on_navigation": "Order reference 6b 08bd 09069c 354a 3691a 35d",
+    "total_on_navigation": "1x Test soup$9.00Total$9.00 button REQUEST BILL",
+    "bill": "Order status: Placed. Bill requested - your server is on the way."
+  }
+]

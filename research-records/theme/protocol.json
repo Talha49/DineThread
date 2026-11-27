@@ -1,0 +1,65 @@
+{
+  "status": "frozen after final pilot, before main measurement",
+  "comparison": "immediate delivery versus one pending animation frame retaining the latest valid edit",
+  "shared": [
+    "editor handlers",
+    "schema",
+    "unchanged suppression",
+    "origin and source checks",
+    "handshake",
+    "revision ordering",
+    "acknowledgement boundary",
+    "synthetic menu",
+    "production build",
+    "CSS conversion"
+  ],
+  "layouts": [
+    "grid",
+    "list",
+    "bento-magazine"
+  ],
+  "rates": [
+    {
+      "name": "spaced",
+      "edits": 20,
+      "durationMs": 2000
+    },
+    {
+      "name": "rapid",
+      "edits": 60,
+      "durationMs": 2000
+    }
+  ],
+  "pilotAdjustment": "The initial 240-edit grid pilot took about 5.6-5.9 seconds for a requested two seconds. Two subsequent 60-edit pilots completed all 24 sequences each with correct final states. The final pilot achieved 1999.3-2012.8 ms across both rates and three layouts, with no hidden runs. Freeze 20 and 60 edits over two seconds. These rates may remain below frame frequency; no coalescing benefit is presumed.",
+  "pageReuse": "After piloting, timing runs reuse one warmed page per strategy within each layout/width block, reset the complete starting configuration and await its acknowledgement before each sequence. Alternate foreground A/B order. Correctness runs retain fresh contexts.",
+  "main": [
+    {
+      "width": 1280,
+      "pairsPerLayoutRate": 20
+    },
+    {
+      "width": 390,
+      "layouts": [
+        "grid"
+      ],
+      "pairsPerLayoutRate": 10
+    }
+  ],
+  "unit": "one complete edit sequence; individual events are not independent samples",
+  "correctness": [
+    "single",
+    "burst",
+    "layout-switch",
+    "reset",
+    "save-during-burst",
+    "invalid",
+    "reload",
+    "outdated"
+  ],
+  "timing": "final editor event to acknowledgement after React application and computed-style reads at a frame callback, not physical paint",
+  "visibility": "headful foreground Chromium; record parent and preview visibility; invalidate hidden runs without deleting them",
+  "profile": "separate production profiling build, five paired rapid sequences per layout at 1280, React commits/durations and selected browser traces",
+  "reducedMotion": "reduce for both strategies; no splash or repeated entrance animation during theme edits",
+  "failurePolicy": "retain timeouts, mismatches, failed pilots, achieved spacing and source manifests",
+  "frozenAt": "2026-11-13T19:24:03.693149+00:00"
+}

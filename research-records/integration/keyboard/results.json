@@ -1,0 +1,29 @@
+{
+  "diagnosticOnly": true,
+  "results": [
+    {
+      "device": "desktop",
+      "committedId": "6b069e09d6b244dd83a0951b",
+      "recoveredTotal": 8,
+      "lostResponseAfterCommit": true,
+      "reloadRecovery": true,
+      "menuEditIgnoredOnReplay": true,
+      "otherSessionDenied": true,
+      "keyboardRetryAndFocusReturn": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "device": "mobile",
+      "committedId": "6b069e10d6b244dd83a09533",
+      "recoveredTotal": 8,
+      "lostResponseAfterCommit": true,
+      "reloadRecovery": true,
+      "menuEditIgnoredOnReplay": true,
+      "otherSessionDenied": true,
+      "keyboardRetryAndFocusReturn": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

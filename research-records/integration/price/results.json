@@ -1,0 +1,28 @@
+[
+  {
+    "width": 390,
+    "initialQuote": 8,
+    "acceptedTotal": 9,
+    "faultAfterVerifiedCommit": true,
+    "recoveredId": "6b069e0835be79ccbcd9c35a",
+    "acceptedId": "6b069e0835be79ccbcd9c35a",
+    "replayStatus": 200,
+    "kitchenEntriesAfterRetry": 1,
+    "secondPurchaseId": "6b069e0d35be79ccbcd9c384",
+    "acceptedOrdersAfterSeparatePurchase": 2,
+    "passed": true
+  },
+  {
+    "width": 1280,
+    "initialQuote": 8,
+    "acceptedTotal": 9,
+    "faultAfterVerifiedCommit": true,
+    "recoveredId": "6b069e1035be79ccbcd9c399",
+    "acceptedId": "6b069e1035be79ccbcd9c399",
+    "replayStatus": 200,
+    "kitchenEntriesAfterRetry": 1,
+    "secondPurchaseId": "6b069e1435be79ccbcd9c3c3",
+    "acceptedOrdersAfterSeparatePurchase": 2,
+    "passed": true
+  }
+]

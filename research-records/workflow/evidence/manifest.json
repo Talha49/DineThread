@@ -1,0 +1,345 @@
+[
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/app-baseline.log",
+    "file": "workflow-pilot-1794589753754--app-baseline.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "18bac95c2a51bfbe4e674e9be00bfb0d0c2361e5be8995b410b14f46519ded89",
+    "storedSha256": "a44f4fe202f285a73b1942fc95639f20b29f1963f6dae2bdbe2e69b62a867cb6"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/app-recovery.log",
+    "file": "workflow-pilot-1794589753754--app-recovery.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "f5aeb17d967e73e929ffe734eefbd5aa8b8edb082fb43012c03acf874d39fe6c",
+    "storedSha256": "1b7b58576b938d95e2c5b1dbe3994773bc72fa69451bc232d83998fe174b0b13"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/expected.json",
+    "file": "workflow-pilot-1794589753754--expected.json.gz",
+    "originalBytes": 2126,
+    "originalSha256": "6a9610b162ea3759f6dc39ce9d508a7a18fa38ca7603cb79809e3ae90c69c8e6",
+    "storedSha256": "89ae65484b04fe9102530e9b6441f258ba104e628a7b3e15d6ee3cfde161d8ec"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/observations.jsonl",
+    "file": "workflow-pilot-1794589753754--observations.jsonl.gz",
+    "originalBytes": 100316,
+    "originalSha256": "22c47997e371e254c9fd1a374072a316e0ae15b6932e42156ce2c75fe513750a",
+    "storedSha256": "df79ef2bc8add28b6ace75c75800f777b5e1d3080f989134b15d49a95f4cce92"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/server-baseline.jsonl",
+    "file": "workflow-pilot-1794589753754--server-baseline.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/server-recovery.jsonl",
+    "file": "workflow-pilot-1794589753754--server-recovery.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/source-manifest.json",
+    "file": "workflow-pilot-1794589753754--source-manifest.json.gz",
+    "originalBytes": 20032,
+    "originalSha256": "cee16971aeefd1cef763e9fdc8e5772b8602cbf0cb151e10dbdbeae491cbf879",
+    "storedSha256": "19fa36a3089afa37ef1708bda5be31c9d0f71e0e9113579134ebc78eec48da11"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/summary.json",
+    "file": "workflow-pilot-1794589753754--summary.json.gz",
+    "originalBytes": 234,
+    "originalSha256": "3186f572e83e9d83028f8575c3a761408269ba2c8ecc41d7345f21aef024043c",
+    "storedSha256": "96e3e9806c9cb2c3de80b45d18754bde5c6b9edaab1f1fd40cdd3913d8c42f0b"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/workflow-baseline.jsonl",
+    "file": "workflow-pilot-1794589753754--workflow-baseline.jsonl.gz",
+    "originalBytes": 10632,
+    "originalSha256": "e67816ed309cdca5284b8e00613a5b7a29e310abab7b1c35bbeb409558e44a1c",
+    "storedSha256": "548467159c98edf7b1c8bb1b0ab5303e8330ab1eaa9d8c227fcb0f14359efc69"
+  },
+  {
+    "source": "qa-results/workflow-pilot-1794589753754/workflow-recovery.jsonl",
+    "file": "workflow-pilot-1794589753754--workflow-recovery.jsonl.gz",
+    "originalBytes": 9379,
+    "originalSha256": "713916be17266668a512365c0e4a9f2ef0da69b038e17bd068d38c03c945963e",
+    "storedSha256": "b46eac04ee2dd2ee3ed7564e0ce857288c7fed2ab7fef881daad740df0915377"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/app-baseline.log",
+    "file": "workflow-measured-1794589949594--app-baseline.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "68e1f2a60b9a00fe391baf1b07e0b892ed73e49724f37a459301986f4c7790df",
+    "storedSha256": "8a310d7909f7d7ebaee235d34a8d36bd78bb18bec4ea53f71e2b4a1cd48027af"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/app-recovery.log",
+    "file": "workflow-measured-1794589949594--app-recovery.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "45fc9d1b08104ae735fd61de4b7a51137b5bc1c2035a6563bff153e228eef123",
+    "storedSha256": "9d7b4cae76b1414d887b28dd6d5272e4359d2540dc191a15f7b40daa9b310fdb"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/expected.json",
+    "file": "workflow-measured-1794589949594--expected.json.gz",
+    "originalBytes": 7789,
+    "originalSha256": "34bf8d744028033db644f2c8f33f87338c0ecb6ca61863e21dacc0b9eaf9393c",
+    "storedSha256": "af73d6ae0f9d37daffa77c3e8b26c66a4c61241f8bb9175cdc36e3a1270c0484"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/observations.jsonl",
+    "file": "workflow-measured-1794589949594--observations.jsonl.gz",
+    "originalBytes": 1019589,
+    "originalSha256": "604ad1794a323e3d6e6a758babddb36e8d032c0fa256c6be6c144182964a7bc4",
+    "storedSha256": "741674de1dd034320e22af1e9267e0309dd855981f77a997a359407a338735f4"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/server-baseline.jsonl",
+    "file": "workflow-measured-1794589949594--server-baseline.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/server-recovery.jsonl",
+    "file": "workflow-measured-1794589949594--server-recovery.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/source-manifest.json",
+    "file": "workflow-measured-1794589949594--source-manifest.json.gz",
+    "originalBytes": 19396,
+    "originalSha256": "f46ad6df74cc3295d3eb6638ba33394fe5c77fdcfa9983925a3f9256fb861f35",
+    "storedSha256": "3fa719066421d5fc95febe75b7ed04cd4c672b139521ff2dbd02ec05d917573b"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/summary.json",
+    "file": "workflow-measured-1794589949594--summary.json.gz",
+    "originalBytes": 240,
+    "originalSha256": "fefed5a000688b7e675a299f92465a1778e25dd62fc07688f7eaf48d9328039d",
+    "storedSha256": "7841481724a3179319e3fd92a5e82320e06d3e1832ca14be3891f252ad5f21c3"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/workflow-baseline.jsonl",
+    "file": "workflow-measured-1794589949594--workflow-baseline.jsonl.gz",
+    "originalBytes": 108365,
+    "originalSha256": "d551dcf3d60d9b0a1b4cb966567d3eabacab90cd7248d55c9fa599351e2cc20d",
+    "storedSha256": "23b0f38fe5cc81dd1041224d8e2b184cca5c899ddd1688688e1c84889a13a7e9"
+  },
+  {
+    "source": "qa-results/workflow-measured-1794589949594/workflow-recovery.jsonl",
+    "file": "workflow-measured-1794589949594--workflow-recovery.jsonl.gz",
+    "originalBytes": 95848,
+    "originalSha256": "6b82b2c1ddc6182e38e9314b148dc03891085b119e86f4445425408d12f7b0fa",
+    "storedSha256": "5d4017137a42b7b036ee079fb9107e82be26fd7ba33539c0b126596bdfa0f1c4"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/app-baseline.log",
+    "file": "workflow-browser-1794589781132--app-baseline.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "da4ee6071d237d162c0422af19484e3e0e55b84f65d17723d176c521193501d4",
+    "storedSha256": "291cdd2996015b7afd2e46af46065b46a990ba72a28efd8e8327436a1523a837"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/app-recovery.log",
+    "file": "workflow-browser-1794589781132--app-recovery.log.gz",
+    "originalBytes": 142,
+    "originalSha256": "7516fc4b0fca76669c4574a29da4279b2c2f41f278ba978b48c3f73bfbb0afee",
+    "storedSha256": "cee39442ae3018d1b4bbfa0f248dff95a4e7a3b85fdf5c101222f6c5256bd92d"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-bill-overlap-customer.png",
+    "file": "workflow-browser-1794589781132--baseline-bill-overlap-customer.png",
+    "originalBytes": 45365,
+    "originalSha256": "794e861077aed1f6e0f8664886972f0eba90ee069f77db9daf82e9f9acf19497",
+    "storedSha256": "794e861077aed1f6e0f8664886972f0eba90ee069f77db9daf82e9f9acf19497"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-bill-overlap-staff.png",
+    "file": "workflow-browser-1794589781132--baseline-bill-overlap-staff.png",
+    "originalBytes": 55457,
+    "originalSha256": "83c6ce10377adfcb3ed5b3082b1ccb5e8418672d683fc3a3f275478d512d1b80",
+    "storedSha256": "83c6ce10377adfcb3ed5b3082b1ccb5e8418672d683fc3a3f275478d512d1b80"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-lost-payment-customer.png",
+    "file": "workflow-browser-1794589781132--baseline-lost-payment-customer.png",
+    "originalBytes": 44489,
+    "originalSha256": "72b7826ef90041bddf62cdec0a6103dfc269ddcc72933843df287a17f6db0f92",
+    "storedSha256": "72b7826ef90041bddf62cdec0a6103dfc269ddcc72933843df287a17f6db0f92"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-lost-payment-staff.png",
+    "file": "workflow-browser-1794589781132--baseline-lost-payment-staff.png",
+    "originalBytes": 48707,
+    "originalSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad",
+    "storedSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-normal-customer.png",
+    "file": "workflow-browser-1794589781132--baseline-normal-customer.png",
+    "originalBytes": 44566,
+    "originalSha256": "20149f99c180df63ee34178f5252799aea5a243ef534be499e840236df2d47f8",
+    "storedSha256": "20149f99c180df63ee34178f5252799aea5a243ef534be499e840236df2d47f8"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-normal-staff.png",
+    "file": "workflow-browser-1794589781132--baseline-normal-staff.png",
+    "originalBytes": 48707,
+    "originalSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad",
+    "storedSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-reload-payment-customer.png",
+    "file": "workflow-browser-1794589781132--baseline-reload-payment-customer.png",
+    "originalBytes": 44530,
+    "originalSha256": "eef761c059ee6c0e8f622a7c6bf73af37655ef9f522d8c996645b06080f1e76b",
+    "storedSha256": "eef761c059ee6c0e8f622a7c6bf73af37655ef9f522d8c996645b06080f1e76b"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-reload-payment-staff.png",
+    "file": "workflow-browser-1794589781132--baseline-reload-payment-staff.png",
+    "originalBytes": 48707,
+    "originalSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad",
+    "storedSha256": "553359e2efb20ff103cd72af6499408678247eb79eaf4ccf84360b3ce2707bad"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-stale-staff-customer.png",
+    "file": "workflow-browser-1794589781132--baseline-stale-staff-customer.png",
+    "originalBytes": 44522,
+    "originalSha256": "af570531fd379e03737339949ed11100e55e736db7ffcf73776b6c7f12730eef",
+    "storedSha256": "af570531fd379e03737339949ed11100e55e736db7ffcf73776b6c7f12730eef"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/baseline-stale-staff-staff.png",
+    "file": "workflow-browser-1794589781132--baseline-stale-staff-staff.png",
+    "originalBytes": 54323,
+    "originalSha256": "74ab9ef07b89d3ab49b7076238c8374ad841f972bf1f4a670942325fa44b1775",
+    "storedSha256": "74ab9ef07b89d3ab49b7076238c8374ad841f972bf1f4a670942325fa44b1775"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-bill-overlap-customer.png",
+    "file": "workflow-browser-1794589781132--recovery-bill-overlap-customer.png",
+    "originalBytes": 45279,
+    "originalSha256": "d14cf3a6c3d16e992d4db8472483343427992104ca03ab31def585efdf5eb67c",
+    "storedSha256": "d14cf3a6c3d16e992d4db8472483343427992104ca03ab31def585efdf5eb67c"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-bill-overlap-staff.png",
+    "file": "workflow-browser-1794589781132--recovery-bill-overlap-staff.png",
+    "originalBytes": 55457,
+    "originalSha256": "83c6ce10377adfcb3ed5b3082b1ccb5e8418672d683fc3a3f275478d512d1b80",
+    "storedSha256": "83c6ce10377adfcb3ed5b3082b1ccb5e8418672d683fc3a3f275478d512d1b80"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-lost-payment-customer.png",
+    "file": "workflow-browser-1794589781132--recovery-lost-payment-customer.png",
+    "originalBytes": 44480,
+    "originalSha256": "b3c0dce5eb959d3fd91ca20c8ad9f9eb0589c1343d842cfc168b2a5f796ae181",
+    "storedSha256": "b3c0dce5eb959d3fd91ca20c8ad9f9eb0589c1343d842cfc168b2a5f796ae181"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-lost-payment-staff.png",
+    "file": "workflow-browser-1794589781132--recovery-lost-payment-staff.png",
+    "originalBytes": 48625,
+    "originalSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216",
+    "storedSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-normal-customer.png",
+    "file": "workflow-browser-1794589781132--recovery-normal-customer.png",
+    "originalBytes": 44617,
+    "originalSha256": "a839c63d02601fcc8eeeb12fa9c1f26237cdd4f80eee8afd9028b12057cbca37",
+    "storedSha256": "a839c63d02601fcc8eeeb12fa9c1f26237cdd4f80eee8afd9028b12057cbca37"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-normal-staff.png",
+    "file": "workflow-browser-1794589781132--recovery-normal-staff.png",
+    "originalBytes": 48625,
+    "originalSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216",
+    "storedSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-reload-payment-customer.png",
+    "file": "workflow-browser-1794589781132--recovery-reload-payment-customer.png",
+    "originalBytes": 44534,
+    "originalSha256": "dd78832069909e73bd6af8230096544b891d1a7d0850aa7a2a8cf7d957b803f7",
+    "storedSha256": "dd78832069909e73bd6af8230096544b891d1a7d0850aa7a2a8cf7d957b803f7"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-reload-payment-staff.png",
+    "file": "workflow-browser-1794589781132--recovery-reload-payment-staff.png",
+    "originalBytes": 48625,
+    "originalSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216",
+    "storedSha256": "375b698d5cb5a8eea7d6d90fbe4bf772c818ba2a68bbfb69a2f17b1153f3c216"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-stale-staff-customer.png",
+    "file": "workflow-browser-1794589781132--recovery-stale-staff-customer.png",
+    "originalBytes": 44454,
+    "originalSha256": "929fbb34070bda47f608c24a07332296a1c9d975cb76dc04c0b7345ea19d2bcd",
+    "storedSha256": "929fbb34070bda47f608c24a07332296a1c9d975cb76dc04c0b7345ea19d2bcd"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/recovery-stale-staff-staff.png",
+    "file": "workflow-browser-1794589781132--recovery-stale-staff-staff.png",
+    "originalBytes": 54323,
+    "originalSha256": "74ab9ef07b89d3ab49b7076238c8374ad841f972bf1f4a670942325fa44b1775",
+    "storedSha256": "74ab9ef07b89d3ab49b7076238c8374ad841f972bf1f4a670942325fa44b1775"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/results.json",
+    "file": "workflow-browser-1794589781132--results.json.gz",
+    "originalBytes": 5316,
+    "originalSha256": "53d2cf96543f55a0803fc1668020b23c45eb43ad4ae59ce26c40c54f0d4db1f7",
+    "storedSha256": "4e88242eaeacb29ccfbafad9f9259ab095ae5e7f072b9ea0d5dab52d2086fbc5"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/server-baseline.jsonl",
+    "file": "workflow-browser-1794589781132--server-baseline.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/server-recovery.jsonl",
+    "file": "workflow-browser-1794589781132--server-recovery.jsonl.gz",
+    "originalBytes": 0,
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "storedSha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/source-manifest.json",
+    "file": "workflow-browser-1794589781132--source-manifest.json.gz",
+    "originalBytes": 20032,
+    "originalSha256": "cee16971aeefd1cef763e9fdc8e5772b8602cbf0cb151e10dbdbeae491cbf879",
+    "storedSha256": "19fa36a3089afa37ef1708bda5be31c9d0f71e0e9113579134ebc78eec48da11"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/workflow-baseline.jsonl",
+    "file": "workflow-browser-1794589781132--workflow-baseline.jsonl.gz",
+    "originalBytes": 3647,
+    "originalSha256": "ad413c2795b5b2ef547cd170043893fdbba8799334c29a27115ca8ddc3d3cf16",
+    "storedSha256": "3ce62a84207b1f9ac7f11cbd6c568999d71a3f55df3eab21f5f1aa93c8a27f1c"
+  },
+  {
+    "source": "qa-results/workflow-browser-1794589781132/workflow-recovery.jsonl",
+    "file": "workflow-browser-1794589781132--workflow-recovery.jsonl.gz",
+    "originalBytes": 3698,
+    "originalSha256": "9d2d5defbde0d9df5866a43e894be9be60309bf688a16cf09445d4dcf0b62ffb",
+    "storedSha256": "e387ca5fa3352a52a8ba5365fddccb9d90d6170767d0434f769f02e4cc8e388f"
+  },
+  {
+    "source": "qa-results/workflow-validation/ali-unit-tests.log",
+    "file": "workflow-validation--ali-unit-tests.log.gz",
+    "originalBytes": 188,
+    "originalSha256": "73232c2eb717f54e0c305baf5b428c9b8bd899075787792add7cccccd361b1c4",
+    "storedSha256": "d28d419f76a0e53a17d781b2a3201f49431b84dc28186da40faed467fcc032f5"
+  }
+]

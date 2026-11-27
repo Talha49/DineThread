@@ -1,0 +1,15 @@
+{
+  "site": "https://dinethread-group7.vercel.app",
+  "qr": "https://dinethread-group7.vercel.app/menu/preview-test-kitchen-874091_628183?src=qr",
+  "desktopVideo": "single playable walkthrough",
+  "mobileDrawer": "opened and dismissed with Escape",
+  "dishes": 15,
+  "imagePixels": 812,
+  "guestDish": "Lemon Tart, $6.50",
+  "guestSearch": "no-match message and clear, then matched padded search",
+  "tv": "opened and exited",
+  "sharing": "Share menu control visible",
+  "staffEntry": "DineThread sign-in",
+  "mobile": "emulated Pixel 7",
+  "pageErrors": []
+}

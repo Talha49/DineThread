@@ -1,0 +1,2254 @@
+[
+  {
+    "folder": "qa-results/theme-main-1794597866560",
+    "phase": "main",
+    "conditions": [
+      {
+        "condition": "1280/grid/spaced",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 15.399999998509884,
+            "q25": 17.874999999068677,
+            "median": 19.299999998882413,
+            "q75": 21.199999999254942,
+            "max": 27.199999999254942
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 2000.1000000014901,
+            "q25": 2000.925000000745,
+            "median": 2003.75,
+            "q75": 2007.0249999994412,
+            "max": 2012.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 15.900000002235174,
+            "q25": 16.97499999962747,
+            "median": 17.65000000037253,
+            "q75": 19.100000000558794,
+            "max": 22.400000002235174
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.800000000745,
+            "q25": 2001.3500000005588,
+            "median": 2002.75,
+            "q75": 2006.7749999985099,
+            "max": 2014.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": -1.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -10.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": -3.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": -5.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 1.4999999962747097,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 1.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": -0.8999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": -3.2999999970197678,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": -1.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 2.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": -3.899999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": 6.099999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": 3.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 3.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": -1.3999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": -0.8999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": -3.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": -2.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": -0.19999999925494194,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": -6.100000001490116,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -10.300000000745058,
+          "q25": -3.4999999990686774,
+          "median": -1.299999998882413,
+          "q75": 1.4999999972060323,
+          "max": 6.099999997764826
+        }
+      },
+      {
+        "condition": "1280/grid/rapid",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 15.799999997019768,
+            "q25": 17.125000001862645,
+            "median": 18.449999999254942,
+            "q75": 24.249999999068677,
+            "max": 32.100000001490116
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.800000000745,
+            "q25": 2000.5250000013039,
+            "median": 2001,
+            "q75": 2002.5499999988824,
+            "max": 2010.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 15.699999999254942,
+            "q25": 20,
+            "median": 21.899999998509884,
+            "q75": 25.15000000037253,
+            "max": 30.800000000745058
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.5,
+            "q25": 2000.5499999988824,
+            "median": 2001.25,
+            "q75": 2004.2000000001863,
+            "max": 2015.699999999255
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": -1.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -6.600000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": -6.200000002980232,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 5.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 7.900000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 4.600000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": 3.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 7.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": -4.700000002980232,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 6.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": 3.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": 6.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": -11.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 6.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": -3.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": -2.899999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": 9.600000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": -1.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": 9.00000000372529,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": -2.100000001490116,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -11.5,
+          "q25": -3.049999998882413,
+          "median": 3.299999998882413,
+          "q75": 6.399999998509884,
+          "max": 9.600000001490116
+        }
+      },
+      {
+        "condition": "1280/list/spaced",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 12.399999998509884,
+            "q25": 13.474999999627471,
+            "median": 14.349999999627471,
+            "q75": 16.45000000204891,
+            "max": 22.199999999254942
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.5,
+            "q25": 2000.3500000024214,
+            "median": 2006.199999999255,
+            "q75": 2009.125,
+            "max": 2015
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 11,
+            "q25": 12.575000000186265,
+            "median": 15.199999999254942,
+            "q75": 15.92500000167638,
+            "max": 23.600000001490116
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 2000.1000000014901,
+            "q25": 2001.4249999998137,
+            "median": 2006.4000000003725,
+            "q75": 2009.0499999988824,
+            "max": 2014.199999999255
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": -2.4999999962747097,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -5.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 3,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": -0.4999999962747097,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": -4.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": -6.899999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": 2.1999999955296516,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 2,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": 9.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 0.6999999992549419,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": -4.699999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": -2.599999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": -3.900000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 2.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": -5.799999997019768,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": 3.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": -2.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": -1,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": 1,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": 1.300000000745058,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -6.899999998509884,
+          "q25": -4.050000001676381,
+          "median": -0.7499999981373549,
+          "q75": 2.049999998882413,
+          "max": 9.5
+        }
+      },
+      {
+        "condition": "1280/list/rapid",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 10.700000002980232,
+            "q25": 13.100000000558794,
+            "median": 15.150000000372529,
+            "q75": 16.25,
+            "max": 21.699999999254942
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.5,
+            "q25": 2000.4749999996275,
+            "median": 2000.8999999985099,
+            "q75": 2004.0000000009313,
+            "max": 2015.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 10.899999998509884,
+            "q25": 14.149999999441206,
+            "median": 16.25,
+            "q75": 21.675000000745058,
+            "max": 26.5
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.800000000745,
+            "q25": 2000.200000002049,
+            "median": 2000.75,
+            "q75": 2001.3250000001863,
+            "max": 2014.300000000745
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 3,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -10.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 7.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 5.899999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 0.4999999962747097,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 2.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": 10.700000002980232,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": -1.4000000022351742,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": -0.8000000007450581,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 0.7000000029802322,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": 11.199999995529652,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": 0.9000000022351742,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": -2.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 6.599999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": -7.300000004470348,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": 1.1000000014901161,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": 0.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": 6.699999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": 12.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": 1,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -10.800000000745058,
+          "q25": 0.17499999701976776,
+          "median": 1.050000000745058,
+          "q75": 6.624999998137355,
+          "max": 12.5
+        }
+      },
+      {
+        "condition": "1280/bento-magazine/spaced",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 7.199999999254942,
+            "q25": 7.750000000931323,
+            "median": 8.549999998882413,
+            "q75": 10.875,
+            "max": 16
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.300000000745,
+            "q25": 2000.6749999988824,
+            "median": 2008.4500000011176,
+            "q75": 2009.6250000009313,
+            "max": 2014.199999999255
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 6.800000000745058,
+            "q25": 10.149999999441206,
+            "median": 11.449999999254942,
+            "q75": 12.75,
+            "max": 19.200000002980232
+          },
+          "messages": {
+            "n": 20,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.699999999255,
+            "q25": 2000.5750000011176,
+            "median": 2008.25,
+            "q75": 2010.7249999986961,
+            "max": 2015.800000000745
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 4.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -1.1000000014901161,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 0.8000000007450581,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 0.30000000074505806,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 6.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": -1.5999999977648258,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": -3.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 6.800000004470348,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": -0.30000000074505806,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 2.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": -3.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": 1.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": 3.7999999970197678,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 3.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": -0.4000000022351742,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": 1.5999999977648258,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": 5.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": 11.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": 3.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": 4.600000001490116,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -3.5,
+          "q25": -0.3250000011175871,
+          "median": 1.9999999981373549,
+          "q75": 4.375000000931323,
+          "max": 11.100000001490116
+        }
+      },
+      {
+        "condition": "1280/bento-magazine/rapid",
+        "immediate": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 6,
+            "q25": 7.875000001862645,
+            "median": 8.349999999627471,
+            "q75": 9.474999997764826,
+            "max": 15
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.5,
+            "q25": 2000.25,
+            "median": 2000.6499999985099,
+            "q75": 2003.1000000005588,
+            "max": 2013.8999999985099
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 20,
+          "delayMs": {
+            "n": 20,
+            "min": 7.899999998509884,
+            "q25": 10.600000000558794,
+            "median": 12.049999998882413,
+            "q75": 13.099999998696148,
+            "max": 20.900000002235174
+          },
+          "messages": {
+            "n": 20,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 20,
+            "min": 1999.699999999255,
+            "q25": 2000.300000000745,
+            "median": 2001.050000000745,
+            "q75": 2003.800000000745,
+            "max": 2013.7999999970198
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 3.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 2.2000000029802322,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 5.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 1.4000000022351742,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 1.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": 4.49999999627471,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 3.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": 4.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 1.699999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 10,
+            "delayDifferenceMs": -4,
+            "messageDifference": 0
+          },
+          {
+            "pair": 11,
+            "delayDifferenceMs": 2.399999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 12,
+            "delayDifferenceMs": 3.600000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 13,
+            "delayDifferenceMs": 1.2999999970197678,
+            "messageDifference": 0
+          },
+          {
+            "pair": 14,
+            "delayDifferenceMs": 4.49999999627471,
+            "messageDifference": 0
+          },
+          {
+            "pair": 15,
+            "delayDifferenceMs": 0.09999999776482582,
+            "messageDifference": 0
+          },
+          {
+            "pair": 16,
+            "delayDifferenceMs": 1.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 17,
+            "delayDifferenceMs": 7.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 18,
+            "delayDifferenceMs": 2.5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 19,
+            "delayDifferenceMs": 12.400000002235174,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 20,
+          "min": -4,
+          "q25": 1.3750000018626451,
+          "median": 2.950000001117587,
+          "q75": 4.574999997392297,
+          "max": 12.400000002235174
+        }
+      },
+      {
+        "condition": "390/grid/spaced",
+        "immediate": {
+          "runs": 10,
+          "delayMs": {
+            "n": 10,
+            "min": 15.099999997764826,
+            "q25": 15.524999999441206,
+            "median": 17.299999998882413,
+            "q75": 19.424999997019768,
+            "max": 37.5
+          },
+          "messages": {
+            "n": 10,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 10,
+            "min": 2000.199999999255,
+            "q25": 2000.300000000745,
+            "median": 2003.1000000014901,
+            "q75": 2009.5999999996275,
+            "max": 2013.1000000014901
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 10,
+          "delayMs": {
+            "n": 10,
+            "min": 15.100000001490116,
+            "q25": 18.025000002235174,
+            "median": 20.399999998509884,
+            "q75": 23.299999999813735,
+            "max": 25.800000000745058
+          },
+          "messages": {
+            "n": 10,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 10,
+            "min": 1999.699999999255,
+            "q25": 2000.6499999985099,
+            "median": 2001.1500000003725,
+            "q75": 2004.8999999994412,
+            "max": 2011.5999999977648
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 6.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 4,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 8.200000002980232,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": -0.8000000007450581,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": -3.1999999955296516,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 6.00000000372529,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": -3.699999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 7.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": -19.099999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 5.399999998509884,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 10,
+          "min": -19.099999997764826,
+          "q25": -2.5999999968335032,
+          "median": 4.699999999254942,
+          "q75": 6.225000001490116,
+          "max": 8.200000002980232
+        }
+      },
+      {
+        "condition": "390/grid/rapid",
+        "immediate": {
+          "runs": 10,
+          "delayMs": {
+            "n": 10,
+            "min": 15.099999997764826,
+            "q25": 15.425000000745058,
+            "median": 17.549999998882413,
+            "q75": 20.000000001862645,
+            "max": 24.800000000745058
+          },
+          "messages": {
+            "n": 10,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 10,
+            "min": 1999.9000000022352,
+            "q25": 2000.3750000009313,
+            "median": 2001.2000000011176,
+            "q75": 2007.7999999970198,
+            "max": 2014.4000000022352
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 10,
+          "delayMs": {
+            "n": 10,
+            "min": 16.100000001490116,
+            "q25": 17.324999999254942,
+            "median": 20.300000000745058,
+            "q75": 22.149999998509884,
+            "max": 27.600000001490116
+          },
+          "messages": {
+            "n": 10,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 10,
+            "min": 2000.300000000745,
+            "q25": 2000.9749999986961,
+            "median": 2001.2000000029802,
+            "q75": 2002.125,
+            "max": 2008.8999999985099
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 4.100000001490116,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -5.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": -2.699999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 5.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 0.8000000007450581,
+            "messageDifference": 0
+          },
+          {
+            "pair": 5,
+            "delayDifferenceMs": 0.5000000037252903,
+            "messageDifference": 0
+          },
+          {
+            "pair": 6,
+            "delayDifferenceMs": 6.599999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 7,
+            "delayDifferenceMs": 9.400000002235174,
+            "messageDifference": 0
+          },
+          {
+            "pair": 8,
+            "delayDifferenceMs": 1.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 9,
+            "delayDifferenceMs": 0.9999999962747097,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 10,
+          "min": -5.300000000745058,
+          "q25": 0.5750000029802322,
+          "median": 1.3999999985098839,
+          "q75": 5.07500000204891,
+          "max": 9.400000002235174
+        }
+      }
+    ],
+    "correctness": 0,
+    "warmups": 16
+  },
+  {
+    "folder": "qa-results/theme-profile-1794599336519",
+    "phase": "profile",
+    "conditions": [
+      {
+        "condition": "1280/grid/rapid",
+        "immediate": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 20.600000001490116,
+            "q25": 20.699999999254942,
+            "median": 20.800000000745058,
+            "q75": 22.299999997019768,
+            "max": 23.399999998509884
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 2000.199999999255,
+            "q25": 2000.6000000014901,
+            "median": 2001.1000000014901,
+            "q75": 2002.4000000022352,
+            "max": 2003.1000000014901
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 55.80000001564622,
+            "q25": 57.599999994039536,
+            "median": 64.19999999925494,
+            "q75": 69.00000001117587,
+            "max": 69.29999999701977
+          }
+        },
+        "coalesced": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 17.700000002980232,
+            "q25": 19.700000002980232,
+            "median": 24.199999999254942,
+            "q75": 24.399999998509884,
+            "max": 29.099999997764826
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 1999.5,
+            "q25": 1999.8999999985099,
+            "median": 2000,
+            "q75": 2000.5,
+            "max": 2014.6000000014901
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 54.69999996945262,
+            "q25": 57.50000003352761,
+            "median": 60.69999999925494,
+            "q75": 62.50000002235174,
+            "max": 69.99999997392297
+          }
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 6.800000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 3.599999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": -0.8999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": -2.9999999962747097,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 0.8000000007450581,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 5,
+          "min": -2.9999999962747097,
+          "q25": -0.8999999985098839,
+          "median": 0.8000000007450581,
+          "q75": 3.599999997764826,
+          "max": 6.800000000745058
+        }
+      },
+      {
+        "condition": "1280/list/rapid",
+        "immediate": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 15.599999997764826,
+            "q25": 16,
+            "median": 16.100000001490116,
+            "q75": 16.900000002235174,
+            "max": 21.399999998509884
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 2001,
+            "q25": 2001.0999999977648,
+            "median": 2001.199999999255,
+            "q75": 2001.2000000029802,
+            "max": 2008.6000000014901
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 51.00000001490116,
+            "q25": 56.70000000298023,
+            "median": 61.29999999329448,
+            "q75": 63.39999996870756,
+            "max": 66.20000002905726
+          }
+        },
+        "coalesced": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 14.100000001490116,
+            "q25": 14.5,
+            "median": 16.5,
+            "q75": 20.699999999254942,
+            "max": 20.900000002235174
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 2000.1000000014901,
+            "q25": 2000.5999999977648,
+            "median": 2000.8999999985099,
+            "q75": 2001.4000000022352,
+            "max": 2001.8999999985099
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 51.3999999910593,
+            "q25": 53.099999986588955,
+            "median": 58.79999998211861,
+            "q75": 58.89999996870756,
+            "max": 63.3999999910593
+          }
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 0.3999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 3.7999999970197678,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": -1.8999999985098839,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": -1.0999999977648258,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": -0.4999999962747097,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 5,
+          "min": -1.8999999985098839,
+          "q25": -1.0999999977648258,
+          "median": -0.4999999962747097,
+          "q75": 0.3999999985098839,
+          "max": 3.7999999970197678
+        }
+      },
+      {
+        "condition": "1280/bento-magazine/rapid",
+        "immediate": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 7.699999999254942,
+            "q25": 7.899999998509884,
+            "median": 8,
+            "q75": 10.300000000745058,
+            "max": 12.300000000745058
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 2000.1000000014901,
+            "q25": 2000.6000000014901,
+            "median": 2001.0999999977648,
+            "q75": 2001.199999999255,
+            "max": 2002.3999999985099
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 47.19999999925494,
+            "q25": 51.50000003352761,
+            "median": 54.49999999627471,
+            "q75": 58.80000001937151,
+            "max": 59.99999997019768
+          }
+        },
+        "coalesced": {
+          "runs": 5,
+          "delayMs": {
+            "n": 5,
+            "min": 8.899999998509884,
+            "q25": 11.100000001490116,
+            "median": 12.300000000745058,
+            "q75": 16.899999998509884,
+            "max": 17.299999997019768
+          },
+          "messages": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 5,
+            "min": 2000.0999999977648,
+            "q25": 2000.3999999985099,
+            "median": 2000.4000000022352,
+            "q75": 2000.800000000745,
+            "max": 2002.800000000745
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": {
+            "n": 5,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "reactRenderMs": {
+            "n": 5,
+            "min": 46.599999990314245,
+            "q25": 54.19999995827675,
+            "median": 55.20000000298023,
+            "q75": 56.99999995902181,
+            "max": 60.50000001862645
+          }
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": -1.199999999254942,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 8.899999998509884,
+            "messageDifference": 0
+          },
+          {
+            "pair": 2,
+            "delayDifferenceMs": 2,
+            "messageDifference": 0
+          },
+          {
+            "pair": 3,
+            "delayDifferenceMs": 9.599999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 4,
+            "delayDifferenceMs": 1,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 5,
+          "min": -1.199999999254942,
+          "q25": 1,
+          "median": 2,
+          "q75": 8.899999998509884,
+          "max": 9.599999997764826
+        }
+      }
+    ],
+    "correctness": 0,
+    "warmups": 0
+  },
+  {
+    "folder": "qa-results/theme-pilot-1794597614755",
+    "phase": "pilot",
+    "conditions": [
+      {
+        "condition": "1280/grid/spaced",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 15.699999999254942,
+            "q25": 17.674999999348074,
+            "median": 19.649999999441206,
+            "q75": 21.62499999953434,
+            "max": 23.59999999962747
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2000.1000000014901,
+            "q25": 2001.000000001397,
+            "median": 2001.9000000013039,
+            "q75": 2002.8000000012107,
+            "max": 2003.7000000011176
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 26.5,
+            "q25": 27.024999999906868,
+            "median": 27.549999999813735,
+            "q75": 28.074999999720603,
+            "max": 28.59999999962747
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2001,
+            "q25": 2001.8500000000931,
+            "median": 2002.7000000001863,
+            "q75": 2003.5500000002794,
+            "max": 2004.4000000003725
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 5,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 10.800000000745058,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": 5,
+          "q25": 6.4500000001862645,
+          "median": 7.900000000372529,
+          "q75": 9.350000000558794,
+          "max": 10.800000000745058
+        }
+      },
+      {
+        "condition": "1280/grid/rapid",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 16.09999999962747,
+            "q25": 16.34999999962747,
+            "median": 16.59999999962747,
+            "q75": 16.84999999962747,
+            "max": 17.09999999962747
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2000.5999999996275,
+            "q25": 2001.1249999995343,
+            "median": 2001.6499999994412,
+            "q75": 2002.174999999348,
+            "max": 2002.699999999255
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 24.5,
+            "q25": 25.200000000186265,
+            "median": 25.90000000037253,
+            "q75": 26.600000000558794,
+            "max": 27.300000000745058
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2000.5999999996275,
+            "q25": 2002.3249999997206,
+            "median": 2004.0499999998137,
+            "q75": 2005.7749999999069,
+            "max": 2007.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 10.200000001117587,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 8.400000000372529,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": 8.400000000372529,
+          "q25": 8.850000000558794,
+          "median": 9.300000000745058,
+          "q75": 9.750000000931323,
+          "max": 10.200000001117587
+        }
+      },
+      {
+        "condition": "1280/list/spaced",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 12.800000000745058,
+            "q25": 13.02500000083819,
+            "median": 13.250000000931323,
+            "q75": 13.475000001024455,
+            "max": 13.700000001117587
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2002.5,
+            "q25": 2004.9499999997206,
+            "median": 2007.3999999994412,
+            "q75": 2009.8499999991618,
+            "max": 2012.2999999988824
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 19.799999998882413,
+            "q25": 20.59999999916181,
+            "median": 21.399999999441206,
+            "q75": 22.199999999720603,
+            "max": 23
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 1999.2999999988824,
+            "q25": 1999.5999999991618,
+            "median": 1999.8999999994412,
+            "q75": 2000.1999999997206,
+            "max": 2000.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 6.099999997764826,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 10.199999999254942,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": 6.099999997764826,
+          "q25": 7.124999998137355,
+          "median": 8.149999998509884,
+          "q75": 9.174999998882413,
+          "max": 10.199999999254942
+        }
+      },
+      {
+        "condition": "1280/list/rapid",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 14,
+            "q25": 15.299999999813735,
+            "median": 16.59999999962747,
+            "q75": 17.899999999441206,
+            "max": 19.199999999254942
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2001.300000000745,
+            "q25": 2001.3500000005588,
+            "median": 2001.4000000003725,
+            "q75": 2001.4500000001863,
+            "max": 2001.5
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 14.5,
+            "q25": 17.25,
+            "median": 20,
+            "q75": 22.75,
+            "max": 25.5
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2003.6000000014901,
+            "q25": 2005.6500000008382,
+            "median": 2007.7000000001863,
+            "q75": 2009.7499999995343,
+            "max": 2011.7999999988824
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 6.300000000745058,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": 0.5,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": 0.5,
+          "q25": 1.9500000001862645,
+          "median": 3.400000000372529,
+          "q75": 4.8500000005587935,
+          "max": 6.300000000745058
+        }
+      },
+      {
+        "condition": "1280/bento-magazine/spaced",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 11.299999998882413,
+            "q25": 11.549999999348074,
+            "median": 11.799999999813735,
+            "q75": 12.050000000279397,
+            "max": 12.300000000745058
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2008.9000000003725,
+            "q25": 2009.3250000001863,
+            "median": 2009.75,
+            "q75": 2010.1749999998137,
+            "max": 2010.5999999996275
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 10.199999999254942,
+            "q25": 10.374999999534339,
+            "median": 10.549999999813735,
+            "q75": 10.725000000093132,
+            "max": 10.900000000372529
+          },
+          "messages": {
+            "n": 2,
+            "min": 20,
+            "q25": 20,
+            "median": 20,
+            "q75": 20,
+            "max": 20
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 1999.800000000745,
+            "q25": 2003.050000000745,
+            "median": 2006.300000000745,
+            "q75": 2009.550000000745,
+            "max": 2012.800000000745
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": -1.400000000372529,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -1.099999999627471,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": -1.400000000372529,
+          "q25": -1.3250000001862645,
+          "median": -1.25,
+          "q75": -1.1749999998137355,
+          "max": -1.099999999627471
+        }
+      },
+      {
+        "condition": "1280/bento-magazine/rapid",
+        "immediate": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 10.699999999254942,
+            "q25": 10.899999999441206,
+            "median": 11.099999999627471,
+            "q75": 11.299999999813735,
+            "max": 11.5
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 2000.4000000003725,
+            "q25": 2002.0500000002794,
+            "median": 2003.7000000001863,
+            "q75": 2005.3500000000931,
+            "max": 2007
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "coalesced": {
+          "runs": 2,
+          "delayMs": {
+            "n": 2,
+            "min": 11.399999998509884,
+            "q25": 12.34999999916181,
+            "median": 13.299999999813735,
+            "q75": 14.250000000465661,
+            "max": 15.200000001117587
+          },
+          "messages": {
+            "n": 2,
+            "min": 60,
+            "q25": 60,
+            "median": 60,
+            "q75": 60,
+            "max": 60
+          },
+          "achievedDurationMs": {
+            "n": 2,
+            "min": 1999.8999999985099,
+            "q25": 1999.9749999991618,
+            "median": 2000.0499999998137,
+            "q75": 2000.1250000004657,
+            "max": 2000.2000000011176
+          },
+          "timeouts": 0,
+          "mismatches": 0,
+          "hidden": 0,
+          "reactCommits": null,
+          "reactRenderMs": null
+        },
+        "pairs": [
+          {
+            "pair": 0,
+            "delayDifferenceMs": 4.500000001862645,
+            "messageDifference": 0
+          },
+          {
+            "pair": 1,
+            "delayDifferenceMs": -0.10000000149011612,
+            "messageDifference": 0
+          }
+        ],
+        "pairedDelayDifferenceMs": {
+          "n": 2,
+          "min": -0.10000000149011612,
+          "q25": 1.0499999993480742,
+          "median": 2.2000000001862645,
+          "q75": 3.350000001024455,
+          "max": 4.500000001862645
+        }
+      }
+    ],
+    "correctness": 0,
+    "warmups": 0
+  }
+]

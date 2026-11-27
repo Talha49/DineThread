@@ -1,0 +1,16 @@
+{
+  "pass": true,
+  "orderId": "6b069e4742adcf3cb7a91063",
+  "staffReadVersions": [
+    1,
+    1
+  ],
+  "staffReplyStatus": [
+    200,
+    409
+  ],
+  "finalVersion": 2,
+  "finalStatus": "preparing",
+  "billRequested": true,
+  "customerReceipt": "$8.00"
+}

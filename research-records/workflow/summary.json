@@ -1,0 +1,70 @@
+{
+  "source": "workflow-measured-1794589949594",
+  "versions": {
+    "baseline": {
+      "histories": 100,
+      "defectiveHistories": 100,
+      "defects": {
+        "stale-write": 100,
+        "invalid-status-transition": 50
+      },
+      "concurrentHistories": 75,
+      "overlapEstablished": 75,
+      "validFollowups": 100,
+      "historyMedianApiMs": {
+        "count": 100,
+        "median": 23.40124999999989,
+        "min": 16.46125000000029,
+        "max": 401.14949999999953
+      }
+    },
+    "recovery": {
+      "histories": 100,
+      "defectiveHistories": 0,
+      "defects": {},
+      "concurrentHistories": 75,
+      "overlapEstablished": 75,
+      "validFollowups": 100,
+      "historyMedianApiMs": {
+        "count": 100,
+        "median": 22.486700000001292,
+        "min": 15.187949999999546,
+        "max": 803.4554000000007
+      }
+    }
+  },
+  "schedules": {
+    "identical": {
+      "pairedHistoryMedianApiDifferenceMs": {
+        "count": 25,
+        "median": -0.6650000000008731,
+        "min": -6.6819999999970605,
+        "max": 402.3059000000012
+      }
+    },
+    "different": {
+      "pairedHistoryMedianApiDifferenceMs": {
+        "count": 25,
+        "median": -1.971400000002177,
+        "min": -6.983000000000175,
+        "max": 3.4593999999960943
+      }
+    },
+    "delayed": {
+      "pairedHistoryMedianApiDifferenceMs": {
+        "count": 25,
+        "median": -1.098100000002887,
+        "min": -3.6197000000001935,
+        "max": 2.968300000000454
+      }
+    },
+    "bill-overlap": {
+      "pairedHistoryMedianApiDifferenceMs": {
+        "count": 25,
+        "median": -0.979300000000876,
+        "min": -7.321000000000822,
+        "max": 2.5791000000026543
+      }
+    }
+  }
+}

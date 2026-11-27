@@ -1,0 +1,158 @@
+[
+  {
+    "file": "api-measured--api-attempts.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 7219175,
+    "sha256": "633bb73510fb70e4fce36c6ca2414d1380bfed4d19c9700e020298b203332e45"
+  },
+  {
+    "file": "api-measured--api-batches.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 107159,
+    "sha256": "b62b9d42fb2e1983d39804d85cef58c3abd84cd4887a7a1174bde4803e9dbf19"
+  },
+  {
+    "file": "api-measured--database-observations.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 6380940,
+    "sha256": "70b91ec601e52d6ce57f63e86d74d8ed4f0b5e64f629448cc26dc3d1ee63500e"
+  },
+  {
+    "file": "api-measured--environment.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1132,
+    "sha256": "f9aa14bca9a05e63dad2ce7afc99a8987ee474e95d19cd563e93003937104d40"
+  },
+  {
+    "file": "api-measured--expected-workload.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 1432532,
+    "sha256": "44c2ec27a830844e1c1d588f4991d3406b793a087f7be08afcc81e3eeb26f34f"
+  },
+  {
+    "file": "api-measured--faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 134120,
+    "sha256": "7054c546f4e5026cab9da5fa36d15164dee2beb2011534ae1d7d0bffd307f2e4"
+  },
+  {
+    "file": "api-measured--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 2155,
+    "sha256": "194024312b3490e839f16339987d7b9ec27d009fbec35ff188855bda4fac2ed7"
+  },
+  {
+    "file": "api-measured--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 150318,
+    "sha256": "e0cbfa0cf2a186ebbcdc7f855df31222194e6379fa7e4db0d327d63aead279ef"
+  },
+  {
+    "file": "api-measured--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1841620,
+    "sha256": "5ea9ab82d010d5456699f4ff080786ff9339915b944a071bf53d40b0339a8514"
+  },
+  {
+    "file": "api-measured--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 1812420,
+    "sha256": "c6c000e8cae2562abbc10c0c099bef7c8808c7e216bf58ff2d9259901e08a5b3"
+  },
+  {
+    "file": "api-measured--source-manifest.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 17747,
+    "sha256": "b2af6c4a2c63e59666b26d6dd7e5159fe597deb6653e6b976588629a808a2019"
+  },
+  {
+    "file": "browser-measured--baseline-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 43324,
+    "sha256": "99fd124a1bd32bcc4013f3f3b4103117ff196ba6a05df5ec7a2c06cf968e143b"
+  },
+  {
+    "file": "browser-measured--baseline-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 43350,
+    "sha256": "c262d24dd06a5b15c39c929dde9c3a83b0a1b91d2e82c81171675056c7fe63c7"
+  },
+  {
+    "file": "browser-measured--baseline-reload.png",
+    "encoding": "identity",
+    "originalBytes": 43381,
+    "sha256": "c3dc9b65276fc17a534dedc70c7036ae93265bc19f74bef0b35d523e6fdbddb8"
+  },
+  {
+    "file": "browser-measured--browser-expected.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 4020,
+    "sha256": "86144e6e00507a112e1b1e503531bd9387e6fe45c6db3255222ed8ff5de8611a"
+  },
+  {
+    "file": "browser-measured--browser-faults.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 4110,
+    "sha256": "df6b95582156b393ce348d5b2c4ba37fa2c175c47406a036253d7b68c802429f"
+  },
+  {
+    "file": "browser-measured--browser-results.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 11243,
+    "sha256": "d1bc973a76102d53b214ec64ec2155beedfc0759a1f41d19cbfb4b009cbbc71f"
+  },
+  {
+    "file": "browser-measured--browser-version.txt.gz",
+    "encoding": "gzip",
+    "originalBytes": 13,
+    "sha256": "2db9e03560e2bdceeefbfd6627fc3c49776d9ab2d3cdaf3d5a835ef07e2cd089"
+  },
+  {
+    "file": "browser-measured--protocol.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 2155,
+    "sha256": "194024312b3490e839f16339987d7b9ec27d009fbec35ff188855bda4fac2ed7"
+  },
+  {
+    "file": "browser-measured--recovery-application-restart.png",
+    "encoding": "identity",
+    "originalBytes": 43261,
+    "sha256": "88ca1ba75e3a6cdb27839bcc191d9e8117973f2f3cbde7219d370710bc0aa6a2"
+  },
+  {
+    "file": "browser-measured--recovery-lost-confirmation.png",
+    "encoding": "identity",
+    "originalBytes": 43229,
+    "sha256": "509bb9235bb5d41b74eab877180c92a1b09ef1087db4c517d975a3d503480a1f"
+  },
+  {
+    "file": "browser-measured--recovery-reload.png",
+    "encoding": "identity",
+    "originalBytes": 43196,
+    "sha256": "85c4ecc20d22264ad060d981a5ecb482016ebee3d67c8ad8175e542e2ebdfde4"
+  },
+  {
+    "file": "browser-measured--results.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 15182,
+    "sha256": "bd993269a77e4fb85bf5127cd91ae995fca0a44d1298484f87a28bc4bec92b5d"
+  },
+  {
+    "file": "browser-measured--server-baseline.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 8910,
+    "sha256": "4f5fa351411447dce82109255e682e81a770400bd110ec7c8bf2938a441cf460"
+  },
+  {
+    "file": "browser-measured--server-recovery.jsonl.gz",
+    "encoding": "gzip",
+    "originalBytes": 8895,
+    "sha256": "1337965bb4a60d7bb41d7b0361e7251aa2f8146c643011e333dce20af19d99e6"
+  },
+  {
+    "file": "browser-measured--source-manifest.json.gz",
+    "encoding": "gzip",
+    "originalBytes": 17747,
+    "sha256": "b2af6c4a2c63e59666b26d6dd7e5159fe597deb6653e6b976588629a808a2019"
+  }
+]
