@@ -11,6 +11,6 @@ The five directories hold the synthetic component experiments. The integration d
 | [Kitchen workflow](workflow/) | History checker, browser observations and read-back-to-screen timings |
 | [Integration and release](integration/) | Cross-strand checks, screenshots and native speech observations |
 
-The four revised study summaries identify the members’ contributions. The [original study records](https://github.com/Talha49/DineThread/tree/7d7597da753cd26ed8aea6404da7d07fd9c6360f/research-records) document where AI assistance was used in implementation, testing, analysis or writing. Bibek also performed his own keyboard checks of the dish dialog. The recorded browser traces and native NVDA runs are separate evidence.
+The four revised study summaries identify the members’ contributions. Bibek also performed his own keyboard checks of the dish dialog. The recorded browser traces and native NVDA runs are separate evidence.
 
 The original implementation commits are [catalogue](https://github.com/Talha49/DineThread/commit/3611db71be54230b8e0892fc756e051331078085), [theme preview](https://github.com/Talha49/DineThread/commit/69149a5079a2e01b95a424c3bd914b4005821353) and [kitchen workflow](https://github.com/Talha49/DineThread/commit/5d4422f57a9b4bdab2c662bc80ac9233453a605e). This branch preserves their original history. The group's application is on main. Earlier protocols in this archive describe the experiments as recorded. Current release protocols are maintained in the application repository.
