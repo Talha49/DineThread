@@ -4,6 +4,8 @@ Implementation/protocol commit: `5d4422f`. Production build: `m83pPGcb6p2ZgPs9s0
 Signed specification: Ali Raza, B01845771; signed document unchanged.
 Implementation, test automation and analysis are AI-assisted; fixtures are synthetic.
 
+Ali Raza checked which staff action was stored when two sessions acted on version 1 of an order. One request succeeded and the stale request received HTTP 409. The stored record confirmed the outcome. It held version 2, the bill request and the original $8 receipt. [Merged bill and staff-action record](https://github.com/Talha49/DineThread/blob/0280939b4f512c184c8e25a629fa2449c83c7a05/research-records/integration/checkout/bill-and-staff.json)
+
 The ten-history pilot ran on both versions before the protocol was frozen.
 The main comparison completed 25 repetitions of four schedules: 100 histories per
 version. All 100 revised histories passed the independent state/history checker.

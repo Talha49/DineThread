@@ -4,6 +4,8 @@ This folder records the implementation and controlled experiments for Aby's sign
 
 [Results and limitations](RESULTS.md) contain the completed measurements. `summary.json` and `api-summary.csv` hold the numerical summaries. `evidence/manifest.json` lists the raw records and screenshots, with SHA-256 hashes of their uncompressed contents. Text records use gzip; screenshots remain PNG files. Pilot, failed-pilot and measured files have different prefixes.
 
+In the merged checkout test, Aby Daniel Varghese checked the order ID and kitchen queue after an accepted $9 order lost its confirmation. Retrying returned the original ID and left one kitchen entry. A separate purchase of the same items produced a different ID. Both screen widths gave the same result. [Merged checkout records](https://github.com/Talha49/DineThread/blob/0280939b4f512c184c8e25a629fa2449c83c7a05/research-records/integration/price/results.json)
+
 ## Comparison
 
 A is a deliberately non-idempotent comparison mode: the button blocks repeated clicks while sending, but a later valid retry creates a new order. It has no persistent unconfirmed-purchase snapshot. B retains a purchase identifier and original payload, enforces a unique restaurant/identifier index, and replays the accepted ID and total. These modes share menu validation/pricing, anonymous browser ownership, read access, instrumentation, dependencies and test fixtures. A is the group-code starting behaviour with those shared controls; it is not an untouched checkout of the original commit.

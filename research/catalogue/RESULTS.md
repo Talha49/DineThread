@@ -4,6 +4,8 @@ Implementation/protocol commit: `3611db7`. Production build: `BTW0nrxV9kXSrCR0XP
 Signed specification: Muhammad Fahad Akhtar, B01844826; signed document unchanged.
 Implementation and automated analysis are AI-assisted. All data are local synthetic fixtures.
 
+Muhammad Fahad Akhtar examined whether a diner had to confirm a change to the price of a selected modifier. In all 40 modifier-price cases on the revised checkout, the first response requested confirmation and the next accepted the order. All 40 unrelated-edit cases went straight to acceptance. [Checkout observations, compressed JSONL](https://github.com/Talha49/DineThread/blob/0280939b4f512c184c8e25a629fa2449c83c7a05/research-records/catalogue/evidence/catalogue-measured-1794589279633--observations.jsonl.gz)
+
 The ten-case pilot ran each case on A and B (20 observations). The frozen study
 then completed 20 matched rounds of 16 cases: 320 checkouts per version. The
 independent fixture oracle found zero declared-policy violations in either

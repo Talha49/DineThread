@@ -4,6 +4,8 @@ Recorded 13 November 2026. These are technical checks on synthetic menus, not
 participant results or a claim of full WCAG conformance. The signed specification
 is unchanged. Code, test execution and this evidence record were AI-assisted.
 
+Bibek Rai personally checked the dish dialog. He reached the dish with Tab and opened it with Enter. After pressing Escape he checked that focus returned to the same dish, so he could continue from his previous position. The NVDA sessions have their own speech logs. [Record of the personal keyboard check](https://github.com/Talha49/DineThread/blob/0280939b4f512c184c8e25a629fa2449c83c7a05/research-records/accessibility/RESULTS.md)
+
 ## Builds and scope
 
 A is production build `m83pPGcb6p2ZgPs9s0OoB` (workflow implementation).

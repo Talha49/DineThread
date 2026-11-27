@@ -53,3 +53,7 @@ Automated accessibility checks cannot substitute for the signed manual keyboard,
 contrast, zoom and NVDA checks. Theme timing runs must distinguish frame callbacks
 from physical screen presentation. Local synthetic tests do not establish live
 deployment reliability, customer satisfaction or commercial benefits.
+
+## Talha’s theme-preview results
+
+Talha Khan Ghauri checked the saved theme as well as the number of messages the preview received. In the browser, both delivery strategies sent 20 messages during spaced edits and 60 during rapid edits. The final configuration was correct in every measured run. On this workload, buffering offered no reduction in message count. [Theme-preview measurements](https://github.com/Talha49/DineThread/blob/0280939b4f512c184c8e25a629fa2449c83c7a05/research-records/theme/RESULTS.md)
